@@ -14,7 +14,7 @@ class CoreDataHelper: RemoteAPI {
     
     let persistentContainer: NSPersistentContainer
     
-    var viewContext { self.persistentContainer.viewContext }
+    var viewContext: NSManagedObjectContext { self.persistentContainer.viewContext }
     
     init(persistentContainer: NSPersistentContainer) {
         self.persistentContainer = persistentContainer
