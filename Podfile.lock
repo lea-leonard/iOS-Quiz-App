@@ -1,0 +1,20 @@
+PODS:
+  - BCrypt (1.0.0)
+  - KeychainAccess (4.2.2)
+
+DEPENDENCIES:
+  - BCrypt
+  - KeychainAccess
+
+SPEC REPOS:
+  trunk:
+    - BCrypt
+    - KeychainAccess
+
+SPEC CHECKSUMS:
+  BCrypt: 712b656110e5020d319c547e4d8f3053ded82b2a
+  KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
+
+PODFILE CHECKSUM: 22f78fcdb050e5c021184d3f330a8832d12f5695
+
+COCOAPODS: 1.9.1

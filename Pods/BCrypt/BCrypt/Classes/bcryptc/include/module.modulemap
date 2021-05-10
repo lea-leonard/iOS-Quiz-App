@@ -1,0 +1,4 @@
+module bcryptc [system] {
+  header "pycabcrypt.h"
+  export *
+}
