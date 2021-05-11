@@ -1,0 +1,6 @@
+module BCrypt {
+  umbrella header "BCrypt-umbrella.h"
+
+  export *
+  module * { export * }
+}

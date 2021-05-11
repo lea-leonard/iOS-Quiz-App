@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20E241" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="MultipleChoiceQuestion" representedClassName="MultipleChoiceQuestion" syncable="YES">
+        <attribute name="choiceOptions" attributeType="Transformable" valueTransformerName="" customClassName="[String]"/>
+        <attribute name="correctChoice" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="level" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="question" attributeType="String"/>
+        <attribute name="userChoice" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="quiz" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Quiz" inverseName="multipleChoiceQuestions" inverseEntity="Quiz"/>
+        <relationship name="technology" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Technology" inverseName="multipleChoiceQuestions" inverseEntity="Technology"/>
+    </entity>
+    <entity name="MultipleChoiceQuestionForm" representedClassName="MultipleChoiceQuestionForm" syncable="YES">
+        <attribute name="choiceOptions" attributeType="Transformable" customClassName="[String]"/>
+        <attribute name="correctChoice" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="level" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="question" attributeType="String" defaultValueString=""/>
+        <relationship name="technology" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Technology" inverseName="multipleChoiceQuestionForms" inverseEntity="Technology"/>
+    </entity>
+    <entity name="Quiz" representedClassName="Quiz" syncable="YES">
+        <attribute name="dateStarted" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateSubmitted" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="level" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="multipleChoiceQuestions" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="MultipleChoiceQuestion" inverseName="quiz" inverseEntity="MultipleChoiceQuestion"/>
+        <relationship name="shortAnswerQuestions" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="ShortAnswerQuestion" inverseName="quiz" inverseEntity="ShortAnswerQuestion"/>
+        <relationship name="technology" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Technology" inverseName="quizzes" inverseEntity="Technology"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="quizzes" inverseEntity="User"/>
+    </entity>
+    <entity name="ShortAnswerQuestion" representedClassName="ShortAnswerQuestion" syncable="YES">
+        <attribute name="level" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="question" attributeType="String" defaultValueString=""/>
+        <attribute name="response" attributeType="String" defaultValueString=""/>
+        <relationship name="quiz" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Quiz" inverseName="shortAnswerQuestions" inverseEntity="Quiz"/>
+        <relationship name="technology" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Technology" inverseName="shortAnswerQuestions" inverseEntity="Technology"/>
+    </entity>
+    <entity name="ShortAnswerQuestionForm" representedClassName="ShortAnswerQuestionForm" syncable="YES">
+        <attribute name="level" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="question" attributeType="String" defaultValueString=""/>
+        <relationship name="technology" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Technology" inverseName="shortAnswerQuestionForms" inverseEntity="Technology"/>
+    </entity>
+    <entity name="Technology" representedClassName="Technology" syncable="YES">
+        <attribute name="imageData" optional="YES" attributeType="Binary"/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <relationship name="multipleChoiceQuestionForms" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="MultipleChoiceQuestionForm" inverseName="technology" inverseEntity="MultipleChoiceQuestionForm"/>
+        <relationship name="multipleChoiceQuestions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MultipleChoiceQuestion" inverseName="technology" inverseEntity="MultipleChoiceQuestion"/>
+        <relationship name="quizzes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Quiz" inverseName="technology" inverseEntity="Quiz"/>
+        <relationship name="shortAnswerQuestionForms" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ShortAnswerQuestionForm" inverseName="technology" inverseEntity="ShortAnswerQuestionForm"/>
+        <relationship name="shortAnswerQuestions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ShortAnswerQuestion" inverseName="technology" inverseEntity="ShortAnswerQuestion"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="email" attributeType="String" defaultValueString=""/>
+        <attribute name="isPremiumMember" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="password" attributeType="String" defaultValueString=""/>
+        <attribute name="username" optional="YES" attributeType="String"/>
+        <relationship name="quizzes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Quiz" inverseName="user" inverseEntity="Quiz"/>
+    </entity>
+    <elements>
+        <element name="MultipleChoiceQuestion" positionX="-15692.37451171875" positionY="12498.42614746094" width="148.97998046875" height="148"/>
+        <element name="MultipleChoiceQuestionForm" positionX="-15664.14459228516" positionY="12319.81170654297" width="177.43359375" height="118"/>
+        <element name="Quiz" positionX="-16164.84344482422" positionY="12462.00842285157" width="128" height="148"/>
+        <element name="ShortAnswerQuestion" positionX="-15750.43591308594" positionY="12655.04934692383" width="159.442626953125" height="118"/>
+        <element name="ShortAnswerQuestionForm" positionX="-15730.939453125" positionY="12225.22198486328" width="174.4986572265625" height="88"/>
+        <element name="Technology" positionX="-16030.04534912109" positionY="12260.24261474609" width="186.4535522460938" height="148"/>
+        <element name="User" positionX="-16330.10870361328" positionY="12476.8821105957" width="128" height="104"/>
+    </elements>
+</model>
