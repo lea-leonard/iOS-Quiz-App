@@ -132,7 +132,35 @@ class CoreDataHelper: RemoteAPI {
         }
     }
     
+    func patchUser(user: User, newEmail: String?, newUsername: String?, newPassword: String?, success: () -> Void, failure: (Error) -> Void) {
+        do {
+            if let newEmail = newEmail {
+                user.email = newEmail
+            }
+            if let newUsername = newUsername {
+                user.username = newUsername
+            }
+            if let newPassword = newPassword {
+                user.password = try bcryptHasher.hashPasword(newPassword)
+            }
+            try self.viewContext.save()
+            success()
+        } catch {
+            failure(error)
+        }
+    }
+    
     func putQuiz(quiz: Quiz, success: () -> Void, failure: (Error) -> Void) {
+        do {
+            try self.viewContext.save()
+            success()
+        } catch {
+            failure(error)
+        }
+    }
+    
+    func submitQuiz(quiz: Quiz, success: () -> Void, failure: (Error) -> Void) {
+        quiz.dateSubmitted = Date()
         do {
             try self.viewContext.save()
             success()
@@ -211,23 +239,6 @@ class CoreDataHelper: RemoteAPI {
         })
     }
     
-    func changePassword(usernameOrEmail: String, password: String, success: (Bool) -> Void, failure: (Error) -> Void) {
-        self.getUser(usernameOrEmail: usernameOrEmail) { userOptional in
-            guard let user = userOptional else {
-                return success(false)
-            }
-            do {
-                user.password = try bcryptHasher.hashPasword(password)
-                try self.viewContext.save()
-                success(true)
-            } catch {
-                failure(error)
-            }
-        } failure: { error in
-            failure(error)
-        }
-    }
-    
     private func deleteAllWithEntityName(_ name: String) throws {
         do {
             let request = NSFetchRequest<NSManagedObject>(entityName: name)
@@ -283,8 +294,6 @@ class CoreDataHelper: RemoteAPI {
     }
     
     func seedDB() {
-        
-        
         do {
             try self.deleteAll()
             

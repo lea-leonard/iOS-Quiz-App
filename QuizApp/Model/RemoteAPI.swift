@@ -13,7 +13,11 @@ protocol RemoteAPI {
     
     func postNewUser(email: String, username: String?, password: String, success: (User) -> Void, failure: (Error) -> Void)
     
+    func patchUser(user: User, newEmail: String?, newUsername: String?, newPassword: String?, success: () -> Void, failure: (Error) -> Void)
+    
     func putQuiz(quiz: Quiz, success: () -> Void, failure: (Error) -> Void)
+    
+    func submitQuiz(quiz: Quiz, success: () -> Void, failure: (Error) -> Void)
     
     func validateAndGetUser(usernameOrEmail: String, password: String, success: (User?) -> Void, failure: (Error) -> Void)
     
@@ -22,8 +26,6 @@ protocol RemoteAPI {
     func getTechnology(name: String, success: (Technology?) -> Void, failure: (Error) -> Void)
     
     func postNewTechnology(name: String, image: UIImage, success: (Technology) -> Void, failure: (Error) -> Void)
-    
-    func changePassword(usernameOrEmail: String, password: String, success: (Bool) -> Void, failure: (Error) -> Void)
     
     func postNewMultipleChoiceQuestionForm(technologyName: String, level: QuizLevel, question: String, choiceOptions: [String], correctChoice: Int, success: (MultipleChoiceQuestionForm) -> Void, failure: (Error) -> Void)
     
