@@ -371,8 +371,6 @@ class CoreDataHelper: RemoteAPI {
                 
                 
                 
-                
-                
                 (technologyName: "Java", level: .one, question: "Which of the following variable declarations is correct?", choiceOptions: [
                     "number: int;",
                     "int number;",
@@ -383,16 +381,20 @@ class CoreDataHelper: RemoteAPI {
                     "An unordered set of values",
                     "A set of key-value pairs"
                 ], correctChoice: 0),
-                (technologyName: "Java", level: .one, question: "", choiceOptions: [], correctChoice: 2),
+                (technologyName: "Java", level: .one, question: "What is a constructor?", choiceOptions: [
+                    "A function that executes when app first begins running",
+                    "An object that is used to create other objects",
+                    "A method that initializes an object"
+                ], correctChoice: 2),
                 (technologyName: "Java", level: .two, question: "How do we override a method in a subclass?", choiceOptions: [
                     "Create a method with the same name and parameters and use the override keyword",
                     "Create a method with the same name and parameters",
                     "Create a method with the same name and parameters and use the super keyword"
                 ], correctChoice: 1),
                 (technologyName: "Java", level: .two, question: "Which syntax do we use to handle exceptions?", choiceOptions: [
-                    "try {} catch {}",
-                    "do {} catch {}",
-                    "execute {} catch {}"
+                    "try { } catch { }",
+                    "do { } catch { }",
+                    "execute { } catch { }"
                 ], correctChoice: 0),
                 (technologyName: "Java", level: .two, question: "Which is true about an interface?", choiceOptions: [
                     "It can declare instance methods, but not instance fields",
@@ -409,17 +411,58 @@ class CoreDataHelper: RemoteAPI {
                     "An abstract class can only have abstract methods, but an interface can also have concrete methods",
                     "A class can only inherit from one abstract class, but it can implement multiple interfaces"
                 ], correctChoice: 2),
-                (technologyName: "Java", level: .three, question: "", choiceOptions: [], correctChoice: 2),
+                (technologyName: "Java", level: .three, question: "What is a collection?", choiceOptions: [
+                    "Any type that consists of a group of objects",
+                    "A specific type that is similar to an array",
+                    "An interface that defines certain methods like add() and size()"
+                ], correctChoice: 2),
                 
-                (technologyName: "JavaScript", level: .one, question: "", choiceOptions: [], correctChoice: 0),
-                (technologyName: "JavaScript", level: .one, question: "", choiceOptions: [], correctChoice: 0),
-                (technologyName: "JavaScript", level: .one, question: "", choiceOptions: [], correctChoice: 0),
-                (technologyName: "JavaScript", level: .two, question: "", choiceOptions: [], correctChoice: 0),
-                (technologyName: "JavaScript", level: .two, question: "", choiceOptions: [], correctChoice: 0),
-                (technologyName: "JavaScript", level: .two, question: "", choiceOptions: [], correctChoice: 0),
-                (technologyName: "JavaScript", level: .three, question: "", choiceOptions: [], correctChoice: 0),
-                (technologyName: "JavaScript", level: .three, question: "", choiceOptions: [], correctChoice: 0),
-                (technologyName: "JavaScript", level: .three, question: "", choiceOptions: [], correctChoice: 0)
+                
+                (technologyName: "JavaScript", level: .one, question: "When does a while loop stop executing?", choiceOptions: [
+                    "When the contidion evaluates to true",
+                    "Only when the 'break' keyword is used",
+                    "When the condition is evaluates to false"
+                ], correctChoice: 2),
+                (technologyName: "JavaScript", level: .one, question: "Which syntax is correct?", choiceOptions: [
+                    "if (x === 1) { } else { }",
+                    "if x === 1 { } else { }",
+                    "if (x === 1) { } otherwise { }"
+                ], correctChoice: 0),
+                (technologyName: "JavaScript", level: .one, question: "When do we use the 'new' keyword?", choiceOptions: [
+                    "When changing the value of a variable",
+                    "When creating an object",
+                    "To open a new window"
+                ], correctChoice: 1),
+                (technologyName: "JavaScript", level: .two, question: "If we declare a varable with 'let x = 1', which of the following is true?", choiceOptions: [
+                    "x can only be reassigned to another integer value",
+                    "x can only be reassigned to a number",
+                    "x can be reassigned to any object or primitive type"
+                ], correctChoice: 2),
+                (technologyName: "JavaScript", level: .two, question: "If we try to access the value of a variable that does not exist, what will happen?", choiceOptions: [
+                    "The variable will be created on the object with a default value of 0",
+                    "The code will crash with a runtime error",
+                    "The code will not crash, and the value will be undefined"
+                ], correctChoice: 2),
+                (technologyName: "JavaScript", level: .two, question: "How do we interpolate a variable into a string?", choiceOptions: [
+                    "\"The value is #{variable}\"",
+                    "\"The value is ${variable}\"",
+                    "\"The value is @{variable}\""
+                ], correctChoice: 1),
+                (technologyName: "JavaScript", level: .three, question: "What does the reduce() function do to an array?", choiceOptions: [
+                    "Removes members of an array that don't pass a test",
+                    "Combines multilple array values into a single value",
+                    "Shortens an array to a certain length"
+                ], correctChoice: 1),
+                (technologyName: "JavaScript", level: .three, question: "", choiceOptions: [
+                    "",
+                    "",
+                    ""
+                ], correctChoice: 0),
+                (technologyName: "JavaScript", level: .three, question: "", choiceOptions: [
+                    "",
+                    "",
+                    ""
+                ], correctChoice: 0)
             ]
             
             let shortAnswerQuestions: [(technologyName: String, level: QuizLevel, question: String)] = [
@@ -449,7 +492,7 @@ class CoreDataHelper: RemoteAPI {
                 (technologyName: "JavaScript", level: .two, question: ""),
                 (technologyName: "JavaScript", level: .two, question: ""),
                 (technologyName: "JavaScript", level: .two, question: ""),
-                (technologyName: "JavaScript", level: .three, question: ""),
+                (technologyName: "JavaScript", level: .three, question: "How does the \"this\" keyword differ inside a regular function vs an arrow function?"),
                 (technologyName: "JavaScript", level: .three, question: ""),
                 (technologyName: "JavaScript", level: .three, question: "")
             ]
