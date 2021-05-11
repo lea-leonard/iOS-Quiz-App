@@ -1,6 +1,6 @@
 //
 //  MultipleChoiceQuestion+CoreDataProperties.swift
-//  
+//  QuizApp
 //
 //  Created by Robert Olieman on 5/11/21.
 //
@@ -23,5 +23,9 @@ extension MultipleChoiceQuestion {
     @NSManaged public var userChoice: Int16
     @NSManaged public var quiz: Quiz?
     @NSManaged public var technology: Technology?
+
+}
+
+extension MultipleChoiceQuestion : Identifiable {
 
 }

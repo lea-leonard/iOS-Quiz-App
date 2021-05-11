@@ -1,6 +1,6 @@
 //
 //  ShortAnswerQuestionForm+CoreDataClass.swift
-//  
+//  QuizApp
 //
 //  Created by Robert Olieman on 5/11/21.
 //

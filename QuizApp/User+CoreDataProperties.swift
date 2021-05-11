@@ -1,6 +1,6 @@
 //
 //  User+CoreDataProperties.swift
-//  
+//  QuizApp
 //
 //  Created by Robert Olieman on 5/11/21.
 //
@@ -38,5 +38,9 @@ extension User {
 
     @objc(removeQuizzes:)
     @NSManaged public func removeFromQuizzes(_ values: NSSet)
+
+}
+
+extension User : Identifiable {
 
 }

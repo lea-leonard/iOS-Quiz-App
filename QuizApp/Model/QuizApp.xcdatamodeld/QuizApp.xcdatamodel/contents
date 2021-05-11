@@ -17,6 +17,7 @@
         <relationship name="technology" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Technology" inverseName="multipleChoiceQuestionForms" inverseEntity="Technology"/>
     </entity>
     <entity name="Quiz" representedClassName="Quiz" syncable="YES">
+        <attribute name="dateStarted" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="dateSubmitted" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="level" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="multipleChoiceQuestions" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="MultipleChoiceQuestion" inverseName="quiz" inverseEntity="MultipleChoiceQuestion"/>
@@ -55,7 +56,7 @@
     <elements>
         <element name="MultipleChoiceQuestion" positionX="-15692.37451171875" positionY="12498.42614746094" width="148.97998046875" height="148"/>
         <element name="MultipleChoiceQuestionForm" positionX="-15664.14459228516" positionY="12319.81170654297" width="177.43359375" height="118"/>
-        <element name="Quiz" positionX="-16164.84344482422" positionY="12462.00842285157" width="128" height="133"/>
+        <element name="Quiz" positionX="-16164.84344482422" positionY="12462.00842285157" width="128" height="148"/>
         <element name="ShortAnswerQuestion" positionX="-15750.43591308594" positionY="12655.04934692383" width="159.442626953125" height="118"/>
         <element name="ShortAnswerQuestionForm" positionX="-15730.939453125" positionY="12225.22198486328" width="174.4986572265625" height="88"/>
         <element name="Technology" positionX="-16030.04534912109" positionY="12260.24261474609" width="186.4535522460938" height="148"/>

@@ -1,6 +1,6 @@
 //
 //  ShortAnswerQuestion+CoreDataProperties.swift
-//  
+//  QuizApp
 //
 //  Created by Robert Olieman on 5/11/21.
 //
@@ -21,5 +21,9 @@ extension ShortAnswerQuestion {
     @NSManaged public var response: String?
     @NSManaged public var quiz: Quiz?
     @NSManaged public var technology: Technology?
+
+}
+
+extension ShortAnswerQuestion : Identifiable {
 
 }

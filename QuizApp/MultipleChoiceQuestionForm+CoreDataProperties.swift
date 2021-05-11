@@ -1,6 +1,6 @@
 //
 //  MultipleChoiceQuestionForm+CoreDataProperties.swift
-//  
+//  QuizApp
 //
 //  Created by Robert Olieman on 5/11/21.
 //
@@ -21,5 +21,9 @@ extension MultipleChoiceQuestionForm {
     @NSManaged public var level: Int16
     @NSManaged public var question: String?
     @NSManaged public var technology: Technology?
+
+}
+
+extension MultipleChoiceQuestionForm : Identifiable {
 
 }

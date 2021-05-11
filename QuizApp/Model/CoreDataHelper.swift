@@ -23,6 +23,7 @@ class CoreDataHelper: RemoteAPI {
     
     init(persistentContainer: NSPersistentContainer) {
         self.persistentContainer = persistentContainer
+        self.seedDB()
     }
     
     func getNewQuiz(user: User, technologyName: String, level: QuizLevel, numberOfMultipleChoiceQuestions: Int, numberOfShortAnswerQuestions: Int, success: (Quiz) -> Void, failure: (Error) -> Void) {
@@ -293,7 +294,14 @@ class CoreDataHelper: RemoteAPI {
         })
     }
     
+    
+    // seed DB will only seed if there are no technologies
+    // in the DB. To re-seed, delete and re-install the app.
     func seedDB() {
+        let request: NSFetchRequest<Technology> = Technology.fetchRequest()
+        let technologies = try? self.viewContext.fetch(request)
+        guard technologies?.count == 0 else { return }
+        
         do {
             try self.deleteAll()
             

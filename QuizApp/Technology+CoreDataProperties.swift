@@ -1,6 +1,6 @@
 //
 //  Technology+CoreDataProperties.swift
-//  
+//  QuizApp
 //
 //  Created by Robert Olieman on 5/11/21.
 //
@@ -162,5 +162,9 @@ extension Technology {
 
     @objc(removeShortAnswerQuestions:)
     @NSManaged public func removeFromShortAnswerQuestions(_ values: NSOrderedSet)
+
+}
+
+extension Technology : Identifiable {
 
 }
