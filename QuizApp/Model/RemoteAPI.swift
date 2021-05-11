@@ -8,7 +8,7 @@
 import Foundation
 
 protocol RemoteAPI {
-    func getNewQuiz(user: User, technology: Technology, level: QuizLevel, numberOfMultipleChoiceQuestions: Int, numberOfShortAnswerQuestions: Int, success: (Quiz) -> Void, failure: (Error) -> Void)
+    func getNewQuiz(user: User, technologyName: String, level: QuizLevel, numberOfMultipleChoiceQuestions: Int, numberOfShortAnswerQuestions: Int, success: (Quiz) -> Void, failure: (Error) -> Void)
     
     func postNewUser(email: String, username: String?, password: String, success: (User) -> Void, failure: (Error) -> Void)
     
@@ -17,6 +17,8 @@ protocol RemoteAPI {
     func validateAndGetUser(usernameOrEmail: String, password: String, success: (User?) -> Void, failure: (Error) -> Void)
     
     func getUser(usernameOrEmail: String, success: (User?) -> Void, failure: (Error) -> Void)
+    
+    func getTechnology(name: String, success: (Technology?) -> Void, failure: (Error) -> Void)
     
     func changePassword(usernameOrEmail: String, password: String, success: (Bool) -> Void, failure: (Error) -> Void)
 }
