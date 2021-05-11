@@ -37,7 +37,7 @@
         <relationship name="technology" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Technology" inverseName="shortAnswerQuestionForms" inverseEntity="Technology"/>
     </entity>
     <entity name="Technology" representedClassName="Technology" syncable="YES">
-        <attribute name="image" optional="YES" attributeType="Binary"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary"/>
         <attribute name="name" attributeType="String" defaultValueString=""/>
         <relationship name="multipleChoiceQuestionForms" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="MultipleChoiceQuestionForm" inverseName="technology" inverseEntity="MultipleChoiceQuestionForm"/>
         <relationship name="multipleChoiceQuestions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MultipleChoiceQuestion" inverseName="technology" inverseEntity="MultipleChoiceQuestion"/>

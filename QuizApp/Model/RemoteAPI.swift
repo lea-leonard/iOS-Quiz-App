@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol RemoteAPI {
     func getNewQuiz(user: User, technologyName: String, level: QuizLevel, numberOfMultipleChoiceQuestions: Int, numberOfShortAnswerQuestions: Int, success: (Quiz) -> Void, failure: (Error) -> Void)
@@ -20,5 +21,13 @@ protocol RemoteAPI {
     
     func getTechnology(name: String, success: (Technology?) -> Void, failure: (Error) -> Void)
     
+    func postNewTechnology(name: String, image: UIImage, success: (Technology) -> Void, failure: (Error) -> Void)
+    
     func changePassword(usernameOrEmail: String, password: String, success: (Bool) -> Void, failure: (Error) -> Void)
+    
+    func postNewMultipleChoiceQuestionForm(technologyName: String, level: QuizLevel, question: String, choiceOptions: [String], correctChoice: Int, success: (MultipleChoiceQuestionForm) -> Void, failure: (Error) -> Void)
+    
+    func postNewShortAnswerQuestionForm(technologyName: String, level: QuizLevel, question: String, success: (ShortAnswerQuestionForm) -> Void, failure: (Error) -> Void)
+    
+    func seedDB()
 }

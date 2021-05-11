@@ -7,17 +7,18 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class CoreDataHelper: RemoteAPI {
-    let bcryptHasher = BCryptHasher.standard
+    private let bcryptHasher = BCryptHasher.standard
     
-    let persistentContainer: NSPersistentContainer
+    private let persistentContainer: NSPersistentContainer
     
-    var viewContext: NSManagedObjectContext { self.persistentContainer.viewContext }
+    private var viewContext: NSManagedObjectContext { self.persistentContainer.viewContext }
     
     
-    static var allEntities: [NSManagedObject.Type] {
-        [User.self, Quiz.self, Technology.self, MultipleChoiceQuestion.self, MultipleChoiceQuestionForm.self, ShortAnswerQuestion.self, ShortAnswerQuestionForm.self]
+    private static var allEntityNames: [String] {
+        [User.entity().name!, Quiz.entity().name!, Technology.entity().name!, MultipleChoiceQuestion.entity().name!, MultipleChoiceQuestionForm.entity().name!, ShortAnswerQuestion.entity().name!, ShortAnswerQuestionForm.entity().name!]
     }
     
     init(persistentContainer: NSPersistentContainer) {
@@ -193,6 +194,22 @@ class CoreDataHelper: RemoteAPI {
         }
     }
     
+    func postNewTechnology(name: String, image: UIImage, success: (Technology) -> Void, failure: (Error) -> Void) {
+        self.getTechnology(name: name, success: { technologyOptional in
+            guard technologyOptional == nil else {
+                return failure(CoreDataHelperError.validationError("A technology named \(name) already exists in the database."))
+            }
+            
+            let technology = Technology(context: self.viewContext)
+            technology.name = name
+            technology.setImageDataFromImage(image)
+            
+            success(technology)
+            
+        }, failure: { error in
+            failure(error)
+        })
+    }
     
     func changePassword(usernameOrEmail: String, password: String, success: (Bool) -> Void, failure: (Error) -> Void) {
         self.getUser(usernameOrEmail: usernameOrEmail) { userOptional in
@@ -211,9 +228,9 @@ class CoreDataHelper: RemoteAPI {
         }
     }
     
-    private func deleteAllOfType<T: NSManagedObject>(type: T.Type) throws {
+    private func deleteAllWithEntityName(_ name: String) throws {
         do {
-            let request: NSFetchRequest<T> = T.fetchRequest() as! NSFetchRequest<T>
+            let request = NSFetchRequest<NSManagedObject>(entityName: name)
             let result = try self.viewContext.fetch(request)
             for object in result {
                 self.viewContext.delete(object)
@@ -225,15 +242,49 @@ class CoreDataHelper: RemoteAPI {
     
     private func deleteAll() throws {
         do {
-            for entity in CoreDataHelper.allEntities {
-                try self.deleteAllOfType(type: entity)
+            for entityName in CoreDataHelper.allEntityNames {
+                try self.deleteAllWithEntityName(entityName)
             }
         } catch {
             throw error
         }
     }
     
+    func postNewMultipleChoiceQuestionForm(technologyName: String, level: QuizLevel, question: String, choiceOptions: [String], correctChoice: Int, success: (MultipleChoiceQuestionForm) -> Void, failure: (Error) -> Void) {
+        self.getTechnology(name: technologyName, success: { technologyOptional in
+            guard let technology = technologyOptional else {
+                return failure(CoreDataHelperError.expectedDataUnavailable("No technology named \(technologyName) exists"))
+            }
+            let form = MultipleChoiceQuestionForm(context: self.viewContext)
+            form.technology = technology
+            form.level = Int16(level.rawValue)
+            form.question = question
+            form.choiceOptions = choiceOptions
+            form.correctChoice = Int16(correctChoice)
+            success(form)
+        }, failure: { error in
+            failure(error)
+        })
+        
+    }
+    
+    func postNewShortAnswerQuestionForm(technologyName: String, level: QuizLevel, question: String, success: (ShortAnswerQuestionForm) -> Void, failure: (Error) -> Void) {
+        self.getTechnology(name: technologyName, success: { technologyOptional in
+            guard let technology = technologyOptional else {
+                return failure(CoreDataHelperError.expectedDataUnavailable("No technology named \(technologyName) exists"))
+            }
+            let form = MultipleChoiceQuestionForm(context: self.viewContext)
+            form.technology = technology
+            form.level = Int16(level.rawValue)
+            form.question = question
+        }, failure: { error in
+            failure(error)
+        })
+    }
+    
     func seedDB() {
+        
+        
         do {
             try self.deleteAll()
             
@@ -243,7 +294,7 @@ class CoreDataHelper: RemoteAPI {
                 for level in QuizLevel.allCases {
                     for i in 0..<10 {
                         let multipleChoiceQuestionForm = MultipleChoiceQuestionForm(context: self.viewContext)
-                        multipleChoiceQuestionForm.question = "Level \(level.rawValue) question \(i)"
+                        multipleChoiceQuestionForm.question = "Level \(level.rawValue) multiple choice question \(i)"
                         multipleChoiceQuestionForm.choiceOptions = ["option 1, option 2, option 3, option 4"]
                         multipleChoiceQuestionForm.correctChoice = Int16.random(in: 1...4)
                         multipleChoiceQuestionForm.level = Int16(level.rawValue)
@@ -251,7 +302,7 @@ class CoreDataHelper: RemoteAPI {
                     }
                     for i in 0..<10 {
                         let shortAnswerQuestionForm = ShortAnswerQuestionForm(context: self.viewContext)
-                        shortAnswerQuestionForm.question = "Level \(level.rawValue) question \(i)"
+                        shortAnswerQuestionForm.question = "Level \(level.rawValue) short answer question \(i)"
                         shortAnswerQuestionForm.level = Int16(level.rawValue)
                         shortAnswerQuestionForm.technology = technology
                     }
@@ -267,6 +318,7 @@ enum CoreDataHelperError: Error {
     case expectedDataUnavailable(_ details: String)
     case dataCorruption(_ details: String)
     case castingFailure(_ details: String)
+    case validationError(_ details: String)
 }
 
 extension CoreDataHelperError: LocalizedError {
@@ -278,6 +330,8 @@ extension CoreDataHelperError: LocalizedError {
             return "Data corruption: \(details)"
         case let .castingFailure(details):
             return "Casting failure: \(details)"
+        case let .validationError(details):
+            return "Validation error: \(details)"
         }
     }
 }

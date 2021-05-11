@@ -1,8 +1,8 @@
 //
 //  Technology+CoreDataClass.swift
-//  QuizApp
+//  
 //
-//  Created by Robert Olieman on 5/10/21.
+//  Created by Robert Olieman on 5/11/21.
 //
 //
 

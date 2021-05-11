@@ -1,8 +1,8 @@
 //
 //  Quiz+CoreDataProperties.swift
-//  QuizApp
+//  
 //
-//  Created by Robert Olieman on 5/10/21.
+//  Created by Robert Olieman on 5/11/21.
 //
 //
 
@@ -20,8 +20,8 @@ extension Quiz {
     @NSManaged public var level: Int16
     @NSManaged public var multipleChoiceQuestions: NSOrderedSet?
     @NSManaged public var shortAnswerQuestions: NSOrderedSet?
-    @NSManaged public var user: User?
     @NSManaged public var technology: Technology?
+    @NSManaged public var user: User?
 
 }
 
@@ -92,9 +92,5 @@ extension Quiz {
 
     @objc(removeShortAnswerQuestions:)
     @NSManaged public func removeFromShortAnswerQuestions(_ values: NSOrderedSet)
-
-}
-
-extension Quiz : Identifiable {
 
 }

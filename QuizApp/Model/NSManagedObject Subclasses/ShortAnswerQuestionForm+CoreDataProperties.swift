@@ -1,8 +1,8 @@
 //
 //  ShortAnswerQuestionForm+CoreDataProperties.swift
-//  QuizApp
+//  
 //
-//  Created by Robert Olieman on 5/10/21.
+//  Created by Robert Olieman on 5/11/21.
 //
 //
 
@@ -16,12 +16,8 @@ extension ShortAnswerQuestionForm {
         return NSFetchRequest<ShortAnswerQuestionForm>(entityName: "ShortAnswerQuestionForm")
     }
 
-    @NSManaged public var question: String?
     @NSManaged public var level: Int16
+    @NSManaged public var question: String?
     @NSManaged public var technology: Technology?
-
-}
-
-extension ShortAnswerQuestionForm : Identifiable {
 
 }
