@@ -11,6 +11,4 @@ enum QuizLevel: Int, CaseIterable {
     case one = 1
     case two
     case three
-    case four
-    case five
 }

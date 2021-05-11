@@ -305,26 +305,171 @@ class CoreDataHelper: RemoteAPI {
         do {
             try self.deleteAll()
             
-            for technologyName in ["Swift", "Java", "JavaScript"] {
-                let technology = Technology(context: self.viewContext)
-                technology.name = technologyName
-                for level in QuizLevel.allCases {
-                    for i in 0..<10 {
-                        let multipleChoiceQuestionForm = MultipleChoiceQuestionForm(context: self.viewContext)
-                        multipleChoiceQuestionForm.question = "Level \(level.rawValue) multiple choice question \(i)"
-                        multipleChoiceQuestionForm.choiceOptions = ["option 1, option 2, option 3, option 4"]
-                        multipleChoiceQuestionForm.correctChoice = Int16.random(in: 1...4)
-                        multipleChoiceQuestionForm.level = Int16(level.rawValue)
-                        multipleChoiceQuestionForm.technology = technology
-                    }
-                    for i in 0..<10 {
-                        let shortAnswerQuestionForm = ShortAnswerQuestionForm(context: self.viewContext)
-                        shortAnswerQuestionForm.question = "Level \(level.rawValue) short answer question \(i)"
-                        shortAnswerQuestionForm.level = Int16(level.rawValue)
-                        shortAnswerQuestionForm.technology = technology
-                    }
+            let swift = Technology(context: self.viewContext)
+            swift.name = "Swift"
+            
+            let java = Technology(context: self.viewContext)
+            java.name = "Java"
+            
+            let javaScript = Technology(context: self.viewContext)
+            javaScript.name = "JavaScript"
+            
+            try self.viewContext.save()
+            
+            let multipleChoiceQuestions: [(technologyName: String, level: QuizLevel, question: String, choiceOptions: [String], correctChoice: Int)] = [
+                
+        
+   
+                (technologyName: "Swift", level: .one, question: "If and switch statements are examples of:", choiceOptions: [
+                    "Optionals",
+                    "Control flow statements",
+                    "Loops"
+                ], correctChoice: 1),
+                (technologyName: "Swift", level: .one, question: "What is a Boolean?", choiceOptions: [
+                    "A type that can have a value of either true or false",
+                    "Another name for an Integer",
+                    "An anonymous function"
+                ], correctChoice: 0),
+                (technologyName: "Swift", level: .one, question: "Which of the following is the correct String literal syntax in Swift?", choiceOptions: [
+                    "\"This is a String literal\"",
+                    "@\"This is a String literal\"",
+                    "String(This is a String literal)"
+                
+                ], correctChoice: 0),
+                (technologyName: "Swift", level: .two, question: "What is an Optional?", choiceOptions: [
+                    "A function with parameters that have default values",
+                    "An array with an undefined length",
+                    "A type that may either have a value or nil"
+                
+                ], correctChoice: 2),
+                (technologyName: "Swift", level: .two, question: "What is the name we use for a self-contained block of functionality that can be passed around and used in your code?", choiceOptions: [
+                    "Lambda",
+                    "Closure",
+                    "Arrow function"
+                ], correctChoice: 1),
+                (technologyName: "Swift", level: .two, question: "What will happen if we try to access a property that does not exist?", choiceOptions: [
+                    "The code will not compile",
+                    "The app will crash with a runtime error",
+                    "The app will run normally and the value for the property will be nil"
+                ], correctChoice: 0),
+                (technologyName: "Swift", level: .three, question: "Which of the following generic class declaration syntax is correct?", choiceOptions: [
+                    "class MyClass<T: Codable && Hashable>",
+                    "class MyClass<T where T is Codable && Hashable>",
+                    "class MyClass<T: Codable & Hashable>"
+                ], correctChoice: 2),
+                (technologyName: "Swift", level: .three, question: "Which is one way to avoid strong reference cycles?", choiceOptions: [
+                    "Make sure to call deinit() on an object when it is no longer needed",
+                    "Use Optionals to prevent strong references",
+                    "Use weak or unowned references"
+                    
+                ], correctChoice: 2),
+                (technologyName: "Swift", level: .three, question: "What happens if we use try? when calling a throwing function that returns a value?", choiceOptions: [
+                    "The app will crash if an error is thrown",
+                    "The function return nil if it fails",
+                    "The function return an Error if it fails"
+                ], correctChoice: 1),
+                
+                
+                
+                
+                
+                (technologyName: "Java", level: .one, question: "Which of the following variable declarations is correct?", choiceOptions: [
+                    "number: int;",
+                    "int number;",
+                    "new int number;"
+                ], correctChoice: 1),
+                (technologyName: "Java", level: .one, question: "What is an array?", choiceOptions: [
+                    "An ordered list of values",
+                    "An unordered set of values",
+                    "A set of key-value pairs"
+                ], correctChoice: 0),
+                (technologyName: "Java", level: .one, question: "", choiceOptions: [], correctChoice: 2),
+                (technologyName: "Java", level: .two, question: "How do we override a method in a subclass?", choiceOptions: [
+                    "Create a method with the same name and parameters and use the override keyword",
+                    "Create a method with the same name and parameters",
+                    "Create a method with the same name and parameters and use the super keyword"
+                ], correctChoice: 1),
+                (technologyName: "Java", level: .two, question: "Which syntax do we use to handle exceptions?", choiceOptions: [
+                    "try {} catch {}",
+                    "do {} catch {}",
+                    "execute {} catch {}"
+                ], correctChoice: 0),
+                (technologyName: "Java", level: .two, question: "Which is true about an interface?", choiceOptions: [
+                    "It can declare instance methods, but not instance fields",
+                    "It can declare instance fields, but not instance methods",
+                    "It can declare both instance fields and instance methods"
+                ], correctChoice: 0),
+                (technologyName: "Java", level: .three, question: "What is the difference between static and inner nested types?", choiceOptions: [
+                    "Static nested types are associated with an instance of the outer class, and inner types are not",
+                    "Inner types are associated with an instance of the outer class, and static nested types are not",
+                    "Inner nested types are nested inside of static nested types"
+                ], correctChoice: 1),
+                (technologyName: "Java", level: .three, question: "What is one difference between an interface and an abstract class?", choiceOptions: [
+                    "An abstract class cannot be extended, but an interface can",
+                    "An abstract class can only have abstract methods, but an interface can also have concrete methods",
+                    "A class can only inherit from one abstract class, but it can implement multiple interfaces"
+                ], correctChoice: 2),
+                (technologyName: "Java", level: .three, question: "", choiceOptions: [], correctChoice: 2),
+                
+                (technologyName: "JavaScript", level: .one, question: "", choiceOptions: [], correctChoice: 0),
+                (technologyName: "JavaScript", level: .one, question: "", choiceOptions: [], correctChoice: 0),
+                (technologyName: "JavaScript", level: .one, question: "", choiceOptions: [], correctChoice: 0),
+                (technologyName: "JavaScript", level: .two, question: "", choiceOptions: [], correctChoice: 0),
+                (technologyName: "JavaScript", level: .two, question: "", choiceOptions: [], correctChoice: 0),
+                (technologyName: "JavaScript", level: .two, question: "", choiceOptions: [], correctChoice: 0),
+                (technologyName: "JavaScript", level: .three, question: "", choiceOptions: [], correctChoice: 0),
+                (technologyName: "JavaScript", level: .three, question: "", choiceOptions: [], correctChoice: 0),
+                (technologyName: "JavaScript", level: .three, question: "", choiceOptions: [], correctChoice: 0)
+            ]
+            
+            let shortAnswerQuestions: [(technologyName: String, level: QuizLevel, question: String)] = [
+                (technologyName: "Swift", level: .one, question: ""),
+                (technologyName: "Swift", level: .one, question: ""),
+                (technologyName: "Swift", level: .one, question: ""),
+                (technologyName: "Swift", level: .two, question: ""),
+                (technologyName: "Swift", level: .two, question: ""),
+                (technologyName: "Swift", level: .two, question: ""),
+                (technologyName: "Swift", level: .three, question: ""),
+                (technologyName: "Swift", level: .three, question: ""),
+                (technologyName: "Swift", level: .three, question: ""),
+                
+                (technologyName: "Java", level: .one, question: ""),
+                (technologyName: "Java", level: .one, question: ""),
+                (technologyName: "Java", level: .one, question: ""),
+                (technologyName: "Java", level: .two, question: ""),
+                (technologyName: "Java", level: .two, question: ""),
+                (technologyName: "Java", level: .two, question: ""),
+                (technologyName: "Java", level: .three, question: ""),
+                (technologyName: "Java", level: .three, question: ""),
+                (technologyName: "Java", level: .three, question: ""),
+                
+                (technologyName: "JavaScript", level: .one, question: ""),
+                (technologyName: "JavaScript", level: .one, question: ""),
+                (technologyName: "JavaScript", level: .one, question: ""),
+                (technologyName: "JavaScript", level: .two, question: ""),
+                (technologyName: "JavaScript", level: .two, question: ""),
+                (technologyName: "JavaScript", level: .two, question: ""),
+                (technologyName: "JavaScript", level: .three, question: ""),
+                (technologyName: "JavaScript", level: .three, question: ""),
+                (technologyName: "JavaScript", level: .three, question: "")
+            ]
+            
+            for question in multipleChoiceQuestions {
+                self.postNewMultipleChoiceQuestionForm(technologyName: question.technologyName, level: question.level, question: question.question, choiceOptions: question.choiceOptions, correctChoice: question.correctChoice, success: {_ in
+                    
+                }) {_ in
+                    
                 }
             }
+            
+            for question in shortAnswerQuestions {
+                self.postNewShortAnswerQuestionForm(technologyName: question.technologyName, level: question.level, question: question.question, success: {_ in
+                    
+                }, failure: {_ in
+                    
+                })
+            }
+            
         } catch {
             
         }
@@ -342,7 +487,7 @@ extension CoreDataHelperError: LocalizedError {
     public var errorDescription: String? {
         switch self {
         case let .expectedDataUnavailable(details):
-            return "Expected data unavailabel: \(details)."
+            return "Expected data unavailable: \(details)."
         case let .dataCorruption(details):
             return "Data corruption: \(details)"
         case let .castingFailure(details):
