@@ -14,7 +14,10 @@ class ForgotViewController: UIViewController {
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var contactusButton: UIButton!
     
-    init() {
+    let remoteAPI: RemoteAPI
+    
+    init(remoteAPI: RemoteAPI) {
+        self.remoteAPI = remoteAPI
         super.init(nibName: "ForgotViewController", bundle: nil)
     }
     

@@ -18,7 +18,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var aboutButton: UIButton!
     @IBOutlet weak var contactButton: UIButton!
     
-    init() {
+    let remoteAPI: RemoteAPI
+    
+    init(remoteAPI: RemoteAPI) {
+        self.remoteAPI = remoteAPI
         super.init(nibName: "LoginViewController", bundle: nil)
     }
     

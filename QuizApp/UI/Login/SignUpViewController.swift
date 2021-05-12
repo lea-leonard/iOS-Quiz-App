@@ -12,7 +12,11 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var signupButton: UIButton!
-    init() {
+    
+    let remoteAPI: RemoteAPI
+    
+    init(remoteAPI: RemoteAPI) {
+        self.remoteAPI = remoteAPI
         super.init(nibName: "SignUpViewController", bundle: nil)
     }
     

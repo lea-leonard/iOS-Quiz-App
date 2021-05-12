@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
-        self.loginViewController = LoginViewController()
+        self.loginViewController = LoginViewController(remoteAPI: CoreDataHelper(persistentContainer: self.persistentContainer))
         
         self.window?.rootViewController = self.loginViewController
         
