@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
 
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
@@ -51,6 +51,18 @@ class LoginViewController: UIViewController {
         self.present(vc, animated: true, completion: nil)
     }
     @IBAction func loginButton(_ sender: Any) {
+        guard let username = self.usernameText.textNoEmptyString else {
+            return
+        }
+        guard let password = self.passwordText.textNoEmptyString else {
+            return
+        }
+        self.remoteAPI.validateAndGetUser(username: username, password: password, success: { userOptional in
+            guard let user = userOptional else { return }
+            
+        }, failure: {error in
+            print(error.localizedDescription)
+        })
     }
     @IBAction func facebookButton(_ sender: Any) {
     }

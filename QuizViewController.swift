@@ -1,19 +1,18 @@
 //
-//  AboutUsViewController.swift
-//  STEM Center
+//  QuizViewController.swift
+//  QuizApp
 //
-//  Created by Tommy Phan on 5/11/21.
+//  Created by Robert Olieman on 5/12/21.
 //
 
 import UIKit
 
-class AboutUsViewController: BaseViewController {
+class QuizViewController: BaseViewController {
 
-    @IBOutlet weak var shibaGIF: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        shibaGIF.loadGif(name: "ShibaAbout")
+        // Do any additional setup after loading the view.
     }
 
 

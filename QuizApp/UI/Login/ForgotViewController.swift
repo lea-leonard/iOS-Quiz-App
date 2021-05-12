@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ForgotViewController: UIViewController {
+class ForgotViewController: BaseViewController {
 
     
     @IBOutlet weak var usernameText: UITextField!

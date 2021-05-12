@@ -7,10 +7,12 @@
 
 import UIKit
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: BaseViewController {
 
     @IBOutlet weak var usernameText: UITextField!
+    
     @IBOutlet weak var passwordText: UITextField!
+    
     @IBOutlet weak var signupButton: UIButton!
     
     let remoteAPI: RemoteAPI
@@ -31,7 +33,24 @@ class SignUpViewController: UIViewController {
     }
 
     @IBAction func signupButton(_ sender: Any) {
+        guard let username = self.usernameText.textNoEmptyString else {
+            return
+        }
+        guard let password = self.passwordText.textNoEmptyString else {
+            return
+        }
+        self.remoteAPI.postNewUser(username: username, password: password) { userOptional in
+            self.presentBasicAlert(message: "Signed up successfully!", onDismiss: {
+                self.presentingViewController?.dismiss(animated: true, completion: nil)
+            })
+        } failure: { error in
+            print(error.localizedDescription)
+        }
+
+        
     }
+    
+    
     @IBAction func loginButton(_ sender: Any) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }

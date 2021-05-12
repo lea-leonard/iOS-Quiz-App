@@ -447,48 +447,58 @@ class CoreDataHelper: RemoteAPI {
                     "Combines multilple array values into a single value",
                     "Shortens an array to a certain length"
                 ], correctChoice: 1),
-                (technologyName: "JavaScript", level: .three, question: "", choiceOptions: [
-                    "",
-                    "",
-                    ""
+                (technologyName: "JavaScript", level: .three, question: "Which of the following will call doSomething() on a Promise when it is fullfilled?", choiceOptions: [
+                    ".then(doSomething())",
+                    ".next(doSomething())",
+                    ".onFulfill(dosomething())"
                 ], correctChoice: 0),
-                (technologyName: "JavaScript", level: .three, question: "", choiceOptions: [
-                    "",
-                    "",
-                    ""
+                (technologyName: "JavaScript", level: .three, question: "Which of the following contains a syntax error?", choiceOptions: [
+                    """
+                    function add = (a , b) => {
+                        return a + b
+                    }
+                    """,
+                    """
+                    const add = (a, b) => {
+                        return a + b
+                    }
+                    """,
+                    """
+                    const add = (a, b) => a + b
+                    """
                 ], correctChoice: 0)
             ]
             
             let shortAnswerQuestions: [(technologyName: String, level: QuizLevel, question: String)] = [
-                (technologyName: "Swift", level: .one, question: ""),
-                (technologyName: "Swift", level: .one, question: ""),
-                (technologyName: "Swift", level: .one, question: ""),
-                (technologyName: "Swift", level: .two, question: ""),
-                (technologyName: "Swift", level: .two, question: ""),
-                (technologyName: "Swift", level: .two, question: ""),
-                (technologyName: "Swift", level: .three, question: ""),
-                (technologyName: "Swift", level: .three, question: ""),
-                (technologyName: "Swift", level: .three, question: ""),
+                (technologyName: "Swift", level: .one, question: "Swift11"),
+                (technologyName: "Swift", level: .one, question: "SWift12"),
+                (technologyName: "Swift", level: .one, question: "Swift13"),
+                (technologyName: "Swift", level: .two, question: "Swift21"),
+                (technologyName: "Swift", level: .two, question: "Swift22"),
+                (technologyName: "Swift", level: .two, question: "Swift23"),
+                (technologyName: "Swift", level: .three, question: "Swift31"),
+                (technologyName: "Swift", level: .three, question: "Swift32"),
+                (technologyName: "Swift", level: .three, question: "Swift33"),
                 
-                (technologyName: "Java", level: .one, question: ""),
-                (technologyName: "Java", level: .one, question: ""),
-                (technologyName: "Java", level: .one, question: ""),
-                (technologyName: "Java", level: .two, question: ""),
-                (technologyName: "Java", level: .two, question: ""),
-                (technologyName: "Java", level: .two, question: ""),
-                (technologyName: "Java", level: .three, question: ""),
-                (technologyName: "Java", level: .three, question: ""),
-                (technologyName: "Java", level: .three, question: ""),
+                (technologyName: "Java", level: .one, question: "Java11"),
+                (technologyName: "Java", level: .one, question: "Java12"),
+                (technologyName: "Java", level: .one, question: "Java13"),
+                (technologyName: "Java", level: .two, question: "Java21"),
+                (technologyName: "Java", level: .two, question: "Java22"),
+                (technologyName: "Java", level: .two, question: "Java23"),
+                (technologyName: "Java", level: .three, question: "Java31"),
+                (technologyName: "Java", level: .three, question: "Java32"),
+                (technologyName: "Java", level: .three, question: "Java33"),
                 
-                (technologyName: "JavaScript", level: .one, question: ""),
-                (technologyName: "JavaScript", level: .one, question: ""),
-                (technologyName: "JavaScript", level: .one, question: ""),
-                (technologyName: "JavaScript", level: .two, question: ""),
-                (technologyName: "JavaScript", level: .two, question: ""),
-                (technologyName: "JavaScript", level: .two, question: ""),
+                (technologyName: "JavaScript", level: .one, question: "JS11"),
+                (technologyName: "JavaScript", level: .one, question: "JS12"),
+                (technologyName: "JavaScript", level: .one, question: "JS13"),
+                (technologyName: "JavaScript", level: .two, question: "JS21"),
+                (technologyName: "JavaScript", level: .two, question: "JS22"),
+                (technologyName: "JavaScript", level: .two, question: "JS23"),
                 (technologyName: "JavaScript", level: .three, question: "How does the \"this\" keyword differ inside a regular function vs an arrow function?"),
-                (technologyName: "JavaScript", level: .three, question: ""),
-                (technologyName: "JavaScript", level: .three, question: "")
+                (technologyName: "JavaScript", level: .three, question: "JS32"),
+                (technologyName: "JavaScript", level: .three, question: "JS33")
             ]
             
             for question in multipleChoiceQuestions {
