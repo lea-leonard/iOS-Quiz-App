@@ -29,12 +29,7 @@ class ForgotViewController: UIViewController {
     }
 
     @IBAction func submitButton(_ sender: Any) {
-        
-        
-        let vc = LoginViewController()
-        vc.modalPresentationStyle = .fullScreen
-        vc.modalTransitionStyle = .crossDissolve
-        self.present(vc, animated: true, completion: nil)
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     @IBAction func contactusButton(_ sender: Any) {
         let vc = ContactUsViewController()

@@ -29,11 +29,6 @@ class SignUpViewController: UIViewController {
     @IBAction func signupButton(_ sender: Any) {
     }
     @IBAction func loginButton(_ sender: Any) {
-        
-        let vc = LoginViewController()
-        vc.modalPresentationStyle = .fullScreen
-        vc.modalTransitionStyle = .crossDissolve
-        self.present(vc, animated: true, completion: nil)
-        
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }
