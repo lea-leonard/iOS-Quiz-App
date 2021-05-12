@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01DDAB18707DE7B9238BCD7D /* libPods-QuizApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE7542B5658DB6EE66226DB /* libPods-QuizApp.a */; };
 		522F5E2F264C08AE00E9C3DE /* MultipleChoiceQuestionForm+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522F5E21264C08AE00E9C3DE /* MultipleChoiceQuestionForm+CoreDataClass.swift */; };
 		522F5E30264C08AF00E9C3DE /* MultipleChoiceQuestionForm+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522F5E22264C08AE00E9C3DE /* MultipleChoiceQuestionForm+CoreDataProperties.swift */; };
 		522F5E31264C08AF00E9C3DE /* MultipleChoiceQuestion+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522F5E23264C08AE00E9C3DE /* MultipleChoiceQuestion+CoreDataClass.swift */; };
@@ -35,6 +34,7 @@
 		52D90B9B2649D22600F952D0 /* RemoteAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D90B9A2649D22600F952D0 /* RemoteAPI.swift */; };
 		52D90B9D2649D24F00F952D0 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D90B9C2649D24F00F952D0 /* CoreDataHelper.swift */; };
 		52D90B9F2649D33000F952D0 /* QuizLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D90B9E2649D33000F952D0 /* QuizLevel.swift */; };
+		8390C376777B2BC18A120639 /* Pods_QuizApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EABED88BE79A7BCA13BBF94 /* Pods_QuizApp.framework */; };
 		B7F94C3B264B8F5100E87C82 /* ContactUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7F94C2E264B8F5100E87C82 /* ContactUsViewController.xib */; };
 		B7F94C3C264B8F5100E87C82 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F94C2F264B8F5100E87C82 /* AboutUsViewController.swift */; };
 		B7F94C3D264B8F5100E87C82 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B7F94C30264B8F5100E87C82 /* Icon.png */; };
@@ -51,7 +51,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0AE7542B5658DB6EE66226DB /* libPods-QuizApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-QuizApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18E4215484E0662C8943E368 /* Pods-QuizApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuizApp.debug.xcconfig"; path = "Target Support Files/Pods-QuizApp/Pods-QuizApp.debug.xcconfig"; sourceTree = "<group>"; };
 		522F5E21264C08AE00E9C3DE /* MultipleChoiceQuestionForm+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultipleChoiceQuestionForm+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		522F5E22264C08AE00E9C3DE /* MultipleChoiceQuestionForm+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultipleChoiceQuestionForm+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
@@ -82,6 +81,7 @@
 		52D90B9A2649D22600F952D0 /* RemoteAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteAPI.swift; sourceTree = "<group>"; };
 		52D90B9C2649D24F00F952D0 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		52D90B9E2649D33000F952D0 /* QuizLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizLevel.swift; sourceTree = "<group>"; };
+		9EABED88BE79A7BCA13BBF94 /* Pods_QuizApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuizApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0DD3544B68EC447FBFB5EA /* Pods-QuizApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuizApp.release.xcconfig"; path = "Target Support Files/Pods-QuizApp/Pods-QuizApp.release.xcconfig"; sourceTree = "<group>"; };
 		B7F94C2E264B8F5100E87C82 /* ContactUsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactUsViewController.xib; sourceTree = "<group>"; };
 		B7F94C2F264B8F5100E87C82 /* AboutUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01DDAB18707DE7B9238BCD7D /* libPods-QuizApp.a in Frameworks */,
+				8390C376777B2BC18A120639 /* Pods_QuizApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,7 +199,7 @@
 		B6582830EF8256CD3FF71EC7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0AE7542B5658DB6EE66226DB /* libPods-QuizApp.a */,
+				9EABED88BE79A7BCA13BBF94 /* Pods_QuizApp.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -244,6 +244,7 @@
 				52D90B2326498DFA00F952D0 /* Sources */,
 				52D90B2426498DFA00F952D0 /* Frameworks */,
 				52D90B2526498DFA00F952D0 /* Resources */,
+				A1B6F86CFAA80BD56D151356 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -327,6 +328,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1B6F86CFAA80BD56D151356 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QuizApp/Pods-QuizApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QuizApp/Pods-QuizApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QuizApp/Pods-QuizApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

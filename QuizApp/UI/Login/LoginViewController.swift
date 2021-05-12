@@ -6,17 +6,23 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, LoginButtonDelegate {
+    
+    
 
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var forgotButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var facebookButton: UIButton!
+   
+
+    @IBOutlet weak var facebookButton: FBLoginButton!
     @IBOutlet weak var signupButton: UIButton!
     @IBOutlet weak var aboutButton: UIButton!
     @IBOutlet weak var contactButton: UIButton!
+    @IBOutlet weak var rememberSwitch: UISwitch!
     
     let remoteAPI: RemoteAPI
     
@@ -31,8 +37,31 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        if let token = AccessToken.current, !token.isExpired {
+            
+            let token = token.tokenString
+            
+            let request = FBSDKLoginKit.GraphRequest(graphPath: "me", parameters: ["fields": "email, name"], tokenString: token, version: nil, httpMethod: .get)
+            
+            request.start(completionHandler: {connect, result, error in print("\(result)")
+                
+            })
+            }
+        else {
+            
+            
+//            facebookButton.delegate = self
+//            facebookButton.permissions = ["public_profile", "email"]
+           
+            
+        }
+        
+        self.setLoginCredentialsInViews()
+        
         loginButton.layer.borderColor = UIColor.white.cgColor
+        usernameText.layer.borderColor = UIColor.white.cgColor
+        passwordText.layer.borderColor = UIColor.white.cgColor
         
     }
     
@@ -51,8 +80,7 @@ class LoginViewController: UIViewController {
         self.present(vc, animated: true, completion: nil)
     }
     @IBAction func loginButton(_ sender: Any) {
-    }
-    @IBAction func facebookButton(_ sender: Any) {
+        
     }
     @IBAction func signupButton(_ sender: Any) {
         let vc = SignUpViewController(remoteAPI: self.remoteAPI)
@@ -72,7 +100,41 @@ class LoginViewController: UIViewController {
         vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true, completion: nil)
     }
+    @IBAction func rememberMeSwitchValueChanged(_ sender: UISwitch) {
+            if !self.rememberSwitch.isOn {
+                KeychainHelper().deleteLoginCredentials()
+                print("deleted")
+            }
+        }
     
+    func saveCredentialsIfNecessary(username: String, password: String) {
+            if self.rememberSwitch.isOn {
+                KeychainHelper().saveLoginCredentials(LoginCredentials(username: username, password: password))
+                print("saved")
+            }
+        }
     
-
+    func setLoginCredentialsInViews() {
+            let credentials = KeychainHelper().retrieveLoginCredentials()
+            if let credentials = credentials {
+                self.usernameText.text = credentials.username
+                self.passwordText.text = credentials.password
+            }
+            self.rememberSwitch.setOn(credentials != nil, animated: false)
+        }
+    
+    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
+        let token = result?.token?.tokenString
+        
+        let request = FBSDKLoginKit.GraphRequest(graphPath: "me", parameters: ["fields": "email, name"], tokenString: token, version: nil, httpMethod: .get)
+        
+        request.start(completionHandler: {connect, result, error in print("\(result)")
+            
+        })
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+        
+    }
+    
 }

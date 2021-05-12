@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpViewController" customModule="STEM_Center" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpViewController" customModule="QuizApp" customModuleProvider="target">
             <connections>
                 <outlet property="passwordText" destination="ej6-Sg-785" id="oor-y1-M8s"/>
                 <outlet property="signupButton" destination="6Kj-Ey-i2b" id="SLh-0t-2DW"/>

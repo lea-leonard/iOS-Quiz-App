@@ -1,4 +1,4 @@
-module Pods_QuizApp {
+framework module Pods_QuizApp {
   umbrella header "Pods-QuizApp-umbrella.h"
 
   export *

@@ -1,4 +1,4 @@
-module BCrypt {
+framework module BCrypt {
   umbrella header "BCrypt-umbrella.h"
 
   export *

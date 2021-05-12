@@ -3,7 +3,7 @@
 
 target 'QuizApp' do
   # Comment the next line if you don't want to use dynamic frameworks
-  # use_frameworks!
+    use_frameworks!
 
   # Pods for QuizApp
   
@@ -11,5 +11,8 @@ target 'QuizApp' do
   
   pod 'KeychainAccess'
 
+  pod 'FBSDKLoginKit'
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKShareKit'
 
 end

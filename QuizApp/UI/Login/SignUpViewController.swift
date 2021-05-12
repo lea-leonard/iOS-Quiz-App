@@ -31,8 +31,15 @@ class SignUpViewController: UIViewController {
     }
 
     @IBAction func signupButton(_ sender: Any) {
+        self.register()
     }
     @IBAction func loginButton(_ sender: Any) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+
+    func register() {
+        
+        
+        
     }
 }
