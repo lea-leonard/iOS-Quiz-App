@@ -1,0 +1,763 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1EC9CC37C71E432E0B34D376BB75FF7A /* bcrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 3CD69D8D7CC0091C4CC018975B2054D8 /* bcrypt.c */; };
+		2E50850169597E5A5470011BD50569ED /* portable_endian.h in Headers */ = {isa = PBXBuildFile; fileRef = F500626D815DCD2D885841B3A37CEAF0 /* portable_endian.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4088E6BC1034214311B29EE8F71E0444 /* pycabcrypt.h in Headers */ = {isa = PBXBuildFile; fileRef = 19C5ADC48319724C287BA6F17A73290A /* pycabcrypt.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4DFC75A6F0D4DCFB746F3E0E9B6E302A /* BCrypt-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5494D8204AD15E0C355C886272ABDBCB /* BCrypt-dummy.m */; };
+		4F7FD10CD5427430A373247FCF95C96B /* blf.h in Headers */ = {isa = PBXBuildFile; fileRef = A4629253D0F3C3024C1DE4E45371E5E1 /* blf.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		699AC281D6A2F15F2940464A2D0997C6 /* sha2.c in Sources */ = {isa = PBXBuildFile; fileRef = 066C93CAD3B43E73D11C17D96690AFE1 /* sha2.c */; };
+		7967E250EB9C888F4DA8D16F4E739B37 /* timingsafe_bcmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 0D52419038410A336AC899E0B7901921 /* timingsafe_bcmp.c */; };
+		79987122B7AEE5FF791E491837B89CFA /* bcrypt_pbkdf.c in Sources */ = {isa = PBXBuildFile; fileRef = 1C50BE6E3A0E5CCA88C180D71A34D34D /* bcrypt_pbkdf.c */; };
+		8E6563F838F2C5B460910DC00D030165 /* sha2.h in Headers */ = {isa = PBXBuildFile; fileRef = DB176F2B5EF8FB5BBA3AA278BD409CCF /* sha2.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A2632F6607A700042338690AD0734C55 /* blf.c in Sources */ = {isa = PBXBuildFile; fileRef = 46D6CBED1BA3644F1598CAB09588C177 /* blf.c */; };
+		B1243C40F6A7A11C2CE1F9C856D948DC /* BCrypt-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DCC8781B2D3BE2C5BC346A9664C1C24E /* BCrypt-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B58ADC68FA370B5B8EED822E45FA9E47 /* PerfectBCrypt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A32C2A1845BDAC04BFEB1A2BB42819 /* PerfectBCrypt.swift */; };
+		CF42E1D7A8758799FBF00D34E98E52F8 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CECAF70C247031435816DED6145668 /* Keychain.swift */; };
+		D8ABB3B6F580342E5449ED1437B7C383 /* KeychainAccess-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 07A586B54060923B80325C0C154A2C0D /* KeychainAccess-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		DDA2B3EA49E55D37B3699BB1B04D9B4F /* Pods-QuizApp-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D73595B8EF875AADE26BB068D494E29E /* Pods-QuizApp-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E834E77AE7AE85867070C58EACBF9039 /* Pods-QuizApp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 483EC50141D55453B5DED65C8547DF37 /* Pods-QuizApp-dummy.m */; };
+		FCD141B6AA797AAC0A9D64764BC1967A /* module.modulemap in Sources */ = {isa = PBXBuildFile; fileRef = DB450715A0318691E71F86BE9C3A4728 /* module.modulemap */; };
+		FD7AEB4BA83C6A7513C8E92D661A0BA1 /* KeychainAccess-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C5183813600657F2BF5D99F90803A92 /* KeychainAccess-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		273765A1BD17E0BF4C0F798C596D1027 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C03340631D53B1119803C2F8E3506D4A;
+			remoteInfo = BCrypt;
+		};
+		9BB864BABF162D05F3EA1E6645CB3D1D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 615C831BCE925ED486B225B87E44926D;
+			remoteInfo = KeychainAccess;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		066C93CAD3B43E73D11C17D96690AFE1 /* sha2.c */ = {isa = PBXFileReference; includeInIndex = 1; name = sha2.c; path = BCrypt/Classes/bcryptc/sha2.c; sourceTree = "<group>"; };
+		07A586B54060923B80325C0C154A2C0D /* KeychainAccess-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KeychainAccess-umbrella.h"; sourceTree = "<group>"; };
+		0D52419038410A336AC899E0B7901921 /* timingsafe_bcmp.c */ = {isa = PBXFileReference; includeInIndex = 1; name = timingsafe_bcmp.c; path = BCrypt/Classes/bcryptc/timingsafe_bcmp.c; sourceTree = "<group>"; };
+		19C5ADC48319724C287BA6F17A73290A /* pycabcrypt.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = pycabcrypt.h; path = BCrypt/Classes/bcryptc/include/pycabcrypt.h; sourceTree = "<group>"; };
+		1C50BE6E3A0E5CCA88C180D71A34D34D /* bcrypt_pbkdf.c */ = {isa = PBXFileReference; includeInIndex = 1; name = bcrypt_pbkdf.c; path = BCrypt/Classes/bcryptc/bcrypt_pbkdf.c; sourceTree = "<group>"; };
+		2196FC6C78ED9FAB69641AD5CF07C5B7 /* BCrypt-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BCrypt-prefix.pch"; sourceTree = "<group>"; };
+		29677B9B1D29CF4F831E7A1E5E638A40 /* KeychainAccess-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "KeychainAccess-prefix.pch"; sourceTree = "<group>"; };
+		2D55E52F2BC9C0A1667FFE5C98E01415 /* KeychainAccess.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = KeychainAccess.modulemap; sourceTree = "<group>"; };
+		36C5FCC87988A4C4BB9209204D550145 /* KeychainAccess.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KeychainAccess.debug.xcconfig; sourceTree = "<group>"; };
+		38235F9DA4E769EFCFA486DED2A6AB64 /* BCrypt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BCrypt.release.xcconfig; sourceTree = "<group>"; };
+		3CD69D8D7CC0091C4CC018975B2054D8 /* bcrypt.c */ = {isa = PBXFileReference; includeInIndex = 1; name = bcrypt.c; path = BCrypt/Classes/bcryptc/bcrypt.c; sourceTree = "<group>"; };
+		44786042ED87EF9B6DCF1F18E49798CF /* KeychainAccess.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = KeychainAccess.release.xcconfig; sourceTree = "<group>"; };
+		46D6CBED1BA3644F1598CAB09588C177 /* blf.c */ = {isa = PBXFileReference; includeInIndex = 1; name = blf.c; path = BCrypt/Classes/bcryptc/blf.c; sourceTree = "<group>"; };
+		483EC50141D55453B5DED65C8547DF37 /* Pods-QuizApp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-QuizApp-dummy.m"; sourceTree = "<group>"; };
+		48F833059CFC142220C88B944DDC6A62 /* Pods-QuizApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-QuizApp.release.xcconfig"; sourceTree = "<group>"; };
+		532564DD37E6D3BF9BAC19C2EC6F5AF3 /* libPods-QuizApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-QuizApp.a"; path = "libPods-QuizApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5494D8204AD15E0C355C886272ABDBCB /* BCrypt-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BCrypt-dummy.m"; sourceTree = "<group>"; };
+		55CECAF70C247031435816DED6145668 /* Keychain.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Keychain.swift; path = Lib/KeychainAccess/Keychain.swift; sourceTree = "<group>"; };
+		7C5183813600657F2BF5D99F90803A92 /* KeychainAccess-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KeychainAccess-dummy.m"; sourceTree = "<group>"; };
+		822E2DB409B753E9B260C8928FD1B69C /* Pods-QuizApp.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-QuizApp.modulemap"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A3A32C2A1845BDAC04BFEB1A2BB42819 /* PerfectBCrypt.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PerfectBCrypt.swift; path = BCrypt/Classes/PerfectBCrypt/PerfectBCrypt.swift; sourceTree = "<group>"; };
+		A4629253D0F3C3024C1DE4E45371E5E1 /* blf.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = blf.h; path = BCrypt/Classes/bcryptc/include/blf.h; sourceTree = "<group>"; };
+		AF68BA6CF51ED0A95E28CF6F1CD0A0AB /* BCrypt.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = BCrypt.modulemap; sourceTree = "<group>"; };
+		BD63D935BB3EBEA73856BBE74E8D5459 /* libBCrypt.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libBCrypt.a; path = libBCrypt.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE84ED1DC9C96E1A7E272B1BC4951670 /* Pods-QuizApp-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-QuizApp-acknowledgements.plist"; sourceTree = "<group>"; };
+		D73595B8EF875AADE26BB068D494E29E /* Pods-QuizApp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-QuizApp-umbrella.h"; sourceTree = "<group>"; };
+		DB176F2B5EF8FB5BBA3AA278BD409CCF /* sha2.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = sha2.h; path = BCrypt/Classes/bcryptc/include/sha2.h; sourceTree = "<group>"; };
+		DB450715A0318691E71F86BE9C3A4728 /* module.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; name = module.modulemap; path = BCrypt/Classes/bcryptc/include/module.modulemap; sourceTree = "<group>"; };
+		DCC8781B2D3BE2C5BC346A9664C1C24E /* BCrypt-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BCrypt-umbrella.h"; sourceTree = "<group>"; };
+		E603CAF487DF7461A243F0E81D485563 /* Pods-QuizApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-QuizApp.debug.xcconfig"; sourceTree = "<group>"; };
+		E6FE82805F6AB15C21A9ED3DF083F8E9 /* Pods-QuizApp-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-QuizApp-acknowledgements.markdown"; sourceTree = "<group>"; };
+		E8EE7F078656FABB8F6821D10FF994BB /* libKeychainAccess.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libKeychainAccess.a; path = libKeychainAccess.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F500626D815DCD2D885841B3A37CEAF0 /* portable_endian.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = portable_endian.h; path = BCrypt/Classes/bcryptc/include/portable_endian.h; sourceTree = "<group>"; };
+		F75A96B20BC7141A16A991EFEEE43BB3 /* BCrypt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BCrypt.debug.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		381F0C7CA3649B997E2C9672F2CA4ACD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A597EFF1CB0061FE444B5ED319DFA111 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E118682940AB6011568CC75C8463DA98 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1C2EE037709891B4A1A590B1755C84A3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BD63D935BB3EBEA73856BBE74E8D5459 /* libBCrypt.a */,
+				E8EE7F078656FABB8F6821D10FF994BB /* libKeychainAccess.a */,
+				532564DD37E6D3BF9BAC19C2EC6F5AF3 /* libPods-QuizApp.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2F951A49E37E7BC00A08E3D017E1A6BB /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				AF68BA6CF51ED0A95E28CF6F1CD0A0AB /* BCrypt.modulemap */,
+				5494D8204AD15E0C355C886272ABDBCB /* BCrypt-dummy.m */,
+				2196FC6C78ED9FAB69641AD5CF07C5B7 /* BCrypt-prefix.pch */,
+				DCC8781B2D3BE2C5BC346A9664C1C24E /* BCrypt-umbrella.h */,
+				F75A96B20BC7141A16A991EFEEE43BB3 /* BCrypt.debug.xcconfig */,
+				38235F9DA4E769EFCFA486DED2A6AB64 /* BCrypt.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/BCrypt";
+			sourceTree = "<group>";
+		};
+		309143407A7AFC8283F2A3133CE60874 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				2D55E52F2BC9C0A1667FFE5C98E01415 /* KeychainAccess.modulemap */,
+				7C5183813600657F2BF5D99F90803A92 /* KeychainAccess-dummy.m */,
+				29677B9B1D29CF4F831E7A1E5E638A40 /* KeychainAccess-prefix.pch */,
+				07A586B54060923B80325C0C154A2C0D /* KeychainAccess-umbrella.h */,
+				36C5FCC87988A4C4BB9209204D550145 /* KeychainAccess.debug.xcconfig */,
+				44786042ED87EF9B6DCF1F18E49798CF /* KeychainAccess.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/KeychainAccess";
+			sourceTree = "<group>";
+		};
+		32222DDAA1A6172A6DA449A911AB63E0 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				AE27AD4587BED59B0871B7184CE41987 /* Pods-QuizApp */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		7405A877D17150A27C861F5D3A8830AD /* KeychainAccess */ = {
+			isa = PBXGroup;
+			children = (
+				55CECAF70C247031435816DED6145668 /* Keychain.swift */,
+				309143407A7AFC8283F2A3133CE60874 /* Support Files */,
+			);
+			name = KeychainAccess;
+			path = KeychainAccess;
+			sourceTree = "<group>";
+		};
+		9504B8C1AC5B1DDDE9E206A82EDF72E3 /* BCrypt */ = {
+			isa = PBXGroup;
+			children = (
+				3CD69D8D7CC0091C4CC018975B2054D8 /* bcrypt.c */,
+				1C50BE6E3A0E5CCA88C180D71A34D34D /* bcrypt_pbkdf.c */,
+				46D6CBED1BA3644F1598CAB09588C177 /* blf.c */,
+				A4629253D0F3C3024C1DE4E45371E5E1 /* blf.h */,
+				DB450715A0318691E71F86BE9C3A4728 /* module.modulemap */,
+				A3A32C2A1845BDAC04BFEB1A2BB42819 /* PerfectBCrypt.swift */,
+				F500626D815DCD2D885841B3A37CEAF0 /* portable_endian.h */,
+				19C5ADC48319724C287BA6F17A73290A /* pycabcrypt.h */,
+				066C93CAD3B43E73D11C17D96690AFE1 /* sha2.c */,
+				DB176F2B5EF8FB5BBA3AA278BD409CCF /* sha2.h */,
+				0D52419038410A336AC899E0B7901921 /* timingsafe_bcmp.c */,
+				2F951A49E37E7BC00A08E3D017E1A6BB /* Support Files */,
+			);
+			name = BCrypt;
+			path = BCrypt;
+			sourceTree = "<group>";
+		};
+		AAE5F74F7D3053DF81F62A844D15D0B5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9504B8C1AC5B1DDDE9E206A82EDF72E3 /* BCrypt */,
+				7405A877D17150A27C861F5D3A8830AD /* KeychainAccess */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		AE27AD4587BED59B0871B7184CE41987 /* Pods-QuizApp */ = {
+			isa = PBXGroup;
+			children = (
+				822E2DB409B753E9B260C8928FD1B69C /* Pods-QuizApp.modulemap */,
+				E6FE82805F6AB15C21A9ED3DF083F8E9 /* Pods-QuizApp-acknowledgements.markdown */,
+				CE84ED1DC9C96E1A7E272B1BC4951670 /* Pods-QuizApp-acknowledgements.plist */,
+				483EC50141D55453B5DED65C8547DF37 /* Pods-QuizApp-dummy.m */,
+				D73595B8EF875AADE26BB068D494E29E /* Pods-QuizApp-umbrella.h */,
+				E603CAF487DF7461A243F0E81D485563 /* Pods-QuizApp.debug.xcconfig */,
+				48F833059CFC142220C88B944DDC6A62 /* Pods-QuizApp.release.xcconfig */,
+			);
+			name = "Pods-QuizApp";
+			path = "Target Support Files/Pods-QuizApp";
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
+				AAE5F74F7D3053DF81F62A844D15D0B5 /* Pods */,
+				1C2EE037709891B4A1A590B1755C84A3 /* Products */,
+				32222DDAA1A6172A6DA449A911AB63E0 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D89477F20FB1DE18A04690586D7808C4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		C09B2B85A31D8B6BE19BA1C02EC5CFCF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1243C40F6A7A11C2CE1F9C856D948DC /* BCrypt-umbrella.h in Headers */,
+				4F7FD10CD5427430A373247FCF95C96B /* blf.h in Headers */,
+				2E50850169597E5A5470011BD50569ED /* portable_endian.h in Headers */,
+				4088E6BC1034214311B29EE8F71E0444 /* pycabcrypt.h in Headers */,
+				8E6563F838F2C5B460910DC00D030165 /* sha2.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D492FA28962F12B75ABD8A23821ABA04 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D8ABB3B6F580342E5449ED1437B7C383 /* KeychainAccess-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1D07288DEEBF684ACD991ECC03653C2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDA2B3EA49E55D37B3699BB1B04D9B4F /* Pods-QuizApp-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3B42A8F6148E5F2773D4A1B11D59DB6D /* Pods-QuizApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5059CCDB720575D895D7356DD498C780 /* Build configuration list for PBXNativeTarget "Pods-QuizApp" */;
+			buildPhases = (
+				F1D07288DEEBF684ACD991ECC03653C2 /* Headers */,
+				5AE2B40FA38D46F902FAB205C8391FEE /* Sources */,
+				A597EFF1CB0061FE444B5ED319DFA111 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3BA8C0CF64BAB69DF2D2EE79812D30C1 /* PBXTargetDependency */,
+				6D34CEE42EE2DA8955632ABE7ADC36A1 /* PBXTargetDependency */,
+			);
+			name = "Pods-QuizApp";
+			productName = "Pods-QuizApp";
+			productReference = 532564DD37E6D3BF9BAC19C2EC6F5AF3 /* libPods-QuizApp.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		615C831BCE925ED486B225B87E44926D /* KeychainAccess */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9ACD53F0E09E91849384B7E9108582B6 /* Build configuration list for PBXNativeTarget "KeychainAccess" */;
+			buildPhases = (
+				D492FA28962F12B75ABD8A23821ABA04 /* Headers */,
+				B400605D24BF12941B181786FD235958 /* Sources */,
+				E118682940AB6011568CC75C8463DA98 /* Frameworks */,
+				988325A8CBAFED81E123BA351205C202 /* Copy generated compatibility header */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KeychainAccess;
+			productName = KeychainAccess;
+			productReference = E8EE7F078656FABB8F6821D10FF994BB /* libKeychainAccess.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		C03340631D53B1119803C2F8E3506D4A /* BCrypt */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB83707DB54A5A26015D7658A1C6CE11 /* Build configuration list for PBXNativeTarget "BCrypt" */;
+			buildPhases = (
+				C09B2B85A31D8B6BE19BA1C02EC5CFCF /* Headers */,
+				C08C5BB7D6CE3D03E9E0D032EED3A325 /* Sources */,
+				381F0C7CA3649B997E2C9672F2CA4ACD /* Frameworks */,
+				24B70159E8D3FF7B6B590A31E720BF33 /* Copy generated compatibility header */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BCrypt;
+			productName = BCrypt;
+			productReference = BD63D935BB3EBEA73856BBE74E8D5459 /* libBCrypt.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = 1C2EE037709891B4A1A590B1755C84A3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C03340631D53B1119803C2F8E3506D4A /* BCrypt */,
+				615C831BCE925ED486B225B87E44926D /* KeychainAccess */,
+				3B42A8F6148E5F2773D4A1B11D59DB6D /* Pods-QuizApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		24B70159E8D3FF7B6B590A31E720BF33 /* Copy generated compatibility header */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h",
+				"${PODS_ROOT}/Headers/Public/BCrypt/BCrypt.modulemap",
+				"${PODS_ROOT}/Headers/Public/BCrypt/BCrypt-umbrella.h",
+			);
+			name = "Copy generated compatibility header";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap",
+				"${BUILT_PRODUCTS_DIR}/BCrypt-umbrella.h",
+				"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/BCrypt/BCrypt.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/BCrypt/BCrypt-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
+		};
+		988325A8CBAFED81E123BA351205C202 /* Copy generated compatibility header */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h",
+				"${PODS_ROOT}/Headers/Public/KeychainAccess/KeychainAccess.modulemap",
+				"${PODS_ROOT}/Headers/Public/KeychainAccess/KeychainAccess-umbrella.h",
+			);
+			name = "Copy generated compatibility header";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess-umbrella.h",
+				"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/KeychainAccess/KeychainAccess.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/KeychainAccess/KeychainAccess-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5AE2B40FA38D46F902FAB205C8391FEE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E834E77AE7AE85867070C58EACBF9039 /* Pods-QuizApp-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B400605D24BF12941B181786FD235958 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF42E1D7A8758799FBF00D34E98E52F8 /* Keychain.swift in Sources */,
+				FD7AEB4BA83C6A7513C8E92D661A0BA1 /* KeychainAccess-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C08C5BB7D6CE3D03E9E0D032EED3A325 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4DFC75A6F0D4DCFB746F3E0E9B6E302A /* BCrypt-dummy.m in Sources */,
+				1EC9CC37C71E432E0B34D376BB75FF7A /* bcrypt.c in Sources */,
+				79987122B7AEE5FF791E491837B89CFA /* bcrypt_pbkdf.c in Sources */,
+				A2632F6607A700042338690AD0734C55 /* blf.c in Sources */,
+				FCD141B6AA797AAC0A9D64764BC1967A /* module.modulemap in Sources */,
+				B58ADC68FA370B5B8EED822E45FA9E47 /* PerfectBCrypt.swift in Sources */,
+				699AC281D6A2F15F2940464A2D0997C6 /* sha2.c in Sources */,
+				7967E250EB9C888F4DA8D16F4E739B37 /* timingsafe_bcmp.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3BA8C0CF64BAB69DF2D2EE79812D30C1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BCrypt;
+			target = C03340631D53B1119803C2F8E3506D4A /* BCrypt */;
+			targetProxy = 273765A1BD17E0BF4C0F798C596D1027 /* PBXContainerItemProxy */;
+		};
+		6D34CEE42EE2DA8955632ABE7ADC36A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KeychainAccess;
+			target = 615C831BCE925ED486B225B87E44926D /* KeychainAccess */;
+			targetProxy = 9BB864BABF162D05F3EA1E6645CB3D1D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0AAEED825AFE7491FA4E41A5A618BFB3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44786042ED87EF9B6DCF1F18E49798CF /* KeychainAccess.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/KeychainAccess/KeychainAccess-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MODULEMAP_FILE = Headers/Public/KeychainAccess/KeychainAccess.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = KeychainAccess;
+				PRODUCT_NAME = KeychainAccess;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.1;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3F4FCD0FAD06DEF316639E136AADFDDC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F75A96B20BC7141A16A991EFEEE43BB3 /* BCrypt.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/BCrypt/BCrypt-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MODULEMAP_FILE = Headers/Public/BCrypt/BCrypt.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = BCrypt;
+				PRODUCT_NAME = BCrypt;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		53F41A0F5D8860B37BF674D68ABC6027 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E603CAF487DF7461A243F0E81D485563 /* Pods-QuizApp.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-QuizApp/Pods-QuizApp.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9F28966FBA984826963A5D741ACE83C1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36C5FCC87988A4C4BB9209204D550145 /* KeychainAccess.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/KeychainAccess/KeychainAccess-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MODULEMAP_FILE = Headers/Public/KeychainAccess/KeychainAccess.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = KeychainAccess;
+				PRODUCT_NAME = KeychainAccess;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.1;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BC01E0B73776AF6B58DC318A9BE988D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		C605C363CC9F26F9FF97DBB1D5C6E25C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		CE16497F571B640C5D60FEBDB3C8719A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48F833059CFC142220C88B944DDC6A62 /* Pods-QuizApp.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-QuizApp/Pods-QuizApp.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FDDC854250F30F7F7D61F5DC0C175E3A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38235F9DA4E769EFCFA486DED2A6AB64 /* BCrypt.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/BCrypt/BCrypt-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MODULEMAP_FILE = Headers/Public/BCrypt/BCrypt.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = BCrypt;
+				PRODUCT_NAME = BCrypt;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC01E0B73776AF6B58DC318A9BE988D7 /* Debug */,
+				C605C363CC9F26F9FF97DBB1D5C6E25C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5059CCDB720575D895D7356DD498C780 /* Build configuration list for PBXNativeTarget "Pods-QuizApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				53F41A0F5D8860B37BF674D68ABC6027 /* Debug */,
+				CE16497F571B640C5D60FEBDB3C8719A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9ACD53F0E09E91849384B7E9108582B6 /* Build configuration list for PBXNativeTarget "KeychainAccess" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F28966FBA984826963A5D741ACE83C1 /* Debug */,
+				0AAEED825AFE7491FA4E41A5A618BFB3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB83707DB54A5A26015D7658A1C6CE11 /* Build configuration list for PBXNativeTarget "BCrypt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F4FCD0FAD06DEF316639E136AADFDDC /* Debug */,
+				FDDC854250F30F7F7D61F5DC0C175E3A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}
