@@ -35,9 +35,6 @@ class LoginViewController: UIViewController {
     
     override func  viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(identifier: "ViewController")
-        self.present(vc, animated: true)
     }
 
     @IBAction func usernameText(_ sender: Any) {
