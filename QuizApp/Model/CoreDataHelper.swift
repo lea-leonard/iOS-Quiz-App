@@ -10,6 +10,9 @@ import CoreData
 import UIKit
 
 class CoreDataHelper: RemoteAPI {
+
+    
+ 
     private let bcryptHasher = BCryptHasher.standard
     
     private let persistentContainer: NSPersistentContainer
@@ -120,10 +123,9 @@ class CoreDataHelper: RemoteAPI {
         }
     }
     
-    func postNewUser(email: String, username: String?, password: String, success: (User) -> Void, failure: (Error) -> Void) {
+    func postNewUser(username: String, password: String, success: (User) -> Void, failure: (Error) -> Void) {
         do {
             let user = User(context: self.viewContext)
-            user.email = email
             user.username = username
             user.password = try bcryptHasher.hashPasword(password)
             try self.viewContext.save()
@@ -133,11 +135,8 @@ class CoreDataHelper: RemoteAPI {
         }
     }
     
-    func patchUser(user: User, newEmail: String?, newUsername: String?, newPassword: String?, success: () -> Void, failure: (Error) -> Void) {
+    func patchUser(user: User, newUsername: String?, newPassword: String?, success: () -> Void, failure: (Error) -> Void) {
         do {
-            if let newEmail = newEmail {
-                user.email = newEmail
-            }
             if let newUsername = newUsername {
                 user.username = newUsername
             }
@@ -170,8 +169,8 @@ class CoreDataHelper: RemoteAPI {
         }
     }
     
-    func validateAndGetUser(usernameOrEmail: String, password: String, success: (User?) -> Void, failure: (Error) -> Void) {
-        self.getUser(usernameOrEmail: usernameOrEmail) { userOptional in
+    func validateAndGetUser(username: String, password: String, success: (User?) -> Void, failure: (Error) -> Void) {
+        self.getUser(username: username) { userOptional in
             guard let user = userOptional else {
                 return success(nil)
             }
@@ -188,14 +187,9 @@ class CoreDataHelper: RemoteAPI {
         }
     }
     
-    func getUser(usernameOrEmail: String, success: (User?) -> Void, failure: (Error) -> Void) {
+    func getUser(username: String, success: (User?) -> Void, failure: (Error) -> Void) {
         let request: NSFetchRequest<User> = User.fetchRequest()
-        request.predicate =
-            NSCompoundPredicate(orPredicateWithSubpredicates:
-                                    [
-                                        NSPredicate(format: "email == %@", usernameOrEmail),
-                                        NSPredicate(format: "username == %@", usernameOrEmail)
-                                    ])
+        request.predicate = NSPredicate(format: "username == %@", username)
         do {
             let users = try self.viewContext.fetch(request)
             guard users.count <= 1 else {

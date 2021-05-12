@@ -45,7 +45,7 @@ class LoginViewController: UIViewController {
     @IBAction func passwordText(_ sender: Any) {
     }
     @IBAction func forgotButton(_ sender: Any) {
-        let vc = ForgotViewController()
+        let vc = ForgotViewController(remoteAPI: self.remoteAPI)
         vc.modalPresentationStyle = .fullScreen
         vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true, completion: nil)
@@ -55,7 +55,7 @@ class LoginViewController: UIViewController {
     @IBAction func facebookButton(_ sender: Any) {
     }
     @IBAction func signupButton(_ sender: Any) {
-        let vc = SignUpViewController()
+        let vc = SignUpViewController(remoteAPI: self.remoteAPI)
         vc.modalPresentationStyle = .fullScreen
         vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true, completion: nil)

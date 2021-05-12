@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.swift
 //  QuizApp
 //
-//  Created by Robert Olieman on 5/11/21.
+//  Created by Robert Olieman on 5/12/21.
 //
 //
 
@@ -16,7 +16,6 @@ extension User {
         return NSFetchRequest<User>(entityName: "User")
     }
 
-    @NSManaged public var email: String?
     @NSManaged public var isPremiumMember: Bool
     @NSManaged public var password: String?
     @NSManaged public var username: String?

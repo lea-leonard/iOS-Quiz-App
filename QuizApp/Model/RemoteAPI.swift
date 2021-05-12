@@ -11,17 +11,17 @@ import UIKit
 protocol RemoteAPI {
     func getNewQuiz(user: User, technologyName: String, level: QuizLevel, numberOfMultipleChoiceQuestions: Int, numberOfShortAnswerQuestions: Int, success: (Quiz) -> Void, failure: (Error) -> Void)
     
-    func postNewUser(email: String, username: String?, password: String, success: (User) -> Void, failure: (Error) -> Void)
+    func postNewUser(username: String, password: String, success: (User) -> Void, failure: (Error) -> Void)
     
-    func patchUser(user: User, newEmail: String?, newUsername: String?, newPassword: String?, success: () -> Void, failure: (Error) -> Void)
+    func patchUser(user: User, newUsername: String?, newPassword: String?, success: () -> Void, failure: (Error) -> Void)
     
     func putQuiz(quiz: Quiz, success: () -> Void, failure: (Error) -> Void)
     
     func submitQuiz(quiz: Quiz, success: () -> Void, failure: (Error) -> Void)
     
-    func validateAndGetUser(usernameOrEmail: String, password: String, success: (User?) -> Void, failure: (Error) -> Void)
+    func validateAndGetUser(username: String, password: String, success: (User?) -> Void, failure: (Error) -> Void)
     
-    func getUser(usernameOrEmail: String, success: (User?) -> Void, failure: (Error) -> Void)
+    func getUser(username: String, success: (User?) -> Void, failure: (Error) -> Void)
     
     func getTechnology(name: String, success: (Technology?) -> Void, failure: (Error) -> Void)
     

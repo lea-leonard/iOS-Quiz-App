@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20E241" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="MultipleChoiceQuestion" representedClassName="MultipleChoiceQuestion" syncable="YES">
-        <attribute name="choiceOptions" attributeType="Transformable" valueTransformerName="" customClassName="[String]"/>
+        <attribute name="choiceOptions" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
         <attribute name="correctChoice" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="level" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="question" attributeType="String"/>
@@ -10,7 +10,7 @@
         <relationship name="technology" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Technology" inverseName="multipleChoiceQuestions" inverseEntity="Technology"/>
     </entity>
     <entity name="MultipleChoiceQuestionForm" representedClassName="MultipleChoiceQuestionForm" syncable="YES">
-        <attribute name="choiceOptions" attributeType="Transformable" customClassName="[String]"/>
+        <attribute name="choiceOptions" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
         <attribute name="correctChoice" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="level" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="question" attributeType="String" defaultValueString=""/>
@@ -47,7 +47,6 @@
         <relationship name="shortAnswerQuestions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ShortAnswerQuestion" inverseName="technology" inverseEntity="ShortAnswerQuestion"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
-        <attribute name="email" attributeType="String" defaultValueString=""/>
         <attribute name="isPremiumMember" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="password" attributeType="String" defaultValueString=""/>
         <attribute name="username" optional="YES" attributeType="String"/>
@@ -60,6 +59,6 @@
         <element name="ShortAnswerQuestion" positionX="-15750.43591308594" positionY="12655.04934692383" width="159.442626953125" height="118"/>
         <element name="ShortAnswerQuestionForm" positionX="-15730.939453125" positionY="12225.22198486328" width="174.4986572265625" height="88"/>
         <element name="Technology" positionX="-16030.04534912109" positionY="12260.24261474609" width="186.4535522460938" height="148"/>
-        <element name="User" positionX="-16330.10870361328" positionY="12476.8821105957" width="128" height="104"/>
+        <element name="User" positionX="-16330.10870361328" positionY="12476.8821105957" width="128" height="103"/>
     </elements>
 </model>
