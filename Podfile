@@ -7,6 +7,8 @@ target 'QuizApp' do
 
   # Pods for QuizApp
   
+  pod "SideMenu"
+  
   pod "BCrypt"
   
   pod 'KeychainAccess'
