@@ -28,6 +28,15 @@ class MultipleChoiceQuestionViewController: QuizQuestionViewController, Multiple
         self.choicesTableView.dataSource = self
         self.updateQuestionLabel()
         
+        questionLabel.layer.cornerRadius = 10
+        questionLabel.layer.borderWidth = 3
+        questionLabel.layer.backgroundColor = UIColor.red.cgColor
+        questionLabel.layer.borderColor = UIColor.yellow.cgColor
+        
+        choicesTableView.layer.cornerRadius = 10
+        choicesTableView.layer.borderWidth = 5
+        choicesTableView.layer.backgroundColor = UIColor.white.cgColor
+        choicesTableView.layer.borderColor = UIColor.black.cgColor
         
     }
     

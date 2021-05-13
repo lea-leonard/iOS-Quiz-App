@@ -10,6 +10,9 @@ import UIKit
 class QuizViewController: BaseViewController {
 
     @IBOutlet weak var questionContainerViewSuperview: UIView!
+    @IBOutlet weak var previousButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var submitButton: UIButton!
     
     var multipleChoiceQuestionViewController: MultipleChoiceQuestionViewController!
     
@@ -85,6 +88,14 @@ class QuizViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        previousButton.layer.backgroundColor = UIColor.red.cgColor
+        previousButton.layer.borderColor = UIColor.yellow.cgColor
+        nextButton.layer.backgroundColor = UIColor.red.cgColor
+        nextButton.layer.borderColor = UIColor.yellow.cgColor
+        submitButton.layer.backgroundColor = UIColor.white.cgColor
+        submitButton.layer.borderColor = UIColor.black.cgColor
+        
         self.questionContainerViewSuperview.translatesAutoresizingMaskIntoConstraints = false
         self.questionContainerViewSuperview.addSubview(multipleChoiceQuestionViewController.view)
         self.questionContainerViewSuperview.addSubview(shortAnswerQuestionViewController.view)

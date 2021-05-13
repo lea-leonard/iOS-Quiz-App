@@ -20,6 +20,7 @@ class LoginViewController: BaseViewController, LoginButtonDelegate {
     @IBOutlet weak var aboutButton: UIButton!
     @IBOutlet weak var contactButton: UIButton!
     @IBOutlet weak var rememberSwitch: UISwitch!
+    @IBOutlet weak var rememberLabel: UILabel!
     
     let remoteAPI: RemoteAPI
     
@@ -58,9 +59,20 @@ class LoginViewController: BaseViewController, LoginButtonDelegate {
         
         self.setLoginCredentialsInViews()
         
-        loginButton.layer.borderColor = UIColor.white.cgColor
+        loginButton.layer.borderColor = UIColor.black.cgColor
+        loginButton.layer.backgroundColor = UIColor.white.cgColor
+        signupButton.layer.borderColor = UIColor.black.cgColor
+        signupButton.layer.backgroundColor = UIColor.white.cgColor
         usernameText.layer.borderColor = UIColor.white.cgColor
         passwordText.layer.borderColor = UIColor.white.cgColor
+        forgotButton.layer.borderColor = UIColor.white.cgColor
+        //forgotButton.layer.backgroundColor = UIColor.white.cgColor
+        //contactButton.layer.backgroundColor = UIColor.white.cgColor
+        contactButton.layer.borderColor = UIColor.white.cgColor
+        //aboutButton.layer.backgroundColor = UIColor.white.cgColor
+        aboutButton.layer.borderColor = UIColor.white.cgColor
+        rememberLabel.layer.borderColor = UIColor.white.cgColor
+        
         
     }
     

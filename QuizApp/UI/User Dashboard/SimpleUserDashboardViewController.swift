@@ -11,13 +11,25 @@ import UIKit
 class SimpleUserDashboardViewController: BaseViewController {
     
     @IBOutlet weak var helloLabel: UILabel!
+    @IBOutlet weak var userLabel: UILabel!
+    @IBOutlet weak var ShibaGIF: UIImageView!
+    @IBOutlet weak var ShibaGIFTwo: UIImageView!
+    @IBOutlet weak var petalsGIF: UIImageView!
+    @IBOutlet weak var technologyLabel: UILabel!
+    @IBOutlet weak var levelLabel: UILabel!
+    @IBOutlet weak var gotoquizButton: UIButton!
+    @IBOutlet weak var logoutButton: UIButton!
     
     @IBOutlet weak var technologySegmentedControl: UISegmentedControl!
     
     @IBOutlet weak var levelSegmentedControl: UISegmentedControl!
     
     var helloLabelText: String {
-        "Hello \(user.username ?? "User")"
+        "Hello"
+    }
+    
+    var userLabelText: String {
+        "\(user.username ?? "User")"
     }
     
     var selectedTechnology: Technology {
@@ -43,6 +55,16 @@ class SimpleUserDashboardViewController: BaseViewController {
         super.viewDidLoad()
         
         self.helloLabel.text = self.helloLabelText
+        self.userLabel.text = self.userLabelText
+        ShibaGIF.loadGif(name: "ShibaTestMenu")
+        ShibaGIFTwo.loadGif(name: "ShibaTestMenu2")
+        petalsGIF.loadGif(name: "Petals")
+        technologyLabel.layer.borderColor = UIColor.white.cgColor
+        levelLabel.layer.borderColor = UIColor.white.cgColor
+        gotoquizButton.layer.borderColor = UIColor.black.cgColor
+        gotoquizButton.layer.backgroundColor = UIColor.white.cgColor
+        logoutButton.layer.borderColor = UIColor.black.cgColor
+        logoutButton.layer.backgroundColor = UIColor.white.cgColor
         
         self.levelSegmentedControl.removeAllSegments()
         for level in QuizLevel.allCases {

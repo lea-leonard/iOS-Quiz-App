@@ -26,12 +26,17 @@ class ShortAnswerQuestionViewController: QuizQuestionViewController, UITextViewD
         super.viewDidLoad()
         self.updateQuestionLabelAndTextView()
         
+        questionLabel.layer.cornerRadius = 10
+        questionLabel.layer.borderWidth = 3
+        questionLabel.layer.backgroundColor = UIColor.red.cgColor
+        questionLabel.layer.borderColor = UIColor.yellow.cgColor
+        
         self.responseTextView.delegate = self
         
-        self.responseTextView.layer.cornerRadius = 12
-        self.responseTextView.layer.cornerCurve = .continuous
-        self.responseTextView.layer.borderWidth = 1
-        self.responseTextView.layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
+        responseTextView.layer.cornerRadius = 10
+        responseTextView.layer.borderWidth = 5
+        responseTextView.layer.backgroundColor = UIColor.white.cgColor
+        responseTextView.layer.borderColor = UIColor.black.cgColor
     }
     
     override func updateQuestion(_ question: QuizQuestion) {

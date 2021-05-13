@@ -31,7 +31,8 @@ class ForgotViewController: BaseViewController {
         
         shibaGIF.loadGif(name: "ShibaForgot")
         
-        submitButton.layer.borderColor = UIColor.white.cgColor
+        submitButton.layer.borderColor = UIColor.black.cgColor
+        submitButton.layer.backgroundColor = UIColor.white.cgColor
         usernameText.layer.borderColor = UIColor.white.cgColor
     }
 

@@ -29,7 +29,8 @@ class SignUpViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        signupButton.layer.borderColor = UIColor.white.cgColor
+        signupButton.layer.borderColor = UIColor.black.cgColor
+        signupButton.layer.backgroundColor = UIColor.white.cgColor
         usernameText.layer.borderColor = UIColor.white.cgColor
         passwordText.layer.borderColor = UIColor.white.cgColor
     }
