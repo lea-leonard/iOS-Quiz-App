@@ -32,7 +32,7 @@ class SimpleUserDashboardViewController: BaseViewController {
     
     var user: User!
     
-    var technologies: [Technology]!
+    var technologies = [Technology]()
 
     func setup(remoteAPI: RemoteAPI, user: User) {
         self.remoteAPI = remoteAPI
