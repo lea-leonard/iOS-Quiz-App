@@ -41,8 +41,8 @@
         <attribute name="imageData" optional="YES" attributeType="Binary"/>
         <attribute name="name" attributeType="String" defaultValueString=""/>
         <relationship name="multipleChoiceQuestionForms" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="MultipleChoiceQuestionForm" inverseName="technology" inverseEntity="MultipleChoiceQuestionForm"/>
-        <relationship name="multipleChoiceQuestions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MultipleChoiceQuestion" inverseName="technology" inverseEntity="MultipleChoiceQuestion"/>
-        <relationship name="quizzes" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Quiz" inverseName="technology" inverseEntity="Quiz"/>
+        <relationship name="multipleChoiceQuestions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="MultipleChoiceQuestion" inverseName="technology" inverseEntity="MultipleChoiceQuestion"/>
+        <relationship name="quizzes" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Quiz" inverseName="technology" inverseEntity="Quiz"/>
         <relationship name="shortAnswerQuestionForms" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ShortAnswerQuestionForm" inverseName="technology" inverseEntity="ShortAnswerQuestionForm"/>
         <relationship name="shortAnswerQuestions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ShortAnswerQuestion" inverseName="technology" inverseEntity="ShortAnswerQuestion"/>
     </entity>
@@ -50,15 +50,15 @@
         <attribute name="isPremiumMember" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="password" attributeType="String" defaultValueString=""/>
         <attribute name="username" optional="YES" attributeType="String"/>
-        <relationship name="quizzes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Quiz" inverseName="user" inverseEntity="Quiz"/>
+        <relationship name="quizzes" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Quiz" inverseName="user" inverseEntity="Quiz"/>
     </entity>
     <elements>
         <element name="MultipleChoiceQuestion" positionX="-15692.37451171875" positionY="12498.42614746094" width="148.97998046875" height="148"/>
         <element name="MultipleChoiceQuestionForm" positionX="-15664.14459228516" positionY="12320.62561035156" width="177.43359375" height="118"/>
-        <element name="Quiz" positionX="-16164.84344482422" positionY="12462.00842285157" width="128" height="148"/>
+        <element name="Quiz" positionX="-16214.67596435547" positionY="12457.88946533204" width="128" height="148"/>
         <element name="ShortAnswerQuestion" positionX="-15750.43591308594" positionY="12655.04934692383" width="159.442626953125" height="118"/>
         <element name="ShortAnswerQuestionForm" positionX="-15730.939453125" positionY="12225.22198486328" width="174.4986572265625" height="88"/>
-        <element name="Technology" positionX="-16030.04534912109" positionY="12260.24261474609" width="186.4535522460938" height="148"/>
-        <element name="User" positionX="-16330.10870361328" positionY="12476.8821105957" width="128" height="103"/>
+        <element name="Technology" positionX="-16032.08013916015" positionY="12260.24261474609" width="186.4535522460938" height="148"/>
+        <element name="User" positionX="-16412.48266601562" positionY="12529.85586547851" width="128" height="103"/>
     </elements>
 </model>

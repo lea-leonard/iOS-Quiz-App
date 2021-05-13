@@ -55,18 +55,21 @@ class UserDashboardViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0, 2, 4:
-            
+            break
         case 1:
-            
+            break
         case 2:
-            
+            break
         case 3:
-            
+            break
+        default:
+            break
         }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        return UITableViewCell()
     }
 
 }
