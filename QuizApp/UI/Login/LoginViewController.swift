@@ -164,13 +164,17 @@ class LoginViewController: BaseViewController, LoginButtonDelegate {
     }
     
     func goToAdminPage() {
+        
         guard let adminViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "AdminViewController") as? AdminViewController else {
             fatalError("Unable to instantiate AdminViewController")
         }
         
-        adminViewController.modalPresentationStyle = .fullScreen
         adminViewController.setup(remoteAPI: self.remoteAPI)
-        self.present(adminViewController, animated: true, completion: nil)
+        
+        let navigationController = UINavigationController(rootViewController: adminViewController)
+        
+        navigationController.modalPresentationStyle = .fullScreen
+        self.present(navigationController, animated: true, completion: nil)
         
     }
     
