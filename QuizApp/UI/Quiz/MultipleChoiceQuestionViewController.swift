@@ -28,17 +28,17 @@ class MultipleChoiceQuestionViewController: QuizQuestionViewController, Multiple
         self.choicesTableView.dataSource = self
         self.updateQuestionLabel()
         
-        self.choicesTableView.layer.cornerRadius = 12
-        self.choicesTableView.layer.cornerCurve = .continuous
-        self.choicesTableView.layer.borderWidth = 1
-        self.choicesTableView.layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
         
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+        // this was supposed to set the height of the table view
+        // dynamically. It was working and then it stopped working.
+        // I have no idea why.
         let tableViewHeight = self.choicesTableView.contentSize.height
-        self.choicesTableViewHeightConstraint.constant = tableViewHeight
+        self.choicesTableViewHeightConstraint.constant = 500
     }
     
     func updateQuestionLabel() {
