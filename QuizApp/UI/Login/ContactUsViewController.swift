@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class ContactUsViewController: UIViewController, WKNavigationDelegate {
+class ContactUsViewController: BaseViewController, WKNavigationDelegate {
 
     @IBOutlet weak var website: WKWebView!
     

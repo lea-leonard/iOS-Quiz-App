@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20E241" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="MultipleChoiceQuestion" representedClassName="MultipleChoiceQuestion" syncable="YES">
-        <attribute name="choiceOptions" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+    <entity name="MultipleChoiceQuestion" representedClassName=".MultipleChoiceQuestion" syncable="YES">
+        <attribute name="choiceOptions" optional="YES" attributeType="Transformable" valueTransformerName="" customClassName="[String]"/>
         <attribute name="correctChoice" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="level" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="question" attributeType="String"/>
-        <attribute name="userChoice" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="userChoice" attributeType="Integer 16" defaultValueString="-1" usesScalarValueType="YES"/>
         <relationship name="quiz" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Quiz" inverseName="multipleChoiceQuestions" inverseEntity="Quiz"/>
         <relationship name="technology" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Technology" inverseName="multipleChoiceQuestions" inverseEntity="Technology"/>
     </entity>
     <entity name="MultipleChoiceQuestionForm" representedClassName="MultipleChoiceQuestionForm" syncable="YES">
-        <attribute name="choiceOptions" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="choiceOptions" optional="YES" attributeType="Transformable" valueTransformerName="" customClassName="[String]"/>
         <attribute name="correctChoice" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="level" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="question" attributeType="String" defaultValueString=""/>
@@ -47,14 +47,14 @@
         <relationship name="shortAnswerQuestions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ShortAnswerQuestion" inverseName="technology" inverseEntity="ShortAnswerQuestion"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
-        <attribute name="isPremiumMember" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isPremiumMember" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="password" attributeType="String" defaultValueString=""/>
         <attribute name="username" optional="YES" attributeType="String"/>
         <relationship name="quizzes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Quiz" inverseName="user" inverseEntity="Quiz"/>
     </entity>
     <elements>
         <element name="MultipleChoiceQuestion" positionX="-15692.37451171875" positionY="12498.42614746094" width="148.97998046875" height="148"/>
-        <element name="MultipleChoiceQuestionForm" positionX="-15664.14459228516" positionY="12319.81170654297" width="177.43359375" height="118"/>
+        <element name="MultipleChoiceQuestionForm" positionX="-15664.14459228516" positionY="12320.62561035156" width="177.43359375" height="118"/>
         <element name="Quiz" positionX="-16164.84344482422" positionY="12462.00842285157" width="128" height="148"/>
         <element name="ShortAnswerQuestion" positionX="-15750.43591308594" positionY="12655.04934692383" width="159.442626953125" height="118"/>
         <element name="ShortAnswerQuestionForm" positionX="-15730.939453125" positionY="12225.22198486328" width="174.4986572265625" height="88"/>

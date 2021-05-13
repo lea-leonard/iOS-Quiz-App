@@ -1,0 +1,7 @@
+${PODS_ROOT}/Target Support Files/Pods-QuizApp/Pods-QuizApp-frameworks.sh
+${BUILT_PRODUCTS_DIR}/BCrypt/BCrypt.framework
+${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework
+${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework
+${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework
+${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework
+${BUILT_PRODUCTS_DIR}/SideMenu/SideMenu.framework

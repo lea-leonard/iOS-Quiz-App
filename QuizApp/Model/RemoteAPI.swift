@@ -11,6 +11,8 @@ import UIKit
 protocol RemoteAPI {
     func getNewQuiz(user: User, technologyName: String, level: QuizLevel, numberOfMultipleChoiceQuestions: Int, numberOfShortAnswerQuestions: Int, success: (Quiz) -> Void, failure: (Error) -> Void)
     
+    func getNewQuiz(user: User, technology: Technology, level: QuizLevel, numberOfMultipleChoiceQuestions: Int, numberOfShortAnswerQuestions: Int, success: (Quiz) -> Void, failure: (Error) -> Void)
+    
     func postNewUser(username: String, password: String, success: (User) -> Void, failure: (Error) -> Void)
     
     func patchUser(user: User, newUsername: String?, newPassword: String?, success: () -> Void, failure: (Error) -> Void)
@@ -24,6 +26,8 @@ protocol RemoteAPI {
     func getUser(username: String, success: (User?) -> Void, failure: (Error) -> Void)
     
     func getTechnology(name: String, success: (Technology?) -> Void, failure: (Error) -> Void)
+    
+    func getAllTechnologies(success: ([Technology]) -> Void, failure: (Error) -> Void)
     
     func postNewTechnology(name: String, image: UIImage, success: (Technology) -> Void, failure: (Error) -> Void)
     

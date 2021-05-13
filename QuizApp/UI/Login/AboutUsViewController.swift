@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AboutUsViewController: UIViewController {
+class AboutUsViewController: BaseViewController {
 
     @IBOutlet weak var shibaGIF: UIImageView!
     override func viewDidLoad() {

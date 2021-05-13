@@ -30,33 +30,40 @@ class CoreDataHelper: RemoteAPI {
     }
     
     func getNewQuiz(user: User, technologyName: String, level: QuizLevel, numberOfMultipleChoiceQuestions: Int, numberOfShortAnswerQuestions: Int, success: (Quiz) -> Void, failure: (Error) -> Void) {
-        let quiz = Quiz(context: self.viewContext)
-        quiz.user = user
-        quiz.level = Int16(level.rawValue)
-        
         self.getTechnology(name: technologyName) { technologyOptional in
             guard let technology = technologyOptional else {
                 return failure(CoreDataHelperError.expectedDataUnavailable("No technology named \(technologyName) exists"))
             }
+            self.getNewQuiz(user: user, technology: technology, level: level, numberOfMultipleChoiceQuestions: numberOfMultipleChoiceQuestions, numberOfShortAnswerQuestions: numberOfShortAnswerQuestions, success: { quiz in
+                success(quiz)
+            }, failure: { error in
+                failure(error)
+            })
+
+        } failure: { error in
+            failure(error)
+        }
+    }
+    
+    func getNewQuiz(user: User, technology: Technology, level: QuizLevel, numberOfMultipleChoiceQuestions: Int, numberOfShortAnswerQuestions: Int, success: (Quiz) -> Void, failure: (Error) -> Void) {
+        let quiz = Quiz(context: self.viewContext)
+        quiz.user = user
+        quiz.level = Int16(level.rawValue)
+        quiz.technology = technology
+        technology.addToQuizzes(quiz)
+        
+        self.getRandomMultipleChoiceQuestions(technology: technology, number: numberOfMultipleChoiceQuestions, level: level) { multipleChoiceQuestions in
+            quiz.multipleChoiceQuestions = NSOrderedSet(array: multipleChoiceQuestions)
             
-            quiz.technology = technology
-            technology.addToQuizzes(quiz)
-            
-            self.getRandomMultipleChoiceQuestions(technology: technology, number: numberOfMultipleChoiceQuestions, level: level) { multipleChoiceQuestions in
-                quiz.multipleChoiceQuestions = NSOrderedSet(array: multipleChoiceQuestions)
+            self.getRandomShortAnswerQuestions(technology: technology, number: numberOfShortAnswerQuestions, level: level) { shortAnswerQuestions in
                 
-                self.getRandomShortAnswerQuestions(technology: technology, number: numberOfShortAnswerQuestions, level: level) { shortAnswerQuestions in
+                quiz.shortAnswerQuestions = NSOrderedSet(array: shortAnswerQuestions)
+                
+                do {
+                    try self.viewContext.save()
+                    success(quiz)
                     
-                    quiz.shortAnswerQuestions = NSOrderedSet(array: shortAnswerQuestions)
-                    
-                    do {
-                        try self.viewContext.save()
-                        success(quiz)
-                        
-                    } catch {
-                        failure(error)
-                    }
-                } failure: { error in
+                } catch {
                     failure(error)
                 }
             } failure: { error in
@@ -65,8 +72,6 @@ class CoreDataHelper: RemoteAPI {
         } failure: { error in
             failure(error)
         }
-
-
     }
     
     private func getRandomMultipleChoiceQuestions(technology: Technology, number: Int, level: QuizLevel, success: ([MultipleChoiceQuestion]) -> Void, failure: (Error) -> Void) {
@@ -77,8 +82,13 @@ class CoreDataHelper: RemoteAPI {
         request.predicate = NSPredicate(format: "(technology.name == %@) AND (level == %d)", technologyName, level.rawValue)
         do {
             let questionForms = try self.viewContext.fetch(request)
-            guard questionForms.count > number else {
-                return failure(CoreDataHelperError.expectedDataUnavailable("Less than \(number) level \(level.rawValue) questions available for technology named \(technologyName)"))
+            for questionForm in questionForms {
+                print(questionForm.technology!.name!)
+                print(questionForm.question!)
+                print(questionForm.level)
+            }
+            guard questionForms.count >= number else {
+                return failure(CoreDataHelperError.expectedDataUnavailable("Less than \(number) level \(level.rawValue) multiple choice questions available for technology named \(technologyName)"))
             }
             let shuffledQuestionForms = questionForms.shuffled().prefix(number)
             var questions = [MultipleChoiceQuestion]()
@@ -105,8 +115,8 @@ class CoreDataHelper: RemoteAPI {
         request.predicate = NSPredicate(format: "(technology.name == %@) AND (level == %d)", technologyName, level.rawValue)
         do {
             let questionForms = try self.viewContext.fetch(request)
-            guard questionForms.count > number else {
-                return failure(CoreDataHelperError.expectedDataUnavailable("Less than \(number) level \(level.rawValue) questions available for technology named \(technologyName)"))
+            guard questionForms.count >= number else {
+                return failure(CoreDataHelperError.expectedDataUnavailable("Less than \(number) level \(level.rawValue) short answer questions available for technology named \(technologyName)"))
             }
             let shuffledQuestionForms = questionForms.shuffled().prefix(number)
             var questions = [ShortAnswerQuestion]()
@@ -217,6 +227,16 @@ class CoreDataHelper: RemoteAPI {
         }
     }
     
+    func getAllTechnologies(success: ([Technology]) -> Void, failure: (Error) -> Void) {
+        let request: NSFetchRequest<Technology> = Technology.fetchRequest()
+        do {
+            let technologies = try self.viewContext.fetch(request)
+            success(technologies)
+        } catch {
+            failure(error)
+        }
+    }
+    
     func postNewTechnology(name: String, image: UIImage, success: (Technology) -> Void, failure: (Error) -> Void) {
         self.getTechnology(name: name, success: { technologyOptional in
             guard technologyOptional == nil else {
@@ -267,6 +287,12 @@ class CoreDataHelper: RemoteAPI {
             form.question = question
             form.choiceOptions = choiceOptions
             form.correctChoice = Int16(correctChoice)
+            do {
+                try self.viewContext.save()
+            } catch {
+                print(error.localizedDescription)
+                failure(error)
+            }
             success(form)
         }, failure: { error in
             failure(error)
@@ -279,10 +305,16 @@ class CoreDataHelper: RemoteAPI {
             guard let technology = technologyOptional else {
                 return failure(CoreDataHelperError.expectedDataUnavailable("No technology named \(technologyName) exists"))
             }
-            let form = MultipleChoiceQuestionForm(context: self.viewContext)
+            let form = ShortAnswerQuestionForm(context: self.viewContext)
             form.technology = technology
             form.level = Int16(level.rawValue)
             form.question = question
+            do {
+                try self.viewContext.save()
+            } catch {
+                print(error.localizedDescription)
+                failure(error)
+            }
         }, failure: { error in
             failure(error)
         })
@@ -447,53 +479,62 @@ class CoreDataHelper: RemoteAPI {
                     "Combines multilple array values into a single value",
                     "Shortens an array to a certain length"
                 ], correctChoice: 1),
-                (technologyName: "JavaScript", level: .three, question: "", choiceOptions: [
-                    "",
-                    "",
-                    ""
+                (technologyName: "JavaScript", level: .three, question: "Which of the following will call doSomething() on a Promise when it is fullfilled?", choiceOptions: [
+                    ".then(doSomething())",
+                    ".next(doSomething())",
+                    ".onFulfill(dosomething())"
                 ], correctChoice: 0),
-                (technologyName: "JavaScript", level: .three, question: "", choiceOptions: [
-                    "",
-                    "",
-                    ""
+                (technologyName: "JavaScript", level: .three, question: "Which of the following contains a syntax error?", choiceOptions: [
+                    """
+                    function add = (a , b) => {
+                        return a + b
+                    }
+                    """,
+                    """
+                    const add = (a, b) => {
+                        return a + b
+                    }
+                    """,
+                    """
+                    const add = (a, b) => a + b
+                    """
                 ], correctChoice: 0)
             ]
             
             let shortAnswerQuestions: [(technologyName: String, level: QuizLevel, question: String)] = [
-                (technologyName: "Swift", level: .one, question: ""),
-                (technologyName: "Swift", level: .one, question: ""),
-                (technologyName: "Swift", level: .one, question: ""),
-                (technologyName: "Swift", level: .two, question: ""),
-                (technologyName: "Swift", level: .two, question: ""),
-                (technologyName: "Swift", level: .two, question: ""),
-                (technologyName: "Swift", level: .three, question: ""),
-                (technologyName: "Swift", level: .three, question: ""),
-                (technologyName: "Swift", level: .three, question: ""),
+                (technologyName: "Swift", level: .one, question: "Swift11"),
+                (technologyName: "Swift", level: .one, question: "Swift12"),
+                (technologyName: "Swift", level: .one, question: "Swift13"),
+                (technologyName: "Swift", level: .two, question: "Swift21"),
+                (technologyName: "Swift", level: .two, question: "Swift22"),
+                (technologyName: "Swift", level: .two, question: "Swift23"),
+                (technologyName: "Swift", level: .three, question: "Swift31"),
+                (technologyName: "Swift", level: .three, question: "Swift32"),
+                (technologyName: "Swift", level: .three, question: "Swift33"),
                 
-                (technologyName: "Java", level: .one, question: ""),
-                (technologyName: "Java", level: .one, question: ""),
-                (technologyName: "Java", level: .one, question: ""),
-                (technologyName: "Java", level: .two, question: ""),
-                (technologyName: "Java", level: .two, question: ""),
-                (technologyName: "Java", level: .two, question: ""),
-                (technologyName: "Java", level: .three, question: ""),
-                (technologyName: "Java", level: .three, question: ""),
-                (technologyName: "Java", level: .three, question: ""),
+                (technologyName: "Java", level: .one, question: "Java11"),
+                (technologyName: "Java", level: .one, question: "Java12"),
+                (technologyName: "Java", level: .one, question: "Java13"),
+                (technologyName: "Java", level: .two, question: "Java21"),
+                (technologyName: "Java", level: .two, question: "Java22"),
+                (technologyName: "Java", level: .two, question: "Java23"),
+                (technologyName: "Java", level: .three, question: "Java31"),
+                (technologyName: "Java", level: .three, question: "Java32"),
+                (technologyName: "Java", level: .three, question: "Java33"),
                 
-                (technologyName: "JavaScript", level: .one, question: ""),
-                (technologyName: "JavaScript", level: .one, question: ""),
-                (technologyName: "JavaScript", level: .one, question: ""),
-                (technologyName: "JavaScript", level: .two, question: ""),
-                (technologyName: "JavaScript", level: .two, question: ""),
-                (technologyName: "JavaScript", level: .two, question: ""),
+                (technologyName: "JavaScript", level: .one, question: "JS11"),
+                (technologyName: "JavaScript", level: .one, question: "JS12"),
+                (technologyName: "JavaScript", level: .one, question: "JS13"),
+                (technologyName: "JavaScript", level: .two, question: "JS21"),
+                (technologyName: "JavaScript", level: .two, question: "JS22"),
+                (technologyName: "JavaScript", level: .two, question: "JS23"),
                 (technologyName: "JavaScript", level: .three, question: "How does the \"this\" keyword differ inside a regular function vs an arrow function?"),
-                (technologyName: "JavaScript", level: .three, question: ""),
-                (technologyName: "JavaScript", level: .three, question: "")
+                (technologyName: "JavaScript", level: .three, question: "JS32"),
+                (technologyName: "JavaScript", level: .three, question: "JS33")
             ]
             
             for question in multipleChoiceQuestions {
                 self.postNewMultipleChoiceQuestionForm(technologyName: question.technologyName, level: question.level, question: question.question, choiceOptions: question.choiceOptions, correctChoice: question.correctChoice, success: {_ in
-                    
                 }) {_ in
                     
                 }
@@ -506,6 +547,8 @@ class CoreDataHelper: RemoteAPI {
                     
                 })
             }
+            
+      
             
         } catch {
             

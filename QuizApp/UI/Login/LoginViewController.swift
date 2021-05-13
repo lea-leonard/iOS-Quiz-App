@@ -8,9 +8,7 @@
 import UIKit
 import FBSDKLoginKit
 
-class LoginViewController: UIViewController, LoginButtonDelegate {
-    
-    
+class LoginViewController: BaseViewController, LoginButtonDelegate {
 
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
@@ -80,7 +78,30 @@ class LoginViewController: UIViewController, LoginButtonDelegate {
         self.present(vc, animated: true, completion: nil)
     }
     @IBAction func loginButton(_ sender: Any) {
-        
+        guard let username = self.usernameText.textNoEmptyString else {
+            return
+        }
+        guard let password = self.passwordText.textNoEmptyString else {
+            return
+        }
+        self.remoteAPI.validateAndGetUser(username: username, password: password, success: { userOptional in
+            guard let user = userOptional else { return }
+            
+            guard let dashboardViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SimpleUserDashboardViewController") as? SimpleUserDashboardViewController else {
+                fatalError("Unable to instantiate SimpleUserDashboardViewController")
+            }
+            
+            dashboardViewController.setup(remoteAPI: self.remoteAPI, user: user)
+            
+            dashboardViewController.modalPresentationStyle = .fullScreen
+            
+            self.present(dashboardViewController, animated: true)
+            
+        }, failure: {error in
+            print(error.localizedDescription)
+        })
+    }
+    @IBAction func facebookButton(_ sender: Any) {
     }
     @IBAction func signupButton(_ sender: Any) {
         let vc = SignUpViewController(remoteAPI: self.remoteAPI)
