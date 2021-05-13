@@ -10,12 +10,11 @@ import FBSDKLoginKit
 
 class LoginViewController: BaseViewController, LoginButtonDelegate {
 
+    @IBOutlet weak var shibaGIF: UIImageView!
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var forgotButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
-   
-
     @IBOutlet weak var facebookButton: FBLoginButton!
     @IBOutlet weak var signupButton: UIButton!
     @IBOutlet weak var aboutButton: UIButton!
@@ -35,6 +34,8 @@ class LoginViewController: BaseViewController, LoginButtonDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        shibaGIF.loadGif(name: "ShibaLogin")
         
         if let token = AccessToken.current, !token.isExpired {
             
@@ -114,7 +115,7 @@ class LoginViewController: BaseViewController, LoginButtonDelegate {
         self.present(vc, animated: true, completion: nil)
     }
     @IBAction func aboutButton(_ sender: Any) {
-        let vc = AboutUsViewController()
+        let vc = AboutUsViewController(remoteAPI: self.remoteAPI)
         vc.modalPresentationStyle = .fullScreen
         vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true, completion: nil)
