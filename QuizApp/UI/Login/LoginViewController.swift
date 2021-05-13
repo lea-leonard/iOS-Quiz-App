@@ -93,8 +93,8 @@ class LoginViewController: BaseViewController, LoginButtonDelegate {
             self.remoteAPI.validateAndGetUser(username: username, password: password, success: { userOptional in
                 guard let user = userOptional else { return }
                 
-                guard let dashboardViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SimpleUserDashboardViewController") as? SimpleUserDashboardViewController else {
-                    fatalError("Unable to instantiate SimpleUserDashboardViewController")
+                guard let dashboardViewController = UIStoryboard(name: "Dashboard", bundle: nil).instantiateViewController(identifier: "MainDashboardViewController") as? MainDashboardViewController else {
+                    fatalError("Unable to instantiate MainDashboardViewController")
                 }
                 
                 dashboardViewController.setup(remoteAPI: self.remoteAPI, user: user)
