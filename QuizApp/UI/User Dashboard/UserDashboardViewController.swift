@@ -46,6 +46,7 @@ class UserDashboardViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

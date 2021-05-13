@@ -10,6 +10,9 @@ import UIKit
 class MainDashboardViewController: UIViewController {
     
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var petalsGIF: UIImageView!
+    @IBOutlet weak var shibaGIF: UIImageView!
+    @IBOutlet weak var backButton: UIButton!
     
     weak var userDashboardViewController: UserDashboardViewController!
     
@@ -25,6 +28,9 @@ class MainDashboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        petalsGIF.loadGif(name: "Petals")
+        shibaGIF.loadGif(name: "ShibaTestMenu")
         
         guard let userDashboardViewController = self.children.last as? UserDashboardViewController else {
             fatalError("Unable to get reference to UserDashboardViewController")
@@ -47,4 +53,10 @@ class MainDashboardViewController: UIViewController {
         }
     }
 
+    @IBAction func backButton(_ sender: Any) {
+        let vc = LoginViewController(remoteAPI: self.remoteAPI)
+        vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true, completion: nil)
+    }
 }// end MainDashboard
