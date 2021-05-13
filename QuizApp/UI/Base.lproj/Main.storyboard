@@ -94,27 +94,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Loa-BB-AO9" customClass="FBLogin">
-                                <rect key="frame" x="231" y="285" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o1B-OM-KxK">
+                                <rect key="frame" x="0.0" y="184" width="414" height="538"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFK-7M-49k">
+                                <rect key="frame" x="165" y="824" width="84" height="30"/>
+                                <state key="normal" title="Submit Quiz"/>
+                                <connections>
+                                    <action selector="tappedSubmitQuizButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RwJ-NC-elH"/>
+                                </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="76" translatesAutoresizingMaskIntoConstraints="NO" id="zdw-Hu-6pD">
+                                <rect key="frame" x="44" y="782" width="326" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JfR-4R-G2W">
+                                        <rect key="frame" x="0.0" y="0.0" width="125" height="30"/>
+                                        <state key="normal" title="Previous Question"/>
+                                        <connections>
+                                            <action selector="tappedPreviousQuestion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="635-TI-hnN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ci7-xJ-bI4">
+                                        <rect key="frame" x="201" y="0.0" width="125" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="Next Question"/>
+                                        <connections>
+                                            <action selector="tappedNextQuestionButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="V7t-yt-JK2"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Rhx-Ly-aBR" secondAttribute="bottom" constant="8" id="A1x-0Y-KvL"/>
-                            <constraint firstItem="pl7-J1-34Z" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Fk6-pW-PcC"/>
-                            <constraint firstItem="Rhx-Ly-aBR" firstAttribute="top" secondItem="pl7-J1-34Z" secondAttribute="bottom" constant="12" id="Qez-iI-6Ds"/>
-                            <constraint firstItem="lJl-pF-a7M" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="UfE-t2-Bzj"/>
-                            <constraint firstItem="lJl-pF-a7M" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="bpa-Fh-gcj"/>
-                            <constraint firstItem="lJl-pF-a7M" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.6" id="saj-XS-ElI"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lJl-pF-a7M" secondAttribute="trailing" id="xdu-MD-4wl"/>
-                            <constraint firstItem="Rhx-Ly-aBR" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="xyQ-HQ-d5L"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="o1B-OM-KxK" secondAttribute="trailing" id="9mY-dZ-Qyb"/>
+                            <constraint firstItem="hFK-7M-49k" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="CP8-nM-Rer"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hFK-7M-49k" secondAttribute="bottom" constant="8" id="Dvu-kG-Kiz"/>
+                            <constraint firstItem="o1B-OM-KxK" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="HgM-Np-SaN"/>
+                            <constraint firstItem="o1B-OM-KxK" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.6" id="RsQ-qf-8SA"/>
+                            <constraint firstItem="o1B-OM-KxK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="U15-gV-5EX"/>
+                            <constraint firstItem="zdw-Hu-6pD" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="lMR-yP-Ld9"/>
+                            <constraint firstItem="hFK-7M-49k" firstAttribute="top" secondItem="zdw-Hu-6pD" secondAttribute="bottom" constant="12" id="sdj-sR-Gmg"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="questionContainerViewSuperview" destination="lJl-pF-a7M" id="hNe-ab-Q4J"/>
+                        <outlet property="questionContainerViewSuperview" destination="o1B-OM-KxK" id="Mv6-Z8-gWL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
