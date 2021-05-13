@@ -82,7 +82,7 @@ class MultipleChoiceQuestionViewController: QuizQuestionViewController, Multiple
             return UITableViewCell()
         }
         cell.delegate = self
-        cell.label.text = self.question.choiceOptions?[indexPath.row] ?? "unknown"
+        cell.label.text = self.question.choiceOptions?[indexPath.row] ?? "?"
         cell.checkboxView.setOn(indexPath.row == self.question.userChoice)
         return cell
     }

@@ -63,6 +63,15 @@ class QuizViewController: BaseViewController {
             self.questions += shortAnswerQuestions
             shortAnswerQuestionViewController.updateQuestion(shortAnswerQuestions[0])
         }
+        
+        if quiz.dateStarted == nil {
+            quiz.dateStarted = Date()
+            self.remoteAPI.putQuiz(quiz: quiz, success: {
+                
+            }, failure: { error in
+                print(error.localizedDescription)
+            })
+        }
     }
     
     func setViewControllerInContainer(_ viewController: UIViewController) {

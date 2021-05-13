@@ -50,31 +50,71 @@ class CoreDataHelper: RemoteAPI {
         quiz.technology = technology
         technology.addToQuizzes(quiz)
         
-        self.getRandomMultipleChoiceQuestions(technology: technology, number: numberOfMultipleChoiceQuestions, level: level) { multipleChoiceQuestions in
+        do {
+            let multipleChoiceQuestions = try self.getRandomMultipleChoiceQuestions(technology: technology, number: numberOfMultipleChoiceQuestions, level: level)
             quiz.multipleChoiceQuestions = NSOrderedSet(array: multipleChoiceQuestions)
             
-            self.getRandomShortAnswerQuestions(technology: technology, number: numberOfShortAnswerQuestions, level: level) { shortAnswerQuestions in
-                
-                quiz.shortAnswerQuestions = NSOrderedSet(array: shortAnswerQuestions)
-                
-                do {
-                    try self.viewContext.save()
-                    success(quiz)
-                    
-                } catch {
-                    failure(error)
-                }
-            } failure: { error in
-                failure(error)
-            }
-        } failure: { error in
+            let shortAnswerQuestions = try self.getRandomShortAnswerQuestions(technology: technology, number: numberOfShortAnswerQuestions, level: level)
+            
+            quiz.shortAnswerQuestions = NSOrderedSet(array: shortAnswerQuestions)
+            
+            success(quiz)
+        } catch {
             failure(error)
         }
     }
     
-    private func getRandomMultipleChoiceQuestions(technology: Technology, number: Int, level: QuizLevel, success: ([MultipleChoiceQuestion]) -> Void, failure: (Error) -> Void) {
+    func getNewQuizSync(user: User, technology: Technology, level: QuizLevel, numberOfMultipleChoiceQuestions: Int, numberOfShortAnswerQuestions: Int) throws -> Quiz {
+        let quiz = Quiz(context: self.viewContext)
+        quiz.user = user
+        quiz.level = Int16(level.rawValue)
+        quiz.technology = technology
+        technology.addToQuizzes(quiz)
+        
+        do {
+            let multipleChoiceQuestions = try self.getRandomMultipleChoiceQuestions(technology: technology, number: numberOfMultipleChoiceQuestions, level: level)
+            quiz.multipleChoiceQuestions = NSOrderedSet(array: multipleChoiceQuestions)
+            
+            let shortAnswerQuestions = try self.getRandomShortAnswerQuestions(technology: technology, number: numberOfShortAnswerQuestions, level: level)
+            
+            quiz.shortAnswerQuestions = NSOrderedSet(array: shortAnswerQuestions)
+            
+            return quiz
+        } catch {
+            throw error
+        }
+    }
+
+    func getNewQuizzesForAllTechnologies(user: User, numberOfMultipleChoiceQustions: Int, numberOfShortAnswerQuestions: Int, success: ([Quiz]) -> Void, failure: (Error) -> Void) {
+        var quizzes = [Quiz]()
+        
+        let userAvailableAndCurrentQuizzes = (user.quizzes?.array as? [Quiz])?
+            .filter({$0.isAvailable || $0.isCurrent}) ?? []
+        
+        self.getAllTechnologies(success: { technologies in
+            do {
+                for technology in technologies {
+                    let userAvailableAndCurrentQuizzesForTechnology = userAvailableAndCurrentQuizzes
+                        .filter({$0.technology?.name == technology.name})
+                    
+                    guard userAvailableAndCurrentQuizzesForTechnology.count == 0 else { continue }
+                    
+                    quizzes += [try self.getNewQuizSync(user: user, technology: technology, level: user.currentLevel(forTechnology: technology), numberOfMultipleChoiceQuestions: numberOfMultipleChoiceQustions, numberOfShortAnswerQuestions: numberOfShortAnswerQuestions)]
+                }
+                try self.viewContext.save()
+                success(quizzes)
+            } catch {
+                failure(error)
+            }
+        }, failure: { error in
+            failure(error)
+        })
+        
+    }
+    
+    private func getRandomMultipleChoiceQuestions(technology: Technology, number: Int, level: QuizLevel) throws -> [MultipleChoiceQuestion] {
         guard let technologyName = technology.name else {
-            return failure(CoreDataHelperError.dataCorruption("Technology name is nil"))
+            throw CoreDataHelperError.dataCorruption("Technology name is nil")
         }
         let request: NSFetchRequest<MultipleChoiceQuestionForm> = MultipleChoiceQuestionForm.fetchRequest()
         request.predicate = NSPredicate(format: "(technology.name == %@) AND (level == %d)", technologyName, level.rawValue)
@@ -86,7 +126,7 @@ class CoreDataHelper: RemoteAPI {
                 print(questionForm.level)
             }
             guard questionForms.count >= number else {
-                return failure(CoreDataHelperError.expectedDataUnavailable("Less than \(number) level \(level.rawValue) multiple choice questions available for technology named \(technologyName)"))
+                throw CoreDataHelperError.expectedDataUnavailable("Less than \(number) level \(level.rawValue) multiple choice questions available for technology named \(technologyName)")
             }
             let shuffledQuestionForms = questionForms.shuffled().prefix(number)
             var questions = [MultipleChoiceQuestion]()
@@ -99,22 +139,22 @@ class CoreDataHelper: RemoteAPI {
                 question.technology = questionForm.technology
                 questions += [question]
             }
-            success(questions)
+            return questions
         } catch {
-            failure(error)
+            throw error
         }
     }
     
-    private func getRandomShortAnswerQuestions(technology: Technology, number: Int, level: QuizLevel, success: ([ShortAnswerQuestion]) -> Void, failure: (Error) -> Void) {
+    private func getRandomShortAnswerQuestions(technology: Technology, number: Int, level: QuizLevel) throws -> [ShortAnswerQuestion] {
         guard let technologyName = technology.name else {
-            return failure(CoreDataHelperError.dataCorruption("Technology name is nil"))
+            throw CoreDataHelperError.dataCorruption("Technology name is nil")
         }
         let request: NSFetchRequest<ShortAnswerQuestionForm> = ShortAnswerQuestionForm.fetchRequest()
         request.predicate = NSPredicate(format: "(technology.name == %@) AND (level == %d)", technologyName, level.rawValue)
         do {
             let questionForms = try self.viewContext.fetch(request)
             guard questionForms.count >= number else {
-                return failure(CoreDataHelperError.expectedDataUnavailable("Less than \(number) level \(level.rawValue) short answer questions available for technology named \(technologyName)"))
+                throw CoreDataHelperError.expectedDataUnavailable("Less than \(number) level \(level.rawValue) short answer questions available for technology named \(technologyName)")
             }
             let shuffledQuestionForms = questionForms.shuffled().prefix(number)
             var questions = [ShortAnswerQuestion]()
@@ -125,9 +165,9 @@ class CoreDataHelper: RemoteAPI {
                 question.technology = questionForm.technology
                 questions += [question]
             }
-            success(questions)
+            return questions
         } catch {
-            failure(error)
+            throw error
         }
     }
     
@@ -403,12 +443,15 @@ class CoreDataHelper: RemoteAPI {
             
             let swift = Technology(context: self.viewContext)
             swift.name = "Swift"
+            swift.setImageDataFromImage(UIImage(named: "swift-icon"))
             
             let java = Technology(context: self.viewContext)
             java.name = "Java"
+            java.setImageDataFromImage(UIImage(named: "java-icon"))
             
             let javaScript = Technology(context: self.viewContext)
             javaScript.name = "JavaScript"
+            javaScript.setImageDataFromImage(UIImage(named: "js-icon"))
             
             try self.viewContext.save()
             
