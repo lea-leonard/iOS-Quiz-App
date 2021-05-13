@@ -65,7 +65,7 @@ class MultipleChoiceQuestionViewController: QuizQuestionViewController, Multiple
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return -1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -90,6 +90,7 @@ class MultipleChoiceQuestionViewController: QuizQuestionViewController, Multiple
         }, failure: { error in
             print(error.localizedDescription)
         })
+        print(self.choicesTableView.contentSize.height)
     }
     
 }

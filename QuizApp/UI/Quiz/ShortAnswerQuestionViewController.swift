@@ -24,7 +24,7 @@ class ShortAnswerQuestionViewController: QuizQuestionViewController, UITextViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.updateQuestionLabel()
+        self.updateQuestionLabelAndTextView()
         
         self.responseTextView.delegate = self
         
@@ -38,7 +38,7 @@ class ShortAnswerQuestionViewController: QuizQuestionViewController, UITextViewD
         guard let shortAnswerQuestion = question as? ShortAnswerQuestion else { return }
         self.question = shortAnswerQuestion
         if self.questionLabel != nil {
-            self.updateQuestionLabel()
+            self.updateQuestionLabelAndTextView()
         }
     }
     
@@ -46,8 +46,9 @@ class ShortAnswerQuestionViewController: QuizQuestionViewController, UITextViewD
         return question is ShortAnswerQuestion
     }
     
-    func updateQuestionLabel() {
+    func updateQuestionLabelAndTextView() {
         self.questionLabel.text = self.question?.question ?? "unknown"
+        self.responseTextView.text = self.question.response ?? ""
     }
     
     //MARK: UITextViewDelegate
