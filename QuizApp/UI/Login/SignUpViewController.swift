@@ -30,6 +30,8 @@ class SignUpViewController: BaseViewController {
         super.viewDidLoad()
 
         signupButton.layer.borderColor = UIColor.white.cgColor
+        usernameText.layer.borderColor = UIColor.white.cgColor
+        passwordText.layer.borderColor = UIColor.white.cgColor
     }
 
     @IBAction func signupButton(_ sender: Any) {
