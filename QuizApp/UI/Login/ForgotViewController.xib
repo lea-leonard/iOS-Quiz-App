@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ForgotViewController" customModule="QuizApp" customModuleProvider="target">
             <connections>
                 <outlet property="contactusButton" destination="oEV-8r-NDG" id="N7R-uP-k0K"/>
+                <outlet property="shibaGIF" destination="2qa-1C-kis" id="usx-u3-2wv"/>
                 <outlet property="submitButton" destination="R03-XR-XYG" id="nn4-oM-YPR"/>
                 <outlet property="usernameText" destination="d9w-uc-PKB" id="chc-ll-r1o"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

@@ -10,6 +10,7 @@ import UIKit
 class ForgotViewController: UIViewController {
 
     
+    @IBOutlet weak var shibaGIF: UIImageView!
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var contactusButton: UIButton!
@@ -27,6 +28,8 @@ class ForgotViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        shibaGIF.loadGif(name: "ShibaForgot")
         
         submitButton.layer.borderColor = UIColor.white.cgColor
         usernameText.layer.borderColor = UIColor.white.cgColor

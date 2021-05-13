@@ -18,6 +18,7 @@
                 <outlet property="loginButton" destination="lgV-ri-SoD" id="RJm-FX-8WX"/>
                 <outlet property="passwordText" destination="JEp-gf-tq7" id="d8h-pu-6WF"/>
                 <outlet property="rememberSwitch" destination="zxJ-6u-WIG" id="OZ2-WU-iqj"/>
+                <outlet property="shibaGIF" destination="jUn-Hs-GkE" id="EQf-eG-Ch3"/>
                 <outlet property="signupButton" destination="3lS-NU-iIg" id="jUw-0P-Oh1"/>
                 <outlet property="usernameText" destination="TCy-Ep-1qV" id="hML-dy-WqO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -120,7 +121,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="3lS-NU-iIg">
                     <rect key="frame" x="127" y="724" width="161" height="41"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                     <state key="normal" title="Create an Account">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -35,9 +35,12 @@
 		52D90B9D2649D24F00F952D0 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D90B9C2649D24F00F952D0 /* CoreDataHelper.swift */; };
 		52D90B9F2649D33000F952D0 /* QuizLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D90B9E2649D33000F952D0 /* QuizLevel.swift */; };
 		8390C376777B2BC18A120639 /* Pods_QuizApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EABED88BE79A7BCA13BBF94 /* Pods_QuizApp.framework */; };
+		B7313C01264CF4C300C90C63 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B7313C00264CF4C300C90C63 /* Icon.png */; };
+		B7313C03264CF59100C90C63 /* ShibaLogin.gif in Resources */ = {isa = PBXBuildFile; fileRef = B7313C02264CF59100C90C63 /* ShibaLogin.gif */; };
+		B7313C05264CF68000C90C63 /* ShibaForgot.gif in Resources */ = {isa = PBXBuildFile; fileRef = B7313C04264CF68000C90C63 /* ShibaForgot.gif */; };
+		B7313C07264CF6C500C90C63 /* ShibaSignUp.gif in Resources */ = {isa = PBXBuildFile; fileRef = B7313C06264CF6C500C90C63 /* ShibaSignUp.gif */; };
 		B7F94C3B264B8F5100E87C82 /* ContactUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7F94C2E264B8F5100E87C82 /* ContactUsViewController.xib */; };
 		B7F94C3C264B8F5100E87C82 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F94C2F264B8F5100E87C82 /* AboutUsViewController.swift */; };
-		B7F94C3D264B8F5100E87C82 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B7F94C30264B8F5100E87C82 /* Icon.png */; };
 		B7F94C3E264B8F5100E87C82 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F94C31264B8F5100E87C82 /* SignUpViewController.swift */; };
 		B7F94C3F264B8F5100E87C82 /* ForgotViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7F94C32264B8F5100E87C82 /* ForgotViewController.xib */; };
 		B7F94C40264B8F5100E87C82 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F94C33264B8F5100E87C82 /* LoginViewController.swift */; };
@@ -83,9 +86,12 @@
 		52D90B9E2649D33000F952D0 /* QuizLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizLevel.swift; sourceTree = "<group>"; };
 		9EABED88BE79A7BCA13BBF94 /* Pods_QuizApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuizApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0DD3544B68EC447FBFB5EA /* Pods-QuizApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuizApp.release.xcconfig"; path = "Target Support Files/Pods-QuizApp/Pods-QuizApp.release.xcconfig"; sourceTree = "<group>"; };
+		B7313C00264CF4C300C90C63 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		B7313C02264CF59100C90C63 /* ShibaLogin.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ShibaLogin.gif; sourceTree = "<group>"; };
+		B7313C04264CF68000C90C63 /* ShibaForgot.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ShibaForgot.gif; sourceTree = "<group>"; };
+		B7313C06264CF6C500C90C63 /* ShibaSignUp.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ShibaSignUp.gif; sourceTree = "<group>"; };
 		B7F94C2E264B8F5100E87C82 /* ContactUsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactUsViewController.xib; sourceTree = "<group>"; };
 		B7F94C2F264B8F5100E87C82 /* AboutUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
-		B7F94C30264B8F5100E87C82 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		B7F94C31264B8F5100E87C82 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		B7F94C32264B8F5100E87C82 /* ForgotViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotViewController.xib; sourceTree = "<group>"; };
 		B7F94C33264B8F5100E87C82 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -218,8 +224,11 @@
 				B7F94C31264B8F5100E87C82 /* SignUpViewController.swift */,
 				B7F94C38264B8F5100E87C82 /* SignUpViewController.xib */,
 				B7F94C37264B8F5100E87C82 /* SwiftGIF.swift */,
-				B7F94C30264B8F5100E87C82 /* Icon.png */,
+				B7313C02264CF59100C90C63 /* ShibaLogin.gif */,
+				B7313C04264CF68000C90C63 /* ShibaForgot.gif */,
+				B7313C06264CF6C500C90C63 /* ShibaSignUp.gif */,
 				B7F94C36264B8F5100E87C82 /* ShibaAbout.gif */,
+				B7313C00264CF4C300C90C63 /* Icon.png */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -294,13 +303,16 @@
 			files = (
 				B7F94C45264B8F5100E87C82 /* SignUpViewController.xib in Resources */,
 				B7F94C42264B8F5100E87C82 /* LoginViewController.xib in Resources */,
+				B7313C01264CF4C300C90C63 /* Icon.png in Resources */,
 				52D90B3A26498DFD00F952D0 /* LaunchScreen.storyboard in Resources */,
 				B7F94C41264B8F5100E87C82 /* AboutUsViewController.xib in Resources */,
 				B7F94C43264B8F5100E87C82 /* ShibaAbout.gif in Resources */,
 				52D90B3726498DFD00F952D0 /* Assets.xcassets in Resources */,
-				B7F94C3D264B8F5100E87C82 /* Icon.png in Resources */,
+				B7313C07264CF6C500C90C63 /* ShibaSignUp.gif in Resources */,
+				B7313C05264CF68000C90C63 /* ShibaForgot.gif in Resources */,
 				B7F94C3F264B8F5100E87C82 /* ForgotViewController.xib in Resources */,
 				52D90B3226498DFA00F952D0 /* Main.storyboard in Resources */,
+				B7313C03264CF59100C90C63 /* ShibaLogin.gif in Resources */,
 				B7F94C3B264B8F5100E87C82 /* ContactUsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
