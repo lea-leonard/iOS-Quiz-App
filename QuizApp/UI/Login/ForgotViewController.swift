@@ -29,6 +29,7 @@ class ForgotViewController: UIViewController {
         super.viewDidLoad()
         
         submitButton.layer.borderColor = UIColor.white.cgColor
+        usernameText.layer.borderColor = UIColor.white.cgColor
     }
 
     @IBAction func submitButton(_ sender: Any) {
