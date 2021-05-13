@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-@objc(MultipleChoiceQuestion)
+
 public class MultipleChoiceQuestion: NSManagedObject {
 
 }

@@ -7,8 +7,19 @@
 
 import Foundation
 
-enum QuizLevel: Int, CaseIterable {
+enum QuizLevel: Int, CaseIterable, CustomStringConvertible {
     case one = 1
     case two
     case three
+    
+    var description: String {
+        switch self {
+        case .one:
+            return "Beginner"
+        case .two:
+            return "Intermediate"
+        case .three:
+            return "Advanced"
+        }
+    }
 }

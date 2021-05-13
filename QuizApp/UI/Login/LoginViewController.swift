@@ -60,6 +60,16 @@ class LoginViewController: BaseViewController {
         self.remoteAPI.validateAndGetUser(username: username, password: password, success: { userOptional in
             guard let user = userOptional else { return }
             
+            guard let dashboardViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SimpleUserDashboardViewController") as? SimpleUserDashboardViewController else {
+                fatalError("Unable to instantiate SimpleUserDashboardViewController")
+            }
+            
+            dashboardViewController.setup(remoteAPI: self.remoteAPI, user: user)
+            
+            dashboardViewController.modalPresentationStyle = .fullScreen
+            
+            self.present(dashboardViewController, animated: true)
+            
         }, failure: {error in
             print(error.localizedDescription)
         })
