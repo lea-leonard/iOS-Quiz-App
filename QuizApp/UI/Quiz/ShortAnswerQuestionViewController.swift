@@ -47,7 +47,7 @@ class ShortAnswerQuestionViewController: QuizQuestionViewController, UITextViewD
     }
     
     func updateQuestionLabelAndTextView() {
-        self.questionLabel.text = self.question?.question ?? "unknown"
+        self.questionLabel.text = self.question?.question ?? "?"
         self.responseTextView.text = self.question.response ?? ""
     }
     

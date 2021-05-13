@@ -14,8 +14,8 @@ extension Technology {
         return UIImage(data: data)
     }
     
-    func setImageDataFromImage(_ image: UIImage) {
-        guard let imageData = image.pngData() else { return }
+    func setImageDataFromImage(_ image: UIImage?) {
+        guard let imageData = image?.pngData() else { return }
         self.imageData = imageData
     }
 }

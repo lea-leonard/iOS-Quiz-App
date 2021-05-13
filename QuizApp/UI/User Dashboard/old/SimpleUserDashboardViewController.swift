@@ -53,7 +53,7 @@ class SimpleUserDashboardViewController: BaseViewController {
         self.remoteAPI.getAllTechnologies(success: { technologies in
             self.technologies = technologies
             for technology in technologies {
-                self.technologySegmentedControl.insertSegment(withTitle: technology.name ?? "unknown", at: self.technologySegmentedControl.numberOfSegments, animated: false)
+                self.technologySegmentedControl.insertSegment(withTitle: technology.name ?? "?", at: self.technologySegmentedControl.numberOfSegments, animated: false)
             }
         }, failure: { error in
             
@@ -76,8 +76,6 @@ class SimpleUserDashboardViewController: BaseViewController {
         }, failure: { error in
             print(error.localizedDescription)
         })
-        
-        
     }
     
     @IBAction func tappedLogoutButton(_ sender: Any) {

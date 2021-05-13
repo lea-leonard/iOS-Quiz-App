@@ -12,6 +12,10 @@ enum QuizLevel: Int, CaseIterable, CustomStringConvertible {
     case two
     case three
     
+    static var maxLevel: QuizLevel {
+        return self.allCases.max(by: {$0.rawValue < $1.rawValue})!
+    }
+    
     var description: String {
         switch self {
         case .one:

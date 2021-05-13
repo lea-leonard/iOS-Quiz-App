@@ -9,5 +9,8 @@ import Foundation
 import UIKit
 
 class UserCurrentQuizTableViewCell: UITableViewCell {
-    
+    @IBOutlet weak var technologyImageView: UIImageView!
+    @IBOutlet weak var technologyLabel: UILabel!
+    @IBOutlet weak var levelLabel: UILabel!
+    @IBOutlet weak var timeRemainingLabel: UILabel!
 }

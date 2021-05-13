@@ -21,11 +21,15 @@ class UserDashboardViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     var completedQuizzes: [Quiz] {
-        self.allQuizzes.filter({$0.dateSubmitted != nil})
+        self.allQuizzes.filter({$0.isSubmitted})
     }
     
     var currentQuizzes: [Quiz] {
-        self.allQuizzes.filter({$0.dateSubmitted == nil})
+        self.allQuizzes.filter({$0.isCurrent})
+    }
+    
+    var availableQuizzes: [Quiz] {
+        self.allQuizzes.filter({$0.isAvailable})
     }
     
     var technologies = [Technology]()
@@ -34,7 +38,7 @@ class UserDashboardViewController: UIViewController, UITableViewDelegate, UITabl
         self.remoteAPI = remoteAPI
         self.user = user
         
-        self.refreshTechnologies()
+        self.refreshData()
         self.tableView.reloadData()
     }
 
@@ -44,11 +48,24 @@ class UserDashboardViewController: UIViewController, UITableViewDelegate, UITabl
         self.tableView.dataSource = self
     }
     
-    func refreshTechnologies() {
+    override func viewWillAppear(_ animated: Bool) {
+        self.refreshData()
+    }
+    
+    func refreshData() {
         self.remoteAPI.getAllTechnologies(success: { technologies in
             self.technologies = technologies
+            self.addAvailableQuizzesIfNecessary()
         }, failure: { error in
             
+        })
+    }
+    
+    func addAvailableQuizzesIfNecessary() {
+        self.remoteAPI.getNewQuizzesForAllTechnologies(user: user, numberOfMultipleChoiceQustions: 3, numberOfShortAnswerQuestions: 3, success: { quiz in
+            self.tableView.reloadData()
+        }, failure: { error in
+            print(error.localizedDescription)
         })
     }
 
@@ -69,8 +86,7 @@ class UserDashboardViewController: UIViewController, UITableViewDelegate, UITabl
         case 3:
             return self.completedQuizzes.count
         case 5:
-            // new quizzes
-            break
+            return self.availableQuizzes.count
         default:
             break
         }
@@ -93,13 +109,59 @@ class UserDashboardViewController: UIViewController, UITableViewDelegate, UITabl
             }
             return cell
         case 1:
-            return UITableViewCell()
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserCurrentQuizTableViewCell") as? UserCurrentQuizTableViewCell else {
+                fatalError("Unable to dequeue UserCurrentQuizTableViewCell")
+            }
+            let quiz = self.currentQuizzes[indexPath.row]
+            cell.technologyImageView.image = quiz.technology?.image
+            cell.technologyLabel.text = quiz.technology?.name ?? "?"
+            cell.levelLabel.text = QuizLevel(rawValue: Int(quiz.level))?.description ?? "?"
+            return cell
         case 3:
-            return UITableViewCell()
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserCompletedQuizTableViewCell") as? UserCompletedQuizTableViewCell else {
+                fatalError("Unable to dequeue UserCompletedQuizTableViewCell")
+            }
+            let quiz = self.completedQuizzes[indexPath.row]
+            cell.technologyImageView.image = quiz.technology?.image
+            cell.technologyLabel.text = quiz.technology?.name ?? "?"
+            cell.levelLabel.text = QuizLevel(rawValue: Int(quiz.level))?.description ?? "?"
+            return cell
         case 5:
-            return UITableViewCell()
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserAvailableQuizTableViewCell") as? UserAvailableQuizTableViewCell else {
+                fatalError("Unable to dequeue UserAvailableQuizTableViewCell")
+            }
+            let quiz = self.availableQuizzes[indexPath.row]
+            cell.technologyImageView.image = quiz.technology?.image
+            cell.technologyLabel.text = quiz.technology?.name ?? "?"
+            cell.levelLabel.text = QuizLevel(rawValue: Int(quiz.level))?.description ?? "?"
+            return cell
         default:
             return UITableViewCell()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 1, 3, 5:
+            let quiz: Quiz
+            switch indexPath.section {
+            case 1:
+                quiz = self.currentQuizzes[indexPath.row]
+            case 3:
+                quiz = self.completedQuizzes[indexPath.row]
+            default:
+                quiz = self.availableQuizzes[indexPath.row]
+            }
+            
+            guard let quizViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "QuizViewController") as? QuizViewController else {
+                fatalError("Unable to instantiate QuizViewController")
+            }
+            quizViewController.setup(remoteAPI: self.remoteAPI, quiz: quiz)
+            quizViewController.modalPresentationStyle = .fullScreen
+            
+            self.present(quizViewController, animated: true)
+        default:
+            break
         }
     }
 

@@ -8,6 +8,9 @@
 import Foundation
 import UIKit
 
-class UserCompletedQuizTableViewCell: UITableVIewCell {
-    
+class UserCompletedQuizTableViewCell: UITableViewCell {
+    @IBOutlet weak var technologyImageView: UIImageView!
+    @IBOutlet weak var technologyLabel: UILabel!
+    @IBOutlet weak var levelLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
 }
