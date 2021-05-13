@@ -34,4 +34,11 @@ protocol RemoteAPI {
     func postNewMultipleChoiceQuestionForm(technologyName: String, level: QuizLevel, question: String, choiceOptions: [String], correctChoice: Int, success: (MultipleChoiceQuestionForm) -> Void, failure: (Error) -> Void)
     
     func postNewShortAnswerQuestionForm(technologyName: String, level: QuizLevel, question: String, success: (ShortAnswerQuestionForm) -> Void, failure: (Error) -> Void)
+    
+    // pass an empty array for technologies or levels
+    // to get questions for all technologies or levels
+    func getMultipleChoiceQuestionForms(technologies: [Technology], levels: [QuizLevel], success: ([MultipleChoiceQuestionForm]) -> Void, failure: (Error) -> Void)
+    
+    func getShortAnswerQuestionForms(technologies: [Technology], levels: [QuizLevel], success: ([ShortAnswerQuestionForm]) -> Void, failure: (Error) -> Void)
+    
 }

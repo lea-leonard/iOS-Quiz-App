@@ -10,9 +10,28 @@ import UIKit
 
 class CheckboxView: UIView {
     
-    private static let onImage = UIImage(systemName: "smallcircle.fill.circle.fill")
+    struct ImageSet {
+        let on: UIImage
+        let off: UIImage
+    }
     
-    private static let offImage = UIImage(systemName: "circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .thin))
+    enum BoxType {
+        case checkbox
+        case radio
+        
+        var imageSet: ImageSet {
+            switch self {
+            case .checkbox:
+                return ImageSet(on: UIImage(systemName: "checkmark.square.fill")!, off: UIImage(systemName: "square", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .thin))!)
+            case .radio:
+                return ImageSet(on: UIImage(systemName: "smallcircle.fill.circle.fill")!, off: UIImage(systemName: "circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .thin))!)
+            }
+        }
+    }
+    
+    private var imageSet: ImageSet
+    
+    private(set) var boxType: BoxType = .checkbox
     
     private(set) var isOn: Bool = false
     
@@ -23,11 +42,13 @@ class CheckboxView: UIView {
     private var imageView = UIImageView()
     
     override init(frame: CGRect) {
+        self.imageSet = self.boxType.imageSet
         super.init(frame: frame)
         self.setup()
     }
     
     required init?(coder: NSCoder) {
+        self.imageSet = self.boxType.imageSet
         super.init(coder: coder)
         self.setup()
     }
@@ -44,12 +65,17 @@ class CheckboxView: UIView {
         self.addSubview(self.imageView)
         self.backgroundColor = .clear
         self.imageView.contentMode = .scaleAspectFill
-        self.tintColor = UIColor(named: "ratingSecondaryLabel")
+        self.tintColor = UIColor.link
+    }
+    
+    func setBoxType(_ boxType: CheckboxView.BoxType) {
+        self.boxType = boxType
+        self.imageSet = boxType.imageSet
     }
     
     func setOn(_ on: Bool) {
         self.isOn = on
-        self.imageView.image = isOn ? CheckboxView.onImage : CheckboxView.offImage
+        self.imageView.image = isOn ? self.imageSet.on : self.imageSet.off
     }
     
     @objc private func valueChanged() {

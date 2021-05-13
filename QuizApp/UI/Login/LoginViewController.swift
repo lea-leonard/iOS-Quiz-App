@@ -84,22 +84,26 @@ class LoginViewController: BaseViewController, LoginButtonDelegate {
         guard let password = self.passwordText.textNoEmptyString else {
             return
         }
-        self.remoteAPI.validateAndGetUser(username: username, password: password, success: { userOptional in
-            guard let user = userOptional else { return }
+        
+        if username == "admin" && password == "admin" {
+            self.goToAdminPage()
+        } else {
             
-            guard let dashboardViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SimpleUserDashboardViewController") as? SimpleUserDashboardViewController else {
-                fatalError("Unable to instantiate SimpleUserDashboardViewController")
-            }
-            
-            dashboardViewController.setup(remoteAPI: self.remoteAPI, user: user)
-            
-            dashboardViewController.modalPresentationStyle = .fullScreen
-            
-            self.present(dashboardViewController, animated: true)
-            
-        }, failure: {error in
-            print(error.localizedDescription)
-        })
+            self.remoteAPI.validateAndGetUser(username: username, password: password, success: { userOptional in
+                guard let user = userOptional else { return }
+                
+                guard let dashboardViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SimpleUserDashboardViewController") as? SimpleUserDashboardViewController else {
+                    fatalError("Unable to instantiate SimpleUserDashboardViewController")
+                }
+                
+                dashboardViewController.setup(remoteAPI: self.remoteAPI, user: user)
+                dashboardViewController.modalPresentationStyle = .fullScreen
+                self.present(dashboardViewController, animated: true)
+                
+            }, failure: {error in
+                print(error.localizedDescription)
+            })
+        }
     }
     @IBAction func facebookButton(_ sender: Any) {
     }
@@ -155,6 +159,21 @@ class LoginViewController: BaseViewController, LoginButtonDelegate {
     }
     
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
+        
+    }
+    
+    func goToAdminPage() {
+        guard let adminViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "AdminViewController") as? AdminViewController else {
+            fatalError("Unable to instantiate AdminViewController")
+        }
+        
+        adminViewController.modalPresentationStyle = .fullScreen
+        adminViewController.setup(remoteAPI: self.remoteAPI)
+        self.present(adminViewController, animated: true, completion: nil)
+        
+    }
+    
+    func loginUser() {
         
     }
     

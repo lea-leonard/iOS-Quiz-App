@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		52210529264D512800FF89CB /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52210528264D512800FF89CB /* AdminViewController.swift */; };
 		522F5E3E264C2FEF00E9C3DE /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522F5E3D264C2FEF00E9C3DE /* UIExtensions.swift */; };
 		522F5E40264C319000E9C3DE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522F5E3F264C319000E9C3DE /* BaseViewController.swift */; };
 		522F5E47264C336500E9C3DE /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522F5E45264C336500E9C3DE /* QuizViewController.swift */; };
@@ -64,6 +65,7 @@
 
 /* Begin PBXFileReference section */
 		18E4215484E0662C8943E368 /* Pods-QuizApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuizApp.debug.xcconfig"; path = "Target Support Files/Pods-QuizApp/Pods-QuizApp.debug.xcconfig"; sourceTree = "<group>"; };
+		52210528264D512800FF89CB /* AdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
 		522F5E3D264C2FEF00E9C3DE /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		522F5E3F264C319000E9C3DE /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		522F5E45264C336500E9C3DE /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +136,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52210527264D510D00FF89CB /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				52210528264D512800FF89CB /* AdminViewController.swift */,
+			);
+			path = Admin;
+			sourceTree = "<group>";
+		};
 		522F5E42264C32F200E9C3DE /* Quiz */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +247,7 @@
 				B7F94C2B264B8ECA00E87C82 /* Login */,
 				522F5E42264C32F200E9C3DE /* Quiz */,
 				529A7E84264C7607006A56FA /* User Dashboard */,
+				52210527264D510D00FF89CB /* Admin */,
 				52D90B2A26498DFA00F952D0 /* AppDelegate.swift */,
 				522F5E3F264C319000E9C3DE /* BaseViewController.swift */,
 				522F5E4D264C3A7700E9C3DE /* CheckboxView.swift */,
@@ -448,6 +459,7 @@
 				529F0653264CA71F006984BB /* QuizQuestion.swift in Sources */,
 				527E90322649D9C500FB7E71 /* KeychainHelper.swift in Sources */,
 				529F0646264C9EF7006984BB /* Quiz+CoreDataClass.swift in Sources */,
+				52210529264D512800FF89CB /* AdminViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

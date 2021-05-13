@@ -22,6 +22,7 @@ class MultipleChoiceTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.checkboxView.setBoxType(.radio)
         self.checkboxView.addValueChangedAction({ checkboxView in
             self.delegate?.checkboxDidChange(inCell: self, checkboxView: checkboxView)
         })

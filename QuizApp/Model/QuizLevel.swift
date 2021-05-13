@@ -22,4 +22,10 @@ enum QuizLevel: Int, CaseIterable, CustomStringConvertible {
             return "Advanced"
         }
     }
+    
+    func thing() {
+        var int: Int?
+        
+        let inty = int ?? 0
+    }
 }

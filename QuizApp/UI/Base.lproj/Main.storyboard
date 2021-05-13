@@ -147,6 +147,36 @@
             </objects>
             <point key="canvasLocation" x="237.68115942028987" y="10.714285714285714"/>
         </scene>
+        <!--Admin View Controller-->
+        <scene sceneID="E7H-Cy-AJU">
+            <objects>
+                <viewController storyboardIdentifier="AdminViewController" id="0Gb-zi-VMZ" customClass="AdminViewController" customModule="QuizApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="c9b-nz-62F">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="jYe-0t-37B">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="IvS-19-FXU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="IvS-19-FXU" firstAttribute="bottom" secondItem="jYe-0t-37B" secondAttribute="bottom" id="890-K3-JJg"/>
+                            <constraint firstItem="jYe-0t-37B" firstAttribute="top" secondItem="IvS-19-FXU" secondAttribute="top" id="UCm-7B-kLD"/>
+                            <constraint firstItem="IvS-19-FXU" firstAttribute="trailing" secondItem="jYe-0t-37B" secondAttribute="trailing" id="gfj-i2-ww2"/>
+                            <constraint firstItem="jYe-0t-37B" firstAttribute="leading" secondItem="IvS-19-FXU" secondAttribute="leading" id="lLj-jU-svK"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="jYe-0t-37B" id="T8M-pp-gYN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9oT-6R-WD0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53.623188405797109" y="688.39285714285711"/>
+        </scene>
         <!--Multiple Choice Question View Controller-->
         <scene sceneID="Y0d-wE-bb4">
             <objects>

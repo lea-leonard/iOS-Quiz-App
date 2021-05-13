@@ -10,9 +10,7 @@ import CoreData
 import UIKit
 
 class CoreDataHelper: RemoteAPI {
-
     
- 
     private let bcryptHasher = BCryptHasher.standard
     
     private let persistentContainer: NSPersistentContainer
@@ -320,10 +318,82 @@ class CoreDataHelper: RemoteAPI {
         })
     }
     
+    func getMultipleChoiceQuestionForms(technologies: [Technology], levels: [QuizLevel], success: ([MultipleChoiceQuestionForm]) -> Void, failure: (Error) -> Void) {
+        let request: NSFetchRequest<MultipleChoiceQuestionForm> = MultipleChoiceQuestionForm.fetchRequest()
+    
+        
+        var andPredicates = [NSPredicate]()
+        
+        if technologies.count > 0 {
+            var technologyPredicates = [NSPredicate]()
+            for technology in technologies {
+                guard let name = technology.name else { continue }
+                technologyPredicates += [NSPredicate(format: "technology.name == %@", name)]
+            }
+            andPredicates += [NSCompoundPredicate(orPredicateWithSubpredicates: technologyPredicates)]
+        }
+        
+        if levels.count > 0 {
+            var levelPredicates = [NSPredicate]()
+            for level in levels {
+                levelPredicates += [NSPredicate(format: "level == %d", level.rawValue)]
+            }
+            andPredicates += [NSCompoundPredicate(orPredicateWithSubpredicates: levelPredicates)]
+        }
+        
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: andPredicates)
+        
+        request.predicate = predicate
+        
+        do {
+            let multipleChoiceQuestionForms = try self.viewContext.fetch(request)
+            success(multipleChoiceQuestionForms)
+        } catch {
+            failure(error)
+        }
+    }
+    
+    func getShortAnswerQuestionForms(technologies: [Technology], levels: [QuizLevel], success: ([ShortAnswerQuestionForm]) -> Void, failure: (Error) -> Void) {
+        let request: NSFetchRequest<ShortAnswerQuestionForm> = ShortAnswerQuestionForm.fetchRequest()
+        
+        
+        var andPredicates = [NSPredicate]()
+        
+        if technologies.count > 0 {
+            var technologyPredicates = [NSPredicate]()
+            for technology in technologies {
+                guard let name = technology.name else { continue }
+                technologyPredicates += [NSPredicate(format: "technology.name == %@", name)]
+            }
+            andPredicates += [NSCompoundPredicate(orPredicateWithSubpredicates: technologyPredicates)]
+        }
+        
+        if levels.count > 0 {
+            var levelPredicates = [NSPredicate]()
+            for level in levels {
+                levelPredicates += [NSPredicate(format: "level == %d", level.rawValue)]
+            }
+            andPredicates += [NSCompoundPredicate(orPredicateWithSubpredicates: levelPredicates)]
+        }
+        
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: andPredicates)
+        
+        request.predicate = predicate
+ 
+        
+        do {
+            let shortAnswerQuestionForms = try self.viewContext.fetch(request)
+            success(shortAnswerQuestionForms)
+        } catch {
+            failure(error)
+        }
+    }
+    
+    
     
     // seed DB will only seed if there are no technologies
     // in the DB. To re-seed, delete and re-install the app.
-    func seedDB() {
+    private func seedDB() {
         let request: NSFetchRequest<Technology> = Technology.fetchRequest()
         let technologies = try? self.viewContext.fetch(request)
         guard technologies?.count == 0 else { return }
