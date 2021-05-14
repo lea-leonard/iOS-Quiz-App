@@ -56,7 +56,7 @@ class SignUpViewController: BaseViewController {
         self.validateInput { validCredentials in
             
             if let username = validCredentials.validUsername, let password = validCredentials.validPassword {
-                self.remoteAPI.postNewUser(username: username, password: password) { userOptional in
+                self.remoteAPI.postNewUser(username: username, password: password, fullName: nil) { userOptional in
                     
                     self.presentBasicAlert(message: "Signed up successfully!", onDismiss: {
                         self.presentingViewController?.dismiss(animated: true, completion: nil)

@@ -171,11 +171,14 @@ class CoreDataHelper: RemoteAPI {
         }
     }
     
-    func postNewUser(username: String, password: String, success: (User) -> Void, failure: (Error) -> Void) {
+    func postNewUser(username: String, password: String?, fullName: String?, success: (User) -> Void, failure: (Error) -> Void) {
         do {
             let user = User(context: self.viewContext)
             user.username = username
-            user.password = try bcryptHasher.hashPasword(password)
+            user.fullName = fullName
+            if let password = password {
+                user.password = try bcryptHasher.hashPasword(password)
+            }
             try self.viewContext.save()
             success(user)
         } catch {

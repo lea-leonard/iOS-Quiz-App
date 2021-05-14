@@ -112,43 +112,72 @@ class LoginViewController: BaseViewController {
             
             self.remoteAPI.validateAndGetUser(username: username, password: password, success: { userOptional in
                 guard let user = userOptional else { return }
-                
-                guard let dashboardViewController = UIStoryboard(name: "Dashboard", bundle: nil).instantiateViewController(identifier: "MainDashboardViewController") as? MainDashboardViewController else {
-                    fatalError("Unable to instantiate MainDashboardViewController")
-                }
-                
-                dashboardViewController.setup(remoteAPI: self.remoteAPI, user: user)
-                dashboardViewController.modalPresentationStyle = .fullScreen
-                self.present(dashboardViewController, animated: true)
-                
+                self.login(user: user)
             }, failure: {error in
                 print(error.localizedDescription)
             })
         }
     }
+    
+    func getFacebookCredentials(token: AccessToken?, handler: @escaping (GraphRequestConnection?, Any?, Error?) -> Void) {
+        let token = token?.tokenString
+        let request = FBSDKLoginKit.GraphRequest(graphPath: "me", parameters: ["fields":"email,name"], tokenString: token, version: nil, httpMethod: .get)
+        request.start { (graphRequestConnection, credentialsResult, error) in
+            handler(graphRequestConnection, credentialsResult, error)
+        }
+    }
+    
+    
     @IBAction func facebookButton(_ sender: Any) {
         
         if AccessToken.current == nil {
             //Session is not active
             
             loginManager.logIn(permissions: ["public_profile","email"], from: self, handler: { result,error   in
+            
                 if error != nil {
                     
                 } else if result!.isCancelled {
                     print("login cancelled by user")
+                    
                 } else {
                     print("login successfully")
-                    var sb = UIStoryboard(name: "Dashboard", bundle: nil)
-                    var vc = sb.instantiateViewController(identifier: "MainDashboardViewController") as! MainDashboardViewController
-                    //vc.setup(remoteAPI: remoteAPI, user: )
-                    self.present(vc, animated: true, completion: nil)
-                    //Successfully loggedIn
+                    
+                    
+                    self.getFacebookCredentials(token: result?.token, handler: {connection, result, error in
+                        guard let data = result as? NSDictionary else {
+                            return
+                        }
+                        guard let email = data.value(forKey: "email") as? String else {
+                            return
+                        }
+                        guard let fullName = data.value(forKey: "name") as? String else {
+                            return
+                        }
+                        self.remoteAPI.postNewUser(username: email, password: nil, fullName: fullName, success: { user in
+                            self.login(user: user)
+                        }, failure: { error in
+                            print(error.localizedDescription)
+                        })
+                    })
+                    
                 }
+ 
             }) } else {
-                print("already logged in")
-                var sb = UIStoryboard(name: "Dashboard", bundle: nil)
-                var vc = sb.instantiateViewController(identifier: "MainDashboardViewController") as! MainDashboardViewController
-                self.present(vc, animated: true, completion: nil)
+                self.getFacebookCredentials(token: AccessToken.current, handler: {connection, result, error in
+                    guard let data = result as? NSDictionary else {
+                        return
+                    }
+                    guard let email = data.value(forKey: "email") as? String else {
+                        return
+                    }
+                    self.remoteAPI.getUser(username: email, success: { userOptional in
+                        guard let user = userOptional else { return }
+                        self.login(user: user)
+                    }, failure: { error in
+                        print(error.localizedDescription)
+                    })
+                })
             }
     
     }
@@ -212,8 +241,14 @@ class LoginViewController: BaseViewController {
         
     }
     
-    func loginUser() {
-        
+    func login(user: User) {
+        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+        guard let mainDashboardViewController = storyboard.instantiateViewController(identifier: "MainDashboardViewController") as? MainDashboardViewController else {
+            fatalError("Unable to instantiatie MainDashboardViewController")
+        }
+        mainDashboardViewController.modalPresentationStyle = .fullScreen
+        mainDashboardViewController.setup(remoteAPI: self.remoteAPI, user: user)
+        self.present(mainDashboardViewController, animated: true, completion: nil)
     }
     
 }

@@ -22,4 +22,16 @@ extension User {
         let returnLevelInt = maxLevelInt > previousLevelInt ? previousLevelInt + 1 : maxLevelInt
         return QuizLevel(rawValue: returnLevelInt)!
     }
+    
+    var displayName: String {
+        guard let name = self.fullName else {
+            return self.username ?? "?"
+        }
+        
+        guard name.contains(" ") else {
+            return name
+        }
+        
+        return String(name.split(separator: " ")[0])
+    }
 }
