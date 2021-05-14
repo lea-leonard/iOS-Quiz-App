@@ -292,6 +292,23 @@ class CoreDataHelper: RemoteAPI {
         })
     }
     
+    func changePassword(username: String, password: String, success: (Bool) -> Void, failure: (Error) -> Void) {
+        self.getUser(username: username) { userOptional in
+            guard let user = userOptional else {
+                return success(false)
+            }
+            do {
+                user.password = try bcryptHasher.hashPasword(password)
+                try self.viewContext.save()
+                success(true)
+            } catch {
+                failure(error)
+            }
+        } failure: { error in
+            failure(error)
+        }
+    }
+    
     private func deleteAllWithEntityName(_ name: String) throws {
         do {
             let request = NSFetchRequest<NSManagedObject>(entityName: name)

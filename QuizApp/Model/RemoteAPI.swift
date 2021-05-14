@@ -43,4 +43,5 @@ protocol RemoteAPI {
     
     func getShortAnswerQuestionForms(technologies: [Technology], levels: [QuizLevel], success: ([ShortAnswerQuestionForm]) -> Void, failure: (Error) -> Void)
     
+    func changePassword(username: String, password: String, success: (Bool) -> Void, failure: (Error) -> Void)
 }
