@@ -31,9 +31,10 @@ class InputValidationPasswordTextField: InputValidationTextField {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
-        
-      
+        self.setLeftButton(image: .eye)
+        self.addLeftButtonAction {
+            self.tappedEyeButton()
+        }
         self.updateView()
     }
     
@@ -44,19 +45,25 @@ class InputValidationPasswordTextField: InputValidationTextField {
     
     func setEyeButtonSide(_ side: EyeButtonSide) {
         if self.eyeButtonSide == side { return }
-        
         switch side {
         case .left:
+            if self.eyeButton == self.rightButton {
+                self.removeRightButton()
+            }
             self.setLeftButton(image: .eye)
             self.addLeftButtonAction {
                 self.tappedEyeButton()
             }
         case .right:
+            if self.eyeButton == self.leftButton {
+                self.removeLeftButton()
+            }
             self.setRightButton(image: .eye)
             self.addRightButtonAction {
                 self.tappedEyeButton()
             }
         }
+        self.eyeButtonSide = side
     }
     
     private func updateView() {

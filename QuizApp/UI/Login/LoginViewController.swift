@@ -13,7 +13,7 @@ class LoginViewController: BaseViewController, LoginButtonDelegate {
     @IBOutlet weak var shibaGIF: UIImageView!
     @IBOutlet weak var petalsGIF: UIImageView!
     @IBOutlet weak var usernameText: UITextField!
-    @IBOutlet weak var passwordText: UITextField!
+    @IBOutlet weak var passwordText: InputValidationPasswordTextField!
     @IBOutlet weak var forgotButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var facebookButton: FBLoginButton!
@@ -74,7 +74,7 @@ class LoginViewController: BaseViewController, LoginButtonDelegate {
         //aboutButton.layer.backgroundColor = UIColor.white.cgColor
         aboutButton.layer.borderColor = UIColor.white.cgColor
         rememberLabel.layer.borderColor = UIColor.white.cgColor
-        
+ 
         
     }
     

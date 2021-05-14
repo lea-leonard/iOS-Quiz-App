@@ -177,8 +177,7 @@ class SignUpViewController: BaseViewController {
         }
         
         passwordText.setStatus(.valid)
-        
-        print(passwordText.leftButton)
+
     }
     
     

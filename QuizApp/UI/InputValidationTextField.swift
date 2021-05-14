@@ -113,7 +113,7 @@ class InputValidationTextField: UITextField, UITextFieldDelegate {
     
     override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
         var rect = super.leftViewRect(forBounds: bounds)
-        rect.origin.x += 12
+        rect.origin.x += 8
         return rect
     }
     
@@ -121,24 +121,30 @@ class InputValidationTextField: UITextField, UITextFieldDelegate {
     
     override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
         var rect = super.rightViewRect(forBounds: bounds)
-        rect.origin.x -= 12
+        rect.origin.x -= 8
         return rect
     }
     
     
     // remove actions associated with buttons!
     func removeRightButton() {
-        if self.rightButton == nil { return }
-        self.rightView = nil
-        //self.rightViewMode = .never
-        self.rightButton = nil
+        if let rightButton = self.rightButton {
+            if self.rightButton == nil { return }
+            self.rightView = nil
+            self.rightButton = nil
+            
+            self.rightButtonActions = self.rightButtonActions.filter({$0.button != rightButton})
+        }
     }
     
     func removeLeftButton() {
-        if self.leftButton == nil { return }
-        self.leftView = nil
-        //self.leftViewMode = .never
-        self.leftButton = nil
+        if let leftButton = self.leftButton {
+            if self.leftButton == nil { return }
+            self.leftView = nil
+            self.leftButton = nil
+       
+            self.leftButtonActions = self.leftButtonActions.filter({$0.button != leftButton})
+        }
     }
     
     func addRightButtonAction(_ action: @escaping () -> Void) {
