@@ -44,6 +44,10 @@ class LoginViewController: BaseViewController, LoginButtonDelegate {
             
             let token = token.tokenString
             
+            var sb = UIStoryboard(name: "Dashboard", bundle: nil)
+                    var vc = sb.instantiateViewController(identifier: "MainDashboardViewController") as! MainDashboardViewController
+            self.present(vc, animated: true, completion: nil)
+            
             let request = FBSDKLoginKit.GraphRequest(graphPath: "me", parameters: ["fields": "email, name"], tokenString: token, version: nil, httpMethod: .get)
             
             request.start(completionHandler: {connect, result, error in print("\(result)")
@@ -165,13 +169,23 @@ class LoginViewController: BaseViewController, LoginButtonDelegate {
         }
     
     func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-        let token = result?.token?.tokenString
+    //    let token = result?.token?.tokenString
         
-        let request = FBSDKLoginKit.GraphRequest(graphPath: "me", parameters: ["fields": "email, name"], tokenString: token, version: nil, httpMethod: .get)
+    //    let request = FBSDKLoginKit.GraphRequest(graphPath: "me", parameters: ["fields": "email, name"], tokenString: token, version: nil, httpMethod: .get)
         
-        request.start(completionHandler: {connect, result, error in print("\(result)")
+    //    request.start(completionHandler: {connect, result, error in print("\(result)")
             
-        })
+    //    })
+        if error != nil {
+                     print(error)
+                     return
+                   }
+
+                   DispatchQueue.main.async {
+                    var sb = UIStoryboard(name: "Main", bundle: nil)
+                            var vc = sb.instantiateViewController(identifier: "MainDashboardViewController") as! MainDashboardViewController
+                    self.present(vc, animated: true, completion: nil)
+                   }
     }
     
     func loginButtonDidLogOut(_ loginButton: FBLoginButton) {

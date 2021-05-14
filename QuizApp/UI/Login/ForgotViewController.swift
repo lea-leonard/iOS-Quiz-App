@@ -12,6 +12,7 @@ class ForgotViewController: BaseViewController {
     
     @IBOutlet weak var shibaGIF: UIImageView!
     @IBOutlet weak var usernameText: UITextField!
+    @IBOutlet weak var newPasswordText: UITextField!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var contactusButton: UIButton!
     
@@ -34,10 +35,14 @@ class ForgotViewController: BaseViewController {
         submitButton.layer.borderColor = UIColor.black.cgColor
         submitButton.layer.backgroundColor = UIColor.white.cgColor
         usernameText.layer.borderColor = UIColor.white.cgColor
+        newPasswordText.layer.borderColor = UIColor.white.cgColor
     }
 
     @IBAction func submitButton(_ sender: Any) {
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
+        
+        
+        
+        //self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     @IBAction func contactusButton(_ sender: Any) {
         let vc = ContactUsViewController()
