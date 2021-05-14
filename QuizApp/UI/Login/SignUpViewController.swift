@@ -11,7 +11,7 @@ class SignUpViewController: BaseViewController {
 
     @IBOutlet weak var usernameText: InputValidationTextField!
     
-    @IBOutlet weak var passwordText: InputValidationTextField!
+    @IBOutlet weak var passwordText: InputValidationPasswordTextField!
     
     @IBOutlet weak var signupButton: UIButton!
     
@@ -33,6 +33,18 @@ class SignUpViewController: BaseViewController {
         signupButton.layer.backgroundColor = UIColor.white.cgColor
         usernameText.layer.borderColor = UIColor.white.cgColor
         passwordText.layer.borderColor = UIColor.white.cgColor
+        
+        self.passwordText.setRightButton(image: .questionMark)
+        
+        self.passwordText.addRightButtonAction { [weak self] in
+            self?.presentBasicAlert(message: InputValidator.Password.requirementsMessage)
+        }
+        
+        self.usernameText.setRightButton(image: .questionMark)
+        self.usernameText.addRightButtonAction { [weak self] in
+            self?.presentBasicAlert(message: InputValidator.Username.requirementsMessage)
+        }
+    
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,13 +69,10 @@ class SignUpViewController: BaseViewController {
                     self.presentBasicAlert(message: alertMessage)
                 }
             }
-            
-            
-            
         }
-        
-       
     }
+    
+    
     
     func validateInput(completion: ((validUsername: String?, validPassword: String?, alertMessage: String?)) -> Void) {
         
@@ -125,4 +134,52 @@ class SignUpViewController: BaseViewController {
         
         
     }
+    
+    @IBAction func usernameTextChanged(_ sender: InputValidationTextField) {
+        
+        guard let username = usernameText.textNoEmptyString else {
+            usernameText.setStatus(.neutral)
+            return
+        }
+        
+        self.remoteAPI.getUser(username: username, success: { user in
+            guard user == nil else {
+                usernameText.setStatus(.invalid)
+                return
+            }
+            guard InputValidator.Username.validate(username) else {
+                usernameText.setStatus(.invalid)
+                return
+            }
+            
+            if usernameText.status == .invalid {
+                usernameText.setStatus(.valid)
+            }
+            
+        }, failure: { error in
+            print(error.localizedDescription)
+        })
+        
+        
+        
+    }
+    
+    @IBAction func passwordTextChanged(_ sender: InputValidationTextField) {
+        
+        guard let password = passwordText.textNoEmptyString else {
+            passwordText.setStatus(.neutral)
+            return
+        }
+        
+        guard InputValidator.Password.validate(password) else {
+            passwordText.setStatus(.invalid)
+            return
+        }
+        
+        passwordText.setStatus(.valid)
+        
+        print(passwordText.leftButton)
+    }
+    
+    
 }
