@@ -11,6 +11,7 @@ import FBSDKLoginKit
 class LoginViewController: BaseViewController, LoginButtonDelegate {
 
     @IBOutlet weak var shibaGIF: UIImageView!
+    @IBOutlet weak var petalsGIF: UIImageView!
     @IBOutlet weak var usernameText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var forgotButton: UIButton!
@@ -37,6 +38,7 @@ class LoginViewController: BaseViewController, LoginButtonDelegate {
         super.viewDidLoad()
         
         shibaGIF.loadGif(name: "ShibaLogin")
+        petalsGIF.loadGif(name: "Petals")
         
         if let token = AccessToken.current, !token.isExpired {
             
@@ -119,6 +121,7 @@ class LoginViewController: BaseViewController, LoginButtonDelegate {
         }
     }
     @IBAction func facebookButton(_ sender: Any) {
+        
     }
     @IBAction func signupButton(_ sender: Any) {
         let vc = SignUpViewController(remoteAPI: self.remoteAPI)

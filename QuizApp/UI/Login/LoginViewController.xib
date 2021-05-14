@@ -18,6 +18,7 @@
                 <outlet property="forgotButton" destination="Guy-Q8-52M" id="9gm-Jy-tnc"/>
                 <outlet property="loginButton" destination="lgV-ri-SoD" id="RJm-FX-8WX"/>
                 <outlet property="passwordText" destination="JEp-gf-tq7" id="d8h-pu-6WF"/>
+                <outlet property="petalsGIF" destination="jPs-u3-PPw" id="v7W-cA-w8x"/>
                 <outlet property="rememberLabel" destination="ZGN-sG-0wp" id="ba0-n2-uf6"/>
                 <outlet property="rememberSwitch" destination="zxJ-6u-WIG" id="OZ2-WU-iqj"/>
                 <outlet property="shibaGIF" destination="jUn-Hs-GkE" id="EQf-eG-Ch3"/>
@@ -31,8 +32,16 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Temple" translatesAutoresizingMaskIntoConstraints="NO" id="A0Z-0r-GEy">
+                    <rect key="frame" x="-193" y="-447" width="800" height="800"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Love Kiss" translatesAutoresizingMaskIntoConstraints="NO" id="PIx-Yw-WOy">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SakuraTree" translatesAutoresizingMaskIntoConstraints="NO" id="uOW-JL-Lfv">
+                    <rect key="frame" x="-122" y="-103" width="322" height="203"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctv-3S-600">
@@ -176,13 +185,16 @@
                             <integer key="value" value="15"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="facebookButton:" destination="-1" eventType="touchUpInside" id="MBc-sM-XrZ"/>
+                    </connections>
                 </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Line" translatesAutoresizingMaskIntoConstraints="NO" id="hWg-qQ-m71">
                     <rect key="frame" x="57" y="716" width="300" height="110"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ShibaLogin" translatesAutoresizingMaskIntoConstraints="NO" id="jUn-Hs-GkE">
-                    <rect key="frame" x="57" y="44" width="300" height="200"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Petals.gif" translatesAutoresizingMaskIntoConstraints="NO" id="jPs-u3-PPw">
+                    <rect key="frame" x="20" y="0.0" width="374" height="381"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Shiba" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsb-V7-ypj">
@@ -193,6 +205,10 @@
                     <nil key="highlightedColor"/>
                     <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ShibaLogin" translatesAutoresizingMaskIntoConstraints="NO" id="jUn-Hs-GkE">
+                    <rect key="frame" x="57" y="44" width="300" height="200"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Remember User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZGN-sG-0wp">
                     <rect key="frame" x="170" y="594" width="130" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -207,6 +223,10 @@
                         <action selector="rememberMeSwitchValueChanged:" destination="-1" eventType="valueChanged" id="oRo-aa-6sH"/>
                     </connections>
                 </switch>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SakuraTree" translatesAutoresizingMaskIntoConstraints="NO" id="MTN-k6-0Q2">
+                    <rect key="frame" x="271" y="-88" width="322" height="203"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -221,7 +241,10 @@
     <resources>
         <image name="Line" width="960" height="260"/>
         <image name="Love Kiss" width="2400" height="2000"/>
+        <image name="Petals.gif" width="480" height="480"/>
+        <image name="SakuraTree" width="1600" height="1121"/>
         <image name="ShibaLogin" width="320" height="300"/>
+        <image name="Temple" width="1200" height="1200"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
