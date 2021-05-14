@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 class MainDashboardViewController: UIViewController {
+    
+    let loginManager: LoginManager = LoginManager()
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var petalsGIF: UIImageView!
@@ -56,6 +59,8 @@ class MainDashboardViewController: UIViewController {
     }
 
     @IBAction func backButton(_ sender: Any) {
+        
+        loginManager.logOut()
         let vc = LoginViewController(remoteAPI: self.remoteAPI)
         vc.modalPresentationStyle = .fullScreen
         vc.modalTransitionStyle = .crossDissolve
