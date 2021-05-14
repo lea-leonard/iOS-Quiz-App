@@ -9,9 +9,9 @@ import UIKit
 
 class SignUpViewController: BaseViewController {
 
-    @IBOutlet weak var usernameText: UITextField!
+    @IBOutlet weak var usernameText: InputValidationTextField!
     
-    @IBOutlet weak var passwordText: UITextField!
+    @IBOutlet weak var passwordText: InputValidationTextField!
     
     @IBOutlet weak var signupButton: UIButton!
     
@@ -33,6 +33,10 @@ class SignUpViewController: BaseViewController {
         signupButton.layer.backgroundColor = UIColor.white.cgColor
         usernameText.layer.borderColor = UIColor.white.cgColor
         passwordText.layer.borderColor = UIColor.white.cgColor
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
 
     @IBAction func signupButton(_ sender: Any) {

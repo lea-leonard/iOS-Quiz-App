@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AlertViewController" customModule="QuizApp" customModuleProvider="target">
+            <connections>
+                <outlet property="actionStackView" destination="dIz-ri-dEz" id="MWf-mF-uNJ"/>
+                <outlet property="mainBackgroundView" destination="kdk-0h-73M" id="TSJ-5x-YB6"/>
+                <outlet property="mainStackView" destination="ISA-h7-9lh" id="n8T-lI-8FO"/>
+                <outlet property="messageLabel" destination="Da8-z4-ynm" id="2Yr-D2-eud"/>
+                <outlet property="titleLabel" destination="awA-pB-6wa" id="p5c-fp-yPa"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kdk-0h-73M">
+                    <rect key="frame" x="83" y="391.5" width="248" height="123"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ISA-h7-9lh">
+                            <rect key="frame" x="16" y="16" width="216" height="123"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awA-pB-6wa">
+                                    <rect key="frame" x="0.0" y="0.0" width="216" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Da8-z4-ynm">
+                                    <rect key="frame" x="0.0" y="36.5" width="216" height="20.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="dIz-ri-dEz">
+                                    <rect key="frame" x="0.0" y="73" width="216" height="50"/>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.31372549020000001" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="ISA-h7-9lh" secondAttribute="bottom" constant="16" id="78P-i3-Qlh"/>
+                        <constraint firstAttribute="trailing" secondItem="ISA-h7-9lh" secondAttribute="trailing" constant="16" id="WzQ-J9-lGP"/>
+                        <constraint firstItem="ISA-h7-9lh" firstAttribute="top" secondItem="kdk-0h-73M" secondAttribute="top" constant="16" id="jCa-9X-9wz"/>
+                        <constraint firstItem="ISA-h7-9lh" firstAttribute="leading" secondItem="kdk-0h-73M" secondAttribute="leading" constant="16" id="jkI-ML-QNf"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="kdk-0h-73M" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="4mb-7v-QiC"/>
+                <constraint firstItem="kdk-0h-73M" firstAttribute="width" secondItem="fnl-2z-Ty3" secondAttribute="width" multiplier="0.6" id="mJY-xm-cS0"/>
+                <constraint firstItem="kdk-0h-73M" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="rRu-uF-xvA"/>
+            </constraints>
+            <point key="canvasLocation" x="131.8840579710145" y="78.348214285714278"/>
+        </view>
+    </objects>
+</document>
