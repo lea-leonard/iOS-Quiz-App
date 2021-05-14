@@ -16,15 +16,19 @@ class InputValidationTextField: UITextField, UITextFieldDelegate {
         case neutral
     }
     
-    enum RightButtonImage: String {
+    enum ButtonImage: String {
         case questionMark = "questionmark.circle"
         case xMark = "xmark.circle"
         case eye = "eye"
+        case eyeSlash = "eye.slash"
+        case none = "circle"
     }
     
     
     
     private(set) var rightButton: UIButton?
+    
+    private(set) var leftButton: UIButton?
     
     private var validationBox = UIView()
     private(set) var topAndBottomPadding: CGFloat = -3
@@ -42,11 +46,14 @@ class InputValidationTextField: UITextField, UITextFieldDelegate {
     
     var allowsEditingText = true
     
-    let invalidColor = #colorLiteral(red: 0.824687828, green: 0, blue: 0.01374479713, alpha: 1)
+    let invalidColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
     
-    let validColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+    let validColor = #colorLiteral(red: 0, green: 1, blue: 0, alpha: 1)
     
     let neutralColor = UIColor.white
+    
+    var rightButtonActions = [(button: UIButton, closure: () -> Void)]()
+    var leftButtonActions = [(button: UIButton, closure: () -> Void)]()
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -63,6 +70,11 @@ class InputValidationTextField: UITextField, UITextFieldDelegate {
         self.delegate = self
         
         self.inputAccessoryView = DownButtonAccessoryView(action: {self.resignFirstResponder()})
+        
+        self.setRightButton(image: .none)
+        self.rightButton?.alpha = 0
+        self.setLeftButton(image: .none)
+        self.leftButton?.alpha = 0
     }
     
     override func layoutSubviews() {
@@ -101,15 +113,63 @@ class InputValidationTextField: UITextField, UITextFieldDelegate {
     
     override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
         var rect = super.leftViewRect(forBounds: bounds)
-        rect.origin.x += 12
+        rect.origin.x += 8
         return rect
     }
     
+    
+    
+    override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+        var rect = super.rightViewRect(forBounds: bounds)
+        rect.origin.x -= 8
+        return rect
+    }
+    
+    
+    // remove actions associated with buttons!
     func removeRightButton() {
-        if self.rightButton == nil { return }
-        self.rightView = nil
-        self.rightViewMode = .never
-        self.rightButton = nil
+        if let rightButton = self.rightButton {
+            if self.rightButton == nil { return }
+            self.rightView = nil
+            self.rightButton = nil
+            
+            self.rightButtonActions = self.rightButtonActions.filter({$0.button != rightButton})
+        }
+    }
+    
+    func removeLeftButton() {
+        if let leftButton = self.leftButton {
+            if self.leftButton == nil { return }
+            self.leftView = nil
+            self.leftButton = nil
+       
+            self.leftButtonActions = self.leftButtonActions.filter({$0.button != leftButton})
+        }
+    }
+    
+    func addRightButtonAction(_ action: @escaping () -> Void) {
+        if let button = self.rightButton {
+            self.rightButtonActions += [(button, action)]
+        }
+    }
+    
+    
+    func addLeftButtonAction(_ action: @escaping () -> Void) {
+        if let button = self.leftButton {
+            self.leftButtonActions += [(button, action)]
+        }
+    }
+    
+    @objc func doRightButtonActions() {
+        for rightButtonAction in self.rightButtonActions {
+            rightButtonAction.closure()
+        }
+    }
+    
+    @objc func doLeftButtonActions() {
+        for leftButtonAction in self.leftButtonActions {
+            leftButtonAction.closure()
+        }
     }
     
     private func updateViewForStatus() {
@@ -125,14 +185,26 @@ class InputValidationTextField: UITextField, UITextFieldDelegate {
         self.validationLabel.sizeToFit()
     }
     
-    func setRightButton(image: InputValidationTextField.RightButtonImage) {
+    func setRightButton(image: InputValidationTextField.ButtonImage) {
         self.removeRightButton()
         let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: image.rawValue), for: .normal)
-        button.tintColor = .systemGray
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(self.doRightButtonActions), for: .touchUpInside)
         self.rightButton = button
         self.rightView = button
         self.rightViewMode = .always
+    }
+    
+    func setLeftButton(image: InputValidationTextField.ButtonImage) {
+        self.removeLeftButton()
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(systemName: image.rawValue), for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(self.doLeftButtonActions), for: .touchUpInside)
+        self.leftButton = button
+        self.leftView = button
+        self.leftViewMode = .always
     }
     
     

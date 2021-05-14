@@ -76,7 +76,7 @@
                         <action selector="aboutButton:" destination="-1" eventType="touchUpInside" id="ZEe-Um-kxq"/>
                     </connections>
                 </button>
-                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JEp-gf-tq7">
+                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JEp-gf-tq7" customClass="InputValidationPasswordTextField" customModule="QuizApp" customModuleProvider="target">
                     <rect key="frame" x="72" y="431" width="270" height="34"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.97022908929999996" green="0.31190776819999999" blue="0.38065123560000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

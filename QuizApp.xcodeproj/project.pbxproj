@@ -13,6 +13,7 @@
 		5221052F264D73BF00FF89CB /* QuizTakenLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5221052D264D73BF00FF89CB /* QuizTakenLabels.swift */; };
 		52210531264D73CA00FF89CB /* UserDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52210530264D73CA00FF89CB /* UserDashboardViewController.swift */; };
 		52210533264D77DF00FF89CB /* UserQuizzesTableViewSectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52210532264D77DF00FF89CB /* UserQuizzesTableViewSectionHeaderCell.swift */; };
+		522BFEF6264EE06200A92745 /* InputValidationPasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522BFEF5264EE06200A92745 /* InputValidationPasswordTextField.swift */; };
 		522F5E3E264C2FEF00E9C3DE /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522F5E3D264C2FEF00E9C3DE /* UIExtensions.swift */; };
 		522F5E40264C319000E9C3DE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522F5E3F264C319000E9C3DE /* BaseViewController.swift */; };
 		522F5E47264C336500E9C3DE /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522F5E45264C336500E9C3DE /* QuizViewController.swift */; };
@@ -93,6 +94,7 @@
 		5221052D264D73BF00FF89CB /* QuizTakenLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizTakenLabels.swift; sourceTree = "<group>"; };
 		52210530264D73CA00FF89CB /* UserDashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDashboardViewController.swift; sourceTree = "<group>"; };
 		52210532264D77DF00FF89CB /* UserQuizzesTableViewSectionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserQuizzesTableViewSectionHeaderCell.swift; sourceTree = "<group>"; };
+		522BFEF5264EE06200A92745 /* InputValidationPasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputValidationPasswordTextField.swift; sourceTree = "<group>"; };
 		522F5E3D264C2FEF00E9C3DE /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		522F5E3F264C319000E9C3DE /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		522F5E45264C336500E9C3DE /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				52C3860C264DC32700FEC438 /* InputValidationTextField.swift */,
+				522BFEF5264EE06200A92745 /* InputValidationPasswordTextField.swift */,
 				52C38610264DCD2D00FEC438 /* DownButtonAccessoryView.swift */,
 				522F5E3F264C319000E9C3DE /* BaseViewController.swift */,
 				522F5E4D264C3A7700E9C3DE /* CheckboxView.swift */,
@@ -561,6 +564,7 @@
 				527E90322649D9C500FB7E71 /* KeychainHelper.swift in Sources */,
 				52C3860F264DC37700FEC438 /* InputValidator.swift in Sources */,
 				52C38607264DBE5E00FEC438 /* MultipleChoiceQuestionForm+CoreDataProperties.swift in Sources */,
+				522BFEF6264EE06200A92745 /* InputValidationPasswordTextField.swift in Sources */,
 				52210529264D512800FF89CB /* AdminViewController.swift in Sources */,
 				52210533264D77DF00FF89CB /* UserQuizzesTableViewSectionHeaderCell.swift in Sources */,
 				52C385FE264DBE5E00FEC438 /* Quiz+CoreDataClass.swift in Sources */,
