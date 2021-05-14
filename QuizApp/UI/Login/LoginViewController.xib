@@ -172,12 +172,12 @@
                         <action selector="usernameText:" destination="-1" eventType="editingDidEnd" id="qRJ-EE-aAv"/>
                     </connections>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YzE-f3-NoV" customClass="FBSDKLoginButton">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YzE-f3-NoV">
                     <rect key="frame" x="82" y="629" width="250" height="40"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" name="AccentColor"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                    <state key="normal">
+                    <state key="normal" title="Facebook">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>

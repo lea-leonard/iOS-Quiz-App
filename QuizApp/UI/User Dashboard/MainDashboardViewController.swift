@@ -47,6 +47,8 @@ class MainDashboardViewController: UIViewController {
         
     }
     
+    
+    
     func updateUsernameLabel() {
         if self.usernameLabel != nil {
             self.usernameLabel.text = self.user.username
