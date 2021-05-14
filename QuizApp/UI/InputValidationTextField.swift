@@ -22,6 +22,8 @@ class InputValidationTextField: UITextField, UITextFieldDelegate {
         case eye = "eye"
     }
     
+    
+    
     private(set) var rightButton: UIButton?
     
     private var validationBox = UIView()
@@ -40,14 +42,15 @@ class InputValidationTextField: UITextField, UITextFieldDelegate {
     
     var allowsEditingText = true
     
-    var invalidColor = #colorLiteral(red: 0.824687828, green: 0, blue: 0.01374479713, alpha: 1)
+    let invalidColor = #colorLiteral(red: 0.824687828, green: 0, blue: 0.01374479713, alpha: 1)
     
-    var validColor = UIColor.systemGreen
+    let validColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+    
+    let neutralColor = UIColor.white
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.addSubview(self.validationBox)
-        self.addSubview(self.validationLabel)
+        
         self.clipsToBounds = false
         self.validationLabel.textColor = self.invalidColor
         self.validationLabel.font = UIFont.systemFont(ofSize: 14)
@@ -96,6 +99,11 @@ class InputValidationTextField: UITextField, UITextFieldDelegate {
         self.updateViewForStatus()
     }
     
+    override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
+        var rect = super.leftViewRect(forBounds: bounds)
+        rect.origin.x += 12
+        return rect
+    }
     
     func removeRightButton() {
         if self.rightButton == nil { return }
@@ -107,11 +115,11 @@ class InputValidationTextField: UITextField, UITextFieldDelegate {
     private func updateViewForStatus() {
         switch self.status {
         case .invalid:
-            self.validationBox.layer.borderColor = self.invalidColor.cgColor
+            self.layer.borderColor = self.invalidColor.cgColor
         case .valid:
-            self.validationBox.layer.borderColor = self.validColor.cgColor
+            self.layer.borderColor = self.validColor.cgColor
         case .neutral:
-            self.validationBox.layer.borderColor = UIColor.clear.cgColor
+            self.layer.borderColor = self.neutralColor.cgColor
         }
         self.validationLabel.text = self.validationLabelText
         self.validationLabel.sizeToFit()

@@ -40,21 +40,79 @@ class SignUpViewController: BaseViewController {
     }
 
     @IBAction func signupButton(_ sender: Any) {
+        
+        self.validateInput { validCredentials in
+            
+            if let username = validCredentials.validUsername, let password = validCredentials.validPassword {
+                self.remoteAPI.postNewUser(username: username, password: password) { userOptional in
+                    
+                    self.presentBasicAlert(message: "Signed up successfully!", onDismiss: {
+                        self.presentingViewController?.dismiss(animated: true, completion: nil)
+                    })
+                } failure: { error in
+                    print(error.localizedDescription)
+                }
+            } else {
+                if let alertMessage = validCredentials.alertMessage {
+                    self.presentBasicAlert(message: alertMessage)
+                }
+            }
+            
+            
+            
+        }
+        
+       
+    }
+    
+    func validateInput(completion: ((validUsername: String?, validPassword: String?, alertMessage: String?)) -> Void) {
+        
+        var validUsername: String?
+        var validPassword: String?
+        
+        var alertMessages = [String]()
+        
+        var alertMessage: String?
+        
         guard let username = self.usernameText.textNoEmptyString else {
             return
         }
         guard let password = self.passwordText.textNoEmptyString else {
             return
         }
-        self.remoteAPI.postNewUser(username: username, password: password) { userOptional in
-            self.presentBasicAlert(message: "Signed up successfully!", onDismiss: {
-                self.presentingViewController?.dismiss(animated: true, completion: nil)
-            })
-        } failure: { error in
-            print(error.localizedDescription)
-        }
-
         
+        self.remoteAPI.getUser(username: username, success: { user in
+            if user != nil {
+                alertMessages += ["A user with that username already exists. Please choose a different username."]
+            } else if !InputValidator.Username.validate(username) {
+                alertMessages += [InputValidator.Username.requirementsMessage]
+            } else {
+                validUsername = username
+            }
+            
+            if !InputValidator.Password.validate(password) {
+                alertMessages += [InputValidator.Password.requirementsMessage]
+            } else {
+                validPassword = password
+            }
+            
+            if alertMessages.count > 0 {
+                var message = ""
+                for i in 0..<alertMessages.count {
+                    message += alertMessages[i]
+                    if i < alertMessages.count - 1 {
+                        message += "\n\n"
+                    }
+                }
+                alertMessage = message
+            }
+            
+            completion((validUsername: validUsername, validPassword: validPassword, alertMessage: alertMessage))
+       
+            
+        }, failure: { error in
+            print(error.localizedDescription)
+        })
     }
     
     
