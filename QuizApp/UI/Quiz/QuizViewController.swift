@@ -28,7 +28,7 @@ class QuizViewController: BaseViewController {
     
     private var quiz: Quiz!
     
-    var questions = [QuizQuestion]()
+    var questions = [QuizQuestionOrQuestionForm]()
     
     var currentQuestionIndex = 0
     

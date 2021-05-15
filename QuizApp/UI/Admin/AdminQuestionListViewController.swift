@@ -1,0 +1,193 @@
+//
+//  AdminQuestionListViewController.swift
+//  QuizApp
+//
+//  Created by Robert Olieman on 5/14/21.
+//
+
+import Foundation
+import UIKit
+
+class AdminQuestionListViewController: AdminContainerViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var selectionSuperview: UIView!
+    
+    @IBOutlet weak var selectionSuperviewHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var technologySegmentedControl: UISegmentedControl!
+    
+    @IBOutlet weak var levelSegmentedControl: UISegmentedControl!
+    
+    private var multipleChoiceQuestionForms = [MultipleChoiceQuestionForm]()
+    
+    private var shortAnswerQuestionForms = [ShortAnswerQuestionForm]()
+    
+    private var technologies = [Technology]()
+    
+    private var selectionSuperviewIsOpen: Bool {
+        self.selectionSuperviewHeightConstraint.constant > 0
+    }
+    
+    override var ellipsisMenuIsOpen: Bool {
+        return self.selectionSuperviewIsOpen
+    }
+    
+    override var label1Text: String? {
+        return self.selectedTechnology?.name ?? "All technologies"
+    }
+    
+    override var label2Text: String? {
+        return self.selectedLevel?.description ?? "All levels"
+        
+    }
+    
+    var selectedTechnology: Technology? {
+        let index = self.technologySegmentedControl.selectedSegmentIndex
+        if index == 0 { return nil }
+        return self.technologies[index - 1]
+    }
+    
+    var selectedLevel: QuizLevel? {
+        let index = self.levelSegmentedControl.selectedSegmentIndex
+        if index == 0 { return nil }
+        return QuizLevel(rawValue: index)!
+    }
+    
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+   
+        self.setSelectionSuperviewOpen(open: false)
+        
+        self.delegate?.updateViewsForContainer()
+        
+        self.levelSegmentedControl.removeAllSegments()
+        self.levelSegmentedControl.insertSegment(withTitle: "Any", at: self.levelSegmentedControl.numberOfSegments, animated: false)
+        for level in QuizLevel.allCases {
+            self.levelSegmentedControl.insertSegment(withTitle: level.description, at: self.levelSegmentedControl.numberOfSegments, animated: false)
+        }
+        self.levelSegmentedControl.selectedSegmentIndex = 0
+        
+        self.technologySegmentedControl.removeAllSegments()
+        self.technologySegmentedControl.insertSegment(withTitle: "Any", at: self.levelSegmentedControl.numberOfSegments, animated: false)
+        self.remoteAPI.getAllTechnologies(success: { technologies in
+            self.technologies = technologies
+            for technology in technologies {
+                self.technologySegmentedControl.insertSegment(withTitle: technology.name ?? "?", at: self.technologySegmentedControl.numberOfSegments, animated: false)
+            }
+            self.technologySegmentedControl.selectedSegmentIndex = 0
+            self.refreshQuestions()
+        }, failure: { error in
+            
+        })
+        
+    }
+    
+    @IBAction func technologySegmentedControlValueChanged(_ sender: UISegmentedControl) {
+        self.delegate?.updateViewsForContainer()
+        self.refreshQuestions()
+    }
+    
+    @IBAction func levelSegmentedControlValueChanged(_ sender: UISegmentedControl) {
+        self.delegate?.updateViewsForContainer()
+        self.refreshQuestions()
+    }
+    
+    private func refreshQuestions() {
+        
+        var technologies = [Technology]()
+        
+        var levels = [QuizLevel]()
+        
+        if let technology = self.selectedTechnology {
+            technologies += [technology]
+        }
+        
+        if let level = self.selectedLevel {
+            levels += [level]
+        }
+        
+        
+        self.remoteAPI.getMultipleChoiceQuestionForms(technologies: technologies, levels: levels, success: { multipleChoiceQuestionForms in
+            self.multipleChoiceQuestionForms = multipleChoiceQuestionForms
+            self.tableView.reloadData()
+        }, failure: {error in
+            print(error.localizedDescription)
+        })
+        
+        self.remoteAPI.getShortAnswerQuestionForms(technologies: technologies, levels: levels, success: { shortAnswerQuestionForms in
+            self.shortAnswerQuestionForms = shortAnswerQuestionForms
+            self.tableView.reloadData()
+        }, failure: {error in
+            print(error.localizedDescription)
+        })
+    }
+    
+    override func tappedEllipsisButtonAction() {
+        self.toggleSelectionSuperviewOpen()
+    }
+    
+    private func toggleSelectionSuperviewOpen() {
+        self.setSelectionSuperviewOpen(open: !self.selectionSuperviewIsOpen)
+    }
+    
+    private func setSelectionSuperviewOpen(open: Bool) {
+        self.selectionSuperviewHeightConstraint.constant = open ? self.view.frame.height * 0.35 : 0
+        UIView.animate(withDuration: 0.2, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    //MARK: UITableView
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Multiple Choice"
+        default:
+            return "Short Answer"
+        }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return self.multipleChoiceQuestionForms.count
+        default:
+            return self.shortAnswerQuestionForms.count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "AdminQuestionListPreviewCell") as? AdminQuestionListPreviewCell else {
+            fatalError("Unable to dequeue AdminQuestionListPreviewCell")
+        }
+        var questionForm: QuizQuestionOrQuestionForm
+        var questionType: String
+        switch indexPath.section {
+        case 0:
+            questionForm = self.multipleChoiceQuestionForms[indexPath.row]
+            questionType = "Multiple Choice"
+        default:
+            questionForm = self.shortAnswerQuestionForms[indexPath.row]
+            questionType = "Short Answer"
+        }
+        cell.technologyImageView.image = questionForm.technology?.image
+        cell.technologyLabel.text = questionForm.technology?.name
+        cell.questionPreviewLabel.text = questionForm.question
+        cell.setLevelAndQuestionTypeLabel(questionType: questionType, level: QuizLevel(rawValue: Int(questionForm.level))!.description)
+        return cell
+    }
+}

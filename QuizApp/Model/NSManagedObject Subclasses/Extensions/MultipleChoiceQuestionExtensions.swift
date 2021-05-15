@@ -7,6 +7,6 @@
 
 import Foundation
 
-extension MultipleChoiceQuestion: QuizQuestion {
+extension MultipleChoiceQuestion: QuizQuestionOrQuestionForm {
     
 }

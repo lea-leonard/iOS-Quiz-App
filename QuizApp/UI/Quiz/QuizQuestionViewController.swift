@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 
 class QuizQuestionViewController: BaseViewController {
-    func updateQuestion(_ question: QuizQuestion) {
+    func updateQuestion(_ question: QuizQuestionOrQuestionForm) {
         
     }
     
-    func matches(_ question: QuizQuestion) -> Bool {
+    func matches(_ question: QuizQuestionOrQuestionForm) -> Bool {
         return false
     }
 }

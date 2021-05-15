@@ -54,7 +54,7 @@ class MultipleChoiceQuestionViewController: QuizQuestionViewController, Multiple
         self.questionLabel.text = self.question.question
     }
     
-    override func updateQuestion(_ question: QuizQuestion) {
+    override func updateQuestion(_ question: QuizQuestionOrQuestionForm) {
         guard let multipleChoiceQuestion = question as? MultipleChoiceQuestion else { return }
         self.question = multipleChoiceQuestion
         if self.questionLabel != nil {
@@ -63,7 +63,7 @@ class MultipleChoiceQuestionViewController: QuizQuestionViewController, Multiple
         }
     }
     
-    override func matches(_ question: QuizQuestion) -> Bool {
+    override func matches(_ question: QuizQuestionOrQuestionForm) -> Bool {
         return question is MultipleChoiceQuestion
     }
 

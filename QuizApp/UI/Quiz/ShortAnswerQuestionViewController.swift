@@ -39,7 +39,7 @@ class ShortAnswerQuestionViewController: QuizQuestionViewController, UITextViewD
         responseTextView.layer.borderColor = UIColor.black.cgColor
     }
     
-    override func updateQuestion(_ question: QuizQuestion) {
+    override func updateQuestion(_ question: QuizQuestionOrQuestionForm) {
         guard let shortAnswerQuestion = question as? ShortAnswerQuestion else { return }
         self.question = shortAnswerQuestion
         if self.questionLabel != nil {
@@ -47,7 +47,7 @@ class ShortAnswerQuestionViewController: QuizQuestionViewController, UITextViewD
         }
     }
     
-    override func matches(_ question: QuizQuestion) -> Bool {
+    override func matches(_ question: QuizQuestionOrQuestionForm) -> Bool {
         return question is ShortAnswerQuestion
     }
     

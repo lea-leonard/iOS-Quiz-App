@@ -228,8 +228,8 @@ class LoginViewController: BaseViewController {
     
     func goToAdminPage() {
         
-        guard let adminViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "AdminViewController") as? AdminViewController else {
-            fatalError("Unable to instantiate AdminViewController")
+        guard let adminViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "AdminDashboardViewController") as? AdminDashboardViewController else {
+            fatalError("Unable to instantiate AdminDashboardViewController")
         }
         
         adminViewController.setup(remoteAPI: self.remoteAPI)

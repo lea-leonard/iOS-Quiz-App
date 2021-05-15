@@ -7,6 +7,6 @@
 
 import Foundation
 
-extension ShortAnswerQuestion: QuizQuestion {
+extension ShortAnswerQuestion: QuizQuestionOrQuestionForm {
     
 }
