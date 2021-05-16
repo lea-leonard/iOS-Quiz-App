@@ -14,7 +14,7 @@ class LoginViewController: BaseViewController {
     
     @IBOutlet weak var shibaGIF: UIImageView!
     @IBOutlet weak var petalsGIF: UIImageView!
-    @IBOutlet weak var usernameText: UITextField!
+    @IBOutlet weak var usernameText: InputValidationTextField!
     @IBOutlet weak var passwordText: InputValidationPasswordTextField!
     @IBOutlet weak var forgotButton: UIButton!
     @IBOutlet weak var loginButton: UIButton!

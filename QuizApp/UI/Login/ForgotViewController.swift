@@ -11,8 +11,8 @@ class ForgotViewController: BaseViewController {
 
     
     @IBOutlet weak var shibaGIF: UIImageView!
-    @IBOutlet weak var usernameText: UITextField!
-    @IBOutlet weak var newPasswordText: UITextField!
+    @IBOutlet weak var usernameText: InputValidationTextField!
+    @IBOutlet weak var newPasswordText: InputValidationTextField!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var contactusButton: UIButton!
     

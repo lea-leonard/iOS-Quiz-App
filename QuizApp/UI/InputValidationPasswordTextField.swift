@@ -28,9 +28,9 @@ class InputValidationPasswordTextField: InputValidationTextField {
         }
     }
     
-    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        self.clearsOnBeginEditing = false
         self.setLeftButton(image: .eye)
         self.addLeftButtonAction {
             self.tappedEyeButton()
@@ -67,11 +67,28 @@ class InputValidationPasswordTextField: InputValidationTextField {
     }
     
     private func updateView() {
-        let imageName = self.showsPassword ? ButtonImage.eyeSlash.rawValue : ButtonImage.eye.rawValue
+        let imageName = self.showsPassword ? ButtonImage.eye.rawValue : ButtonImage.eyeSlash.rawValue
         let image = UIImage(systemName: imageName) ?? UIImage()
         self.eyeButton?.setBackgroundImage(image, for: .normal)
         
         self.textContentType = self.showsPassword ? .none : .oneTimeCode
         self.isSecureTextEntry = !self.showsPassword
+    }
+    
+    override var isSecureTextEntry: Bool {
+        didSet {
+            if self.isFirstResponder {
+                _ = becomeFirstResponder()
+            }
+        }
+    }
+    
+    override func becomeFirstResponder() -> Bool {
+        let success = super.becomeFirstResponder()
+        if isSecureTextEntry, let text = self.text {
+            self.text?.removeAll()
+            insertText(text)
+        }
+        return success
     }
 }
