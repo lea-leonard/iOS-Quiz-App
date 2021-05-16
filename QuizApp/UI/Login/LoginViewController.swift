@@ -239,6 +239,7 @@ class LoginViewController: BaseViewController {
         }
         
         adminViewController.setup(remoteAPI: self.remoteAPI)
+        adminViewController.modalTransitionStyle = .crossDissolve
         adminViewController.modalPresentationStyle = .fullScreen
         self.present(adminViewController, animated: true, completion: nil)
         
@@ -249,6 +250,7 @@ class LoginViewController: BaseViewController {
         guard let mainDashboardViewController = storyboard.instantiateViewController(identifier: "MainDashboardViewController") as? MainDashboardViewController else {
             fatalError("Unable to instantiatie MainDashboardViewController")
         }
+        mainDashboardViewController.modalTransitionStyle = .crossDissolve
         mainDashboardViewController.modalPresentationStyle = .fullScreen
         mainDashboardViewController.setup(remoteAPI: self.remoteAPI, user: user)
         self.present(mainDashboardViewController, animated: true, completion: nil)

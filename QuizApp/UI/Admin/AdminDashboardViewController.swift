@@ -14,6 +14,9 @@ class AdminDashboardViewController: BaseViewController, AdminContainerViewContro
     
     @IBOutlet weak var label2: UILabel!
     
+    @IBOutlet weak var shibaGIF: UIImageView!
+    @IBOutlet weak var petalsGIF: UIImageView!
+    
     @IBOutlet weak var ellipsisImageButton: UIImageView!
     
    
@@ -28,6 +31,12 @@ class AdminDashboardViewController: BaseViewController, AdminContainerViewContro
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        shibaGIF.loadGif(name: "ShibaAdmin")
+        petalsGIF.loadGif(name: "Petals")
+        label1.layer.backgroundColor = UIColor.white.cgColor
+        label2.layer.backgroundColor = UIColor.white.cgColor
+        
         guard let navigationController = self.children.last as? UINavigationController else {
             fatalError("Unable to get reference to UINavigationController")
         }
@@ -61,5 +70,8 @@ class AdminDashboardViewController: BaseViewController, AdminContainerViewContro
     func updateViewsForContainer() {
         self.label1.text = self.adminContainerViewController.label1Text
         self.label2.text = self.adminContainerViewController.label2Text
+    }
+    @IBAction func logoutButton(_ sender: Any) {
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }

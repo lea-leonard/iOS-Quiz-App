@@ -84,6 +84,7 @@
 		B7313C03264CF59100C90C63 /* ShibaLogin.gif in Resources */ = {isa = PBXBuildFile; fileRef = B7313C02264CF59100C90C63 /* ShibaLogin.gif */; };
 		B7313C05264CF68000C90C63 /* ShibaForgot.gif in Resources */ = {isa = PBXBuildFile; fileRef = B7313C04264CF68000C90C63 /* ShibaForgot.gif */; };
 		B7313C07264CF6C500C90C63 /* ShibaSignUp.gif in Resources */ = {isa = PBXBuildFile; fileRef = B7313C06264CF6C500C90C63 /* ShibaSignUp.gif */; };
+		B75CF69B265184500034731A /* ShibaAdmin.gif in Resources */ = {isa = PBXBuildFile; fileRef = B75CF69A265184500034731A /* ShibaAdmin.gif */; };
 		B7F94C3B264B8F5100E87C82 /* ContactUsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7F94C2E264B8F5100E87C82 /* ContactUsViewController.xib */; };
 		B7F94C3C264B8F5100E87C82 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F94C2F264B8F5100E87C82 /* AboutUsViewController.swift */; };
 		B7F94C3E264B8F5100E87C82 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F94C31264B8F5100E87C82 /* SignUpViewController.swift */; };
@@ -183,6 +184,7 @@
 		B7313C02264CF59100C90C63 /* ShibaLogin.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ShibaLogin.gif; sourceTree = "<group>"; };
 		B7313C04264CF68000C90C63 /* ShibaForgot.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ShibaForgot.gif; sourceTree = "<group>"; };
 		B7313C06264CF6C500C90C63 /* ShibaSignUp.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ShibaSignUp.gif; sourceTree = "<group>"; };
+		B75CF69A265184500034731A /* ShibaAdmin.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ShibaAdmin.gif; sourceTree = "<group>"; };
 		B7F94C2E264B8F5100E87C82 /* ContactUsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactUsViewController.xib; sourceTree = "<group>"; };
 		B7F94C2F264B8F5100E87C82 /* AboutUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
 		B7F94C31264B8F5100E87C82 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 				B7F94C36264B8F5100E87C82 /* ShibaAbout.gif */,
 				B7FDBFC5264D72F2002C8E63 /* ShibaTestMenu.gif */,
 				B7FDBFC7264D76C7002C8E63 /* ShibaTestMenu2.gif */,
+				B75CF69A265184500034731A /* ShibaAdmin.gif */,
 				B7FDBFC9264D7DD7002C8E63 /* Petals.gif */,
 				B7313C00264CF4C300C90C63 /* Icon.png */,
 			);
@@ -504,6 +507,7 @@
 				B7F94C45264B8F5100E87C82 /* SignUpViewController.xib in Resources */,
 				B7F94C42264B8F5100E87C82 /* LoginViewController.xib in Resources */,
 				B7313C01264CF4C300C90C63 /* Icon.png in Resources */,
+				B75CF69B265184500034731A /* ShibaAdmin.gif in Resources */,
 				52D90B3A26498DFD00F952D0 /* LaunchScreen.storyboard in Resources */,
 				B7F94C41264B8F5100E87C82 /* AboutUsViewController.xib in Resources */,
 				5221052B264D739500FF89CB /* Dashboard.storyboard in Resources */,

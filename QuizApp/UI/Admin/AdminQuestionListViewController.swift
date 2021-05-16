@@ -16,8 +16,10 @@ class AdminQuestionListViewController: AdminContainerViewController, UITableView
     
     @IBOutlet weak var selectionSuperviewHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var technologyLabel: UILabel!
     @IBOutlet weak var technologySegmentedControl: UISegmentedControl!
     
+    @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var levelSegmentedControl: UISegmentedControl!
     
     private var multipleChoiceQuestionForms = [MultipleChoiceQuestionForm]()
@@ -35,11 +37,11 @@ class AdminQuestionListViewController: AdminContainerViewController, UITableView
     }
     
     override var label1Text: String? {
-        return self.selectedTechnology?.name ?? "All technologies"
+        return self.selectedTechnology?.name ?? "Any"
     }
     
     override var label2Text: String? {
-        return self.selectedLevel?.description ?? "All levels"
+        return self.selectedLevel?.description ?? "Any"
         
     }
     
@@ -58,6 +60,7 @@ class AdminQuestionListViewController: AdminContainerViewController, UITableView
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
    
@@ -189,5 +192,13 @@ class AdminQuestionListViewController: AdminContainerViewController, UITableView
         cell.questionPreviewLabel.text = questionForm.question
         cell.setLevelAndQuestionTypeLabel(questionType: questionType, level: QuizLevel(rawValue: Int(questionForm.level))!.description)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.contentView.backgroundColor = .black
+            headerView.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
+            headerView.textLabel?.textColor = .white
+            }
     }
 }

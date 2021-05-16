@@ -889,63 +889,94 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Love Kiss" translatesAutoresizingMaskIntoConstraints="NO" id="pkD-YL-yb1">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Admin" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HyK-EP-EaD">
+                                <rect key="frame" x="20" y="44" width="154" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="50"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3F2-ma-zNf">
-                                <rect key="frame" x="0.0" y="762" width="414" height="64"/>
+                                <rect key="frame" x="0.0" y="824" width="414" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
-                                <state key="normal" title="Admin Logout">
+                                <state key="normal" title="Logout">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="logoutButton:" destination="e3K-j9-Ep1" eventType="touchUpInside" id="2fw-sa-lqD"/>
+                                </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="661-3c-SlM">
-                                <rect key="frame" x="0.0" y="130" width="414" height="64"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="   Administrative Dashboard" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zg5-sS-SH9">
-                                        <rect key="frame" x="50" y="9" width="314" height="47"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="25"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dyw-bA-uGh">
-                                <rect key="frame" x="0.0" y="255" width="414" height="508"/>
+                                <rect key="frame" x="0.0" y="255" width="414" height="569"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="auu-Q9-ZDY" kind="embed" id="2xd-jm-Qwu"/>
                                 </connections>
                             </containerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LdB-hJ-l1X">
-                                <rect key="frame" x="28" y="209" width="95" height="28"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LdB-hJ-l1X">
+                                <rect key="frame" x="10" y="209" width="160" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="23"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cj5-t4-yVh">
+                                <rect key="frame" x="173" y="209" width="160" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="23"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ellipsis" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="7SG-9S-oNP">
+                                <rect key="frame" x="357" y="212" width="37" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6tt-kM-UHv">
-                                <rect key="frame" x="341" y="693" width="60" height="56"/>
+                                <rect key="frame" x="334" y="759.5" width="60" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" backgroundImage="plus.circle.fill" catalog="system">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000001192092896" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cj5-t4-yVh">
-                                <rect key="frame" x="140" y="209" width="133" height="28"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dashboard" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3AI-Bd-Ta3">
+                                <rect key="frame" x="20" y="94" width="219" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="50"/>
+                                <color key="textColor" systemColor="systemYellowColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ellipsis" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="7SG-9S-oNP">
-                                <rect key="frame" x="341" y="212" width="37" height="23"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ShibaAdmin.gif" translatesAutoresizingMaskIntoConstraints="NO" id="oWw-St-pjf">
+                                <rect key="frame" x="192" y="80" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SakuraTreeFlipped" translatesAutoresizingMaskIntoConstraints="NO" id="kNJ-Yn-Dic">
+                                <rect key="frame" x="306" y="0.0" width="138" height="73"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Petals.gif" translatesAutoresizingMaskIntoConstraints="NO" id="dVb-xR-Ycc">
+                                <rect key="frame" x="341" y="52" width="73" height="84"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vgy-ax-C8Y"/>
@@ -961,6 +992,8 @@
                         <outlet property="ellipsisImageButton" destination="7SG-9S-oNP" id="0VP-Tf-rEj"/>
                         <outlet property="label1" destination="LdB-hJ-l1X" id="4xQ-rg-lmW"/>
                         <outlet property="label2" destination="Cj5-t4-yVh" id="HGG-SX-LIp"/>
+                        <outlet property="petalsGIF" destination="dVb-xR-Ycc" id="6BU-6S-niM"/>
+                        <outlet property="shibaGIF" destination="oWw-St-pjf" id="MS2-Dh-rFe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zj9-hF-sTi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -987,12 +1020,12 @@
             <objects>
                 <viewController id="X10-Be-WBZ" customClass="AdminQuestionListViewController" customModule="QuizApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bjz-K6-qGn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="508"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="569"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="d5R-5N-i2V">
-                                <rect key="frame" x="-4" y="178" width="418" height="330"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <rect key="frame" x="-4" y="178" width="418" height="391"/>
+                                <color key="backgroundColor" red="0.98509520289999997" green="0.2288624048" blue="0.3498045206" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AdminQuestionListPreviewCell" rowHeight="124" id="lC0-30-YLH" userLabel="Question Preview Cell" customClass="AdminQuestionListPreviewCell" customModule="QuizApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.5" width="418" height="124"/>
@@ -1057,17 +1090,18 @@
                                         <rect key="frame" x="18" y="20" width="378" height="138"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="GkS-47-gIa">
-                                                <rect key="frame" x="0.0" y="0.0" width="378" height="57.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="378" height="64"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Technology" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="psS-ab-Uy9">
-                                                        <rect key="frame" x="0.0" y="0.0" width="378" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
-                                                        <color key="textColor" red="1" green="0.28447983449999997" blue="0.20538879769999999" alpha="0.74669894370000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Technology" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="psS-ab-Uy9">
+                                                        <rect key="frame" x="0.0" y="0.0" width="378" height="27"/>
+                                                        <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
+                                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </label>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UzZ-te-t30">
-                                                        <rect key="frame" x="0.0" y="26.5" width="378" height="32"/>
-                                                        <color key="backgroundColor" red="1" green="0.28447983449999997" blue="0.20538879769999999" alpha="0.74669894370000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <rect key="frame" x="0.0" y="33" width="378" height="32"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <segments>
                                                             <segment title="First"/>
                                                             <segment title="Second"/>
@@ -1079,17 +1113,18 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Plz-uH-Zug">
-                                                <rect key="frame" x="0.0" y="80.5" width="378" height="57.5"/>
+                                                <rect key="frame" x="0.0" y="74" width="378" height="64"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Level" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4N-n9-RK6">
-                                                        <rect key="frame" x="0.0" y="0.0" width="378" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
-                                                        <color key="textColor" systemColor="systemGreenColor"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Level" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4N-n9-RK6">
+                                                        <rect key="frame" x="0.0" y="0.0" width="378" height="27"/>
+                                                        <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="20"/>
+                                                        <color key="textColor" systemColor="systemYellowColor"/>
                                                         <nil key="highlightedColor"/>
+                                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </label>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Hm4-i0-Bh0">
-                                                        <rect key="frame" x="0.0" y="26.5" width="378" height="32"/>
-                                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                        <rect key="frame" x="0.0" y="33" width="378" height="32"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <segments>
                                                             <segment title="First"/>
                                                             <segment title="Second"/>
@@ -1103,7 +1138,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.98509520289999997" green="0.2288624048" blue="0.3498045206" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="178" id="6Rf-Ig-VOG"/>
                                     <constraint firstItem="DYn-jb-Mk8" firstAttribute="leading" secondItem="Hby-0Q-ue3" secondAttribute="leading" constant="18" id="Suu-Uv-Nqc"/>
@@ -1127,10 +1162,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="XuE-Fd-8EC"/>
                     <connections>
+                        <outlet property="levelLabel" destination="o4N-n9-RK6" id="Eod-qq-6gZ"/>
                         <outlet property="levelSegmentedControl" destination="Hm4-i0-Bh0" id="yn8-EQ-eUM"/>
                         <outlet property="selectionSuperview" destination="Hby-0Q-ue3" id="6B5-FA-wMA"/>
                         <outlet property="selectionSuperviewHeightConstraint" destination="6Rf-Ig-VOG" id="Ay0-cE-0xx"/>
                         <outlet property="tableView" destination="d5R-5N-i2V" id="Rfd-PI-dlp"/>
+                        <outlet property="technologyLabel" destination="psS-ab-Uy9" id="DrJ-Xl-s9u"/>
                         <outlet property="technologySegmentedControl" destination="UzZ-te-t30" id="lRr-hK-QtH"/>
                     </connections>
                 </viewController>
@@ -1303,6 +1340,8 @@
         <image name="Love Kiss" width="2400" height="2000"/>
         <image name="Petals.gif" width="480" height="480"/>
         <image name="SakuraTree" width="1600" height="1121"/>
+        <image name="SakuraTreeFlipped" width="1600" height="1121"/>
+        <image name="ShibaAdmin.gif" width="320" height="300"/>
         <image name="ShibaTestMenu.gif" width="320" height="300"/>
         <image name="ShibaTestMenu2.gif" width="320" height="300"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
