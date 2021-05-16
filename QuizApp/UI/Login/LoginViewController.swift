@@ -239,11 +239,8 @@ class LoginViewController: BaseViewController {
         }
         
         adminViewController.setup(remoteAPI: self.remoteAPI)
-        
-        let navigationController = UINavigationController(rootViewController: adminViewController)
-        
-        navigationController.modalPresentationStyle = .fullScreen
-        self.present(navigationController, animated: true, completion: nil)
+        adminViewController.modalPresentationStyle = .fullScreen
+        self.present(adminViewController, animated: true, completion: nil)
         
     }
     
