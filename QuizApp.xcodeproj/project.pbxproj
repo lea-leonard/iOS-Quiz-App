@@ -61,7 +61,7 @@
 		52ADA8D1264F1DE8003742F6 /* MultipleChoiceQuestionForm+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADA8C3264F1DE8003742F6 /* MultipleChoiceQuestionForm+CoreDataProperties.swift */; };
 		52ADA8D2264F1DE8003742F6 /* Technology+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADA8C4264F1DE8003742F6 /* Technology+CoreDataClass.swift */; };
 		52ADA8D3264F1DE8003742F6 /* Technology+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52ADA8C5264F1DE8003742F6 /* Technology+CoreDataProperties.swift */; };
-		52AFF290264F71AB00D3B889 /* AdminContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFF28F264F71AB00D3B889 /* AdminContainerViewController.swift */; };
+		52AFF290264F71AB00D3B889 /* AdminDashboardChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AFF28F264F71AB00D3B889 /* AdminDashboardChildViewController.swift */; };
 		52C385ED264DA24200FEC438 /* UserExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C385EC264DA24200FEC438 /* UserExtensions.swift */; };
 		52C385EF264DB39700FEC438 /* QuizExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C385EE264DB39700FEC438 /* QuizExtensions.swift */; };
 		52C3860D264DC32700FEC438 /* InputValidationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C3860C264DC32700FEC438 /* InputValidationTextField.swift */; };
@@ -158,7 +158,7 @@
 		52ADA8C3264F1DE8003742F6 /* MultipleChoiceQuestionForm+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MultipleChoiceQuestionForm+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		52ADA8C4264F1DE8003742F6 /* Technology+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Technology+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		52ADA8C5264F1DE8003742F6 /* Technology+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Technology+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
-		52AFF28F264F71AB00D3B889 /* AdminContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminContainerViewController.swift; sourceTree = "<group>"; };
+		52AFF28F264F71AB00D3B889 /* AdminDashboardChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminDashboardChildViewController.swift; sourceTree = "<group>"; };
 		52C385EC264DA24200FEC438 /* UserExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserExtensions.swift; sourceTree = "<group>"; };
 		52C385EE264DB39700FEC438 /* QuizExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizExtensions.swift; sourceTree = "<group>"; };
 		52C3860C264DC32700FEC438 /* InputValidationTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputValidationTextField.swift; sourceTree = "<group>"; };
@@ -240,7 +240,7 @@
 		522E8EF0264F5F0100F166DB /* Admin */ = {
 			isa = PBXGroup;
 			children = (
-				52AFF28F264F71AB00D3B889 /* AdminContainerViewController.swift */,
+				52AFF28F264F71AB00D3B889 /* AdminDashboardChildViewController.swift */,
 				522E8EF1264F5F0100F166DB /* AdminDashboardViewController.swift */,
 				522E8F0D264F69F300F166DB /* AdminQuestionListPreviewCell.swift */,
 				522E8EF3264F5F0100F166DB /* AdminQuestionListViewController.swift */,
@@ -588,7 +588,7 @@
 				52C3860D264DC32700FEC438 /* InputValidationTextField.swift in Sources */,
 				522E8F0A264F5F0100F166DB /* AdminShortAnswerQuestionViewController.swift in Sources */,
 				5221052E264D73BF00FF89CB /* MainDashboardViewController.swift in Sources */,
-				52AFF290264F71AB00D3B889 /* AdminContainerViewController.swift in Sources */,
+				52AFF290264F71AB00D3B889 /* AdminDashboardChildViewController.swift in Sources */,
 				B7F94C3C264B8F5100E87C82 /* AboutUsViewController.swift in Sources */,
 				526B240F264D8CC200E1904C /* UserCurrentQuizTableViewCell.swift in Sources */,
 				527E90342649D9CE00FB7E71 /* LoginCredentials.swift in Sources */,

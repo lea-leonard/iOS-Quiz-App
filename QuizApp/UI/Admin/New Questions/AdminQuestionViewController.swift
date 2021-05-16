@@ -8,6 +8,6 @@
 import Foundation
 import UIKit
 
-class AdminQuestionViewController: AdminContainerViewController {
+class AdminQuestionViewController: AdminDashboardChildViewController {
     
 }

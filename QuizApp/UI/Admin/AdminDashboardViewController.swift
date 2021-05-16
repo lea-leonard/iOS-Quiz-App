@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class AdminDashboardViewController: BaseViewController, AdminContainerViewControllerDelegate {
+class AdminDashboardViewController: BaseViewController, AdminDashboardChildViewControllerDelegate {
     
     @IBOutlet weak var label1: UILabel!
     
@@ -19,9 +19,7 @@ class AdminDashboardViewController: BaseViewController, AdminContainerViewContro
     
     @IBOutlet weak var ellipsisImageButton: UIImageView!
     
-   
-    
-    var adminContainerViewController: AdminContainerViewController!
+    var currentChildViewController: AdminDashboardChildViewController!
     
     var remoteAPI: RemoteAPI!
     
@@ -41,15 +39,15 @@ class AdminDashboardViewController: BaseViewController, AdminContainerViewContro
             fatalError("Unable to get reference to UINavigationController")
         }
         
-        guard let adminContainerViewController = navigationController.viewControllers[0] as? AdminContainerViewController else {
+        guard let adminContainerViewController = navigationController.viewControllers[0] as? AdminDashboardChildViewController else {
             fatalError("Unable to get reference to AdminQuestionListViewController")
         }
         
-        self.adminContainerViewController = adminContainerViewController
+        self.currentChildViewController = adminContainerViewController
         
-        self.adminContainerViewController.delegate = self
+        self.currentChildViewController.delegate = self
         
-        self.adminContainerViewController.setup(remoteAPI: self.remoteAPI)
+        self.currentChildViewController.setup(remoteAPI: self.remoteAPI)
         
         let tapGestureRecognizer = UITapGestureRecognizer()
         
@@ -59,17 +57,17 @@ class AdminDashboardViewController: BaseViewController, AdminContainerViewContro
     }
     
     @objc func tappedEllipsisButton(_ sender: UIButton) {
-        let image = self.adminContainerViewController.ellipsisMenuIsOpen ? UIImage(systemName: "ellipsis") : UIImage(systemName: "chevron.up")
+        let image = self.currentChildViewController.ellipsisMenuIsOpen ? UIImage(systemName: "ellipsis") : UIImage(systemName: "chevron.up")
         self.ellipsisImageButton.image = image
 
-        self.adminContainerViewController.tappedEllipsisButtonAction()
+        self.currentChildViewController.tappedEllipsisButtonAction()
     }
     
     //MARK: AdminContainerViewControllerDelegate
     
     func updateViewsForContainer() {
-        self.label1.text = self.adminContainerViewController.label1Text
-        self.label2.text = self.adminContainerViewController.label2Text
+        self.label1.text = self.currentChildViewController.label1Text
+        self.label2.text = self.currentChildViewController.label2Text
     }
     @IBAction func logoutButton(_ sender: Any) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class AdminQuestionListViewController: AdminContainerViewController, UITableViewDelegate, UITableViewDataSource {
+class AdminQuestionListViewController: AdminDashboardChildViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
