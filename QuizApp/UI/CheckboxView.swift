@@ -71,12 +71,19 @@ class CheckboxView: UIView {
     func setBoxType(_ boxType: CheckboxView.BoxType) {
         self.boxType = boxType
         self.imageSet = boxType.imageSet
+        self.refreshImage()
     }
     
     func setOn(_ on: Bool) {
         self.isOn = on
         self.imageView.image = isOn ? self.imageSet.on : self.imageSet.off
     }
+    
+    
+    private func refreshImage() {
+        self.imageView.image = isOn ? self.imageSet.on : self.imageSet.off
+    }
+    
     
     @objc private func valueChanged() {
         self.setOn(!self.isOn)

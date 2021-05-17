@@ -8,18 +8,6 @@
 import Foundation
 import UIKit
 
-protocol AdminDashboardChildViewControllerDelegate: AnyObject {
-    var currentChildViewController: AdminDashboardChildViewController! { get set }
-    func updateViewsForContainer()
-    func updateCurrentChildViewController(_ viewController: AdminDashboardChildViewController)
-}
-
-extension AdminDashboardChildViewControllerDelegate {
-    func updateCurrentChildViewController(_ viewController: AdminDashboardChildViewController) {
-        self.currentChildViewController = viewController
-    }
-}
-
 class AdminDashboardChildViewController: BaseViewController {
     
     var remoteAPI: RemoteAPI!
@@ -32,7 +20,15 @@ class AdminDashboardChildViewController: BaseViewController {
         return nil
     }
     
-    weak var delegate: AdminDashboardChildViewControllerDelegate?
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    weak var dashboardViewController: AdminDashboardViewController?
     
     var ellipsisMenuIsOpen: Bool {
         return false
@@ -40,14 +36,9 @@ class AdminDashboardChildViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        delegate?.updateCurrentChildViewController(self)
     }
     
     func tappedEllipsisButtonAction() {
         
-    }
-    
-    func setup(remoteAPI: RemoteAPI) {
-        self.remoteAPI = remoteAPI
     }
 }

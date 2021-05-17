@@ -37,11 +37,17 @@ protocol RemoteAPI {
     
     func postNewShortAnswerQuestionForm(technologyName: String, level: QuizLevel, question: String, success: (ShortAnswerQuestionForm) -> Void, failure: (Error) -> Void)
     
+    
+    func changePassword(username: String, password: String, success: (Bool) -> Void, failure: (Error) -> Void)
+    
     // pass an empty array for technologies or levels
     // to get questions for all technologies or levels
     func getMultipleChoiceQuestionForms(technologies: [Technology], levels: [QuizLevel], success: ([MultipleChoiceQuestionForm]) -> Void, failure: (Error) -> Void)
     
     func getShortAnswerQuestionForms(technologies: [Technology], levels: [QuizLevel], success: ([ShortAnswerQuestionForm]) -> Void, failure: (Error) -> Void)
     
-    func changePassword(username: String, password: String, success: (Bool) -> Void, failure: (Error) -> Void)
+    func putMultipleChoiceQuestionForm(questionForm: MultipleChoiceQuestionForm, success: () -> Void, failure: (Error) -> Void)
+    
+    func putShortAnswerQuestionForm(questionForm: ShortAnswerQuestionForm, success: () -> Void, failure: (Error) -> Void)
+    
 }

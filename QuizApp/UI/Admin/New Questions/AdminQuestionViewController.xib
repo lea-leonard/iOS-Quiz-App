@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AdminQuestionViewController" customModule="QuizApp" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="tKY-jV-x0c" id="0P8-6u-Ydu"/>
                 <outlet property="view" destination="Ih4-ct-KFb" id="yn1-07-grW"/>
             </connections>
         </placeholder>

@@ -18,4 +18,20 @@ class BaseViewController: UIViewController {
         }
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func presentPickerActionSheet(title: String?, choices: [String], onSelection: @escaping ((Int) -> Void)) {
+        let alert = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+     
+        for choice in choices {
+            alert.addAction(UIAlertAction(title: choice, style: .default, handler: { action in
+                onSelection(choices.firstIndex(of: action.title ?? "") ?? 0)
+            }))
+        }
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
+            
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
 }

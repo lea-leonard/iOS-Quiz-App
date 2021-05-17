@@ -7,10 +7,17 @@
 
 import UIKit
 
-class AdminQuestionNewChoiceCell: UITableViewCell {
+class AdminQuestionNewChoiceCell: BaseTableViewCell {
 
+    @IBOutlet weak var newChoiceButton: UIButton!
+    
+    override class var reuseIdentifier: String {
+        "AdminQuestionNewChoiceCell"
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.selectionStyle = .none
         // Initialization code
     }
 
@@ -18,6 +25,10 @@ class AdminQuestionNewChoiceCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setButtonActive(_ active: Bool) {
+        self.newChoiceButton.setTitleColor(active ? .link : .secondaryLabel, for: .normal)
     }
     
 }

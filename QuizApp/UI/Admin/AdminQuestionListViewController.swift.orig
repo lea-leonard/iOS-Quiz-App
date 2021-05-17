@@ -202,6 +202,14 @@ class AdminQuestionListViewController: AdminDashboardChildViewController, UITabl
         return cell
     }
     
+<<<<<<< HEAD
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.contentView.backgroundColor = .black
+            headerView.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
+            headerView.textLabel?.textColor = .white
+            }
+=======
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewController: AdminDashboardChildViewController
         switch indexPath.section {
@@ -211,12 +219,6 @@ class AdminQuestionListViewController: AdminDashboardChildViewController, UITabl
             viewController = AdminShortAnswerQuestionViewController(remoteAPI: self.remoteAPI, questionForm: self.shortAnswerQuestionForms[indexPath.row])
         }
         self.dashboardViewController?.pushViewController(viewController, animated: true)
-	}
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if let headerView = view as? UITableViewHeaderFooterView {
-            headerView.contentView.backgroundColor = .black
-            headerView.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
-            headerView.textLabel?.textColor = .white
-            }
+>>>>>>> e4632fe (Added add multiple choice question to admin.)
     }
 }

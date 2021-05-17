@@ -449,6 +449,23 @@ class CoreDataHelper: RemoteAPI {
         }
     }
     
+    func putMultipleChoiceQuestionForm(questionForm: MultipleChoiceQuestionForm, success: () -> Void, failure: (Error) -> Void) {
+        do {
+            try self.viewContext.save()
+            success()
+        } catch {
+            failure(error)
+        }
+    }
+    
+    func putShortAnswerQuestionForm(questionForm: ShortAnswerQuestionForm, success: () -> Void, failure: (Error) -> Void) {
+        do {
+            try self.viewContext.save()
+            success()
+        } catch {
+            failure(error)
+        }
+    }
     
     
     // seed DB will only seed if there are no technologies

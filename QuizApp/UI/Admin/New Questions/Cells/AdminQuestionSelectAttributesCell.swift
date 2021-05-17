@@ -1,27 +1,24 @@
 //
-//  AdminQuestionButtonsCell.swift
+//  AdminQuestionSelectAttributesCell.swift
 //  QuizApp
 //
-//  Created by Robert Olieman on 5/14/21.
+//  Created by Robert Olieman on 5/16/21.
 //
 
 import UIKit
 
-class AdminQuestionButtonsCell: BaseTableViewCell {
+class AdminQuestionSelectAttributesCell: BaseTableViewCell {
 
-    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var technologyButton: UIButton!
     
-    @IBOutlet weak var clearButton: UIButton!
-    
-    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var levelButton: UIButton!
     
     override class var reuseIdentifier: String {
-        "AdminQuestionButtonsCell"
+        return "AdminQuestionSelectAttributesCell"
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.selectionStyle = .none
         // Initialization code
     }
 
@@ -30,6 +27,5 @@ class AdminQuestionButtonsCell: BaseTableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    
+
 }

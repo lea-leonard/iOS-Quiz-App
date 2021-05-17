@@ -110,14 +110,7 @@ class SignUpViewController: BaseViewController {
             }
             
             if alertMessages.count > 0 {
-                var message = ""
-                for i in 0..<alertMessages.count {
-                    message += alertMessages[i]
-                    if i < alertMessages.count - 1 {
-                        message += "\n\n"
-                    }
-                }
-                alertMessage = message
+                alertMessage = alertMessages.joined(separator: "\n\n")
             }
             
             completion((validUsername: validUsername, validPassword: validPassword, alertMessage: alertMessage))

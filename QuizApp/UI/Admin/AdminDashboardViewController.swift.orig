@@ -87,6 +87,10 @@ class AdminDashboardViewController: BaseViewController {
         self.label1.text = self.currentChildViewController.label1Text
         self.label2.text = self.currentChildViewController.label2Text
     }
+<<<<<<< HEAD
+    @IBAction func logoutButton(_ sender: Any) {
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
+=======
     
     func pushViewController(_ viewController: AdminDashboardChildViewController, animated: Bool) {
         guard let child = self.children.last else { return }
@@ -137,8 +141,6 @@ class AdminDashboardViewController: BaseViewController {
                 self.ellipsisImageButton.alpha = 1
             })
         }
-	}
-    @IBAction func logoutButton(_ sender: Any) {
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
+>>>>>>> e4632fe (Added add multiple choice question to admin.)
     }
 }
