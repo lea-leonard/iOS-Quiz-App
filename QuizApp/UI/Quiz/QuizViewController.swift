@@ -13,7 +13,9 @@ class QuizViewController: BaseViewController {
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var displayQuestionCount: UILabel!
     
+    @IBOutlet weak var signUpGif: UIImageView!
     var multipleChoiceQuestionViewController: MultipleChoiceQuestionViewController!
     
     var shortAnswerQuestionViewController: ShortAnswerQuestionViewController!
@@ -98,12 +100,16 @@ class QuizViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        previousButton.layer.backgroundColor = UIColor.red.cgColor
-        previousButton.layer.borderColor = UIColor.yellow.cgColor
-        nextButton.layer.backgroundColor = UIColor.red.cgColor
-        nextButton.layer.borderColor = UIColor.yellow.cgColor
+        previousButton.layer.backgroundColor = UIColor.black.cgColor
+        previousButton.layer.borderColor = UIColor.white.cgColor
+        nextButton.layer.backgroundColor = UIColor.black.cgColor
+        nextButton.layer.borderColor = UIColor.white.cgColor
+        submitButton.layer.cornerRadius = 10
         submitButton.layer.backgroundColor = UIColor.white.cgColor
         submitButton.layer.borderColor = UIColor.black.cgColor
+        signUpGif.loadGif(name: "ShibaSignUp")
+                
+        displayQuestionCount.text = "Question # \(currentQuestionIndex + 1) of \(questions.count)"
         
         self.questionContainerViewSuperview.translatesAutoresizingMaskIntoConstraints = false
         self.questionContainerViewSuperview.addSubview(multipleChoiceQuestionViewController.view)
@@ -115,6 +121,7 @@ class QuizViewController: BaseViewController {
     @IBAction func tappedNextQuestionButton(_ sender: UIButton) {
         if self.currentQuestionIndex < self.questions.count - 1 {
             self.updateQuestion(index: self.currentQuestionIndex + 1)
+            displayQuestionCount.text = "Question # \(currentQuestionIndex + 1) of \(questions.count)"
         }
         self.view.setNeedsLayout()
     }
@@ -122,6 +129,7 @@ class QuizViewController: BaseViewController {
     @IBAction func tappedPreviousQuestion(_ sender: UIButton) {
         if self.currentQuestionIndex > 0 {
             self.updateQuestion(index: self.currentQuestionIndex - 1)
+            displayQuestionCount.text = "Question #\(currentQuestionIndex - 1) of \(questions.count)"
         }
         self.view.setNeedsLayout()
     }

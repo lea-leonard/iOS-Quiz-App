@@ -27,9 +27,8 @@ class ShortAnswerQuestionViewController: QuizQuestionViewController, UITextViewD
         self.updateQuestionLabelAndTextView()
         
         questionLabel.layer.cornerRadius = 10
-        questionLabel.layer.borderWidth = 3
-        questionLabel.layer.backgroundColor = UIColor.red.cgColor
-        questionLabel.layer.borderColor = UIColor.yellow.cgColor
+        questionLabel.layer.borderWidth = 0
+        questionLabel.textColor = UIColor.white
         
         self.responseTextView.delegate = self
         
