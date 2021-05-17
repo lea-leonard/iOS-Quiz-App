@@ -40,9 +40,7 @@ class ForgotViewController: BaseViewController {
 
     @IBAction func submitButton(_ sender: Any) {
         
-        
-        
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
+        self.changePassword()
     }
     @IBAction func contactusButton(_ sender: Any) {
         let vc = ContactUsViewController()
@@ -50,5 +48,23 @@ class ForgotViewController: BaseViewController {
         vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true, completion: nil)
     }
+    
+    func changePassword() {
+            
+            
+            guard let password = newPasswordText.textNoEmptyString else {
+                fatalError("no password available in text field")
+            }
+            
+            
+        self.remoteAPI.changePassword(username: self.usernameText.text!, password: password) { changed in
+                self.presentBasicAlert(message: "Password successfully changed.", onDismiss: {
+                    KeychainHelper().deleteLoginCredentials()
+                    self.presentingViewController?.dismiss(animated: true, completion: nil)
+                })
+            } failure: { error in
+                //MARK: TODO: error
+            }
+        }
     
 }
