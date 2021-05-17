@@ -186,13 +186,16 @@ class CoreDataHelper: RemoteAPI {
         }
     }
     
-    func patchUser(user: User, newUsername: String?, newPassword: String?, success: () -> Void, failure: (Error) -> Void) {
+    func patchUser(user: User, newUsername: String?, newPassword: String?, newIsPremiumMember: Bool?, success: () -> Void, failure: (Error) -> Void) {
         do {
             if let newUsername = newUsername {
                 user.username = newUsername
             }
             if let newPassword = newPassword {
                 user.password = try bcryptHasher.hashPasword(newPassword)
+            }
+            if let newIsPremiumMember = newIsPremiumMember {
+                user.isPremiumMember = newIsPremiumMember
             }
             try self.viewContext.save()
             success()

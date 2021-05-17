@@ -17,7 +17,7 @@ protocol RemoteAPI {
     
     func postNewUser(username: String, password: String?, fullName: String?, success: (User) -> Void, failure: (Error) -> Void)
     
-    func patchUser(user: User, newUsername: String?, newPassword: String?, success: () -> Void, failure: (Error) -> Void)
+    func patchUser(user: User, newUsername: String?, newPassword: String?, newIsPremiumMember: Bool?, success: () -> Void, failure: (Error) -> Void)
     
     func putQuiz(quiz: Quiz, success: () -> Void, failure: (Error) -> Void)
     
