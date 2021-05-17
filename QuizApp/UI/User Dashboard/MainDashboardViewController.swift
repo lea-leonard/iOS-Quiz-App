@@ -12,6 +12,7 @@ class MainDashboardViewController: UIViewController {
     
     let loginManager: LoginManager = LoginManager()
     
+    @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var petalsGIF: UIImageView!
     @IBOutlet weak var shibaGIF: UIImageView!
@@ -58,13 +59,15 @@ class MainDashboardViewController: UIViewController {
         
         UIView.animate(withDuration: 1.2, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [], animations: {
             self.sakuraTree.center.x = 297
+            self.welcomeLabel.center.x = 86
+            self.usernameLabel.center.x = 86
         }, completion: nil)
         
         UIView.animate(withDuration: 1, delay: 0.9, options: [], animations: {
             self.petalsGIF.alpha = 1
         }, completion: nil)
         
-        UIView.animate(withDuration: 1, delay: 1.1, options: [], animations: {
+        UIView.animate(withDuration: 1, delay: 1.2, options: [], animations: {
             self.shibaGIF.alpha = 1
         }, completion: nil)
     }

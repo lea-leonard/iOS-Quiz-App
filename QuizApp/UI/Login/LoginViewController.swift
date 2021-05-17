@@ -130,6 +130,8 @@ class LoginViewController: BaseViewController {
             self.goToAdminPage()
         } else {
             
+            self.saveCredentialsIfNecessary(username: username, password: password)
+            
             self.remoteAPI.validateAndGetUser(username: username, password: password, success: { userOptional in
                 guard let user = userOptional else { return }
                 self.login(user: user)
