@@ -26,6 +26,7 @@
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="quizzes" inverseEntity="User"/>
     </entity>
     <entity name="ShortAnswerQuestion" representedClassName="ShortAnswerQuestion" syncable="YES">
+        <attribute name="correctAnswer" optional="YES" attributeType="String" defaultValueString=""/>
         <attribute name="level" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="question" attributeType="String" defaultValueString=""/>
         <attribute name="response" attributeType="String" defaultValueString=""/>
@@ -33,6 +34,7 @@
         <relationship name="technology" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Technology" inverseName="shortAnswerQuestions" inverseEntity="Technology"/>
     </entity>
     <entity name="ShortAnswerQuestionForm" representedClassName="ShortAnswerQuestionForm" syncable="YES">
+        <attribute name="correctAnswer" optional="YES" attributeType="String" defaultValueString=""/>
         <attribute name="level" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="question" attributeType="String" defaultValueString=""/>
         <relationship name="technology" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Technology" inverseName="shortAnswerQuestionForms" inverseEntity="Technology"/>
@@ -54,12 +56,12 @@
         <relationship name="quizzes" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Quiz" inverseName="user" inverseEntity="Quiz"/>
     </entity>
     <elements>
-        <element name="MultipleChoiceQuestion" positionX="-15692.37451171875" positionY="12498.42614746094" width="148.97998046875" height="148"/>
-        <element name="MultipleChoiceQuestionForm" positionX="-15664.14459228516" positionY="12320.62561035156" width="177.43359375" height="118"/>
-        <element name="Quiz" positionX="-16214.67596435547" positionY="12457.88946533204" width="128" height="148"/>
-        <element name="ShortAnswerQuestion" positionX="-15750.43591308594" positionY="12655.04934692383" width="159.442626953125" height="118"/>
-        <element name="ShortAnswerQuestionForm" positionX="-15730.939453125" positionY="12225.22198486328" width="174.4986572265625" height="88"/>
-        <element name="Technology" positionX="-16032.08013916015" positionY="12260.24261474609" width="186.4535522460938" height="148"/>
-        <element name="User" positionX="-16412.48266601562" positionY="12529.85586547851" width="128" height="118"/>
+        <element name="MultipleChoiceQuestion" positionX="-18167.54626464844" positionY="15491.29406738281" width="148.97998046875" height="148"/>
+        <element name="MultipleChoiceQuestionForm" positionX="-18139.31634521485" positionY="15313.49353027344" width="177.43359375" height="118"/>
+        <element name="Quiz" positionX="-18689.84771728516" positionY="15450.75738525392" width="128" height="148"/>
+        <element name="ShortAnswerQuestion" positionX="-18225.60766601562" positionY="15647.9172668457" width="159.442626953125" height="133"/>
+        <element name="ShortAnswerQuestionForm" positionX="-18206.11120605469" positionY="15218.08990478515" width="174.4986572265625" height="103"/>
+        <element name="Technology" positionX="-18507.25189208984" positionY="15253.11053466797" width="186.4535522460938" height="148"/>
+        <element name="User" positionX="-18887.65441894531" positionY="15522.72378540039" width="128" height="118"/>
     </elements>
 </model>

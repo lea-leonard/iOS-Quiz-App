@@ -20,6 +20,14 @@ class AdminMultipleChoiceQuestionViewController: AdminQuestionViewController {
         return cell
     }()
     
+    override var label1Text: String? {
+        "Multiple Choice Question"
+    }
+    
+    override var label2Text: String? {
+        nil
+    }
+    
     init(remoteAPI: RemoteAPI, questionForm: MultipleChoiceQuestionForm?, selectedTechnology: Technology?, level: QuizLevel?, technologies: [Technology]) {
         self.questionForm = questionForm
         self.choiceOptions = questionForm?.choiceOptions ?? ["", ""]
@@ -102,7 +110,7 @@ class AdminMultipleChoiceQuestionViewController: AdminQuestionViewController {
             questionForm.choiceOptions = choiceOptions
             questionForm.correctChoice = Int16(self.correctChoice)
             self.remoteAPI.putMultipleChoiceQuestionForm(questionForm: questionForm) {
-                self.presentBasicAlert(message: "Question successfully changed.", onDismiss: {
+                self.presentBasicAlert(message: "Question successfully saved.", onDismiss: {
                     self.dashboardViewController?.popViewController(animated: true)
                 })
             } failure: { error in
@@ -182,7 +190,7 @@ class AdminMultipleChoiceQuestionViewController: AdminQuestionViewController {
     }
     
 
-    //MARK: AdminQustionTextViewCellDelegate
+    //MARK: AdminQuestionTextViewCellDelegate
     
     override func textViewDidChange(_ textView: UITextView, inCell cell: AdminQuestionTextViewCell, heightChanged: Bool) {
         if cell == self.questionCell {

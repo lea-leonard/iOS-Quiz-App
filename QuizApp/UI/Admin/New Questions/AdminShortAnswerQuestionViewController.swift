@@ -11,13 +11,13 @@ import UIKit
 class AdminShortAnswerQuestionViewController: AdminQuestionViewController {
     
     var questionForm: ShortAnswerQuestionForm?
-    var answer: String
+    var correctAnswer: String
     
-    lazy var answerCell: AdminQuestionTextViewCell = {
+    lazy var correctAnswerCell: AdminQuestionTextViewCell = {
         let cell: AdminQuestionTextViewCell = self.dequeueReusableCell(cellType: .textView)
         cell.delegate = self
         cell.questionAnswerLabel.text = "Answer: "
-        cell.textView.text = self.answer
+        cell.textView.text = self.correctAnswer
         cell.correctChoiceLabel.isHidden = true
         cell.correctChoiceCheckbox.isHidden = true
         cell.deleteButton.isHidden = true
@@ -26,10 +26,18 @@ class AdminShortAnswerQuestionViewController: AdminQuestionViewController {
         return cell
     }()
     
+    override var label1Text: String? {
+        "Short Answer Question"
+    }
+    
+    override var label2Text: String? {
+        nil
+    }
+    
+    
     init(remoteAPI: RemoteAPI, questionForm: ShortAnswerQuestionForm?, selectedTechnology: Technology?, level: QuizLevel?, technologies: [Technology]) {
         self.questionForm = questionForm
-        self.answer = ""
-        //MARK: TODO: DOanswer.
+        self.correctAnswer = questionForm?.correctAnswer ?? ""
         super.init(question: questionForm?.question ?? "")
         self.remoteAPI = remoteAPI
         self.selectedTechnology = questionForm?.technology ?? selectedTechnology
@@ -58,16 +66,16 @@ class AdminShortAnswerQuestionViewController: AdminQuestionViewController {
     
     @objc override func tappedClearButton(sender: UIButton) {
         self.question = ""
-        self.answer = ""
+        self.correctAnswer = ""
         self.questionCell.textView.text = self.question
-        self.answerCell.textView.text = self.answer
+        self.correctAnswerCell.textView.text = self.correctAnswer
     }
     
     @objc override func tappedDoneButton(sender: UIButton) {
         let question = self.question.trimmingCharacters(in: .whitespacesAndNewlines)
-        let answer = self.answer.trimmingCharacters(in: .whitespacesAndNewlines)
+        let correctAnswer = self.correctAnswer.trimmingCharacters(in: .whitespacesAndNewlines)
         
-        let fieldsAreBlank: Bool = question == "" || answer == ""
+        let fieldsAreBlank: Bool = question == "" || correctAnswer == ""
         
         guard self.selectedTechnology != nil, self.level != nil, !fieldsAreBlank else {
             var alertMessages = [String]()
@@ -85,16 +93,16 @@ class AdminShortAnswerQuestionViewController: AdminQuestionViewController {
         
         if let questionForm = self.questionForm {
             questionForm.question = question
-            // MARK: TODO: DOanswer
+            questionForm.correctAnswer = correctAnswer
             self.remoteAPI.putShortAnswerQuestionForm(questionForm: questionForm) {
-                self.presentBasicAlert(message: "Question successfully changed.", onDismiss: {
+                self.presentBasicAlert(message: "Question successfully saved.", onDismiss: {
                     self.dashboardViewController?.popViewController(animated: true)
                 })
             } failure: { error in
                 print(error.localizedDescription)
             }
         } else {
-            self.remoteAPI.postNewShortAnswerQuestionForm(technologyName: self.selectedTechnology?.name ?? "?", level: self.level ?? .one, question: question, success: { _ in
+            self.remoteAPI.postNewShortAnswerQuestionForm(technologyName: self.selectedTechnology?.name ?? "?", level: self.level ?? .one, question: question, correctAnswer: correctAnswer, success: { _ in
                 self.presentBasicAlert(message: "Successfully created new question.", onDismiss: {
                     self.dashboardViewController?.popViewController(animated: true)
                 })
@@ -131,9 +139,23 @@ class AdminShortAnswerQuestionViewController: AdminQuestionViewController {
         case 1:
             return self.questionCell
         case 2:
-            return self.answerCell
+            return self.correctAnswerCell
         default:
             return self.buttonsCell
+        }
+    }
+    
+    //MARK: AdminQuestionTextViewCellDelegate
+    
+    override func textViewDidChange(_ textView: UITextView, inCell cell: AdminQuestionTextViewCell, heightChanged: Bool) {
+        if cell == self.questionCell {
+            self.question = textView.text
+        } else if cell == self.correctAnswerCell {
+            self.correctAnswer = textView.text
+        }
+        if heightChanged {
+            self.tableView.beginUpdates()
+            self.tableView.endUpdates()
         }
     }
 }

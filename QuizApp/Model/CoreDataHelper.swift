@@ -358,7 +358,7 @@ class CoreDataHelper: RemoteAPI {
         
     }
     
-    func postNewShortAnswerQuestionForm(technologyName: String, level: QuizLevel, question: String, success: (ShortAnswerQuestionForm) -> Void, failure: (Error) -> Void) {
+    func postNewShortAnswerQuestionForm(technologyName: String, level: QuizLevel, question: String, correctAnswer: String, success: (ShortAnswerQuestionForm) -> Void, failure: (Error) -> Void) {
         self.getTechnology(name: technologyName, success: { technologyOptional in
             guard let technology = technologyOptional else {
                 return failure(CoreDataHelperError.expectedDataUnavailable("No technology named \(technologyName) exists"))
@@ -367,12 +367,14 @@ class CoreDataHelper: RemoteAPI {
             form.technology = technology
             form.level = Int16(level.rawValue)
             form.question = question
+            form.correctAnswer = correctAnswer
             do {
                 try self.viewContext.save()
             } catch {
                 print(error.localizedDescription)
                 failure(error)
             }
+            success(form)
         }, failure: { error in
             failure(error)
         })
@@ -651,35 +653,35 @@ class CoreDataHelper: RemoteAPI {
                 ], correctChoice: 0)
             ]
             
-            let shortAnswerQuestions: [(technologyName: String, level: QuizLevel, question: String)] = [
-                (technologyName: "Swift", level: .one, question: "What is IOS Swift?"),
-                (technologyName: "Swift", level: .one, question: "What are the advantages of using Swift?"),
-                (technologyName: "Swift", level: .one, question: "Explain Swift vs. Objective-C."),
-                (technologyName: "Swift", level: .two, question: "Where can we test the apple iPhone apps if we don’t have an iOS device?"),
-                (technologyName: "Swift", level: .two, question: "What are the tools that are required to develop iOS applications?"),
-                (technologyName: "Swift", level: .two, question: "What are the most important features of swift?"),
-                (technologyName: "Swift", level: .three, question: "In Swift enumerations, what’s the difference between raw values and associated values?"),
-                (technologyName: "Swift", level: .three, question: "What is the bug and how does it affect memory? How can it be fixed?"),
-                (technologyName: "Swift", level: .three, question: "Can you explain Regular expression and Responder chain?"),
+            let shortAnswerQuestions: [(technologyName: String, level: QuizLevel, question: String, correctAnswer: String)] = [
+                (technologyName: "Swift", level: .one, question: "What is IOS Swift?", correctAnswer: "Answer"),
+                (technologyName: "Swift", level: .one, question: "What are the advantages of using Swift?", correctAnswer: "Answer"),
+                (technologyName: "Swift", level: .one, question: "Explain Swift vs. Objective-C.", correctAnswer: "Answer"),
+                (technologyName: "Swift", level: .two, question: "Where can we test the apple iPhone apps if we don’t have an iOS device?", correctAnswer: "Answer"),
+                (technologyName: "Swift", level: .two, question: "What are the tools that are required to develop iOS applications?", correctAnswer: "Answer"),
+                (technologyName: "Swift", level: .two, question: "What are the most important features of swift?", correctAnswer: "Answer"),
+                (technologyName: "Swift", level: .three, question: "In Swift enumerations, what’s the difference between raw values and associated values?", correctAnswer: "Answer"),
+                (technologyName: "Swift", level: .three, question: "What is the bug and how does it affect memory? How can it be fixed?", correctAnswer: "Answer"),
+                (technologyName: "Swift", level: .three, question: "Can you explain Regular expression and Responder chain?", correctAnswer: "Answer"),
                 
-                (technologyName: "Java", level: .one, question: "What are the main features of Java?"),
-                (technologyName: "Java", level: .one, question: "What are the fundamental principles of object oriented programming?"),
-                (technologyName: "Java", level: .one, question: "What do you mean by inheritance in java?"),
-                (technologyName: "Java", level: .two, question: "What is constructor overloading? What is the use of constructor overloading?"),
-                (technologyName: "Java", level: .two, question: "What is polymorphism in java?"),
-                (technologyName: "Java", level: .two, question: "What is the method overriding?"),
-                (technologyName: "Java", level: .three, question: "Why is multiple inheritances not supported in Java?"),
-                (technologyName: "Java", level: .three, question: "Why is String immutable in Java?"),
-                (technologyName: "Java", level: .three, question: "Why char array is preferred to store password than String in Java?"),
-                (technologyName: "JavaScript", level: .one, question: "Enumerate the differences between Java and JavaScript?"),
-                (technologyName: "JavaScript", level: .one, question: "What are JavaScript Data Types?"),
-                (technologyName: "JavaScript", level: .one, question: "Which is faster between JavaScript and an ASP script?"),
-                (technologyName: "JavaScript", level: .two, question: "Is it possible to break JavaScript Code into several lines?"),
-                (technologyName: "JavaScript", level: .two, question: "What are undeclared and undefined variables?"),
-                (technologyName: "JavaScript", level: .two, question: "What are global variables? How are these variable declared?"),
-                (technologyName: "JavaScript", level: .three, question: "How does the \"this\" keyword differ inside a regular function vs an arrow function?"),
-                (technologyName: "JavaScript", level: .three, question: "What is IIFEs (Immediately Invoked Function Expressions)?"),
-                (technologyName: "JavaScript", level: .three, question: "What is generator in JS?")
+                (technologyName: "Java", level: .one, question: "What are the main features of Java?", correctAnswer: "Answer"),
+                (technologyName: "Java", level: .one, question: "What are the fundamental principles of object oriented programming?", correctAnswer: "Answer"),
+                (technologyName: "Java", level: .one, question: "What do you mean by inheritance in java?", correctAnswer: "Answer"),
+                (technologyName: "Java", level: .two, question: "What is constructor overloading? What is the use of constructor overloading?", correctAnswer: "Answer"),
+                (technologyName: "Java", level: .two, question: "What is polymorphism in java?", correctAnswer: "Answer"),
+                (technologyName: "Java", level: .two, question: "What is the method overriding?", correctAnswer: "Answer"),
+                (technologyName: "Java", level: .three, question: "Why is multiple inheritances not supported in Java?", correctAnswer: "Answer"),
+                (technologyName: "Java", level: .three, question: "Why is String immutable in Java?", correctAnswer: "Answer"),
+                (technologyName: "Java", level: .three, question: "Why char array is preferred to store password than String in Java?", correctAnswer: "Answer"),
+                (technologyName: "JavaScript", level: .one, question: "Enumerate the differences between Java and JavaScript?", correctAnswer: "Answer"),
+                (technologyName: "JavaScript", level: .one, question: "What are JavaScript Data Types?", correctAnswer: "Answer"),
+                (technologyName: "JavaScript", level: .one, question: "Which is faster between JavaScript and an ASP script?", correctAnswer: "Answer"),
+                (technologyName: "JavaScript", level: .two, question: "Is it possible to break JavaScript Code into several lines?", correctAnswer: "Answer"),
+                (technologyName: "JavaScript", level: .two, question: "What are undeclared and undefined variables?", correctAnswer: "Answer"),
+                (technologyName: "JavaScript", level: .two, question: "What are global variables? How are these variable declared?", correctAnswer: "Answer"),
+                (technologyName: "JavaScript", level: .three, question: "How does the \"this\" keyword differ inside a regular function vs an arrow function?", correctAnswer: "Answer"),
+                (technologyName: "JavaScript", level: .three, question: "What is IIFEs (Immediately Invoked Function Expressions)?", correctAnswer: "Answer"),
+                (technologyName: "JavaScript", level: .three, question: "What is generator in JS?", correctAnswer: "Answer")
             ]
             
             for question in multipleChoiceQuestions {
@@ -690,7 +692,7 @@ class CoreDataHelper: RemoteAPI {
             }
             
             for question in shortAnswerQuestions {
-                self.postNewShortAnswerQuestionForm(technologyName: question.technologyName, level: question.level, question: question.question, success: {_ in
+                self.postNewShortAnswerQuestionForm(technologyName: question.technologyName, level: question.level, question: question.question, correctAnswer: question.correctAnswer, success: {_ in
                     
                 }, failure: {_ in
                     

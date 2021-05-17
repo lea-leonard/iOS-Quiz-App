@@ -2,7 +2,7 @@
 //  ShortAnswerQuestionForm+CoreDataProperties.swift
 //  QuizApp
 //
-//  Created by Robert Olieman on 5/14/21.
+//  Created by Robert Olieman on 5/16/21.
 //
 //
 
@@ -18,6 +18,7 @@ extension ShortAnswerQuestionForm {
 
     @NSManaged public var level: Int16
     @NSManaged public var question: String?
+    @NSManaged public var correctAnswer: String?
     @NSManaged public var technology: Technology?
 
 }

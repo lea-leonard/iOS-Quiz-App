@@ -35,16 +35,21 @@ class AdminQuestionListViewController: AdminDashboardChildViewController, UITabl
     override var ellipsisMenuIsOpen: Bool {
         return self.selectionSuperviewIsOpen
     }
-    
+
     override var label1Text: String? {
-        return self.selectedTechnology?.name ?? "Any"
+        if self.selectedTechnology == nil && self.selectedLevel == nil {
+            return "All Questions"
+        }
+        return self.selectedTechnology?.name ?? "All"
     }
     
     override var label2Text: String? {
-        return self.selectedLevel?.description ?? "Any"
+        if self.selectedTechnology == nil && self.selectedLevel == nil {
+            return nil
+        }
+        return self.selectedLevel?.description ?? "All levels"
         
     }
-    
     var selectedTechnology: Technology? {
         let index = self.technologySegmentedControl.selectedSegmentIndex
         if index == 0 { return nil }
@@ -72,6 +77,11 @@ class AdminQuestionListViewController: AdminDashboardChildViewController, UITabl
         
         self.dashboardViewController?.updateViewsForContainer()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         self.levelSegmentedControl.removeAllSegments()
         self.levelSegmentedControl.insertSegment(withTitle: "Any", at: self.levelSegmentedControl.numberOfSegments, animated: false)
         for level in QuizLevel.allCases {
@@ -91,11 +101,6 @@ class AdminQuestionListViewController: AdminDashboardChildViewController, UITabl
         }, failure: { error in
             
         })
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.tableView.reloadData()
     }
     
     @IBAction func technologySegmentedControlValueChanged(_ sender: UISegmentedControl) {

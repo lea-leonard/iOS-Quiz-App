@@ -87,12 +87,15 @@ class AdminDashboardViewController: BaseViewController {
     func updateViewsForContainer() {
         self.label1.text = self.currentChildViewController.label1Text
         self.label2.text = self.currentChildViewController.label2Text
+        self.label1.isHidden = self.label1.text == nil
+        self.label2.isHidden = self.label2.text == nil
     }
     
     func pushViewController(_ viewController: AdminDashboardChildViewController, animated: Bool) {
         guard let child = self.children.last else { return }
         self.currentChildViewController = viewController
         viewController.dashboardViewController = self
+        self.updateViewsForContainer()
         if let navigationController = child as? UINavigationController {
             navigationController.pushViewController(viewController, animated: animated)
         } else if let childViewController = child as? AdminDashboardChildViewController {
@@ -100,15 +103,16 @@ class AdminDashboardViewController: BaseViewController {
             childViewController.modalPresentationStyle = .fullScreen
             childViewController.present(viewController, animated: animated, completion: nil)
         }
-        if !(viewController is AdminQuestionListViewController) {
-            
-            UIView.animate(withDuration: 0.4, animations: {
+        
+        UIView.animate(withDuration: 0.4, animations: {
+            if !(viewController is AdminQuestionListViewController) {
                 self.plusButton.alpha = 0
                 self.ellipsisImageButton.alpha = 0
-            })
-        }
+            }
+        })
+        
     }
-    
+
     func popViewController(animated: Bool) {
         guard let child = self.children.last else { return }
         let destination: AdminDashboardChildViewController
@@ -121,6 +125,7 @@ class AdminDashboardViewController: BaseViewController {
             }
             destination = vc
             self.currentChildViewController = destination
+            self.updateViewsForContainer()
             navigationController.popViewController(animated: true)
         } else if child is AdminDashboardChildViewController {
             guard let presentingViewController = child.presentingViewController else {
@@ -130,12 +135,14 @@ class AdminDashboardViewController: BaseViewController {
                 return print("View controller is not AdminDashboardChildViewController")
             }
             destination = vc
+            self.updateViewsForContainer()
             presentingViewController.dismiss(animated: true, completion: nil)
         } else { return }
         if (destination is AdminQuestionListViewController) {
             UIView.animate(withDuration: 0.4, animations: {
                 self.plusButton.alpha = 1
                 self.ellipsisImageButton.alpha = 1
+                self.updateViewsForContainer()
             })
         }
 	}
