@@ -93,6 +93,7 @@ class MultipleChoiceQuestionViewController: QuizQuestionViewController, Multiple
     func checkboxDidChange(inCell cell: MultipleChoiceTableViewCell, checkboxView: CheckboxView) {
         guard let selectedIndex = self.choicesTableView.indexPath(for: cell)?.row else { return }
         self.question.userChoice = Int16(selectedIndex)
+        print(question.userChoice)
         self.choicesTableView.reloadData()
         guard let quiz = self.question.quiz else { return }
         self.remoteAPI.putQuiz(quiz: quiz, success: {

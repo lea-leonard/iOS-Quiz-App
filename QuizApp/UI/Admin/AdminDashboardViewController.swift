@@ -10,9 +10,9 @@ import UIKit
 
 class AdminDashboardViewController: BaseViewController {
     
-    @IBOutlet weak var label1: UILabel!
+    @IBOutlet weak var label1: InsetLabel!
     
-    @IBOutlet weak var label2: UILabel!
+    @IBOutlet weak var label2: InsetLabel!
     
     @IBOutlet weak var shibaGIF: UIImageView!
     @IBOutlet weak var petalsGIF: UIImageView!

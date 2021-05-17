@@ -52,6 +52,7 @@
 		524605312652D83400C19B49 /* AdminShortAnswerQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524605252652D83300C19B49 /* AdminShortAnswerQuestionViewController.swift */; };
 		524605322652D83400C19B49 /* AdminQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524605262652D83300C19B49 /* AdminQuestionViewController.swift */; };
 		524605332652D83400C19B49 /* AdminMultipleChoiceQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524605272652D83300C19B49 /* AdminMultipleChoiceQuestionViewController.swift */; };
+		524605352652E4DB00C19B49 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524605342652E4DB00C19B49 /* InsetLabel.swift */; };
 		526B240F264D8CC200E1904C /* UserCurrentQuizTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B240C264D8CC200E1904C /* UserCurrentQuizTableViewCell.swift */; };
 		526B2410264D8CC200E1904C /* UserAvailableQuizTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B240D264D8CC200E1904C /* UserAvailableQuizTableViewCell.swift */; };
 		526B2411264D8CC200E1904C /* UserCompletedQuizTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B240E264D8CC200E1904C /* UserCompletedQuizTableViewCell.swift */; };
@@ -152,6 +153,7 @@
 		524605252652D83300C19B49 /* AdminShortAnswerQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminShortAnswerQuestionViewController.swift; sourceTree = "<group>"; };
 		524605262652D83300C19B49 /* AdminQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminQuestionViewController.swift; sourceTree = "<group>"; };
 		524605272652D83300C19B49 /* AdminMultipleChoiceQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminMultipleChoiceQuestionViewController.swift; sourceTree = "<group>"; };
+		524605342652E4DB00C19B49 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
 		526B240C264D8CC200E1904C /* UserCurrentQuizTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCurrentQuizTableViewCell.swift; sourceTree = "<group>"; };
 		526B240D264D8CC200E1904C /* UserAvailableQuizTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAvailableQuizTableViewCell.swift; sourceTree = "<group>"; };
 		526B240E264D8CC200E1904C /* UserCompletedQuizTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCompletedQuizTableViewCell.swift; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 		52D90BA02649D45700F952D0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				524605342652E4DB00C19B49 /* InsetLabel.swift */,
 				52C3860C264DC32700FEC438 /* InputValidationTextField.swift */,
 				522BFEF5264EE06200A92745 /* InputValidationPasswordTextField.swift */,
 				52C38610264DCD2D00FEC438 /* DownButtonAccessoryView.swift */,
@@ -635,6 +638,7 @@
 				B7F94C44264B8F5100E87C82 /* SwiftGIF.swift in Sources */,
 				522F5E47264C336500E9C3DE /* QuizViewController.swift in Sources */,
 				52D90B9D2649D24F00F952D0 /* CoreDataHelper.swift in Sources */,
+				524605352652E4DB00C19B49 /* InsetLabel.swift in Sources */,
 				B7F94C46264B8F5100E87C82 /* ContactUsViewController.swift in Sources */,
 				522E8F12264F6BE400F166DB /* MultipleChoiceQuestionFormExtensions.swift in Sources */,
 				524604E12651F62800C19B49 /* MultipleChoiceQuestionForm+CoreDataClass.swift in Sources */,

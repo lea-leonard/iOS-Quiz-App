@@ -19,6 +19,7 @@ class AdminQuestionSelectAttributesCell: BaseTableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.selectionStyle = .none
         // Initialization code
     }
 
