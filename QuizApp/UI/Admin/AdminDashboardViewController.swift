@@ -85,6 +85,8 @@ class AdminDashboardViewController: BaseViewController {
     }
     
     func updateViewsForContainer() {
+        self.label1.isHidden = self.currentChildViewController.label1Text == nil
+        self.label2.isHidden = self.currentChildViewController.label2Text == nil
         self.label1.text = self.currentChildViewController.label1Text
         self.label2.text = self.currentChildViewController.label2Text
         self.label1.isHidden = self.label1.text == nil
