@@ -13,6 +13,8 @@ class SignUpViewController: BaseViewController {
     
     @IBOutlet weak var passwordText: InputValidationPasswordTextField!
     
+    @IBOutlet weak var shibaGIF: UIImageView!
+    
     @IBOutlet weak var signupButton: UIButton!
     
     let remoteAPI: RemoteAPI
@@ -29,6 +31,8 @@ class SignUpViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        shibaGIF.loadGif(name: "ShibaSignUp")
+        
         signupButton.layer.borderColor = UIColor.black.cgColor
         signupButton.layer.backgroundColor = UIColor.white.cgColor
         usernameText.layer.borderColor = UIColor.white.cgColor

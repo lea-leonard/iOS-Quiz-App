@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpViewController" customModule="QuizApp" customModuleProvider="target">
             <connections>
                 <outlet property="passwordText" destination="ej6-Sg-785" id="oor-y1-M8s"/>
+                <outlet property="shibaGIF" destination="P7S-ql-9fm" id="qQk-UG-J65"/>
                 <outlet property="signupButton" destination="6Kj-Ey-i2b" id="SLh-0t-2DW"/>
                 <outlet property="usernameText" destination="v8W-Rw-PYZ" id="V2F-UE-DAb"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>

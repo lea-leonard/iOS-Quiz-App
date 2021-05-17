@@ -27,7 +27,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SakuraTreeFlipped" translatesAutoresizingMaskIntoConstraints="NO" id="1rp-Gc-zdu">
-                                <rect key="frame" x="107" y="115" width="380" height="177"/>
+                                <rect key="frame" x="500" y="115" width="380" height="177"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="le6-L5-spF">
@@ -134,6 +134,7 @@
                     <connections>
                         <outlet property="backButton" destination="elv-sG-Cd1" id="Awg-YA-gtS"/>
                         <outlet property="petalsGIF" destination="K54-GF-Ofx" id="4cB-NV-YDD"/>
+                        <outlet property="sakuraTree" destination="1rp-Gc-zdu" id="gRV-hQ-Cgk"/>
                         <outlet property="shibaGIF" destination="ObD-Nk-yAv" id="vQD-77-ZIK"/>
                         <outlet property="usernameLabel" destination="YPX-qW-KHb" id="zAR-x7-ihX"/>
                     </connections>

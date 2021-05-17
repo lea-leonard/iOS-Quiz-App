@@ -55,7 +55,7 @@ class LoginViewController: BaseViewController {
             
         }, completion: nil)
         
-        UIView.animate(withDuration: 0.5, delay: 1.2, animations: {
+        UIView.animate(withDuration: 0.5, delay: 1.3, animations: {
             self.petalsGIF.alpha = 1.0
         })
         

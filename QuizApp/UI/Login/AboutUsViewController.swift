@@ -11,6 +11,10 @@ class AboutUsViewController: BaseViewController {
 
     @IBOutlet weak var shibaGIF: UIImageView!
    
+    @IBOutlet weak var textView: UITextView!
+    
+    @IBOutlet weak var backButton: UIButton!
+    
     let remoteAPI: RemoteAPI
     
     init(remoteAPI: RemoteAPI) {
@@ -25,10 +29,16 @@ class AboutUsViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        backButton.layer.backgroundColor = UIColor.white.cgColor
+        textView.layer.borderColor = UIColor.white.cgColor
+        
         shibaGIF.loadGif(name: "ShibaAbout")
     }
 
-
+    @IBAction func backButton(_ sender: Any) {
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 

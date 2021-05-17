@@ -42,7 +42,7 @@ class ForgotViewController: BaseViewController {
         
         
         
-        //self.presentingViewController?.dismiss(animated: true, completion: nil)
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     @IBAction func contactusButton(_ sender: Any) {
         let vc = ContactUsViewController()

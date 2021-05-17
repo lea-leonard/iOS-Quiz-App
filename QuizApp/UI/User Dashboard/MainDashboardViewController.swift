@@ -16,6 +16,7 @@ class MainDashboardViewController: UIViewController {
     @IBOutlet weak var petalsGIF: UIImageView!
     @IBOutlet weak var shibaGIF: UIImageView!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var sakuraTree: UIImageView!
     
     weak var userDashboardViewController: UserDashboardViewController!
     
@@ -31,6 +32,9 @@ class MainDashboardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.petalsGIF.alpha = 0
+        self.shibaGIF.alpha = 0
         
         petalsGIF.loadGif(name: "Petals")
         shibaGIF.loadGif(name: "ShibaTestMenu")
@@ -50,6 +54,20 @@ class MainDashboardViewController: UIViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+        UIView.animate(withDuration: 1.2, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [], animations: {
+            self.sakuraTree.center.x = 297
+        }, completion: nil)
+        
+        UIView.animate(withDuration: 1, delay: 0.9, options: [], animations: {
+            self.petalsGIF.alpha = 1
+        }, completion: nil)
+        
+        UIView.animate(withDuration: 1, delay: 1.1, options: [], animations: {
+            self.shibaGIF.alpha = 1
+        }, completion: nil)
+    }
     
     
     func updateUsernameLabel() {
