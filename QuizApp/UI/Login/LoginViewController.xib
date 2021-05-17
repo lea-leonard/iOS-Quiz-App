@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -23,6 +23,8 @@
                 <outlet property="rememberSwitch" destination="zxJ-6u-WIG" id="OZ2-WU-iqj"/>
                 <outlet property="shibaGIF" destination="jUn-Hs-GkE" id="EQf-eG-Ch3"/>
                 <outlet property="signupButton" destination="3lS-NU-iIg" id="jUw-0P-Oh1"/>
+                <outlet property="treeOne" destination="MTN-k6-0Q2" id="O49-Nh-NYd"/>
+                <outlet property="treeTwo" destination="uOW-JL-Lfv" id="eYV-zx-Oxa"/>
                 <outlet property="usernameText" destination="TCy-Ep-1qV" id="hML-dy-WqO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

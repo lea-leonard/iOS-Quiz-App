@@ -14,6 +14,8 @@ class LoginViewController: BaseViewController {
     
     @IBOutlet weak var shibaGIF: UIImageView!
     @IBOutlet weak var petalsGIF: UIImageView!
+    @IBOutlet weak var treeOne: UIImageView!
+    @IBOutlet weak var treeTwo: UIImageView!
     @IBOutlet weak var usernameText: InputValidationTextField!
     @IBOutlet weak var passwordText: InputValidationPasswordTextField!
     @IBOutlet weak var forgotButton: UIButton!
@@ -38,6 +40,24 @@ class LoginViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.treeOne.center.y = -100
+        self.treeTwo.center.y = -100
+        self.petalsGIF.alpha = 0.0
+        
+        shibaGIF.transform = CGAffineTransform(scaleX: 0.3, y: 2)
+        UIView.animate(withDuration: 1, delay: 0.1, usingSpringWithDamping: 0.3, initialSpringVelocity: 0, options: .curveLinear, animations: {self.shibaGIF.transform = .identity}, completion: nil)
+        
+        UIView.animate(withDuration: 2, delay: 0.6, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [], animations: {
+            
+            self.treeOne.center.y = 10
+            self.treeTwo.center.y = 10
+            
+        }, completion: nil)
+        
+        UIView.animate(withDuration: 0.5, delay: 1.2, animations: {
+            self.petalsGIF.alpha = 1.0
+        })
         
         shibaGIF.loadGif(name: "ShibaLogin")
         petalsGIF.loadGif(name: "Petals")
