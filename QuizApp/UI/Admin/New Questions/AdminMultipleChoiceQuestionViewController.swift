@@ -8,26 +8,11 @@
 import Foundation
 import UIKit
 
-class AdminMultipleChoiceQuestionViewController: AdminQuestionViewController, AdminQuestionTextViewCellDelegate {
+class AdminMultipleChoiceQuestionViewController: AdminQuestionViewController {
 
     let questionForm: MultipleChoiceQuestionForm?
-    var question: String
     var choiceOptions: [String]
     var correctChoice: Int
-   
-    
-    lazy var selectAttributesCell: AdminQuestionSelectAttributesCell = {
-        let cell: AdminQuestionSelectAttributesCell = self.dequeueReusableCell(cellType: .selectAttributes)
-        cell.technologyButton.addTarget(self, action: #selector(self.tappedTechnologyButton(sender:)), for: .touchUpInside)
-        cell.levelButton.addTarget(self, action: #selector(self.tappedLevelButton(sender:)), for: .touchUpInside)
-        return cell
-    }()
-    
-    lazy var questionCell: AdminQuestionTextViewCell = {
-        let cell: AdminQuestionTextViewCell = self.dequeueReusableCell(cellType: .textView)
-        cell.delegate = self
-        return cell
-    }()
 
     lazy var newChoiceCell: AdminQuestionNewChoiceCell = {
         let cell: AdminQuestionNewChoiceCell = self.dequeueReusableCell(cellType: .newChoice)
@@ -35,21 +20,11 @@ class AdminMultipleChoiceQuestionViewController: AdminQuestionViewController, Ad
         return cell
     }()
     
-    lazy var buttonsCell: AdminQuestionButtonsCell = {
-        let cell: AdminQuestionButtonsCell = self.dequeueReusableCell(cellType: .buttons)
-        cell.doneButton.addTarget(self, action: #selector(self.tappedDoneButton(sender:)), for: .touchUpInside)
-        cell.clearButton.addTarget(self, action: #selector(self.tappedClearButton(sender:)), for: .touchUpInside)
-        cell.cancelButton.addTarget(self, action: #selector(self.tappedCancelButton(sender:)), for: .touchUpInside)
-        return cell
-    }()
-    
-    
     init(remoteAPI: RemoteAPI, questionForm: MultipleChoiceQuestionForm?, selectedTechnology: Technology?, level: QuizLevel?, technologies: [Technology]) {
         self.questionForm = questionForm
-        self.question = questionForm?.question ?? ""
         self.choiceOptions = questionForm?.choiceOptions ?? ["", ""]
         self.correctChoice = Int(questionForm?.correctChoice ?? 0)
-        super.init(nibName: "AdminQuestionViewController", bundle: nil)
+        super.init(question: questionForm?.question ?? "")
         self.selectedTechnology = questionForm?.technology ?? selectedTechnology
         self.level = {
             if let level = questionForm?.level {
@@ -71,13 +46,6 @@ class AdminMultipleChoiceQuestionViewController: AdminQuestionViewController, Ad
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.questionCell.questionAnswerLabel.text = "Question: "
-        self.questionCell.textView.text = self.question
-        self.questionCell.correctChoiceLabel.isHidden = true
-        self.questionCell.correctChoiceCheckbox.isHidden = true
-        self.questionCell.deleteButton.isHidden = true
-        self.questionCell.questionAnswerLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        self.questionCell.textView.font = UIFont.systemFont(ofSize: 18)
         self.updateNewChoiceCellButtonActive()
     }
     
@@ -108,7 +76,7 @@ class AdminMultipleChoiceQuestionViewController: AdminQuestionViewController, Ad
         self.newChoiceCell.setButtonActive(self.choiceOptions.count < 5)
     }
     
-    @objc func tappedDoneButton(sender: UIButton) {
+    @objc override func tappedDoneButton(sender: UIButton) {
         
         let question = self.question.trimmingCharacters(in: .whitespacesAndNewlines)
         let choiceOptions: [String] = self.choiceOptions.map({$0.trimmingCharacters(in: .whitespacesAndNewlines)})
@@ -141,7 +109,7 @@ class AdminMultipleChoiceQuestionViewController: AdminQuestionViewController, Ad
                 print(error.localizedDescription)
             }
         } else {
-            self.remoteAPI.postNewMultipleChoiceQuestionForm(technologyName: self.selectedTechnology?.name ?? "?", level: .one, question: question, choiceOptions: choiceOptions, correctChoice: self.correctChoice, success: { _ in
+            self.remoteAPI.postNewMultipleChoiceQuestionForm(technologyName: self.selectedTechnology?.name ?? "?", level: self.level ?? .one, question: question, choiceOptions: choiceOptions, correctChoice: self.correctChoice, success: { _ in
                 self.presentBasicAlert(message: "Successfully created new question.", onDismiss: {
                     self.dashboardViewController?.popViewController(animated: true)
                 })
@@ -152,7 +120,7 @@ class AdminMultipleChoiceQuestionViewController: AdminQuestionViewController, Ad
         
     }
     
-    @objc func tappedClearButton(sender: UIButton) {
+    @objc override func tappedClearButton(sender: UIButton) {
         self.tableView.beginUpdates()
         self.question = ""
         self.questionCell.textView.text = self.question
@@ -169,31 +137,6 @@ class AdminMultipleChoiceQuestionViewController: AdminQuestionViewController, Ad
         }
         self.choiceOptions.removeSubrange(2..<self.choiceOptions.count)
         self.tableView.endUpdates()
-    }
-    
-    @objc func tappedCancelButton(sender: UIButton) {
-        self.dashboardViewController?.popViewController(animated: true)
-    }
-    
-    @objc func tappedTechnologyButton(sender: UIButton) {
-        self.presentPickerActionSheet(title: "Select technology", choices: self.technologies.map({ $0.name ?? "?"})) { selectedIndex in
-            print(selectedIndex)
-            self.selectedTechnology = self.technologies[selectedIndex]
-            self.updateSelectAttributesButtons()
-        }
-    }
-    
-    @objc func tappedLevelButton(sender: UIButton) {
-        self.presentPickerActionSheet(title: "Select level", choices: QuizLevel.allCases.map({ $0.description })) { selectedIndex in
-            print(selectedIndex)
-            self.level = QuizLevel.allCases[selectedIndex]
-            self.updateSelectAttributesButtons()
-        }
-    }
-    
-    func updateSelectAttributesButtons() {
-        self.selectAttributesCell.technologyButton.setTitle(self.selectedTechnology?.name ?? "Technology", for: .normal)
-        self.selectAttributesCell.levelButton.setTitle(self.level?.description ?? "Level", for: .normal)
     }
     
     //MARK: UITableView
@@ -241,7 +184,7 @@ class AdminMultipleChoiceQuestionViewController: AdminQuestionViewController, Ad
 
     //MARK: AdminQustionTextViewCellDelegate
     
-    func textViewDidChange(_ textView: UITextView, inCell cell: AdminQuestionTextViewCell, heightChanged: Bool) {
+    override func textViewDidChange(_ textView: UITextView, inCell cell: AdminQuestionTextViewCell, heightChanged: Bool) {
         if cell == self.questionCell {
             self.question = textView.text
         } else if let indexPath = self.tableView.indexPath(for: cell) {
@@ -253,7 +196,7 @@ class AdminMultipleChoiceQuestionViewController: AdminQuestionViewController, Ad
         }
     }
     
-    func checkboxViewChanged(inCell cell: AdminQuestionTextViewCell, checkboxView: CheckboxView) {
+    override func checkboxViewChanged(inCell cell: AdminQuestionTextViewCell, checkboxView: CheckboxView) {
         guard let indexPath = self.tableView.indexPath(for: cell) else { return }
         guard self.correctChoice != indexPath.row else {
             checkboxView.setOn(true)
@@ -271,7 +214,7 @@ class AdminMultipleChoiceQuestionViewController: AdminQuestionViewController, Ad
         }
     }
 
-    func tappedDeleteButton(inCell cell: AdminQuestionTextViewCell) {
+    override func tappedDeleteButton(inCell cell: AdminQuestionTextViewCell) {
         guard let indexPath = self.tableView.indexPath(for: cell) else { return }
         guard self.choiceOptions.count > 2 else {
             return self.presentBasicAlert(message: "Question must have at least 2 choices")

@@ -8,7 +8,8 @@
 import Foundation
 import UIKit
 
-class AdminQuestionViewController: AdminDashboardChildViewController, UITableViewDelegate, UITableViewDataSource {
+class AdminQuestionViewController: AdminDashboardChildViewController, UITableViewDelegate, UITableViewDataSource, AdminQuestionTextViewCellDelegate {
+    
     
     enum CellType {
         case textView
@@ -36,10 +37,48 @@ class AdminQuestionViewController: AdminDashboardChildViewController, UITableVie
  
     @IBOutlet weak var tableView: UITableView!
     
+    var question: String
     var selectedTechnology: Technology?
     var level: QuizLevel?
     var technologies = [Technology]()
     
+    lazy var questionCell: AdminQuestionTextViewCell = {
+        let cell: AdminQuestionTextViewCell = self.dequeueReusableCell(cellType: .textView)
+        cell.delegate = self
+        cell.questionAnswerLabel.text = "Question: "
+        cell.textView.text = self.question
+        cell.correctChoiceLabel.isHidden = true
+        cell.correctChoiceCheckbox.isHidden = true
+        cell.deleteButton.isHidden = true
+        cell.questionAnswerLabel.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        cell.textView.font = UIFont.systemFont(ofSize: 18)
+        return cell
+    }()
+    
+    lazy var buttonsCell: AdminQuestionButtonsCell = {
+        let cell: AdminQuestionButtonsCell = self.dequeueReusableCell(cellType: .buttons)
+        cell.doneButton.addTarget(self, action: #selector(self.tappedDoneButton(sender:)), for: .touchUpInside)
+        cell.clearButton.addTarget(self, action: #selector(self.tappedClearButton(sender:)), for: .touchUpInside)
+        cell.cancelButton.addTarget(self, action: #selector(self.tappedCancelButton(sender:)), for: .touchUpInside)
+        return cell
+    }()
+    
+    
+    lazy var selectAttributesCell: AdminQuestionSelectAttributesCell = {
+        let cell: AdminQuestionSelectAttributesCell = self.dequeueReusableCell(cellType: .selectAttributes)
+        cell.technologyButton.addTarget(self, action: #selector(self.tappedTechnologyButton(sender:)), for: .touchUpInside)
+        cell.levelButton.addTarget(self, action: #selector(self.tappedLevelButton(sender:)), for: .touchUpInside)
+        return cell
+    }()
+    
+    init(question: String) {
+        self.question = question
+        super.init(nibName: "AdminQuestionViewController", bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +89,44 @@ class AdminQuestionViewController: AdminDashboardChildViewController, UITableVie
         self.tableView.register(UINib(nibName: AdminQuestionButtonsCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: AdminQuestionButtonsCell.reuseIdentifier)
         self.tableView.register(UINib(nibName: AdminQuestionNewChoiceCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: AdminQuestionNewChoiceCell.reuseIdentifier)
         self.tableView.register(UINib(nibName: AdminQuestionSelectAttributesCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: AdminQuestionSelectAttributesCell.reuseIdentifier)
+    }
+    
+    @objc func tappedTechnologyButton(sender: UIButton) {
+        self.presentPickerActionSheet(title: "Select technology", choices: self.technologies.map({ $0.name ?? "?"})) { selectedIndex in
+            print(selectedIndex)
+            self.selectedTechnology = self.technologies[selectedIndex]
+            self.updateSelectAttributesButtons()
+        }
+    }
+    
+    @objc func tappedLevelButton(sender: UIButton) {
+        self.presentPickerActionSheet(title: "Select level", choices: QuizLevel.allCases.map({ $0.description })) { selectedIndex in
+            print(selectedIndex)
+            self.level = QuizLevel.allCases[selectedIndex]
+            self.updateSelectAttributesButtons()
+        }
+    }
+    
+    
+    
+    @objc func tappedDoneButton(sender: UIButton) {
+    
+        
+    }
+    
+    @objc func tappedClearButton(sender: UIButton) {
+       
+    }
+    
+    @objc func tappedCancelButton(sender: UIButton) {
+        self.dashboardViewController?.popViewController(animated: true)
+    }
+    
+
+    
+    func updateSelectAttributesButtons() {
+        self.selectAttributesCell.technologyButton.setTitle(self.selectedTechnology?.name ?? "Technology", for: .normal)
+        self.selectAttributesCell.levelButton.setTitle(self.level?.description ?? "Level", for: .normal)
     }
     
     //MARK: UITableView
@@ -71,5 +148,19 @@ class AdminQuestionViewController: AdminDashboardChildViewController, UITableVie
             fatalError("Unable to dequeue \(cellType.reuseIdentifier)")
         }
         return cell
+    }
+    
+    //MARK: AdminQuestionTextViewCellDelegate
+    
+    func textViewDidChange(_ textView: UITextView, inCell cell: AdminQuestionTextViewCell, heightChanged: Bool) {
+        
+    }
+    
+    func checkboxViewChanged(inCell cell: AdminQuestionTextViewCell, checkboxView: CheckboxView) {
+        
+    }
+    
+    func tappedDeleteButton(inCell cell: AdminQuestionTextViewCell) {
+        
     }
 }

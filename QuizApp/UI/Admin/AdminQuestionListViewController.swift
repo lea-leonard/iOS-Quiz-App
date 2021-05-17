@@ -208,7 +208,7 @@ class AdminQuestionListViewController: AdminDashboardChildViewController, UITabl
         case 0:
             viewController = AdminMultipleChoiceQuestionViewController(remoteAPI: self.remoteAPI, questionForm: self.multipleChoiceQuestionForms[indexPath.row], selectedTechnology: self.selectedTechnology, level: self.selectedLevel ?? .one, technologies: self.technologies)
         default:
-            viewController = AdminShortAnswerQuestionViewController(remoteAPI: self.remoteAPI, questionForm: self.shortAnswerQuestionForms[indexPath.row])
+            viewController = AdminShortAnswerQuestionViewController(remoteAPI: self.remoteAPI, questionForm: self.shortAnswerQuestionForms[indexPath.row], selectedTechnology: self.selectedTechnology, level: self.selectedLevel ?? .one, technologies: self.technologies)
         }
         self.dashboardViewController?.pushViewController(viewController, animated: true)
 	}

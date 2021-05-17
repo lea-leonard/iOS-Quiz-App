@@ -260,8 +260,8 @@
 			children = (
 				522E8EF5264F5F0100F166DB /* Cells */,
 				522E8EFC264F5F0100F166DB /* AdminQuestionViewController.xib */,
-				522E8EFD264F5F0100F166DB /* AdminShortAnswerQuestionViewController.swift */,
 				522E8EFE264F5F0100F166DB /* AdminQuestionViewController.swift */,
+				522E8EFD264F5F0100F166DB /* AdminShortAnswerQuestionViewController.swift */,
 				522E8EFF264F5F0100F166DB /* AdminMultipleChoiceQuestionViewController.swift */,
 			);
 			path = "New Questions";

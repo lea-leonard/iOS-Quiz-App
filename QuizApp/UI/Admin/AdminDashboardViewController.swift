@@ -71,7 +71,8 @@ class AdminDashboardViewController: BaseViewController {
                 let viewController = AdminMultipleChoiceQuestionViewController(remoteAPI: self.remoteAPI, technologies: self.technologies)
                 self.pushViewController(viewController, animated: true)
             } else if selectedIndex == 1 {
-                
+                let viewController = AdminShortAnswerQuestionViewController(remoteAPI: self.remoteAPI, technologies: self.technologies)
+                self.pushViewController(viewController, animated: true)
             }
         })
     }
