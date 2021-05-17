@@ -7,14 +7,20 @@
 
 import UIKit
 
-class UserDashboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class UserDashboardViewController: AdminDashboardChildViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     @IBOutlet weak var tableView: UITableView!
     
-    var remoteAPI: RemoteAPI!
-    
     var user: User!
+    
+    override var label1Text: String? {
+        return self.user?.username
+    }
+    
+    override var label2Text: String? {
+        return nil
+    }
     
     var allQuizzes: [Quiz] {
         self.user.quizzes?.array as? [Quiz] ?? []
@@ -37,9 +43,7 @@ class UserDashboardViewController: UIViewController, UITableViewDelegate, UITabl
     func setup(remoteAPI: RemoteAPI, user: User) {
         self.remoteAPI = remoteAPI
         self.user = user
-        
-        self.refreshData()
-        self.tableView.reloadData()
+        print()
     }
 
     override func viewDidLoad() {

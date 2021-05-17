@@ -256,6 +256,16 @@ class CoreDataHelper: RemoteAPI {
         }
     }
     
+    func getAllUsers(success: ([User]) -> Void, failure: (Error) -> Void) {
+        let request: NSFetchRequest<User> = User.fetchRequest()
+        do {
+            let users = try self.viewContext.fetch(request)
+            success(users)
+        } catch {
+            failure(error)
+        }
+    }
+    
     func getTechnology(name: String, success: (Technology?) -> Void, failure: (Error) -> Void) {
         let request: NSFetchRequest<Technology> = Technology.fetchRequest()
         request.predicate = NSPredicate(format: "name == %@", name)

@@ -10,6 +10,11 @@ import UIKit
 
 class AdminDashboardViewController: BaseViewController {
     
+    enum Tab {
+        case questions
+        case users
+    }
+    
     @IBOutlet weak var label1: InsetLabel!
     
     @IBOutlet weak var label2: InsetLabel!
@@ -21,7 +26,23 @@ class AdminDashboardViewController: BaseViewController {
     
     @IBOutlet weak var plusButton: UIButton!
     
+    @IBOutlet weak var questionsBarButton: UIButton!
+    
+    @IBOutlet weak var usersBarButton: UIButton!
+    
+    
     var currentChildViewController: AdminDashboardChildViewController!
+    
+    var currentNavigationController: UINavigationController!
+    
+    var questionsNavigationController: UINavigationController!
+    
+    var usersNavigationController: UINavigationController!
+    
+    @IBOutlet weak var questionsContainerView: UIView!
+    
+    @IBOutlet weak var usersContainerView: UIView!
+    
     
     var remoteAPI: RemoteAPI!
     
@@ -33,36 +54,76 @@ class AdminDashboardViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         shibaGIF.loadGif(name: "ShibaAdmin")
         petalsGIF.loadGif(name: "Petals")
         label1.layer.backgroundColor = UIColor.white.cgColor
         label2.layer.backgroundColor = UIColor.white.cgColor
         
-        guard let navigationController = self.children.last as? UINavigationController else {
+        guard let questionsNavigationController = self.children.last as? UINavigationController else {
             fatalError("Unable to get reference to UINavigationController")
         }
+        self.questionsNavigationController = questionsNavigationController
         
-        guard let adminContainerViewController = navigationController.viewControllers[0] as? AdminDashboardChildViewController else {
+        guard let questionsListViewController = questionsNavigationController.viewControllers[0] as? AdminQuestionListViewController else {
             fatalError("Unable to get reference to AdminQuestionListViewController")
         }
         
-        self.currentChildViewController = adminContainerViewController
+        questionsListViewController.remoteAPI = self.remoteAPI
         
-        self.currentChildViewController.dashboardViewController = self
         
-        self.currentChildViewController.remoteAPI = self.remoteAPI
         let tapGestureRecognizer = UITapGestureRecognizer()
         
         tapGestureRecognizer.addTarget(self, action: #selector(self.tappedEllipsisButton(_:)))
 
         self.ellipsisImageButton.addGestureRecognizer(tapGestureRecognizer)
         
+        guard let usersNavigationController = self.children[0] as? UINavigationController else {
+            fatalError("Unable to get reference to UINavigationController")
+        }
+        self.usersNavigationController = usersNavigationController
+        
+        guard let usersListViewController = usersNavigationController.viewControllers[0] as? AdminUserListViewController
+        else {
+            fatalError("Unable to get reference to AdminserListViewController")
+        }
+        usersListViewController.remoteAPI = self.remoteAPI
+        
+        questionsListViewController.remoteAPI = self.remoteAPI
+        
+        self.setCurrentNavigationControllerTab(.questions, updateViews: false)
+        
         self.remoteAPI.getAllTechnologies(success: { technologies in
             self.technologies = technologies
         }, failure: { error in
             
         })
+    }
+    
+
+    func setCurrentNavigationControllerTab(_ tab: AdminDashboardViewController.Tab, updateViews: Bool) {
+        switch tab {
+        case .questions:
+            guard self.currentNavigationController != self.questionsNavigationController else {
+                break
+            }
+            self.currentNavigationController = self.questionsNavigationController
+            self.questionsContainerView.isHidden = false
+            self.usersContainerView.isHidden = true
+        case .users:
+            guard self.currentNavigationController != self.usersNavigationController else {
+                break
+            }
+            self.currentNavigationController = self.usersNavigationController
+            self.usersContainerView.isHidden = false
+            self.questionsContainerView.isHidden = true
+        }
+        self.usersBarButton.setTitleColor(self.currentNavigationController == self.usersNavigationController ? .yellow : .lightGray, for: .normal)
+        self.questionsBarButton.setTitleColor(self.currentNavigationController == self.questionsNavigationController ? .yellow : .lightGray, for: .normal)
+        self.currentChildViewController = self.currentNavigationController.viewControllers.last as? AdminDashboardChildViewController
+        self.currentChildViewController.dashboardViewController = self
+        if updateViews {
+            self.updateViewsForContainer()
+        }
     }
     
     @IBAction func tappedPlusButton(_ sender: Any) {
@@ -76,6 +137,16 @@ class AdminDashboardViewController: BaseViewController {
             }
         })
     }
+    
+    @IBAction func tappedQuestionsBarButton(_ sender: UIButton) {
+        self.setCurrentNavigationControllerTab(.questions, updateViews: true)
+    }
+    
+    @IBAction func tappedUsersBarButton(_ sender: UIButton) {
+        self.setCurrentNavigationControllerTab(.users, updateViews: true)
+    }
+    
+    
     
     @objc func tappedEllipsisButton(_ sender: UIButton) {
         let image = self.currentChildViewController.ellipsisMenuIsOpen ? UIImage(systemName: "ellipsis") : UIImage(systemName: "chevron.up")
@@ -94,18 +165,12 @@ class AdminDashboardViewController: BaseViewController {
     }
     
     func pushViewController(_ viewController: AdminDashboardChildViewController, animated: Bool) {
-        guard let child = self.children.last else { return }
         self.currentChildViewController = viewController
         viewController.dashboardViewController = self
         self.updateViewsForContainer()
-        if let navigationController = child as? UINavigationController {
-            navigationController.pushViewController(viewController, animated: animated)
-        } else if let childViewController = child as? AdminDashboardChildViewController {
-            childViewController.modalTransitionStyle = .crossDissolve
-            childViewController.modalPresentationStyle = .fullScreen
-            childViewController.present(viewController, animated: animated, completion: nil)
-        }
-        
+       
+        self.currentNavigationController.pushViewController(viewController, animated: animated)
+      
         UIView.animate(withDuration: 0.4, animations: {
             if !(viewController is AdminQuestionListViewController) {
                 self.plusButton.alpha = 0

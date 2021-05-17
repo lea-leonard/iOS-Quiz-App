@@ -39,9 +39,9 @@ class ForgotViewController: BaseViewController {
     }
 
     @IBAction func submitButton(_ sender: Any) {
-        
         self.changePassword()
     }
+    
     @IBAction func contactusButton(_ sender: Any) {
         let vc = ContactUsViewController()
         vc.modalPresentationStyle = .fullScreen
@@ -50,8 +50,6 @@ class ForgotViewController: BaseViewController {
     }
     
     func changePassword() {
-            
-            
             guard let password = newPasswordText.textNoEmptyString else {
                 fatalError("no password available in text field")
             }

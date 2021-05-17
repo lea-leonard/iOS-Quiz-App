@@ -147,7 +147,7 @@
         <!--User Dashboard View Controller-->
         <scene sceneID="eQw-Dj-EBK">
             <objects>
-                <viewController id="suq-fJ-teq" customClass="UserDashboardViewController" customModule="QuizApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserDashboardViewController" id="suq-fJ-teq" customClass="UserDashboardViewController" customModule="QuizApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3RV-ch-TP9">
                         <rect key="frame" x="0.0" y="0.0" width="398" height="539"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

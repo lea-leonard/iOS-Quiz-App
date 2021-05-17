@@ -8,7 +8,7 @@
 import UIKit
 import FBSDKLoginKit
 
-class MainDashboardViewController: UIViewController {
+class MainDashboardViewController: BaseViewController {
     
     let loginManager: LoginManager = LoginManager()
     

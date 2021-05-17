@@ -27,6 +27,8 @@ protocol RemoteAPI {
     
     func getUser(username: String, success: (User?) -> Void, failure: (Error) -> Void)
     
+    func getAllUsers(success: ([User]) -> Void, failure: (Error) -> Void)
+    
     func getTechnology(name: String, success: (Technology?) -> Void, failure: (Error) -> Void)
     
     func getAllTechnologies(success: ([Technology]) -> Void, failure: (Error) -> Void)

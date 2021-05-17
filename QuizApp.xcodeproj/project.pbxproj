@@ -53,6 +53,8 @@
 		524605322652D83400C19B49 /* AdminQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524605262652D83300C19B49 /* AdminQuestionViewController.swift */; };
 		524605332652D83400C19B49 /* AdminMultipleChoiceQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524605272652D83300C19B49 /* AdminMultipleChoiceQuestionViewController.swift */; };
 		524605352652E4DB00C19B49 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524605342652E4DB00C19B49 /* InsetLabel.swift */; };
+		524605382652FF7F00C19B49 /* AdminUserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524605372652FF7F00C19B49 /* AdminUserListViewController.swift */; };
+		5246053A26531AA300C19B49 /* AdminUserQuizListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246053926531AA200C19B49 /* AdminUserQuizListViewController.swift */; };
 		526B240F264D8CC200E1904C /* UserCurrentQuizTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B240C264D8CC200E1904C /* UserCurrentQuizTableViewCell.swift */; };
 		526B2410264D8CC200E1904C /* UserAvailableQuizTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B240D264D8CC200E1904C /* UserAvailableQuizTableViewCell.swift */; };
 		526B2411264D8CC200E1904C /* UserCompletedQuizTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B240E264D8CC200E1904C /* UserCompletedQuizTableViewCell.swift */; };
@@ -154,6 +156,8 @@
 		524605262652D83300C19B49 /* AdminQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminQuestionViewController.swift; sourceTree = "<group>"; };
 		524605272652D83300C19B49 /* AdminMultipleChoiceQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminMultipleChoiceQuestionViewController.swift; sourceTree = "<group>"; };
 		524605342652E4DB00C19B49 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
+		524605372652FF7F00C19B49 /* AdminUserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminUserListViewController.swift; sourceTree = "<group>"; };
+		5246053926531AA200C19B49 /* AdminUserQuizListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminUserQuizListViewController.swift; sourceTree = "<group>"; };
 		526B240C264D8CC200E1904C /* UserCurrentQuizTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCurrentQuizTableViewCell.swift; sourceTree = "<group>"; };
 		526B240D264D8CC200E1904C /* UserAvailableQuizTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAvailableQuizTableViewCell.swift; sourceTree = "<group>"; };
 		526B240E264D8CC200E1904C /* UserCompletedQuizTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCompletedQuizTableViewCell.swift; sourceTree = "<group>"; };
@@ -250,9 +254,8 @@
 			children = (
 				52AFF28F264F71AB00D3B889 /* AdminDashboardChildViewController.swift */,
 				522E8EF1264F5F0100F166DB /* AdminDashboardViewController.swift */,
-				522E8F0D264F69F300F166DB /* AdminQuestionListPreviewCell.swift */,
-				522E8EF3264F5F0100F166DB /* AdminQuestionListViewController.swift */,
-				5246051A2652D83300C19B49 /* New Questions */,
+				524605362652FF3700C19B49 /* Users */,
+				5246051A2652D83300C19B49 /* Questions */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -269,16 +272,18 @@
 			path = Quiz;
 			sourceTree = "<group>";
 		};
-		5246051A2652D83300C19B49 /* New Questions */ = {
+		5246051A2652D83300C19B49 /* Questions */ = {
 			isa = PBXGroup;
 			children = (
+				522E8F0D264F69F300F166DB /* AdminQuestionListPreviewCell.swift */,
+				522E8EF3264F5F0100F166DB /* AdminQuestionListViewController.swift */,
 				5246051B2652D83300C19B49 /* Cells */,
 				524605242652D83300C19B49 /* AdminQuestionViewController.xib */,
 				524605252652D83300C19B49 /* AdminShortAnswerQuestionViewController.swift */,
 				524605262652D83300C19B49 /* AdminQuestionViewController.swift */,
 				524605272652D83300C19B49 /* AdminMultipleChoiceQuestionViewController.swift */,
 			);
-			path = "New Questions";
+			path = Questions;
 			sourceTree = "<group>";
 		};
 		5246051B2652D83300C19B49 /* Cells */ = {
@@ -294,6 +299,15 @@
 				524605232652D83300C19B49 /* AdminQuestionTextViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		524605362652FF3700C19B49 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				524605372652FF7F00C19B49 /* AdminUserListViewController.swift */,
+				5246053926531AA200C19B49 /* AdminUserQuizListViewController.swift */,
+			);
+			path = Users;
 			sourceTree = "<group>";
 		};
 		527E902E2649D9A700FB7E71 /* util */ = {
@@ -608,6 +622,7 @@
 				526B240F264D8CC200E1904C /* UserCurrentQuizTableViewCell.swift in Sources */,
 				527E90342649D9CE00FB7E71 /* LoginCredentials.swift in Sources */,
 				527E90312649D9C500FB7E71 /* BCryptHasher.swift in Sources */,
+				5246053A26531AA300C19B49 /* AdminUserQuizListViewController.swift in Sources */,
 				B7F94C47264B8F5100E87C82 /* ForgotViewController.swift in Sources */,
 				522E8F0E264F69F300F166DB /* AdminQuestionListPreviewCell.swift in Sources */,
 				520088D6265167BF004A15D1 /* BaseTableViewCell.swift in Sources */,
@@ -656,6 +671,7 @@
 				B7F94C3E264B8F5100E87C82 /* SignUpViewController.swift in Sources */,
 				52C385ED264DA24200FEC438 /* UserExtensions.swift in Sources */,
 				529F0635264C9EDE006984BB /* QuizApp.xcdatamodeld in Sources */,
+				524605382652FF7F00C19B49 /* AdminUserListViewController.swift in Sources */,
 				529F0653264CA71F006984BB /* QuizQuestionOrQuestionForm.swift in Sources */,
 				524604E22651F62800C19B49 /* MultipleChoiceQuestionForm+CoreDataProperties.swift in Sources */,
 				527E90322649D9C500FB7E71 /* KeychainHelper.swift in Sources */,
