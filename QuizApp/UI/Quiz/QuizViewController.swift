@@ -16,6 +16,13 @@ class QuizViewController: BaseViewController {
     @IBOutlet weak var displayQuestionCount: UILabel!
     
     @IBOutlet weak var signUpGif: UIImageView!
+    
+    @IBOutlet weak var technologyImageView: UIImageView!
+    
+    @IBOutlet weak var technologyLabel: UILabel!
+    
+    @IBOutlet weak var levelLabel: UILabel!
+    
     var multipleChoiceQuestionViewController: MultipleChoiceQuestionViewController!
     
     var shortAnswerQuestionViewController: ShortAnswerQuestionViewController!
@@ -116,6 +123,10 @@ class QuizViewController: BaseViewController {
         self.questionContainerViewSuperview.addSubview(shortAnswerQuestionViewController.view)
 
         self.updateQuestion(index: 0)
+        
+        self.technologyLabel.text = quiz.technology?.name
+        self.levelLabel.text = QuizLevel(rawValue: Int(quiz.level))?.description
+        self.technologyImageView.image = quiz.technology?.image
     }
     
     @IBAction func tappedNextQuestionButton(_ sender: UIButton) {
@@ -129,7 +140,7 @@ class QuizViewController: BaseViewController {
     @IBAction func tappedPreviousQuestion(_ sender: UIButton) {
         if self.currentQuestionIndex > 0 {
             self.updateQuestion(index: self.currentQuestionIndex - 1)
-            displayQuestionCount.text = "Question #\(currentQuestionIndex - 1) of \(questions.count)"
+            displayQuestionCount.text = "Question #\(currentQuestionIndex + 1) of \(questions.count)"
         }
         self.view.setNeedsLayout()
     }
