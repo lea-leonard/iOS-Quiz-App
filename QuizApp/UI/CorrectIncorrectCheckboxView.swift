@@ -48,26 +48,41 @@ class CorrectIncorrectCheckboxView: UIView {
     
     func correctCheckboxAction(checkboxView: CheckboxView) {
         if self.status == .correct {
-            checkboxView.setOn(true)
+            self.setStatus(nil)
         } else {
             self.incorrectCheckbox.setOn(false)
             self.status = .correct
-            self.statusChangedAction(self)
         }
+        self.statusChangedAction(self)
     }
+    
     
     func incorrectCheckboxAction(checkboxView: CheckboxView) {
         if self.status == .incorrect {
-            checkboxView.setOn(true)
+            self.setStatus(nil)
         } else {
             self.correctCheckbox.setOn(false)
             self.status = .incorrect
-            self.statusChangedAction(self)
         }
+        self.statusChangedAction(self)
     }
+    
     
     func addStatusChangedAction(_ action: @escaping (CorrectIncorrectCheckboxView) -> Void) {
         self.statusChangedAction = action
+    }
+    
+    func setStatus(_ status: Status?) {
+        self.status = status
+        switch status {
+        case nil:
+            self.status = status
+            self.correctCheckbox.setOn(false)
+            self.incorrectCheckbox.setOn(false)
+        default:
+            self.correctCheckbox.setOn(status == .correct)
+            self.incorrectCheckbox.setOn(status == .incorrect)
+        }
     }
     
     override func layoutSubviews() {

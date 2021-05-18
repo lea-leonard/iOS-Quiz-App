@@ -21,6 +21,7 @@ extension ShortAnswerQuestion {
     @NSManaged public var level: Int16
     @NSManaged public var question: String?
     @NSManaged public var response: String?
+    @NSManaged public var isCorrected: Bool
     @NSManaged public var quiz: Quiz?
     @NSManaged public var technology: Technology?
 

@@ -14,7 +14,16 @@ class ShortAnswerQuestionViewController: QuizQuestionViewController, UITextViewD
     
     @IBOutlet weak var responseTextView: UITextView!
     
+    @IBOutlet weak var correctAnswerLabel: UILabel!
+    
+    @IBOutlet weak var correctAnswerTextView: UITextView!
+    
+    
     var question: ShortAnswerQuestion!
+    
+    var quiz: Quiz {
+        return self.question.quiz!
+    }
     
     var remoteAPI: RemoteAPI!
     
@@ -43,7 +52,7 @@ class ShortAnswerQuestionViewController: QuizQuestionViewController, UITextViewD
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.responseTextView.isUserInteractionEnabled = self.mode == .user
+        self.responseTextView.isUserInteractionEnabled = self.mode == .user || !self.quiz.isCurrent
     }
     
     override func updateQuestion(_ question: QuizQuestionOrQuestionForm) {
@@ -61,6 +70,9 @@ class ShortAnswerQuestionViewController: QuizQuestionViewController, UITextViewD
     func updateQuestionLabelAndTextView() {
         self.questionLabel.text = self.question?.question ?? "?"
         self.responseTextView.text = self.question.response ?? ""
+        self.correctAnswerTextView.text = self.question.correctAnswer ?? "?"
+        self.correctAnswerLabel.isHidden = self.mode == .user
+        self.correctAnswerTextView.isHidden = self.mode == .user
     }
     
     //MARK: UITextViewDelegate

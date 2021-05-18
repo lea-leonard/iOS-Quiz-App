@@ -45,17 +45,19 @@ class AlertViewController: BaseViewController {
         
         self.mainBackgroundView.layer.cornerRadius = 12
         
-        if title == nil {
+        if self.titleText == nil {
             self.titleLabel.removeFromSuperview()
         }
         
-        if message == nil {
+        if self.message == nil {
             self.titleLabel.removeFromSuperview()
         }
         
         for action in self.actions {
             self.actionStackView.addArrangedSubview(action.button)
         }
+        
+        self.actionStackView.spacing = 10
     }
 
     func addAction(title: String, handler: @escaping () -> Void) {
