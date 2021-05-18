@@ -57,7 +57,7 @@ class AdminUserListViewController: AdminDashboardChildViewController, UITableVie
         guard let userDashboardViewController = storyboard.instantiateViewController(identifier: "UserDashboardViewController") as? UserDashboardViewController else {
             fatalError("Unable to instantiatie UserDashboardViewController")
         }
-        userDashboardViewController.setup(remoteAPI: self.remoteAPI, user: user)
+        userDashboardViewController.setup(remoteAPI: self.remoteAPI, user: user, mode: .admin)
         self.dashboardViewController?.pushViewController(userDashboardViewController, animated: true)
     }
 }

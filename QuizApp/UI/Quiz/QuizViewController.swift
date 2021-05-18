@@ -7,7 +7,7 @@
 
 import UIKit
 
-class QuizViewController: BaseViewController {
+class QuizViewController: AdminDashboardChildViewController {
 
     @IBOutlet weak var questionContainerViewSuperview: UIView!
     @IBOutlet weak var previousButton: UIButton!
@@ -33,18 +33,18 @@ class QuizViewController: BaseViewController {
     
     var currentQuestionViewController: QuizQuestionViewController?
     
-    private var remoteAPI: RemoteAPI!
-    
     private var quiz: Quiz!
     
     var questions = [QuizQuestionOrQuestionForm]()
     
+    var mode = AppMode.user
+    
     var currentQuestionIndex = 0
     
-    func setup(remoteAPI: RemoteAPI, quiz: Quiz) {
+    func setup(remoteAPI: RemoteAPI, quiz: Quiz, mode: AppMode) {
         self.remoteAPI = remoteAPI
         self.quiz = quiz
-        
+        self.mode = mode
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         guard let multipleChoiceQuestionViewController = storyboard.instantiateViewController(identifier: "MultipleChoiceQuestionViewController") as? MultipleChoiceQuestionViewController else {
@@ -57,8 +57,8 @@ class QuizViewController: BaseViewController {
         self.multipleChoiceQuestionViewController = multipleChoiceQuestionViewController
         self.shortAnswerQuestionViewController = shortAnswerQuestionViewController
         
-        multipleChoiceQuestionViewController.setup(remoteAPI: self.remoteAPI)
-        shortAnswerQuestionViewController.setup(remoteAPI: self.remoteAPI)
+        multipleChoiceQuestionViewController.setup(remoteAPI: self.remoteAPI, mode: self.mode)
+        shortAnswerQuestionViewController.setup(remoteAPI: self.remoteAPI, mode: self.mode)
         
         self.addChild(multipleChoiceQuestionViewController)
         self.addChild(shortAnswerQuestionViewController)

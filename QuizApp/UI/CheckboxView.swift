@@ -18,6 +18,8 @@ class CheckboxView: UIView {
     enum BoxType {
         case checkbox
         case radio
+        case incorrect
+        case correct
         
         var imageSet: ImageSet {
             switch self {
@@ -25,6 +27,10 @@ class CheckboxView: UIView {
                 return ImageSet(on: UIImage(systemName: "checkmark.square.fill")!, off: UIImage(systemName: "square", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .thin))!)
             case .radio:
                 return ImageSet(on: UIImage(systemName: "smallcircle.fill.circle.fill")!, off: UIImage(systemName: "circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .thin))!)
+            case .incorrect:
+                return ImageSet(on: UIImage(systemName: "xmark.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .thin))!, off: UIImage(systemName: "xmark.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .thin))!)
+            case .correct:
+                return ImageSet(on: UIImage(systemName: "checkmark.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .thin))!, off: UIImage(systemName: "checkmark.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .thin))!)
             }
         }
     }

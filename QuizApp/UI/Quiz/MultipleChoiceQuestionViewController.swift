@@ -18,8 +18,11 @@ class MultipleChoiceQuestionViewController: QuizQuestionViewController, Multiple
     
     var remoteAPI: RemoteAPI!
     
-    func setup(remoteAPI: RemoteAPI) {
+    var mode = AppMode.user
+    
+    func setup(remoteAPI: RemoteAPI, mode: AppMode) {
         self.remoteAPI = remoteAPI
+        self.mode = mode
     }
     
     override func viewDidLoad() {
@@ -91,6 +94,11 @@ class MultipleChoiceQuestionViewController: QuizQuestionViewController, Multiple
     
     //MARK: MultipleChoiceTableViewCellDelegate
     func checkboxDidChange(inCell cell: MultipleChoiceTableViewCell, checkboxView: CheckboxView) {
+        guard self.mode == .user else {
+            self.choicesTableView.reloadData()
+            return
+        }
+        
         guard let selectedIndex = self.choicesTableView.indexPath(for: cell)?.row else { return }
         self.question.userChoice = Int16(selectedIndex)
         print(question.userChoice)

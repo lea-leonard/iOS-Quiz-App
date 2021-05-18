@@ -55,6 +55,8 @@
 		524605352652E4DB00C19B49 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524605342652E4DB00C19B49 /* InsetLabel.swift */; };
 		524605382652FF7F00C19B49 /* AdminUserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524605372652FF7F00C19B49 /* AdminUserListViewController.swift */; };
 		5246053A26531AA300C19B49 /* AdminUserQuizListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246053926531AA200C19B49 /* AdminUserQuizListViewController.swift */; };
+		5246053C2653330800C19B49 /* AppMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246053B2653330800C19B49 /* AppMode.swift */; };
+		5246053E26533AD000C19B49 /* CorrectIncorrectCheckboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5246053D26533AD000C19B49 /* CorrectIncorrectCheckboxView.swift */; };
 		526B240F264D8CC200E1904C /* UserCurrentQuizTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B240C264D8CC200E1904C /* UserCurrentQuizTableViewCell.swift */; };
 		526B2410264D8CC200E1904C /* UserAvailableQuizTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B240D264D8CC200E1904C /* UserAvailableQuizTableViewCell.swift */; };
 		526B2411264D8CC200E1904C /* UserCompletedQuizTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B240E264D8CC200E1904C /* UserCompletedQuizTableViewCell.swift */; };
@@ -158,6 +160,8 @@
 		524605342652E4DB00C19B49 /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
 		524605372652FF7F00C19B49 /* AdminUserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminUserListViewController.swift; sourceTree = "<group>"; };
 		5246053926531AA200C19B49 /* AdminUserQuizListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminUserQuizListViewController.swift; sourceTree = "<group>"; };
+		5246053B2653330800C19B49 /* AppMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMode.swift; sourceTree = "<group>"; };
+		5246053D26533AD000C19B49 /* CorrectIncorrectCheckboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectIncorrectCheckboxView.swift; sourceTree = "<group>"; };
 		526B240C264D8CC200E1904C /* UserCurrentQuizTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCurrentQuizTableViewCell.swift; sourceTree = "<group>"; };
 		526B240D264D8CC200E1904C /* UserAvailableQuizTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAvailableQuizTableViewCell.swift; sourceTree = "<group>"; };
 		526B240E264D8CC200E1904C /* UserCompletedQuizTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCompletedQuizTableViewCell.swift; sourceTree = "<group>"; };
@@ -317,6 +321,7 @@
 				527E90302649D9C500FB7E71 /* KeychainHelper.swift */,
 				527E90332649D9CE00FB7E71 /* LoginCredentials.swift */,
 				52C3860E264DC37700FEC438 /* InputValidator.swift */,
+				5246053B2653330800C19B49 /* AppMode.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -410,6 +415,7 @@
 				52C38610264DCD2D00FEC438 /* DownButtonAccessoryView.swift */,
 				522F5E3F264C319000E9C3DE /* BaseViewController.swift */,
 				522F5E4D264C3A7700E9C3DE /* CheckboxView.swift */,
+				5246053D26533AD000C19B49 /* CorrectIncorrectCheckboxView.swift */,
 				52F0E358264EA35100B63997 /* AlertViewController.swift */,
 				52F0E359264EA35100B63997 /* AlertViewController.xib */,
 				52F0E35C264EAE8700B63997 /* AlertButton.swift */,
@@ -612,6 +618,7 @@
 				522F5E3E264C2FEF00E9C3DE /* UIExtensions.swift in Sources */,
 				529F0655264CA73B006984BB /* ShortAnswerQuestionExtensions.swift in Sources */,
 				52C3860D264DC32700FEC438 /* InputValidationTextField.swift in Sources */,
+				5246053E26533AD000C19B49 /* CorrectIncorrectCheckboxView.swift in Sources */,
 				524604E02651F62800C19B49 /* User+CoreDataProperties.swift in Sources */,
 				5221052E264D73BF00FF89CB /* MainDashboardViewController.swift in Sources */,
 				524604DF2651F62800C19B49 /* User+CoreDataClass.swift in Sources */,
@@ -626,6 +633,7 @@
 				B7F94C47264B8F5100E87C82 /* ForgotViewController.swift in Sources */,
 				522E8F0E264F69F300F166DB /* AdminQuestionListPreviewCell.swift in Sources */,
 				520088D6265167BF004A15D1 /* BaseTableViewCell.swift in Sources */,
+				5246053C2653330800C19B49 /* AppMode.swift in Sources */,
 				B7F94C40264B8F5100E87C82 /* LoginViewController.swift in Sources */,
 				524604E42651F62800C19B49 /* Technology+CoreDataProperties.swift in Sources */,
 				522E8F00264F5F0100F166DB /* AdminDashboardViewController.swift in Sources */,

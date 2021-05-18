@@ -18,8 +18,11 @@ class ShortAnswerQuestionViewController: QuizQuestionViewController, UITextViewD
     
     var remoteAPI: RemoteAPI!
     
-    func setup(remoteAPI: RemoteAPI) {
+    var mode = AppMode.user
+    
+    func setup(remoteAPI: RemoteAPI, mode: AppMode) {
         self.remoteAPI = remoteAPI
+        self.mode = mode
     }
     
     override func viewDidLoad() {
@@ -36,6 +39,11 @@ class ShortAnswerQuestionViewController: QuizQuestionViewController, UITextViewD
         responseTextView.layer.borderWidth = 5
         responseTextView.layer.backgroundColor = UIColor.white.cgColor
         responseTextView.layer.borderColor = UIColor.black.cgColor
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.responseTextView.isUserInteractionEnabled = self.mode == .user
     }
     
     override func updateQuestion(_ question: QuizQuestionOrQuestionForm) {
@@ -72,7 +80,7 @@ class ShortAnswerQuestionViewController: QuizQuestionViewController, UITextViewD
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        
+
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {

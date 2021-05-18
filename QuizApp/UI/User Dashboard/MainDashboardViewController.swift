@@ -46,7 +46,7 @@ class MainDashboardViewController: BaseViewController {
         
         self.userDashboardViewController = userDashboardViewController
         
-        self.userDashboardViewController.setup(remoteAPI: self.remoteAPI, user: self.user)
+        self.userDashboardViewController.setup(remoteAPI: self.remoteAPI, user: self.user, mode: .user)
         
         self.updateUsernameLabel()
         // sample data to dynamic load data
@@ -80,7 +80,6 @@ class MainDashboardViewController: BaseViewController {
     }
 
     @IBAction func backButton(_ sender: Any) {
-        
         loginManager.logOut()
         let vc = LoginViewController(remoteAPI: self.remoteAPI)
         vc.modalPresentationStyle = .fullScreen

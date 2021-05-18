@@ -283,6 +283,14 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jc7-6A-aEe" userLabel="Correct Incorrect View" customClass="CorrectIncorrectCheckboxView" customModule="QuizApp" customModuleProvider="target">
+                                <rect key="frame" x="314" y="65" width="80" height="32"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="44j-pf-SUn"/>
+                                    <constraint firstAttribute="width" constant="80" id="TMl-wt-MLx"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -295,11 +303,13 @@
                             <constraint firstItem="hFK-7M-49k" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="CP8-nM-Rer"/>
                             <constraint firstItem="o1B-OM-KxK" firstAttribute="top" secondItem="pWr-Jo-tHc" secondAttribute="bottom" constant="10" id="Dff-qd-7tO"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hFK-7M-49k" secondAttribute="bottom" constant="8" id="Dvu-kG-Kiz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jc7-6A-aEe" secondAttribute="trailing" constant="20" id="Efk-kh-fnm"/>
                             <constraint firstItem="pWr-Jo-tHc" firstAttribute="centerY" secondItem="Kn7-9f-JYU" secondAttribute="centerY" id="HXk-aL-9Xw"/>
                             <constraint firstItem="gxA-WJ-2nE" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-3" id="McX-b9-Xbb"/>
                             <constraint firstItem="qP0-Zb-M91" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Ssk-Kz-Mcd"/>
                             <constraint firstItem="o1B-OM-KxK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="U15-gV-5EX"/>
                             <constraint firstItem="o1B-OM-KxK" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.54" id="XV4-ai-JT8"/>
+                            <constraint firstItem="jc7-6A-aEe" firstAttribute="centerY" secondItem="GlR-H3-QdJ" secondAttribute="centerY" id="dHE-RU-idL"/>
                             <constraint firstItem="Kn7-9f-JYU" firstAttribute="centerY" secondItem="GlR-H3-QdJ" secondAttribute="centerY" id="idi-yP-BOF"/>
                             <constraint firstItem="zdw-Hu-6pD" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="lMR-yP-Ld9"/>
                             <constraint firstItem="hFK-7M-49k" firstAttribute="top" secondItem="zdw-Hu-6pD" secondAttribute="bottom" constant="12" id="sdj-sR-Gmg"/>

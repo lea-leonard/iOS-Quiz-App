@@ -90,7 +90,7 @@ class SimpleUserDashboardViewController: BaseViewController {
                 fatalError("Unable to instantiate QuizViewController")
             }
             
-            quizViewController.setup(remoteAPI: self.remoteAPI, quiz: quiz)
+            quizViewController.setup(remoteAPI: self.remoteAPI, quiz: quiz, mode: .user)
             quizViewController.modalPresentationStyle = .fullScreen
             
             self.present(quizViewController, animated: true)

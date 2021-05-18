@@ -9,10 +9,11 @@ import UIKit
 
 class UserDashboardViewController: AdminDashboardChildViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
     @IBOutlet weak var tableView: UITableView!
     
     var user: User!
+    
+    var mode = AppMode.user
     
     override var label1Text: String? {
         return self.user?.username
@@ -40,9 +41,10 @@ class UserDashboardViewController: AdminDashboardChildViewController, UITableVie
     
     var technologies = [Technology]()
 
-    func setup(remoteAPI: RemoteAPI, user: User) {
+    func setup(remoteAPI: RemoteAPI, user: User, mode: AppMode) {
         self.remoteAPI = remoteAPI
         self.user = user
+        self.mode = mode
         print()
     }
 
@@ -76,44 +78,36 @@ class UserDashboardViewController: AdminDashboardChildViewController, UITableVie
 
     // MARK: UITableView
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Current Quizzes"
+        case 1:
+            return "Completed Quizzes"
+        default:
+            return "Available Quizzes"            
+        }
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        6
+        3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.user == nil { return 0 }
         switch section {
-        case 0, 2, 4:
-            // headers
-            return 1
-        case 1:
+        case 0:
             return self.currentQuizzes.count
-        case 3:
+        case 1:
             return self.completedQuizzes.count
-        case 5:
-            return self.availableQuizzes.count
         default:
-            break
+            return self.availableQuizzes.count
         }
-        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
-        case 0, 2, 4:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserQuizzesTableViewSectionHeaderCell") as? UserQuizzesTableViewSectionHeaderCell else {
-                fatalError("Unable to dequeue UserQuizzesTableViewSectionHeaderCell")
-            }
-            switch indexPath.section {
-            case 0:
-                cell.label.text = "Current Quizzes"
-            case 2:
-                cell.label.text = "Completed Quizzes"
-            default:
-                cell.label.text = "Available Quizzes"
-            }
-            return cell
-        case 1:
+        case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserCurrentQuizTableViewCell") as? UserCurrentQuizTableViewCell else {
                 fatalError("Unable to dequeue UserCurrentQuizTableViewCell")
             }
@@ -122,7 +116,7 @@ class UserDashboardViewController: AdminDashboardChildViewController, UITableVie
             cell.technologyLabel.text = quiz.technology?.name ?? "?"
             cell.levelLabel.text = QuizLevel(rawValue: Int(quiz.level))?.description ?? "?"
             return cell
-        case 3:
+        case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserCompletedQuizTableViewCell") as? UserCompletedQuizTableViewCell else {
                 fatalError("Unable to dequeue UserCompletedQuizTableViewCell")
             }
@@ -131,7 +125,7 @@ class UserDashboardViewController: AdminDashboardChildViewController, UITableVie
             cell.technologyLabel.text = quiz.technology?.name ?? "?"
             cell.levelLabel.text = QuizLevel(rawValue: Int(quiz.level))?.description ?? "?"
             return cell
-        case 5:
+        default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserAvailableQuizTableViewCell") as? UserAvailableQuizTableViewCell else {
                 fatalError("Unable to dequeue UserAvailableQuizTableViewCell")
             }
@@ -140,34 +134,39 @@ class UserDashboardViewController: AdminDashboardChildViewController, UITableVie
             cell.technologyLabel.text = quiz.technology?.name ?? "?"
             cell.levelLabel.text = QuizLevel(rawValue: Int(quiz.level))?.description ?? "?"
             return cell
-        default:
-            return UITableViewCell()
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let quiz: Quiz
         switch indexPath.section {
-        case 1, 3, 5:
-            let quiz: Quiz
-            switch indexPath.section {
-            case 1:
-                quiz = self.currentQuizzes[indexPath.row]
-            case 3:
-                quiz = self.completedQuizzes[indexPath.row]
-            default:
-                quiz = self.availableQuizzes[indexPath.row]
-            }
-            
-            guard let quizViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "QuizViewController") as? QuizViewController else {
-                fatalError("Unable to instantiate QuizViewController")
-            }
-            quizViewController.setup(remoteAPI: self.remoteAPI, quiz: quiz)
-            quizViewController.modalPresentationStyle = .fullScreen
-            
-            self.present(quizViewController, animated: true)
+        case 0:
+            quiz = self.currentQuizzes[indexPath.row]
+        case 1:
+            quiz = self.completedQuizzes[indexPath.row]
         default:
-            break
+            quiz = self.availableQuizzes[indexPath.row]
+        }
+        
+        guard let quizViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "QuizViewController") as? QuizViewController else {
+            fatalError("Unable to instantiate QuizViewController")
+        }
+        quizViewController.setup(remoteAPI: self.remoteAPI, quiz: quiz, mode: self.mode)
+        quizViewController.modalPresentationStyle = .fullScreen
+        
+        switch self.mode {
+        case .user:
+            self.present(quizViewController, animated: true)
+        case .admin:
+            self.dashboardViewController?.present(quizViewController, animated: true)
         }
     }
-
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.contentView.backgroundColor = .black
+            headerView.textLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
+            headerView.textLabel?.textColor = .white
+        }
+    }
 }
