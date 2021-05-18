@@ -318,6 +318,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="correctIncorrectCheckboxView" destination="jc7-6A-aEe" id="BNm-qa-Cq8"/>
                         <outlet property="displayQuestionCount" destination="qP0-Zb-M91" id="iNa-LS-xhe"/>
                         <outlet property="levelLabel" destination="GlR-H3-QdJ" id="wXt-Fb-0cY"/>
                         <outlet property="nextButton" destination="ci7-xJ-bI4" id="ZpZ-HR-AMc"/>

@@ -28,9 +28,9 @@ class CheckboxView: UIView {
             case .radio:
                 return ImageSet(on: UIImage(systemName: "smallcircle.fill.circle.fill")!, off: UIImage(systemName: "circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .thin))!)
             case .incorrect:
-                return ImageSet(on: UIImage(systemName: "xmark.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .thin))!, off: UIImage(systemName: "xmark.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .thin))!)
+                return ImageSet(on: UIImage(systemName: "xmark.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .regular))!, off: UIImage(systemName: "xmark.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .regular))!)
             case .correct:
-                return ImageSet(on: UIImage(systemName: "checkmark.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .thin))!, off: UIImage(systemName: "checkmark.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .thin))!)
+                return ImageSet(on: UIImage(systemName: "checkmark.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .regular))!, off: UIImage(systemName: "checkmark.circle", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .regular))!)
             }
         }
     }

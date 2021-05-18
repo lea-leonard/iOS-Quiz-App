@@ -23,6 +23,8 @@ class QuizViewController: AdminDashboardChildViewController {
     
     @IBOutlet weak var levelLabel: UILabel!
     
+    @IBOutlet weak var correctIncorrectCheckboxView: CorrectIncorrectCheckboxView!
+    
     var multipleChoiceQuestionViewController: MultipleChoiceQuestionViewController!
     
     var shortAnswerQuestionViewController: ShortAnswerQuestionViewController!
@@ -31,7 +33,7 @@ class QuizViewController: AdminDashboardChildViewController {
         [self.multipleChoiceQuestionViewController, self.shortAnswerQuestionViewController]
     }
     
-    var currentQuestionViewController: QuizQuestionViewController?
+    var currentQuestionViewController: QuizQuestionViewController!
     
     private var quiz: Quiz!
     
@@ -60,6 +62,8 @@ class QuizViewController: AdminDashboardChildViewController {
         multipleChoiceQuestionViewController.setup(remoteAPI: self.remoteAPI, mode: self.mode)
         shortAnswerQuestionViewController.setup(remoteAPI: self.remoteAPI, mode: self.mode)
         
+        self.currentQuestionViewController = self.multipleChoiceQuestionViewController
+        
         self.addChild(multipleChoiceQuestionViewController)
         self.addChild(shortAnswerQuestionViewController)
         
@@ -83,25 +87,29 @@ class QuizViewController: AdminDashboardChildViewController {
         }
     }
     
-    func setViewControllerInContainer(_ viewController: UIViewController) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setViewControllerInContainer(self.currentQuestionViewController)
+    }
+    
+    func setViewControllerInContainer(_ viewController: QuizQuestionViewController) {
         self.questionContainerViewSuperview.bringSubviewToFront(viewController.view)
-        
-        NSLayoutConstraint.activate([
-            viewController.view.leadingAnchor.constraint(equalTo: questionContainerViewSuperview.leadingAnchor),
-            viewController.view.trailingAnchor.constraint(equalTo: questionContainerViewSuperview.trailingAnchor),
-            viewController.view.centerYAnchor.constraint(equalTo: questionContainerViewSuperview.centerYAnchor)
-        ])
- 
+        self.currentQuestionViewController = viewController
     }
     
     func updateQuestion(index: Int) {
         self.currentQuestionIndex = index
-        if (self.currentQuestionViewController == nil || (self.children[0] as? QuizQuestionViewController)?.matches(self.questions[index]) != true),
+        if self.currentQuestionViewController.matches(self.questions[index]) != true,
            let viewController = self.questionViewControllers.first(where: {$0.matches(self.questions[index])}) {
-            viewController.updateQuestion(self.questions[index])
             self.setViewControllerInContainer(viewController)
         }
-        (self.children[0] as? QuizQuestionViewController)?.updateQuestion(self.questions[index])
+        self.currentQuestionViewController.updateQuestion(self.questions[index])
+        if self.currentQuestionViewController is MultipleChoiceQuestionViewController {
+            self.correctIncorrectCheckboxView.isHidden = true
+        } else if self.currentQuestionViewController is ShortAnswerQuestionViewController {
+            self.correctIncorrectCheckboxView.isHidden = self.mode == .user
+        }
+        
     }
     
     override func viewDidLoad() {
@@ -121,12 +129,24 @@ class QuizViewController: AdminDashboardChildViewController {
         self.questionContainerViewSuperview.translatesAutoresizingMaskIntoConstraints = false
         self.questionContainerViewSuperview.addSubview(multipleChoiceQuestionViewController.view)
         self.questionContainerViewSuperview.addSubview(shortAnswerQuestionViewController.view)
+        
+        for view in self.questionViewControllers.map({$0.view}) {
+            NSLayoutConstraint.activate([
+                view!.leadingAnchor.constraint(equalTo: questionContainerViewSuperview.leadingAnchor),
+                view!.trailingAnchor.constraint(equalTo: questionContainerViewSuperview.trailingAnchor),
+                view!.centerYAnchor.constraint(equalTo: questionContainerViewSuperview.centerYAnchor)
+            ])
+        }
 
         self.updateQuestion(index: 0)
         
         self.technologyLabel.text = quiz.technology?.name
         self.levelLabel.text = QuizLevel(rawValue: Int(quiz.level))?.description
         self.technologyImageView.image = quiz.technology?.image
+        
+        self.correctIncorrectCheckboxView.addStatusChangedAction({ [weak self] correctIncorrectCheckboxView in
+            self?.correctIncorrectCheckboxViewChanged(correctIncorrectCheckboxView: correctIncorrectCheckboxView)
+        })
     }
     
     @IBAction func tappedNextQuestionButton(_ sender: UIButton) {
@@ -152,6 +172,10 @@ class QuizViewController: AdminDashboardChildViewController {
             print(error.localizedDescription)
         }
 
+    }
+    
+    func correctIncorrectCheckboxViewChanged(correctIncorrectCheckboxView: CorrectIncorrectCheckboxView) {
+        print(correctIncorrectCheckboxView.status)
     }
     
 }
