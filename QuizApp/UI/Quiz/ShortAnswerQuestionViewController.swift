@@ -14,6 +14,11 @@ class ShortAnswerQuestionViewController: QuizQuestionViewController, UITextViewD
     
     @IBOutlet weak var responseTextView: UITextView!
     
+    @IBOutlet weak var correctAnswerLabel: UILabel!
+    
+    @IBOutlet weak var correctAnswerTextView: UITextView!
+    
+    
     var question: ShortAnswerQuestion!
     
     var quiz: Quiz {
@@ -65,6 +70,9 @@ class ShortAnswerQuestionViewController: QuizQuestionViewController, UITextViewD
     func updateQuestionLabelAndTextView() {
         self.questionLabel.text = self.question?.question ?? "?"
         self.responseTextView.text = self.question.response ?? ""
+        self.correctAnswerTextView.text = self.question.correctAnswer ?? "?"
+        self.correctAnswerLabel.isHidden = self.mode == .user
+        self.correctAnswerTextView.isHidden = self.mode == .user
     }
     
     //MARK: UITextViewDelegate

@@ -55,7 +55,7 @@ class MultipleChoiceQuestionViewController: QuizQuestionViewController, Multiple
         // dynamically. It was working and then it stopped working.
         // I have no idea why.
         let tableViewHeight = self.choicesTableView.contentSize.height
-        self.choicesTableViewHeightConstraint.constant = 500
+        self.choicesTableViewHeightConstraint.constant = 400
     }
     
     func updateQuestionLabel() {

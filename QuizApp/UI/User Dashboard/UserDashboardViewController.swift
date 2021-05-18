@@ -125,6 +125,12 @@ class UserDashboardViewController: AdminDashboardChildViewController, UITableVie
             cell.technologyImageView.image = quiz.technology?.image
             cell.technologyLabel.text = quiz.technology?.name ?? "?"
             cell.levelLabel.text = QuizLevel(rawValue: Int(quiz.level))?.description ?? "?"
+            cell.scoreLabel.text = quiz.score >= 0 ? "Score: \(NumberFormatter.percentage.string(from: quiz.score) ?? "?")" : "Score pending"
+            var backgroundColor = UIColor.white
+            if quiz.score < 0 && self.mode == .admin {
+                backgroundColor = #colorLiteral(red: 0.9021843013, green: 1, blue: 0.8784323226, alpha: 1)
+            }
+            cell.backgroundColor = backgroundColor
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserAvailableQuizTableViewCell") as? UserAvailableQuizTableViewCell else {

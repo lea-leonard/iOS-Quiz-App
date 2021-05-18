@@ -36,32 +36,30 @@ extension Quiz {
             && !shortAnswerQuestionsArray.contains(where: { $0.response == nil || $0.response == ""})
     }
     
-    var isScored: Bool {
+    var isCorrected: Bool {
         guard let shortAnswerQuestionsArray = self.shortAnswerQuestions?.array as? [ShortAnswerQuestion] else {
             return false
         }
         return !shortAnswerQuestionsArray.contains(where: { $0.isCorrected == false })
     }
     
-    func calculateAndSetScore() throws {
-        guard self.isScored else {
-            throw GeneralError.error("Cannot set score if quiz is not scored")
+    func calculateScore() throws -> Float {
+        guard self.isCorrected else {
+            throw GeneralError.error("Cannot calculate score if quiz is not corrected")
         }
-        guard let multipleChoiceQuestionsArray = self.multipleChoiceQuestions?.array as? [MultipleChoiceQuestion] else {
-            return
-        }
-        guard let shortAnswerQuestionsArray = self.shortAnswerQuestions?.array as? [ShortAnswerQuestion] else {
-            return
-        }
+        let multipleChoiceQuestionsArray = self.multipleChoiceQuestions?.array as? [MultipleChoiceQuestion] ?? []
+        
+        let shortAnswerQuestionsArray = self.shortAnswerQuestions?.array as? [ShortAnswerQuestion] ?? []
+        
         let numberOfQuestions = multipleChoiceQuestionsArray.count + shortAnswerQuestionsArray.count
         
         guard numberOfQuestions > 0 else {
-            throw GeneralError.error("Cannot score quiz with no questions")
+            throw GeneralError.error("Cannot calculate score for quiz with no questions")
         }
         
         let numberOfCorrectQuestions: Int = multipleChoiceQuestionsArray.filter({$0.isCorrect}).count + shortAnswerQuestionsArray.filter({$0.isCorrect}).count
         
-        self.score = Float(numberOfCorrectQuestions)/Float(numberOfQuestions)
+        return Float(numberOfCorrectQuestions)/Float(numberOfQuestions)
     }
     
     var passed: Bool? {

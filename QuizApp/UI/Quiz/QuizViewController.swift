@@ -51,7 +51,7 @@ class QuizViewController: AdminDashboardChildViewController {
         case .user:
             return self.quiz.isSubmitted ? "Exit" : "Submit"
         case .admin:
-            return self.quiz.isSubmitted ? "Submit Score" : "Exit"
+            return (self.quiz.isSubmitted && self.quiz.score < 0) ? "Submit Score" : "Exit"
         }
     }
     
@@ -180,14 +180,27 @@ class QuizViewController: AdminDashboardChildViewController {
         if self.currentQuestionIndex < self.questions.count - 1 {
             self.updateQuestion(index: self.currentQuestionIndex + 1)
             displayQuestionCount.text = "Question # \(currentQuestionIndex + 1) of \(questions.count)"
+            self.updateViewForQuestion()
         }
-        self.view.setNeedsLayout()
     }
 
     @IBAction func tappedPreviousQuestion(_ sender: UIButton) {
         if self.currentQuestionIndex > 0 {
             self.updateQuestion(index: self.currentQuestionIndex - 1)
             displayQuestionCount.text = "Question #\(currentQuestionIndex + 1) of \(questions.count)"
+            self.updateViewForQuestion()
+        }
+    }
+    
+    func updateViewForQuestion() {
+        guard self.questions.count > self.currentQuestionIndex else { return }
+        let question = self.questions[self.currentQuestionIndex]
+        if let question = question as? ShortAnswerQuestion {
+            if !question.isCorrected {
+                self.correctIncorrectCheckboxView.setStatus(.none)
+            } else {
+                self.correctIncorrectCheckboxView.setStatus(question.isCorrect ? .correct : .incorrect)
+            }
         }
         self.view.setNeedsLayout()
     }
@@ -201,34 +214,66 @@ class QuizViewController: AdminDashboardChildViewController {
                 self.presentingViewController?.dismiss(animated: true, completion: nil)
             }
         case .admin:
-            self.presentingViewController?.dismiss(animated: true, completion: nil)
-            
+            if self.quiz.isSubmitted && self.quiz.score < 0 {
+                self.attemptSubmitScore()
+            } else {
+                self.presentingViewController?.dismiss(animated: true, completion: nil)
+            }
         }
     }
     
     func attemptSubmitScore() {
         
+        
+        do {
+            let score = try self.quiz.calculateScore()
+            
+            let onDismiss = {
+                if self.quiz.score >= 0 {
+                    self.presentBasicAlert(message: "Corrected quiz submitted successfully.", onDismiss: {
+                        self.presentingViewController?.dismiss(animated: true, completion: nil)
+                    })
+                }
+            }
+
+            self.presentAlertWithActions(title: "Ready to submit?", message: "Once submitted, you will no longer be able to change your corrections.", actions: [
+                (title: "Submit", handler: {
+                    self.quiz.score = score
+                }),
+                (title: "Cancel", handler: {})
+            ], onDismiss: onDismiss)
+        } catch {
+            self.presentBasicAlert(title: "Corrections are unfinished.", message: "Submit score when all questions are corrected.")
+        }
     }
     
     func attemptSubmitQuiz() {
         let submit = {
             self.remoteAPI.submitQuiz(quiz: self.quiz) {
-                self.presentingViewController?.dismiss(animated: true, completion: nil)
+               
             } failure: { error in
                 print(error.localizedDescription)
             }
         }
         
+        let onDismiss = {
+            if self.quiz.isSubmitted {
+                self.presentBasicAlert(message: "Quiz submitted successfully.", onDismiss: {
+                    self.presentingViewController?.dismiss(animated: true, completion: nil)
+                })
+            }
+        }
+        
         if quiz.isCompleted {
             self.presentAlertWithActions(title: "Ready to submit?", message: "Once submitted, you will no longer be able to change your answers.", actions: [
-                (title: "Submit", handler: { submit() }),
+                (title: "Submit", handler: submit),
                 (title: "Cancel", handler: {})
-            ])
+            ], onDismiss: onDismiss)
         } else {
             self.presentAlertWithActions(title: "This quiz isn't finished.", message: "Are you sure you want to submit an unfinished quiz?\n\nOnce submitted, you will no longer be able to change your answers.", actions: [
-                (title: "Submit", handler: { submit() }),
+                (title: "Submit", handler: submit),
                 (title: "Cancel", handler: {})
-            ])
+            ], onDismiss: onDismiss)
         }
     }
     
@@ -250,8 +295,18 @@ class QuizViewController: AdminDashboardChildViewController {
     }
     
     func correctIncorrectCheckboxViewChanged(correctIncorrectCheckboxView: CorrectIncorrectCheckboxView) {
-        guard let status = correctIncorrectCheckboxView.status, let shortAnswerQuestion = self.questions[currentQuestionIndex] as? ShortAnswerQuestion else { return }
-        shortAnswerQuestion.isCorrect = status == .correct
+        guard let shortAnswerQuestion = self.questions[currentQuestionIndex] as? ShortAnswerQuestion else { return }
+        
+        switch correctIncorrectCheckboxView.status {
+        case nil:
+            shortAnswerQuestion.isCorrected = false
+            shortAnswerQuestion.isCorrect = false
+        default:
+            shortAnswerQuestion.isCorrect = correctIncorrectCheckboxView.status == .correct
+            shortAnswerQuestion.isCorrected = true
+        }
+        
+        
     }
     
 }
