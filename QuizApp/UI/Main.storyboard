@@ -493,7 +493,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="correctAnswerLabel" destination="i1H-pw-2Ce" id="wKb-fl-FfZ"/>
+                        <outlet property="correctAnswerLabel" destination="i1H-pw-2Ce" id="cfk-fa-uSI"/>
                         <outlet property="correctAnswerTextView" destination="qiY-Di-tbT" id="CJr-TB-Rj7"/>
                         <outlet property="questionLabel" destination="XWL-SZ-C8S" id="1AN-XZ-GZ1"/>
                         <outlet property="responseTextView" destination="JGt-wA-Pa9" id="WOa-n2-sfX"/>
