@@ -78,7 +78,6 @@
 		52D17765264AB15A0035FEE8 /* TechnologyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D17764264AB15A0035FEE8 /* TechnologyExtensions.swift */; };
 		52D17784264AC8FE0035FEE8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D17782264AC8FE0035FEE8 /* ViewController.swift */; };
 		52D90B2B26498DFA00F952D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D90B2A26498DFA00F952D0 /* AppDelegate.swift */; };
-		52D90B3226498DFA00F952D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D90B3026498DFA00F952D0 /* Main.storyboard */; };
 		52D90B3726498DFD00F952D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52D90B3626498DFD00F952D0 /* Assets.xcassets */; };
 		52D90B3A26498DFD00F952D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52D90B3826498DFD00F952D0 /* LaunchScreen.storyboard */; };
 		52D90B9B2649D22600F952D0 /* RemoteAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D90B9A2649D22600F952D0 /* RemoteAPI.swift */; };
@@ -87,6 +86,7 @@
 		52F0E35A264EA35100B63997 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F0E358264EA35100B63997 /* AlertViewController.swift */; };
 		52F0E35B264EA35100B63997 /* AlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52F0E359264EA35100B63997 /* AlertViewController.xib */; };
 		52F0E35D264EAE8700B63997 /* AlertButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F0E35C264EAE8700B63997 /* AlertButton.swift */; };
+		52F79A7C2654624F007DD984 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52F79A7B2654624F007DD984 /* Main.storyboard */; };
 		8390C376777B2BC18A120639 /* Pods_QuizApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EABED88BE79A7BCA13BBF94 /* Pods_QuizApp.framework */; };
 		B7313C01264CF4C300C90C63 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B7313C00264CF4C300C90C63 /* Icon.png */; };
 		B7313C03264CF59100C90C63 /* ShibaLogin.gif in Resources */ = {isa = PBXBuildFile; fileRef = B7313C02264CF59100C90C63 /* ShibaLogin.gif */; };
@@ -184,7 +184,6 @@
 		52D17782264AC8FE0035FEE8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		52D90B2726498DFA00F952D0 /* QuizApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuizApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D90B2A26498DFA00F952D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		52D90B3126498DFA00F952D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		52D90B3626498DFD00F952D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52D90B3926498DFD00F952D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		52D90B3B26498DFD00F952D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -194,6 +193,7 @@
 		52F0E358264EA35100B63997 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		52F0E359264EA35100B63997 /* AlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertViewController.xib; sourceTree = "<group>"; };
 		52F0E35C264EAE8700B63997 /* AlertButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertButton.swift; sourceTree = "<group>"; };
+		52F79A7B2654624F007DD984 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		9EABED88BE79A7BCA13BBF94 /* Pods_QuizApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuizApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0DD3544B68EC447FBFB5EA /* Pods-QuizApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuizApp.release.xcconfig"; path = "Target Support Files/Pods-QuizApp/Pods-QuizApp.release.xcconfig"; sourceTree = "<group>"; };
 		B7313C00264CF4C300C90C63 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -424,8 +424,8 @@
 				529A7E84264C7607006A56FA /* User Dashboard */,
 				522E8EF0264F5F0100F166DB /* Admin */,
 				52D90B2A26498DFA00F952D0 /* AppDelegate.swift */,
+				52F79A7B2654624F007DD984 /* Main.storyboard */,
 				52D90B3826498DFD00F952D0 /* LaunchScreen.storyboard */,
-				52D90B3026498DFA00F952D0 /* Main.storyboard */,
 				522F5E3D264C2FEF00E9C3DE /* UIExtensions.swift */,
 				52D17782264AC8FE0035FEE8 /* ViewController.swift */,
 				520088D5265167BF004A15D1 /* BaseTableViewCell.swift */,
@@ -539,6 +539,7 @@
 				B7F94C45264B8F5100E87C82 /* SignUpViewController.xib in Resources */,
 				B7F94C42264B8F5100E87C82 /* LoginViewController.xib in Resources */,
 				B7313C01264CF4C300C90C63 /* Icon.png in Resources */,
+				52F79A7C2654624F007DD984 /* Main.storyboard in Resources */,
 				B75CF69B265184500034731A /* ShibaAdmin.gif in Resources */,
 				52D90B3A26498DFD00F952D0 /* LaunchScreen.storyboard in Resources */,
 				B7F94C41264B8F5100E87C82 /* AboutUsViewController.xib in Resources */,
@@ -555,7 +556,6 @@
 				524605302652D83400C19B49 /* AdminQuestionViewController.xib in Resources */,
 				B7F94C3F264B8F5100E87C82 /* ForgotViewController.xib in Resources */,
 				524605292652D83400C19B49 /* AdminQuestionSelectAttributesCell.xib in Resources */,
-				52D90B3226498DFA00F952D0 /* Main.storyboard in Resources */,
 				B7FDBFCA264D7DD7002C8E63 /* Petals.gif in Resources */,
 				B7313C03264CF59100C90C63 /* ShibaLogin.gif in Resources */,
 				B7FDBFC8264D76C7002C8E63 /* ShibaTestMenu2.gif in Resources */,
@@ -694,15 +694,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		52D90B3026498DFA00F952D0 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				52D90B3126498DFA00F952D0 /* Base */,
-			);
-			name = Main.storyboard;
-			path = .;
-			sourceTree = "<group>";
-		};
 		52D90B3826498DFD00F952D0 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
