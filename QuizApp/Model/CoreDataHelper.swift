@@ -167,6 +167,7 @@ class CoreDataHelper: RemoteAPI {
                 question.question = questionForm.question
                 question.level = questionForm.level
                 question.technology = questionForm.technology
+                question.correctAnswer = questionForm.correctAnswer
                 questions += [question]
             }
             return questions
