@@ -16,6 +16,10 @@ class ShortAnswerQuestionViewController: QuizQuestionViewController, UITextViewD
     
     var question: ShortAnswerQuestion!
     
+    var quiz: Quiz {
+        return self.question.quiz!
+    }
+    
     var remoteAPI: RemoteAPI!
     
     var mode = AppMode.user
@@ -43,7 +47,7 @@ class ShortAnswerQuestionViewController: QuizQuestionViewController, UITextViewD
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.responseTextView.isUserInteractionEnabled = self.mode == .user
+        self.responseTextView.isUserInteractionEnabled = self.mode == .user || !self.quiz.isCurrent
     }
     
     override func updateQuestion(_ question: QuizQuestionOrQuestionForm) {

@@ -30,7 +30,8 @@
     </entity>
     <entity name="ShortAnswerQuestion" representedClassName="ShortAnswerQuestion" syncable="YES">
         <attribute name="correctAnswer" optional="YES" attributeType="String" defaultValueString=""/>
-        <attribute name="isCorrect" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isCorrect" optional="YES" attributeType="Boolean" defaultValueString="-1" usesScalarValueType="YES"/>
+        <attribute name="isCorrected" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="level" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="question" attributeType="String" defaultValueString=""/>
         <attribute name="response" attributeType="String" defaultValueString=""/>
@@ -63,7 +64,7 @@
         <element name="MultipleChoiceQuestion" positionX="-18167.13928222657" positionY="15477.05075073242" width="148.97998046875" height="148"/>
         <element name="MultipleChoiceQuestionForm" positionX="-18139.31634521485" positionY="15313.49353027344" width="177.43359375" height="118"/>
         <element name="Quiz" positionX="-18689.84771728516" positionY="15450.75738525392" width="128" height="193"/>
-        <element name="ShortAnswerQuestion" positionX="-18210.99536132812" positionY="15647.34393310547" width="159.442626953125" height="148"/>
+        <element name="ShortAnswerQuestion" positionX="-18210.99536132812" positionY="15653.85522460938" width="159.442626953125" height="163"/>
         <element name="ShortAnswerQuestionForm" positionX="-18206.11120605469" positionY="15218.08990478515" width="174.4986572265625" height="103"/>
         <element name="Technology" positionX="-18507.25189208984" positionY="15253.11053466797" width="186.4535522460938" height="148"/>
         <element name="User" positionX="-18887.65441894531" positionY="15522.72378540039" width="128" height="118"/>

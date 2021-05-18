@@ -16,6 +16,10 @@ class MultipleChoiceQuestionViewController: QuizQuestionViewController, Multiple
     
     var question: MultipleChoiceQuestion!
     
+    var quiz: Quiz {
+        return self.question.quiz!
+    }
+    
     var remoteAPI: RemoteAPI!
     
     var mode = AppMode.user
@@ -94,7 +98,7 @@ class MultipleChoiceQuestionViewController: QuizQuestionViewController, Multiple
     
     //MARK: MultipleChoiceTableViewCellDelegate
     func checkboxDidChange(inCell cell: MultipleChoiceTableViewCell, checkboxView: CheckboxView) {
-        guard self.mode == .user else {
+        guard self.mode == .user && self.quiz.isCurrent else {
             self.choicesTableView.reloadData()
             return
         }

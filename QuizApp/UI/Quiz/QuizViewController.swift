@@ -45,6 +45,24 @@ class QuizViewController: AdminDashboardChildViewController {
     var mode = AppMode.user
     
     var currentQuestionIndex = 0
+    
+    var submitButtonTitle: String {
+        switch self.mode {
+        case .user:
+            return self.quiz.isSubmitted ? "Exit" : "Submit"
+        case .admin:
+            return self.quiz.isSubmitted ? "Submit Score" : "Exit"
+        }
+    }
+    
+    var shouldHideSaveAndExitButton: Bool {
+        switch self.mode {
+        case .user:
+            return self.quiz.isSubmitted
+        case .admin:
+            return !(self.quiz.isSubmitted && self.quiz.score < 0)
+        }
+    }
 
     func setup(remoteAPI: RemoteAPI, quiz: Quiz, mode: AppMode) {
         self.remoteAPI = remoteAPI
@@ -80,13 +98,15 @@ class QuizViewController: AdminDashboardChildViewController {
             shortAnswerQuestionViewController.updateQuestion(shortAnswerQuestions[0])
         }
         
-        if quiz.dateStarted == nil {
-            quiz.dateStarted = Date()
-            self.remoteAPI.putQuiz(quiz: quiz, success: {
-                
-            }, failure: { error in
-                print(error.localizedDescription)
-            })
+        if self.mode == .user {
+            if quiz.dateStarted == nil {
+                quiz.dateStarted = Date()
+                self.remoteAPI.putQuiz(quiz: quiz, success: {
+                    
+                }, failure: { error in
+                    print(error.localizedDescription)
+                })
+            }
         }
     }
     
@@ -125,6 +145,10 @@ class QuizViewController: AdminDashboardChildViewController {
         submitButton.layer.cornerRadius = 10
         submitButton.layer.backgroundColor = UIColor.white.cgColor
         submitButton.layer.borderColor = UIColor.black.cgColor
+        
+        self.submitButton.setTitle(self.submitButtonTitle, for: .normal)
+        self.saveAndExitButton.isHidden = self.shouldHideSaveAndExitButton
+        
         signUpGif.loadGif(name: "ShibaSignUp")
                 
         displayQuestionCount.text = "Question # \(currentQuestionIndex + 1) of \(questions.count)"
@@ -169,16 +193,60 @@ class QuizViewController: AdminDashboardChildViewController {
     }
     
     @IBAction func tappedSubmitQuizButton(_ sender: UIButton) {
-        self.remoteAPI.submitQuiz(quiz: self.quiz) {
+        switch self.mode {
+        case .user:
+            if self.quiz.isCurrent {
+                self.attemptSubmitQuiz()
+            } else {
+                self.presentingViewController?.dismiss(animated: true, completion: nil)
+            }
+        case .admin:
             self.presentingViewController?.dismiss(animated: true, completion: nil)
-        } failure: { error in
-            print(error.localizedDescription)
+            
         }
-
+    }
+    
+    func attemptSubmitScore() {
+        
+    }
+    
+    func attemptSubmitQuiz() {
+        let submit = {
+            self.remoteAPI.submitQuiz(quiz: self.quiz) {
+                self.presentingViewController?.dismiss(animated: true, completion: nil)
+            } failure: { error in
+                print(error.localizedDescription)
+            }
+        }
+        
+        if quiz.isCompleted {
+            self.presentAlertWithActions(title: "Ready to submit?", message: "Once submitted, you will no longer be able to change your answers.", actions: [
+                (title: "Submit", handler: { submit() }),
+                (title: "Cancel", handler: {})
+            ])
+        } else {
+            self.presentAlertWithActions(title: "This quiz isn't finished.", message: "Are you sure you want to submit an unfinished quiz?\n\nOnce submitted, you will no longer be able to change your answers.", actions: [
+                (title: "Submit", handler: { submit() }),
+                (title: "Cancel", handler: {})
+            ])
+        }
     }
     
     @IBAction func tappedSaveAndExitButton(_ sender: UIButton) {
-        
+        switch self.mode {
+        case .user:
+            guard let timeLeft = self.quiz.timeLeftToComplete else {
+                fatalError("Save & Exit should not be available for user unless quiz is current.")
+            }
+            
+            self.presentBasicAlert(title: "Quiz saved.", message: "You have \(TimeIntervalFormatter.string(from: timeLeft)) left to complete this quiz.", onDismiss: {
+                self.presentingViewController?.dismiss(animated: true, completion: nil)
+            })
+        case .admin:
+            self.presentBasicAlert(title: "Quiz saved.", message: "Submit score when all questions are corrected.", onDismiss: {
+                self.presentingViewController?.dismiss(animated: true, completion: nil)
+            })
+        }
     }
     
     func correctIncorrectCheckboxViewChanged(correctIncorrectCheckboxView: CorrectIncorrectCheckboxView) {

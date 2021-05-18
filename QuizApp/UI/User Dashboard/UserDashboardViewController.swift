@@ -56,6 +56,7 @@ class UserDashboardViewController: AdminDashboardChildViewController, UITableVie
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.refreshData()
     }
     

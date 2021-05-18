@@ -25,6 +25,45 @@ extension Quiz {
         return self.dateStarted == nil
     }
     
+    var isCompleted: Bool {
+        guard let multipleChoiceQuestionsArray = self.multipleChoiceQuestions?.array as? [MultipleChoiceQuestion] else {
+            return false
+        }
+        guard let shortAnswerQuestionsArray = self.shortAnswerQuestions?.array as? [ShortAnswerQuestion] else {
+            return false
+        }
+        return !multipleChoiceQuestionsArray.contains(where: { $0.userChoice < 0 })
+            && !shortAnswerQuestionsArray.contains(where: { $0.response == nil || $0.response == ""})
+    }
+    
+    var isScored: Bool {
+        guard let shortAnswerQuestionsArray = self.shortAnswerQuestions?.array as? [ShortAnswerQuestion] else {
+            return false
+        }
+        return !shortAnswerQuestionsArray.contains(where: { $0.isCorrected == false })
+    }
+    
+    func calculateAndSetScore() throws {
+        guard self.isScored else {
+            throw GeneralError.error("Cannot set score if quiz is not scored")
+        }
+        guard let multipleChoiceQuestionsArray = self.multipleChoiceQuestions?.array as? [MultipleChoiceQuestion] else {
+            return
+        }
+        guard let shortAnswerQuestionsArray = self.shortAnswerQuestions?.array as? [ShortAnswerQuestion] else {
+            return
+        }
+        let numberOfQuestions = multipleChoiceQuestionsArray.count + shortAnswerQuestionsArray.count
+        
+        guard numberOfQuestions > 0 else {
+            throw GeneralError.error("Cannot score quiz with no questions")
+        }
+        
+        let numberOfCorrectQuestions: Int = multipleChoiceQuestionsArray.filter({$0.isCorrect}).count + shortAnswerQuestionsArray.filter({$0.isCorrect}).count
+        
+        self.score = Float(numberOfCorrectQuestions)/Float(numberOfQuestions)
+    }
+    
     var passed: Bool? {
         guard self.score != -1, self.passingScore != -1 else {
             return nil
@@ -34,10 +73,15 @@ extension Quiz {
     
     var timeLeftToComplete: TimeInterval? {
         guard self.isCurrent else { return nil }
-        let currentDate = Date()
-        guard currentDate > self.dateStarted!, currentDate < dateStarted!.addingTimeInterval(TimeInterval(self.timeToComplete)) else {
-            return nil
+        guard let dline = self.deadline else {
+            fatalError("Deadline should not be nil if quiz is current")
         }
-        return currentDate.timeIntervalSince(self.dateStarted!)
+        let currentDate = Date()
+        return dline.timeIntervalSince(currentDate)
+    }
+    
+    var deadline: Date? {
+        guard self.isCurrent || self.isAvailable else { return nil }
+        return dateStarted!.addingTimeInterval(TimeInterval(self.timeToComplete))
     }
 }
