@@ -100,7 +100,7 @@ class MultipleChoiceQuestionViewController: QuizQuestionViewController, Multiple
             cell.checkboxView.tintColor = .link
             
             
-            if self.quiz.score >= 0 {
+            if (self.quiz.score >= 0 && self.mode == .user) || (self.quiz.isSubmitted && self.mode == .admin) {
                 if indexPath.row == self.question.userChoice && indexPath.row != self.question.correctChoice {
                     cell.checkboxView.tintColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
                 }

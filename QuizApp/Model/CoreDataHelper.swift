@@ -66,6 +66,12 @@ class CoreDataHelper: RemoteAPI {
         }
     }
     
+    private func deleteQuizSync(quiz: Quiz, completion: () -> Void) throws {
+        self.viewContext.delete(quiz)
+        try self.viewContext.save()
+        completion()
+    }
+    
     func getNewQuizSync(user: User, technology: Technology, level: QuizLevel, numberOfMultipleChoiceQuestions: Int, numberOfShortAnswerQuestions: Int, passingScore: Float, timeToComplete: Int) throws -> Quiz {
         let quiz = Quiz(context: self.viewContext)
         quiz.user = user
@@ -92,8 +98,19 @@ class CoreDataHelper: RemoteAPI {
     func getNewQuizzesForAllTechnologies(user: User, numberOfMultipleChoiceQustions: Int, numberOfShortAnswerQuestions: Int, passingScore: Float, timeToComplete: Int, success: ([Quiz]) -> Void, failure: (Error) -> Void) {
         var quizzes = [Quiz]()
         
-        let userAvailableAndCurrentQuizzes = (user.quizzes?.array as? [Quiz])?
+        var userAvailableAndCurrentQuizzes = (user.quizzes?.array as? [Quiz])?
             .filter({$0.isAvailable || $0.isCurrent}) ?? []
+        
+        let expiredQuizzes = userAvailableAndCurrentQuizzes.filter({$0.isExpired})
+        
+        for quiz in expiredQuizzes {
+            do {
+                userAvailableAndCurrentQuizzes = userAvailableAndCurrentQuizzes.filter({$0 != quiz})
+                try self.deleteQuizSync(quiz: quiz, completion: {})
+            } catch {
+                return failure(error)
+            }
+        }
         
         self.getAllTechnologies(success: { technologies in
             do {

@@ -46,7 +46,7 @@ class QuizViewController: AdminDashboardChildViewController {
     
     var currentQuestionIndex = 0
     
-    var submitButtonTitle: String {
+    private var submitButtonTitle: String {
         switch self.mode {
         case .user:
             return self.quiz.isSubmitted ? "Exit" : "Submit"
@@ -55,13 +55,34 @@ class QuizViewController: AdminDashboardChildViewController {
         }
     }
     
-    var shouldHideSaveAndExitButton: Bool {
+    private var shouldHideSaveAndExitButton: Bool {
         switch self.mode {
         case .user:
             return self.quiz.isSubmitted
         case .admin:
             return !(self.quiz.isSubmitted && self.quiz.score < 0)
         }
+    }
+    
+    private var shouldHideCorrectIncorrectCheckboxView: Bool {
+        switch self.mode {
+        case .user:
+            return self.quiz.score < 0
+        case .admin:
+            return !self.quiz.isSubmitted
+        }
+    }
+    
+    private var correctIncorrectCheckboxViewShouldBeUserInteractionEnabled: Bool {
+        if self.currentQuestionViewController is MultipleChoiceQuestionViewController {
+            return false
+        } else {
+            return self.mode == .admin && self.quiz.isSubmitted && self.quiz.score < 0
+        }
+    }
+    
+    var correctIncorrectCheckboxViewOffBoxShouldBeVisible: Bool {
+        return self.currentQuestionViewController is ShortAnswerQuestionViewController && self.mode == .admin
     }
 
     func setup(remoteAPI: RemoteAPI, quiz: Quiz, mode: AppMode) {
@@ -127,11 +148,7 @@ class QuizViewController: AdminDashboardChildViewController {
             self.setViewControllerInContainer(viewController)
         }
         self.currentQuestionViewController.updateQuestion(self.questions[index])
-        if self.currentQuestionViewController is MultipleChoiceQuestionViewController {
-            self.correctIncorrectCheckboxView.isHidden = true
-        } else if self.currentQuestionViewController is ShortAnswerQuestionViewController {
-            self.correctIncorrectCheckboxView.isHidden = self.mode == .user
-        }
+        self.correctIncorrectCheckboxView.isHidden = self.shouldHideCorrectIncorrectCheckboxView
         
     }
     
@@ -174,6 +191,8 @@ class QuizViewController: AdminDashboardChildViewController {
         self.correctIncorrectCheckboxView.addStatusChangedAction({ [weak self] correctIncorrectCheckboxView in
             self?.correctIncorrectCheckboxViewChanged(correctIncorrectCheckboxView: correctIncorrectCheckboxView)
         })
+        
+        self.updateViewForQuestion()
     }
     
     @IBAction func tappedNextQuestionButton(_ sender: UIButton) {
@@ -201,7 +220,13 @@ class QuizViewController: AdminDashboardChildViewController {
             } else {
                 self.correctIncorrectCheckboxView.setStatus(question.isCorrect ? .correct : .incorrect)
             }
+        } else if let question = question as? MultipleChoiceQuestion {
+            self.correctIncorrectCheckboxView.setStatus(question.isCorrect ? .correct : .incorrect)
         }
+        
+        
+        self.correctIncorrectCheckboxView.isUserInteractionEnabled = self.correctIncorrectCheckboxViewShouldBeUserInteractionEnabled
+        self.correctIncorrectCheckboxView.setOffBoxVisible(self.correctIncorrectCheckboxViewOffBoxShouldBeVisible)
         self.view.setNeedsLayout()
     }
     

@@ -116,6 +116,7 @@ class UserDashboardViewController: AdminDashboardChildViewController, UITableVie
             cell.technologyImageView.image = quiz.technology?.image
             cell.technologyLabel.text = quiz.technology?.name ?? "?"
             cell.levelLabel.text = QuizLevel(rawValue: Int(quiz.level))?.description ?? "?"
+            cell.timeRemainingLabel.text = "Time remaining: " + TimeIntervalFormatter.string(from: quiz.timeLeftToComplete ?? 0)
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserCompletedQuizTableViewCell") as? UserCompletedQuizTableViewCell else {

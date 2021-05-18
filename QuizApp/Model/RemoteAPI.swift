@@ -12,7 +12,7 @@ protocol RemoteAPI {
     func getNewQuiz(user: User, technologyName: String, level: QuizLevel, numberOfMultipleChoiceQuestions: Int, numberOfShortAnswerQuestions: Int, passingScore: Float, timeToComplete: Int, success: (Quiz) -> Void, failure: (Error) -> Void)
     
     func getNewQuiz(user: User, technology: Technology, level: QuizLevel, numberOfMultipleChoiceQuestions: Int, numberOfShortAnswerQuestions: Int, passingScore: Float, timeToComplete: Int, success: (Quiz) -> Void, failure: (Error) -> Void)
-    
+
     func getNewQuizzesForAllTechnologies(user: User, numberOfMultipleChoiceQustions: Int, numberOfShortAnswerQuestions: Int, passingScore: Float, timeToComplete: Int, success: ([Quiz]) -> Void, failure: (Error) -> Void)
     
     func postNewUser(username: String, password: String?, fullName: String?, success: (User) -> Void, failure: (Error) -> Void)

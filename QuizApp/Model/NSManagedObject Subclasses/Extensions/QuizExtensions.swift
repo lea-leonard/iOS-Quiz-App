@@ -80,6 +80,11 @@ extension Quiz {
     
     var deadline: Date? {
         guard self.isCurrent || self.isAvailable else { return nil }
-        return dateStarted!.addingTimeInterval(TimeInterval(self.timeToComplete))
+        return dateStarted?.addingTimeInterval(TimeInterval(self.timeToComplete))
+    }
+    
+    var isExpired: Bool {
+        guard let deadline = deadline else { return false }
+        return Date() > deadline
     }
 }

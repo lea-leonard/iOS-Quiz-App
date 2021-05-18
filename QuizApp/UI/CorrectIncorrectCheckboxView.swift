@@ -17,8 +17,8 @@ class CorrectIncorrectCheckboxView: UIView {
 
     var status: Status?
     
-    let correctCheckbox = CheckboxView()
-    let incorrectCheckbox = CheckboxView()
+    private let correctCheckbox = CheckboxView()
+    private let incorrectCheckbox = CheckboxView()
     
     private var statusChangedAction: (CorrectIncorrectCheckboxView) -> Void = {_ in}
     
@@ -82,6 +82,24 @@ class CorrectIncorrectCheckboxView: UIView {
         default:
             self.correctCheckbox.setOn(status == .correct)
             self.incorrectCheckbox.setOn(status == .incorrect)
+        }
+    }
+    
+    func setOffBoxVisible(_ visible: Bool) {
+        if visible {
+            self.correctCheckbox.alpha = 1
+            self.incorrectCheckbox.alpha = 1
+        } else {
+            switch self.status {
+            case .correct:
+                self.correctCheckbox.alpha = 1
+                self.incorrectCheckbox.alpha = 0
+            case .incorrect:
+                self.incorrectCheckbox.alpha = 1
+                self.correctCheckbox.alpha = 0
+            case nil:
+                break
+            }
         }
     }
     
