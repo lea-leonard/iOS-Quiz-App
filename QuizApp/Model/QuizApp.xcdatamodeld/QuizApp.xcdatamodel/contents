@@ -22,6 +22,7 @@
         <attribute name="level" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="passingScore" attributeType="Float" defaultValueString="-1" usesScalarValueType="YES"/>
         <attribute name="score" attributeType="Float" defaultValueString="-1" usesScalarValueType="YES"/>
+        <attribute name="timeToComplete" optional="YES" attributeType="Integer 32" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="multipleChoiceQuestions" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="MultipleChoiceQuestion" inverseName="quiz" inverseEntity="MultipleChoiceQuestion"/>
         <relationship name="shortAnswerQuestions" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="ShortAnswerQuestion" inverseName="quiz" inverseEntity="ShortAnswerQuestion"/>
         <relationship name="technology" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Technology" inverseName="quizzes" inverseEntity="Technology"/>
@@ -61,7 +62,7 @@
     <elements>
         <element name="MultipleChoiceQuestion" positionX="-18167.13928222657" positionY="15477.05075073242" width="148.97998046875" height="148"/>
         <element name="MultipleChoiceQuestionForm" positionX="-18139.31634521485" positionY="15313.49353027344" width="177.43359375" height="118"/>
-        <element name="Quiz" positionX="-18689.84771728516" positionY="15450.75738525392" width="128" height="178"/>
+        <element name="Quiz" positionX="-18689.84771728516" positionY="15450.75738525392" width="128" height="193"/>
         <element name="ShortAnswerQuestion" positionX="-18210.99536132812" positionY="15647.34393310547" width="159.442626953125" height="148"/>
         <element name="ShortAnswerQuestionForm" positionX="-18206.11120605469" positionY="15218.08990478515" width="174.4986572265625" height="103"/>
         <element name="Technology" positionX="-18507.25189208984" positionY="15253.11053466797" width="186.4535522460938" height="148"/>

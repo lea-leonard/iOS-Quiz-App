@@ -23,6 +23,9 @@ class QuizViewController: AdminDashboardChildViewController {
     
     @IBOutlet weak var levelLabel: UILabel!
     
+    @IBOutlet weak var saveAndExitButton: UIButton!
+    
+    
     @IBOutlet weak var correctIncorrectCheckboxView: CorrectIncorrectCheckboxView!
     
     var multipleChoiceQuestionViewController: MultipleChoiceQuestionViewController!
@@ -42,7 +45,7 @@ class QuizViewController: AdminDashboardChildViewController {
     var mode = AppMode.user
     
     var currentQuestionIndex = 0
-    
+
     func setup(remoteAPI: RemoteAPI, quiz: Quiz, mode: AppMode) {
         self.remoteAPI = remoteAPI
         self.quiz = quiz
@@ -172,6 +175,10 @@ class QuizViewController: AdminDashboardChildViewController {
             print(error.localizedDescription)
         }
 
+    }
+    
+    @IBAction func tappedSaveAndExitButton(_ sender: UIButton) {
+        
     }
     
     func correctIncorrectCheckboxViewChanged(correctIncorrectCheckboxView: CorrectIncorrectCheckboxView) {

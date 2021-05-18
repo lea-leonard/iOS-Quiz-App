@@ -27,12 +27,12 @@ class CoreDataHelper: RemoteAPI {
         self.seedDB()
     }
     
-    func getNewQuiz(user: User, technologyName: String, level: QuizLevel, numberOfMultipleChoiceQuestions: Int, numberOfShortAnswerQuestions: Int, passingScore: Float, success: (Quiz) -> Void, failure: (Error) -> Void) {
+    func getNewQuiz(user: User, technologyName: String, level: QuizLevel, numberOfMultipleChoiceQuestions: Int, numberOfShortAnswerQuestions: Int, passingScore: Float, timeToComplete: Int, success: (Quiz) -> Void, failure: (Error) -> Void) {
         self.getTechnology(name: technologyName) { technologyOptional in
             guard let technology = technologyOptional else {
                 return failure(CoreDataHelperError.expectedDataUnavailable("No technology named \(technologyName) exists"))
             }
-            self.getNewQuiz(user: user, technology: technology, level: level, numberOfMultipleChoiceQuestions: numberOfMultipleChoiceQuestions, numberOfShortAnswerQuestions: numberOfShortAnswerQuestions, passingScore: passingScore, success: { quiz in
+            self.getNewQuiz(user: user, technology: technology, level: level, numberOfMultipleChoiceQuestions: numberOfMultipleChoiceQuestions, numberOfShortAnswerQuestions: numberOfShortAnswerQuestions, passingScore: passingScore, timeToComplete: timeToComplete, success: { quiz in
                 success(quiz)
             }, failure: { error in
                 failure(error)
@@ -43,12 +43,13 @@ class CoreDataHelper: RemoteAPI {
         }
     }
     
-    func getNewQuiz(user: User, technology: Technology, level: QuizLevel, numberOfMultipleChoiceQuestions: Int, numberOfShortAnswerQuestions: Int, passingScore: Float, success: (Quiz) -> Void, failure: (Error) -> Void) {
+    func getNewQuiz(user: User, technology: Technology, level: QuizLevel, numberOfMultipleChoiceQuestions: Int, numberOfShortAnswerQuestions: Int, passingScore: Float, timeToComplete: Int, success: (Quiz) -> Void, failure: (Error) -> Void) {
         let quiz = Quiz(context: self.viewContext)
         quiz.user = user
         quiz.level = Int16(level.rawValue)
         quiz.technology = technology
         quiz.passingScore = passingScore
+        quiz.timeToComplete = Int32(timeToComplete)
         technology.addToQuizzes(quiz)
         
         do {
@@ -65,11 +66,13 @@ class CoreDataHelper: RemoteAPI {
         }
     }
     
-    func getNewQuizSync(user: User, technology: Technology, level: QuizLevel, numberOfMultipleChoiceQuestions: Int, numberOfShortAnswerQuestions: Int) throws -> Quiz {
+    func getNewQuizSync(user: User, technology: Technology, level: QuizLevel, numberOfMultipleChoiceQuestions: Int, numberOfShortAnswerQuestions: Int, passingScore: Float, timeToComplete: Int) throws -> Quiz {
         let quiz = Quiz(context: self.viewContext)
         quiz.user = user
         quiz.level = Int16(level.rawValue)
         quiz.technology = technology
+        quiz.passingScore = passingScore
+        quiz.timeToComplete = Int32(timeToComplete)
         technology.addToQuizzes(quiz)
         
         do {
@@ -86,7 +89,7 @@ class CoreDataHelper: RemoteAPI {
         }
     }
 
-    func getNewQuizzesForAllTechnologies(user: User, numberOfMultipleChoiceQustions: Int, numberOfShortAnswerQuestions: Int, success: ([Quiz]) -> Void, failure: (Error) -> Void) {
+    func getNewQuizzesForAllTechnologies(user: User, numberOfMultipleChoiceQustions: Int, numberOfShortAnswerQuestions: Int, passingScore: Float, timeToComplete: Int, success: ([Quiz]) -> Void, failure: (Error) -> Void) {
         var quizzes = [Quiz]()
         
         let userAvailableAndCurrentQuizzes = (user.quizzes?.array as? [Quiz])?
@@ -100,7 +103,7 @@ class CoreDataHelper: RemoteAPI {
                     
                     guard userAvailableAndCurrentQuizzesForTechnology.count == 0 else { continue }
                     
-                    quizzes += [try self.getNewQuizSync(user: user, technology: technology, level: user.currentLevel(forTechnology: technology), numberOfMultipleChoiceQuestions: numberOfMultipleChoiceQustions, numberOfShortAnswerQuestions: numberOfShortAnswerQuestions)]
+                    quizzes += [try self.getNewQuizSync(user: user, technology: technology, level: user.currentLevel(forTechnology: technology), numberOfMultipleChoiceQuestions: numberOfMultipleChoiceQustions, numberOfShortAnswerQuestions: numberOfShortAnswerQuestions, passingScore: passingScore, timeToComplete: timeToComplete)]
                 }
                 try self.viewContext.save()
                 success(quizzes)

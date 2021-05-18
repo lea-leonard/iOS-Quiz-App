@@ -2,7 +2,7 @@
 //  Quiz+CoreDataProperties.swift
 //  QuizApp
 //
-//  Created by Robert Olieman on 5/17/21.
+//  Created by Robert Olieman on 5/18/21.
 //
 //
 
@@ -19,8 +19,9 @@ extension Quiz {
     @NSManaged public var dateStarted: Date?
     @NSManaged public var dateSubmitted: Date?
     @NSManaged public var level: Int16
-    @NSManaged public var score: Float
     @NSManaged public var passingScore: Float
+    @NSManaged public var score: Float
+    @NSManaged public var timeToComplete: Int32
     @NSManaged public var multipleChoiceQuestions: NSOrderedSet?
     @NSManaged public var shortAnswerQuestions: NSOrderedSet?
     @NSManaged public var technology: Technology?

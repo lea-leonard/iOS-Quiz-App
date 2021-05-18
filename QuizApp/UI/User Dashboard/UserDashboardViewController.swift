@@ -69,7 +69,7 @@ class UserDashboardViewController: AdminDashboardChildViewController, UITableVie
     }
     
     func addAvailableQuizzesIfNecessary() {
-        self.remoteAPI.getNewQuizzesForAllTechnologies(user: user, numberOfMultipleChoiceQustions: 3, numberOfShortAnswerQuestions: 3, success: { quiz in
+        self.remoteAPI.getNewQuizzesForAllTechnologies(user: user, numberOfMultipleChoiceQustions: 3, numberOfShortAnswerQuestions: 3, passingScore: Quiz.defaultPassingScore, timeToComplete: Quiz.defaultTimeToComplete, success: { quiz in
             self.tableView.reloadData()
         }, failure: { error in
             print(error.localizedDescription)

@@ -84,7 +84,7 @@ class SimpleUserDashboardViewController: BaseViewController {
     }
     
     @IBAction func tappedGoToQuizButton(_ sender: UIButton) {
-        self.remoteAPI.getNewQuiz(user: self.user, technology: self.selectedTechnology, level: self.selectedLevel, numberOfMultipleChoiceQuestions: 3, numberOfShortAnswerQuestions: 3, passingScore: Quiz.defaultPassingScore, success: { quiz in
+        self.remoteAPI.getNewQuiz(user: self.user, technology: self.selectedTechnology, level: self.selectedLevel, numberOfMultipleChoiceQuestions: 3, numberOfShortAnswerQuestions: 3, passingScore: Quiz.defaultPassingScore, timeToComplete: Quiz.defaultTimeToComplete, success: { quiz in
             
             guard let quizViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "QuizViewController") as? QuizViewController else {
                 fatalError("Unable to instantiate QuizViewController")

@@ -291,6 +291,16 @@
                                     <constraint firstAttribute="width" constant="80" id="TMl-wt-MLx"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sM3-4F-ur2">
+                                <rect key="frame" x="168" y="759" width="80" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <color key="tintColor" systemColor="linkColor"/>
+                                <state key="normal" title="Save &amp; Exit"/>
+                                <connections>
+                                    <action selector="tappedSaveAndExitButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0Bj-GW-pxy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -324,6 +334,7 @@
                         <outlet property="nextButton" destination="ci7-xJ-bI4" id="ZpZ-HR-AMc"/>
                         <outlet property="previousButton" destination="JfR-4R-G2W" id="3Y4-Jx-b3b"/>
                         <outlet property="questionContainerViewSuperview" destination="o1B-OM-KxK" id="Mv6-Z8-gWL"/>
+                        <outlet property="saveAndExitButton" destination="sM3-4F-ur2" id="GSM-gu-6Jy"/>
                         <outlet property="signUpGif" destination="gxA-WJ-2nE" id="8JR-ra-Vcn"/>
                         <outlet property="submitButton" destination="hFK-7M-49k" id="ACx-NU-Gf6"/>
                         <outlet property="technologyImageView" destination="pWr-Jo-tHc" id="o8m-gT-0eV"/>
@@ -680,7 +691,6 @@
         <!--Navigation Controller-->
         <scene sceneID="rbA-6x-I0q">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UkM-kL-Zlp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="AdminUsersNavigationController" navigationBarHidden="YES" id="iyQ-VM-JNq" sceneMemberID="viewController">
                     <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="3sr-rs-0jp">
@@ -690,6 +700,7 @@
                         <segue destination="gcg-C0-dB1" kind="relationship" relationship="rootViewController" id="gUG-El-bc3"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UkM-kL-Zlp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3128" y="1590"/>
         </scene>
@@ -933,6 +944,9 @@
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>

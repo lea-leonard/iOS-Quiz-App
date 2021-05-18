@@ -11,6 +11,8 @@ extension Quiz {
     
     static var defaultPassingScore: Float = 0.7
     
+    static var defaultTimeToComplete: Int = 60 * 30
+
     var isCurrent: Bool {
         return self.dateStarted != nil && self.dateSubmitted == nil
     }
@@ -28,5 +30,14 @@ extension Quiz {
             return nil
         }
         return self.score >= self.passingScore
+    }
+    
+    var timeLeftToComplete: TimeInterval? {
+        guard self.isCurrent else { return nil }
+        let currentDate = Date()
+        guard currentDate > self.dateStarted!, currentDate < dateStarted!.addingTimeInterval(TimeInterval(self.timeToComplete)) else {
+            return nil
+        }
+        return currentDate.timeIntervalSince(self.dateStarted!)
     }
 }
