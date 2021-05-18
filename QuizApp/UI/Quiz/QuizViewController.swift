@@ -175,7 +175,8 @@ class QuizViewController: AdminDashboardChildViewController {
     }
     
     func correctIncorrectCheckboxViewChanged(correctIncorrectCheckboxView: CorrectIncorrectCheckboxView) {
-        print(correctIncorrectCheckboxView.status)
+        guard let status = correctIncorrectCheckboxView.status, let shortAnswerQuestion = self.questions[currentQuestionIndex] as? ShortAnswerQuestion else { return }
+        shortAnswerQuestion.isCorrect = status == .correct
     }
     
 }

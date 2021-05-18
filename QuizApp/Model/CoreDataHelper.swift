@@ -27,12 +27,12 @@ class CoreDataHelper: RemoteAPI {
         self.seedDB()
     }
     
-    func getNewQuiz(user: User, technologyName: String, level: QuizLevel, numberOfMultipleChoiceQuestions: Int, numberOfShortAnswerQuestions: Int, success: (Quiz) -> Void, failure: (Error) -> Void) {
+    func getNewQuiz(user: User, technologyName: String, level: QuizLevel, numberOfMultipleChoiceQuestions: Int, numberOfShortAnswerQuestions: Int, passingScore: Float, success: (Quiz) -> Void, failure: (Error) -> Void) {
         self.getTechnology(name: technologyName) { technologyOptional in
             guard let technology = technologyOptional else {
                 return failure(CoreDataHelperError.expectedDataUnavailable("No technology named \(technologyName) exists"))
             }
-            self.getNewQuiz(user: user, technology: technology, level: level, numberOfMultipleChoiceQuestions: numberOfMultipleChoiceQuestions, numberOfShortAnswerQuestions: numberOfShortAnswerQuestions, success: { quiz in
+            self.getNewQuiz(user: user, technology: technology, level: level, numberOfMultipleChoiceQuestions: numberOfMultipleChoiceQuestions, numberOfShortAnswerQuestions: numberOfShortAnswerQuestions, passingScore: passingScore, success: { quiz in
                 success(quiz)
             }, failure: { error in
                 failure(error)
@@ -43,11 +43,12 @@ class CoreDataHelper: RemoteAPI {
         }
     }
     
-    func getNewQuiz(user: User, technology: Technology, level: QuizLevel, numberOfMultipleChoiceQuestions: Int, numberOfShortAnswerQuestions: Int, success: (Quiz) -> Void, failure: (Error) -> Void) {
+    func getNewQuiz(user: User, technology: Technology, level: QuizLevel, numberOfMultipleChoiceQuestions: Int, numberOfShortAnswerQuestions: Int, passingScore: Float, success: (Quiz) -> Void, failure: (Error) -> Void) {
         let quiz = Quiz(context: self.viewContext)
         quiz.user = user
         quiz.level = Int16(level.rawValue)
         quiz.technology = technology
+        quiz.passingScore = passingScore
         technology.addToQuizzes(quiz)
         
         do {

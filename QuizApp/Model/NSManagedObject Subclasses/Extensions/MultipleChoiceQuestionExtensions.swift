@@ -8,5 +8,7 @@
 import Foundation
 
 extension MultipleChoiceQuestion: QuizQuestionOrQuestionForm {
-    
+    var isCorrect: Bool {
+        return self.userChoice == self.correctChoice
+    }
 }

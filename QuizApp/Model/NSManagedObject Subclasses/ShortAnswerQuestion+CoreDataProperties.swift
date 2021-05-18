@@ -2,7 +2,7 @@
 //  ShortAnswerQuestion+CoreDataProperties.swift
 //  QuizApp
 //
-//  Created by Robert Olieman on 5/16/21.
+//  Created by Robert Olieman on 5/17/21.
 //
 //
 
@@ -16,10 +16,11 @@ extension ShortAnswerQuestion {
         return NSFetchRequest<ShortAnswerQuestion>(entityName: "ShortAnswerQuestion")
     }
 
+    @NSManaged public var correctAnswer: String?
     @NSManaged public var level: Int16
     @NSManaged public var question: String?
     @NSManaged public var response: String?
-    @NSManaged public var correctAnswer: String?
+    @NSManaged public var isCorrect: Bool
     @NSManaged public var quiz: Quiz?
     @NSManaged public var technology: Technology?
 

@@ -8,6 +8,9 @@
 import Foundation
 
 extension Quiz {
+    
+    static var defaultPassingScore: Float = 0.7
+    
     var isCurrent: Bool {
         return self.dateStarted != nil && self.dateSubmitted == nil
     }
@@ -18,5 +21,12 @@ extension Quiz {
     
     var isAvailable: Bool {
         return self.dateStarted == nil
+    }
+    
+    var passed: Bool? {
+        guard self.score != -1, self.passingScore != -1 else {
+            return nil
+        }
+        return self.score >= self.passingScore
     }
 }
