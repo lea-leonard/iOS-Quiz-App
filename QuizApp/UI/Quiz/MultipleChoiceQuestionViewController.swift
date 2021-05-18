@@ -78,7 +78,11 @@ class MultipleChoiceQuestionViewController: QuizQuestionViewController, Multiple
     //MARK: UITableView
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.question.choiceOptions!.count
+        var rows = self.question.choiceOptions!.count
+        if self.quiz.score >= 0 && self.question.userChoice < 0 {
+           rows += 1
+        }
+        return rows
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -86,13 +90,32 @@ class MultipleChoiceQuestionViewController: QuizQuestionViewController, Multiple
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = choicesTableView.dequeueReusableCell(withIdentifier: "MultipleChoiceTableViewCell") as? MultipleChoiceTableViewCell else {
-            return UITableViewCell()
+        if indexPath.row < self.question.choiceOptions!.count {
+            guard let cell = choicesTableView.dequeueReusableCell(withIdentifier: "MultipleChoiceTableViewCell") as? MultipleChoiceTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.delegate = self
+            cell.label.text = self.question.choiceOptions?[indexPath.row] ?? "?"
+            cell.checkboxView.setOn(indexPath.row == self.question.userChoice)
+            cell.checkboxView.tintColor = .link
+            
+            
+            if self.quiz.score >= 0 {
+                if indexPath.row == self.question.userChoice && indexPath.row != self.question.correctChoice {
+                    cell.checkboxView.tintColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
+                }
+                if indexPath.row == self.question.correctChoice {
+                    cell.checkboxView.setOn(true)
+                    cell.checkboxView.tintColor = .systemGreen
+                }
+            }
+            return cell
+        } else {
+            let cell = UITableViewCell()
+            cell.textLabel?.text = "No response given"
+            cell.textLabel?.textColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
+            return cell
         }
-        cell.delegate = self
-        cell.label.text = self.question.choiceOptions?[indexPath.row] ?? "?"
-        cell.checkboxView.setOn(indexPath.row == self.question.userChoice)
-        return cell
     }
     
     
