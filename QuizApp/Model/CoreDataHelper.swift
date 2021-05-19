@@ -217,7 +217,7 @@ class CoreDataHelper: RemoteAPI {
         }
     }
     
-    func patchUser(user: User, newUsername: String?, newPassword: String?, newIsPremiumMember: Bool?, success: () -> Void, failure: (Error) -> Void) {
+    func patchUser(user: User, newUsername: String?, newPassword: String?, newIsPremiumMember: Bool?, addedFeedback: String?, success: () -> Void, failure: (Error) -> Void) {
         do {
             if let newUsername = newUsername {
                 user.username = newUsername
@@ -227,6 +227,11 @@ class CoreDataHelper: RemoteAPI {
             }
             if let newIsPremiumMember = newIsPremiumMember {
                 user.isPremiumMember = newIsPremiumMember
+            }
+            if let addedFeedback = addedFeedback {
+                var feedback = user.feedback ?? []
+                feedback += [addedFeedback]
+                user.feedback = feedback
             }
             try self.viewContext.save()
             success()

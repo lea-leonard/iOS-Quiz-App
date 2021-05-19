@@ -71,8 +71,6 @@ class ShortAnswerQuestionViewController: QuizQuestionViewController, UITextViewD
         self.questionLabel.text = self.question?.question ?? "?"
         self.responseTextView.text = self.question.response ?? ""
         self.correctAnswerTextView.text = self.question.correctAnswer ?? "?"
-        print(self.question.question)
-        print(self.question.correctAnswer)
         self.correctAnswerLabel.isHidden = self.mode == .user
         self.correctAnswerTextView.isHidden = self.mode == .user
     }

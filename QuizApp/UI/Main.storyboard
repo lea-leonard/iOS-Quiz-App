@@ -1100,6 +1100,88 @@
             </objects>
             <point key="canvasLocation" x="-1458" y="1907"/>
         </scene>
+        <!--Feedback View Controller-->
+        <scene sceneID="gWm-iM-MZ6">
+            <objects>
+                <viewController storyboardIdentifier="FeedbackViewController" id="4hv-g2-Y0p" customClass="FeedbackViewController" customModule="QuizApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wqN-Zc-Gy9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Love Kiss" translatesAutoresizingMaskIntoConstraints="NO" id="Kco-ft-iZs">
+                                <rect key="frame" x="0.0" y="-8" width="414" height="904"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="E99-G1-Etl">
+                                <rect key="frame" x="20" y="101" width="374" height="342"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tell us what you think!" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzH-nJ-f3i">
+                                        <rect key="frame" x="75.5" y="0.0" width="223.5" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KmY-9A-wto">
+                                        <rect key="frame" x="0.5" y="38" width="373" height="216"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="216" id="6Nx-pa-XiJ"/>
+                                        </constraints>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1EX-cK-rdt">
+                                        <rect key="frame" x="144.5" y="268" width="85" height="30"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Use speech"/>
+                                        <connections>
+                                            <action selector="clickedSpeechButton:" destination="4hv-g2-Y0p" eventType="touchUpInside" id="V1t-eo-Ty1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YUN-b6-CeQ">
+                                        <rect key="frame" x="125" y="312" width="124" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Submit"/>
+                                        <connections>
+                                            <action selector="tappedSubmitButton:" destination="4hv-g2-Y0p" eventType="touchUpInside" id="6aK-Qy-Bde"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ReA-dp-Shc">
+                                <rect key="frame" x="14" y="44" width="42" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Close">
+                                    <color key="titleColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedCloseButton:" destination="4hv-g2-Y0p" eventType="touchUpInside" id="jdt-SV-RM4"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Lrl-aM-Ti9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="E99-G1-Etl" firstAttribute="centerY" secondItem="Lrl-aM-Ti9" secondAttribute="centerY" multiplier="0.6" id="0lq-Sn-Rhs"/>
+                            <constraint firstItem="Lrl-aM-Ti9" firstAttribute="trailing" secondItem="E99-G1-Etl" secondAttribute="trailing" constant="20" id="Bjq-Pi-iob"/>
+                            <constraint firstItem="ReA-dp-Shc" firstAttribute="top" secondItem="Lrl-aM-Ti9" secondAttribute="top" id="NbW-0s-AfY"/>
+                            <constraint firstItem="E99-G1-Etl" firstAttribute="leading" secondItem="Lrl-aM-Ti9" secondAttribute="leading" constant="20" id="YAl-hp-iBH"/>
+                            <constraint firstItem="YUN-b6-CeQ" firstAttribute="width" secondItem="wqN-Zc-Gy9" secondAttribute="width" multiplier="0.3" id="ZRZ-Rd-FJI"/>
+                            <constraint firstItem="ReA-dp-Shc" firstAttribute="leading" secondItem="Lrl-aM-Ti9" secondAttribute="leading" constant="14" id="cgh-GK-G2u"/>
+                            <constraint firstItem="KmY-9A-wto" firstAttribute="width" secondItem="Lrl-aM-Ti9" secondAttribute="width" multiplier="0.9" id="oqd-d3-1Zf"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="speechButton" destination="1EX-cK-rdt" id="nXd-Rk-duG"/>
+                        <outlet property="submitButton" destination="YUN-b6-CeQ" id="K1M-DF-HJB"/>
+                        <outlet property="textView" destination="KmY-9A-wto" id="Wc9-vM-bsG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ig6-UV-l56" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1498.5507246376812" y="843.75"/>
+        </scene>
     </scenes>
     <resources>
         <image name="CherryBlossom" width="640" height="480"/>

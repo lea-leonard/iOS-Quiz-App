@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.swift
 //  QuizApp
 //
-//  Created by Robert Olieman on 5/18/21.
+//  Created by Robert Olieman on 5/19/21.
 //
 //
 
@@ -20,6 +20,7 @@ extension User {
     @NSManaged public var isPremiumMember: Bool
     @NSManaged public var password: String?
     @NSManaged public var username: String?
+    @NSManaged public var feedback: [String]?
     @NSManaged public var quizzes: NSOrderedSet?
 
 }

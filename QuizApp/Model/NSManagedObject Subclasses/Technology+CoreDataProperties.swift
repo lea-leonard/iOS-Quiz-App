@@ -2,7 +2,7 @@
 //  Technology+CoreDataProperties.swift
 //  QuizApp
 //
-//  Created by Robert Olieman on 5/18/21.
+//  Created by Robert Olieman on 5/19/21.
 //
 //
 

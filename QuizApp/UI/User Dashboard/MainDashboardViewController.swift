@@ -167,8 +167,14 @@ class MainDashboardViewController: BaseViewController {
         self.present(viewController, animated: true)
     }
     
-    @IBAction func tappedForumButton(_ sender: UIButton) {
-        
+    @IBAction func tappedFeedbackButton(_ sender: UIButton) {
+        guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "FeedbackViewController") as? FeedbackViewController else {
+            fatalError("Unable to instantiate FeedbackViewController")
+        }
+        viewController.setup(remoteAPI: self.remoteAPI, user: self.user)
+        viewController.modalPresentationStyle = .fullScreen
+        viewController.modalTransitionStyle = .crossDissolve
+        self.present(viewController, animated: true)
     }
     
        
@@ -197,20 +203,25 @@ class MainDashboardViewController: BaseViewController {
         if sender.isOn {
             self.presentBasicAlert(message:alertMsg)
         }
+        
         //update Core Data user.isPremiumMemeber=true
-        user.isPremiumMember = true
+        remoteAPI.patchUser(user: self.user, newUsername: nil, newPassword: nil, newIsPremiumMember: true, addedFeedback: nil, success: {
+            //show/hide view relavant to isPremiumMember
+            premiumView.isHidden = true
+            imgStarPremium.isHidden = false
+            lblPremMember.isHidden = false
+            let animeContent = UIViewPropertyAnimator(duration: 2.0, curve: .linear){
+                self.tableviewContainer.frame = CGRect(x: 6, y: 205, width: self.tableviewContainer.frame.width, height: CGFloat(self.setHeightTableView))
+            }
+            animeContent.startAnimation(afterDelay: 5.0)
+            
+           // Timer.scheduledTimer(timeInterval:5.0, target: self, selector: #selector)
+           // showPremiumBox()
+        }, failure: { error in
+            
+        })
+
         
-        //show/hide view relavant to isPremiumMember
-        premiumView.isHidden = true
-        imgStarPremium.isHidden = false
-        lblPremMember.isHidden = false
-        let animeContent = UIViewPropertyAnimator(duration: 2.0, curve: .linear){
-            self.tableviewContainer.frame = CGRect(x: 6, y: 205, width: self.tableviewContainer.frame.width, height: CGFloat(self.setHeightTableView))
-        }
-        animeContent.startAnimation(afterDelay: 5.0)
-        
-       // Timer.scheduledTimer(timeInterval:5.0, target: self, selector: #selector)
-       // showPremiumBox()
     }
 }// end MainDashboard
 

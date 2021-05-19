@@ -54,6 +54,7 @@
         <relationship name="shortAnswerQuestions" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ShortAnswerQuestion" inverseName="technology" inverseEntity="ShortAnswerQuestion"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="feedback" optional="YES" attributeType="Transformable" customClassName="[String]"/>
         <attribute name="fullName" optional="YES" attributeType="String"/>
         <attribute name="isPremiumMember" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="password" attributeType="String" defaultValueString=""/>
@@ -67,6 +68,6 @@
         <element name="ShortAnswerQuestion" positionX="-18210.99536132812" positionY="15653.85522460938" width="159.442626953125" height="163"/>
         <element name="ShortAnswerQuestionForm" positionX="-18206.11120605469" positionY="15218.08990478515" width="174.4986572265625" height="103"/>
         <element name="Technology" positionX="-18507.25189208984" positionY="15253.11053466797" width="186.4535522460938" height="148"/>
-        <element name="User" positionX="-18887.65441894531" positionY="15522.72378540039" width="128" height="118"/>
+        <element name="User" positionX="-18887.65441894531" positionY="15522.72378540039" width="128" height="133"/>
     </elements>
 </model>
