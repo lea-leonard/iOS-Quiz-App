@@ -385,10 +385,10 @@ class QuizViewController: AdminDashboardChildViewController {
         }
         
         let alert = {
-            self.presentAlertWithActions(title: "Time's up.", message: "Would you like to submit your answers, or discard this quiz?", actions: [
-                (title: "Submit", handler: self.submitQuiz),
-                (title: "Discard", handler: {})
-            ], onDismiss: onDismiss)
+            self.presentBasicAlert(title: "Time's up.", message: "This quiz will now be submitted.", onDismiss: {
+                self.submitQuiz()
+                onDismiss()
+            })
         }
         
         if quiz!.timeLeftToComplete! <= 0 {

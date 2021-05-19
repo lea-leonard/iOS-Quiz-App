@@ -123,6 +123,7 @@ class UserDashboardViewController: AdminDashboardChildViewController, UITableVie
             cell.stopTimeRemainingDisplayLink()
             cell.startScoreLabelDisplayLink(quiz: quiz)
             cell.delegate = self
+            cell.setSelected(false, animated: false)
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserCompletedQuizTableViewCell") as? UserCompletedQuizTableViewCell else {
@@ -142,6 +143,7 @@ class UserDashboardViewController: AdminDashboardChildViewController, UITableVie
                 backgroundColor = #colorLiteral(red: 0.9021843013, green: 1, blue: 0.8784323226, alpha: 1)
             }
             cell.backgroundColor = backgroundColor
+            cell.setSelected(false, animated: false)
             return cell
         default:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserAvailableQuizTableViewCell") as? UserAvailableQuizTableViewCell else {
@@ -151,6 +153,7 @@ class UserDashboardViewController: AdminDashboardChildViewController, UITableVie
             cell.technologyImageView.image = quiz.technology?.image
             cell.technologyLabel.text = quiz.technology?.name ?? "?"
             cell.levelLabel.text = QuizLevel(rawValue: Int(quiz.level))?.description ?? "?"
+            cell.setSelected(false, animated: false)
             return cell
         }
     }
@@ -166,17 +169,37 @@ class UserDashboardViewController: AdminDashboardChildViewController, UITableVie
             quiz = self.availableQuizzes[indexPath.row]
         }
         
-        guard let quizViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "QuizViewController") as? QuizViewController else {
-            fatalError("Unable to instantiate QuizViewController")
+        let presentQuiz = {
+            guard let quizViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "QuizViewController") as? QuizViewController else {
+                fatalError("Unable to instantiate QuizViewController")
+            }
+            quizViewController.setup(remoteAPI: self.remoteAPI, quiz: quiz, mode: self.mode)
+            quizViewController.modalPresentationStyle = .fullScreen
+            
+            switch self.mode {
+            case .user:
+                self.present(quizViewController, animated: true)
+            case .admin:
+                self.dashboardViewController?.present(quizViewController, animated: true)
+            }
         }
-        quizViewController.setup(remoteAPI: self.remoteAPI, quiz: quiz, mode: self.mode)
-        quizViewController.modalPresentationStyle = .fullScreen
         
-        switch self.mode {
-        case .user:
-            self.present(quizViewController, animated: true)
-        case .admin:
-            self.dashboardViewController?.present(quizViewController, animated: true)
+        if indexPath.section == 2 {
+            self.remoteAPI.getUserQuizzesStartedToday(user: self.user, success: { quizzes in
+                if !self.user.isPremiumMember && quizzes.count >= 2 {
+                    self.presentBasicAlert(title: "Quiz limit reached.", message: "You have already attempted two quizzes today. Upgrade to Premium to take unlimited quizzes.", onDismiss: {
+                        if let cell = self.tableView.cellForRow(at: indexPath) {
+                            cell.setSelected(false, animated: true)
+                        }
+                    })
+                } else {
+                    presentQuiz()
+                }
+            }, failure: { error in
+                print(error.localizedDescription)
+            })
+        } else {
+            presentQuiz()
         }
     }
     
@@ -192,24 +215,18 @@ class UserDashboardViewController: AdminDashboardChildViewController, UITableVie
     //MARK: CurrentQuizTableViewCellTimeExpiredDelegate
     
     func timeExpired(quiz: Quiz) {
-        let previousNumberOfAvailableQuizzes = self.availableQuizzes.count
-        self.tableView.beginUpdates()
-        let indexPath = IndexPath(row: self.currentQuizzes.firstIndex(of: quiz)!, section: 0)
-        self.user.removeFromQuizzes(quiz)
-        self.refreshData(reloadData: false)
-        let newNumberOfAvailableQuizzes = self.availableQuizzes.count
-        if newNumberOfAvailableQuizzes > previousNumberOfAvailableQuizzes {
-            self.tableView.insertRows(at: [IndexPath(row: self.availableQuizzes.count - 1, section: 2)], with: .left)
-        }
-        self.tableView.deleteRows(at: [indexPath], with: .right)
-        self.tableView.endUpdates()
-        
-        
-        self.remoteAPI.deleteQuiz(quiz: quiz, success: {
-            
-        }, failure: { error in
-            
+        let technologyName = quiz.technology?.name ?? "?"
+        let levelDescription = QuizLevel(rawValue: Int(quiz.level))?.description ?? "?"
+        self.presentBasicAlert(title: "Quiz expired.", message: "Your \(technologyName) \(levelDescription) quiz expired. It will now be submitted.", onDismiss: {
+            self.remoteAPI.submitQuiz(quiz: quiz, success: {
+                self.presentBasicAlert(message: "Quiz submitted successfully.", onDismiss: {
+                    self.tableView.reloadData()
+                })
+            }, failure: { error in
+                print(error.localizedDescription)
+            })
         })
     }
+    
     
 }

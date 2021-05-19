@@ -11,7 +11,7 @@ extension Quiz {
     
     static var defaultPassingScore: Float = 0.7
     
-    static var defaultTimeToComplete: Int = 60 * 30
+    static var defaultTimeToComplete: Int = 30 * 60
 
     var isCurrent: Bool {
         return self.dateStarted != nil && self.dateSubmitted == nil

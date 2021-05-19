@@ -115,7 +115,7 @@ class CoreDataHelper: RemoteAPI {
         for quiz in expiredQuizzes {
             do {
                 userAvailableCurrentAndPendingQuizzes = userAvailableCurrentAndPendingQuizzes.filter({$0 != quiz})
-                try self.deleteQuizSync(quiz: quiz)
+                try self.submitQuizSync(quiz: quiz)
             } catch {
                 return failure(error)
             }
@@ -254,6 +254,11 @@ class CoreDataHelper: RemoteAPI {
         }
     }
     
+    private func submitQuizSync(quiz: Quiz) throws {
+        quiz.dateSubmitted = Date()
+        try self.viewContext.save()
+    }
+    
     func validateAndGetUser(username: String, password: String, success: (User?) -> Void, failure: (Error) -> Void) {
         self.getUser(username: username) { userOptional in
             guard let user = userOptional else {
@@ -324,6 +329,19 @@ class CoreDataHelper: RemoteAPI {
         } catch {
             failure(error)
         }
+    }
+    
+    func getUserQuizzesStartedToday(user: User, success: ([Quiz]) -> Void, failure: (Error) -> Void) {
+        guard let quizzes = user.quizzes?.array as? [Quiz] else {
+            return failure(CoreDataHelperError.castingFailure("Unable to cast Quiz array"))
+        }
+        let todayQuizzes = quizzes.filter({
+            guard let dateStarted = $0.dateStarted else {
+                return false
+            }
+            return dateStarted > Date().addingTimeInterval(-1 * (60 * 60 * 24))
+        })
+        success(todayQuizzes)
     }
     
     func getTechnology(name: String, success: (Technology?) -> Void, failure: (Error) -> Void) {
@@ -670,7 +688,7 @@ class CoreDataHelper: RemoteAPI {
                 
                 
                 (technologyName: "JavaScript", level: .one, question: "When does a while loop stop executing?", choiceOptions: [
-                    "When the contidion evaluates to true",
+                    "When the condition evaluates to true",
                     "Only when the 'break' keyword is used",
                     "When the condition is evaluates to false"
                 ], correctChoice: 2),
