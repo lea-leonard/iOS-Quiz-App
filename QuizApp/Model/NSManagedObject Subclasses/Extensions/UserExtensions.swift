@@ -45,4 +45,11 @@ extension User {
             result + quiz.score
         }/Float(scoredQuizzes.count)
     }
+    
+    var quizzesPendingScore: [Quiz] {
+        guard let quizzes = self.quizzes?.array as? [Quiz] else {
+            return []
+        }
+        return quizzes.filter({$0.isSubmittedPendingScore})
+    }
 }

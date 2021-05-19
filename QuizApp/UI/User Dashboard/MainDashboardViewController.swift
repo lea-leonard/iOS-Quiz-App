@@ -205,7 +205,7 @@ class MainDashboardViewController: BaseViewController {
         }
         
         //update Core Data user.isPremiumMemeber=true
-        remoteAPI.patchUser(user: self.user, newUsername: nil, newPassword: nil, newIsPremiumMember: true, addedFeedback: nil, success: {
+        remoteAPI.patchUser(user: self.user, newUsername: nil, newPassword: nil, isPremiumMember: true, addedFeedback: nil, isBlocked: nil, success: {
             //show/hide view relavant to isPremiumMember
             premiumView.isHidden = true
             imgStarPremium.isHidden = false

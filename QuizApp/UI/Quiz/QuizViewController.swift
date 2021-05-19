@@ -264,8 +264,6 @@ class QuizViewController: AdminDashboardChildViewController {
     }
     
     func attemptSubmitScore() {
-        
-        
         do {
             let score = try self.quiz.calculateScore()
             
@@ -299,6 +297,7 @@ class QuizViewController: AdminDashboardChildViewController {
     
     
     func attemptSubmitQuiz() {
+        
         let onDismiss = {
             if self.quiz.isSubmitted {
                 self.presentBasicAlert(message: "Quiz submitted successfully.", onDismiss: {
@@ -391,7 +390,12 @@ class QuizViewController: AdminDashboardChildViewController {
             })
         }
         
-        if quiz!.timeLeftToComplete! <= 0 {
+        guard let timeLeftToComplete = quiz?.timeLeftToComplete else {
+            self.stopTimeRemainingDisplayLink()
+            return
+        }
+        
+        if timeLeftToComplete <= 0 {
             self.stopTimeRemainingDisplayLink()
             
             if self.presentedViewController != nil {

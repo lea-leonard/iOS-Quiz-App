@@ -10,6 +10,7 @@ import UIKit
 
 class AdminUserQuizListViewController: AdminDashboardChildViewController, UITableViewDelegate, UITableViewDataSource {
     
+    
     var user: User!
     
     var quizzes: [Quiz] {
@@ -58,4 +59,5 @@ class AdminUserQuizListViewController: AdminDashboardChildViewController, UITabl
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        
     }
+    
 }

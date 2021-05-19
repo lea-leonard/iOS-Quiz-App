@@ -133,7 +133,12 @@ class LoginViewController: BaseViewController {
             self.saveCredentialsIfNecessary(username: username, password: password)
             
             self.remoteAPI.validateAndGetUser(username: username, password: password, success: { userOptional in
-                guard let user = userOptional else { return }
+                guard let user = userOptional else {
+                    return self.presentBasicAlert(title: "Username/password combination not recognied", message: "Please check your records and try again")
+                }
+                guard !user.isBlocked else {
+                    return self.presentBasicAlert(title: "Your account has been blocked.", message: "We will send you a notification if we unblock you.")
+                }
                 self.login(user: user)
             }, failure: {error in
                 print(error.localizedDescription)
@@ -177,9 +182,15 @@ class LoginViewController: BaseViewController {
                         
                         self.remoteAPI.getUser(username: email) { userOptional in
                             if let user = userOptional {
+                                guard !user.isBlocked else {
+                                    return self.presentBasicAlert(title: "Your account has been blocked.", message: "We will send you a notification if we unblock you.")
+                                }
                                 self.login(user: user)
                             } else {
                                 self.remoteAPI.postNewUser(username: email, password: nil, fullName: fullName, success: { user in
+                                    guard !user.isBlocked else {
+                                        return self.presentBasicAlert(title: "Your account has been blocked.", message: "We will send you a notification if we unblock you.")
+                                    }
                                     self.login(user: user)
                                 }, failure: { error in
                                     print(error.localizedDescription)
@@ -201,6 +212,9 @@ class LoginViewController: BaseViewController {
                 }
                 self.remoteAPI.getUser(username: email, success: { userOptional in
                     guard let user = userOptional else { return }
+                    guard !user.isBlocked else {
+                        return self.presentBasicAlert(title: "Your account has been blocked.", message: "We will send you a notification if we unblock you.")
+                    }
                     self.login(user: user)
                 }, failure: { error in
                     print(error.localizedDescription)

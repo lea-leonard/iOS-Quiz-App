@@ -44,7 +44,11 @@ class UserCurrentQuizTableViewCell: UITableViewCell {
     
     var currentSecond: TimeInterval = 0
     @objc func refreshTimeRemaining(sender: CADisplayLink) {
-        if quiz!.timeLeftToComplete! <= 0 {
+        guard let timeLeftToComplete = quiz?.timeLeftToComplete else {
+            self.stopTimeRemainingDisplayLink()
+            return
+        }
+        if timeLeftToComplete <= 0 {
             self.stopTimeRemainingDisplayLink()
             self.delegate?.timeExpired(quiz: quiz!)
         } else {

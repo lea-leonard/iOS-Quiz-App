@@ -753,6 +753,74 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kim-VB-BoY">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="569"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AdminUserCell" rowHeight="92" id="aO5-0V-RFu" customClass="AdminUserCell" customModule="QuizApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="92"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aO5-0V-RFu" id="Psr-MG-tx8">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="92"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="sok-Wp-r8i">
+                                                    <rect key="frame" x="12" y="8" width="390" height="76"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="4yw-fh-5Td">
+                                                            <rect key="frame" x="0.0" y="0.0" width="390" height="20.5"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hm3-UW-Oxv">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="195" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gMB-zN-yeV">
+                                                                    <rect key="frame" x="195" y="0.0" width="195" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                                    <color key="tintColor" systemColor="systemGreenColor"/>
+                                                                    <state key="normal" title="2 Quizzes Pending" image="exclamationmark.circle.fill" catalog="system">
+                                                                        <color key="titleColor" systemColor="systemGreenColor"/>
+                                                                    </state>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="yyC-t4-m1w">
+                                                            <rect key="frame" x="0.0" y="26.5" width="390" height="49.5"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qgo-eO-r75">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="195" height="49.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <state key="normal" title="Block User"/>
+                                                                    <connections>
+                                                                        <action selector="tappedBlockUserButton:" destination="aO5-0V-RFu" eventType="touchUpInside" id="HSp-DS-9pB"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L9K-hc-guN">
+                                                                    <rect key="frame" x="195" y="0.0" width="195" height="49.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <state key="normal" title="View Quizzes"/>
+                                                                    <connections>
+                                                                        <action selector="tappedViewQuizzesButton:" destination="aO5-0V-RFu" eventType="touchUpInside" id="Kb3-YM-sff"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="sok-Wp-r8i" secondAttribute="trailing" constant="12" id="0N6-40-BNX"/>
+                                                <constraint firstAttribute="bottom" secondItem="sok-Wp-r8i" secondAttribute="bottom" constant="8" id="Cp0-ZU-88X"/>
+                                                <constraint firstItem="sok-Wp-r8i" firstAttribute="top" secondItem="Psr-MG-tx8" secondAttribute="top" constant="8" id="HcL-va-xaf"/>
+                                                <constraint firstItem="sok-Wp-r8i" firstAttribute="leading" secondItem="Psr-MG-tx8" secondAttribute="leading" constant="12" id="Nzs-4w-gTB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="blockUserButton" destination="qgo-eO-r75" id="EBp-3f-whQ"/>
+                                            <outlet property="quizzesPendingLabel" destination="gMB-zN-yeV" id="DzZ-fK-Nnn"/>
+                                            <outlet property="usernameLabel" destination="Hm3-UW-Oxv" id="RGx-uV-ijN"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wvW-Rb-YMN"/>
@@ -772,7 +840,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kqg-eQ-199" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2259" y="1686"/>
+            <point key="canvasLocation" x="-2259.4202898550725" y="1685.8258928571429"/>
         </scene>
         <!--Admin Question List View Controller-->
         <scene sceneID="CRa-Je-0bF">
@@ -1195,6 +1263,7 @@
         <image name="ShibaTestMenu2.gif" width="320" height="300"/>
         <image name="arrow.backward.square.fill" catalog="system" width="128" height="114"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
+        <image name="exclamationmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="labelColor">
@@ -1208,6 +1277,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

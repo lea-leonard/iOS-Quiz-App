@@ -71,7 +71,7 @@ class FeedbackViewController: BaseViewController, SFSpeechRecognizerDelegate {
             if self.isListening {
                 self.toggleSpeech()
             }
-            self.remoteAPI.patchUser(user: self.user, newUsername: nil, newPassword: nil, newIsPremiumMember: nil, addedFeedback: text, success: {
+            self.remoteAPI.patchUser(user: self.user, newUsername: nil, newPassword: nil, isPremiumMember: nil, addedFeedback: text, isBlocked: nil, success: {
                 self.presentBasicAlert(title: "Thanks for your feedback!", onDismiss: {
                     self.presentingViewController?.dismiss(animated: true, completion: nil)
                 })
