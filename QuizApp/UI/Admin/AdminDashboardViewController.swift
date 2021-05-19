@@ -43,10 +43,23 @@ class AdminDashboardViewController: BaseViewController {
     
     @IBOutlet weak var usersContainerView: UIView!
     
+    @IBOutlet weak var backButton: UIButton!
+    
+    
     
     var remoteAPI: RemoteAPI!
     
     var technologies = [Technology]()
+    
+    var backButtonShouldBeVisible: Bool {
+        guard let navigationController = self.currentNavigationController else { return false
+        }
+        return navigationController.viewControllers.count > 1
+    }
+    
+    var adminDashboardButtonsShouldBeVisible: Bool {
+        return self.currentNavigationController == self.questionsNavigationController && self.currentNavigationController.viewControllers.last is AdminQuestionListViewController
+    }
     
     func setup(remoteAPI: RemoteAPI) {
         self.remoteAPI = remoteAPI
@@ -116,6 +129,7 @@ class AdminDashboardViewController: BaseViewController {
             self.currentNavigationController = self.usersNavigationController
             self.usersContainerView.isHidden = false
             self.questionsContainerView.isHidden = true
+            
         }
         self.usersBarButton.setTitleColor(self.currentNavigationController == self.usersNavigationController ? .yellow : .lightGray, for: .normal)
         self.questionsBarButton.setTitleColor(self.currentNavigationController == self.questionsNavigationController ? .yellow : .lightGray, for: .normal)
@@ -138,12 +152,19 @@ class AdminDashboardViewController: BaseViewController {
         })
     }
     
+    @IBAction func tappedBackButton(_ sender: UIButton) {
+        self.popViewController(animated: true)
+    }
+    
+    
     @IBAction func tappedQuestionsBarButton(_ sender: UIButton) {
         self.setCurrentNavigationControllerTab(.questions, updateViews: true)
+        self.setAdminDashboardButtonsVisible(self.adminDashboardButtonsShouldBeVisible, animated: true)
     }
     
     @IBAction func tappedUsersBarButton(_ sender: UIButton) {
         self.setCurrentNavigationControllerTab(.users, updateViews: true)
+        self.setAdminDashboardButtonsVisible(self.adminDashboardButtonsShouldBeVisible, animated: true)
     }
     
     
@@ -162,28 +183,25 @@ class AdminDashboardViewController: BaseViewController {
         self.label2.text = self.currentChildViewController.label2Text
         self.label1.isHidden = self.label1.text == nil
         self.label2.isHidden = self.label2.text == nil
+    
+ 
+        self.setBackButtonVisible(self.backButtonShouldBeVisible, animated: true)
     }
     
     func pushViewController(_ viewController: AdminDashboardChildViewController, animated: Bool) {
         self.currentChildViewController = viewController
         viewController.dashboardViewController = self
-        self.updateViewsForContainer()
        
         self.currentNavigationController.pushViewController(viewController, animated: animated)
-      
-        UIView.animate(withDuration: 0.4, animations: {
-            if !(viewController is AdminQuestionListViewController) {
-                self.plusButton.alpha = 0
-                self.ellipsisImageButton.alpha = 0
-            }
-        })
+        self.updateViewsForContainer()
+        self.setAdminDashboardButtonsVisible(false, animated: true)
         
     }
+    
 
     func popViewController(animated: Bool) {
-        guard let child = self.children.last else { return }
         let destination: AdminDashboardChildViewController
-        if let navigationController = child as? UINavigationController {
+        if let navigationController = self.currentNavigationController {
             guard navigationController.viewControllers.count > 1 else {
                 return print("Unable to pop only remaining view controller")
             }
@@ -192,27 +210,42 @@ class AdminDashboardViewController: BaseViewController {
             }
             destination = vc
             self.currentChildViewController = destination
-            self.updateViewsForContainer()
             navigationController.popViewController(animated: true)
-        } else if child is AdminDashboardChildViewController {
-            guard let presentingViewController = child.presentingViewController else {
-                return print("Unable to pop only remaining view controller")
-            }
-            guard let vc = presentingViewController as? AdminDashboardChildViewController else {
-                return print("View controller is not AdminDashboardChildViewController")
-            }
-            destination = vc
             self.updateViewsForContainer()
-            presentingViewController.dismiss(animated: true, completion: nil)
         } else { return }
         if (destination is AdminQuestionListViewController) {
-            UIView.animate(withDuration: 0.4, animations: {
-                self.plusButton.alpha = 1
-                self.ellipsisImageButton.alpha = 1
-                self.updateViewsForContainer()
-            })
+            self.setAdminDashboardButtonsVisible(true, animated: true)
         }
 	}
+    
+    func setAdminDashboardButtonsVisible(_ visible: Bool, animated: Bool) {
+        let action = {
+            self.plusButton.alpha = visible ? 1 : 0
+            self.ellipsisImageButton.alpha = visible ? 1 : 0
+            self.updateViewsForContainer()
+        }
+        if animated {
+            UIView.animate(withDuration: 0.4, animations: {
+                action()
+            })
+        } else {
+            action()
+        }
+    }
+    
+    func setBackButtonVisible(_ visible: Bool, animated: Bool) {
+        let action = {
+            self.backButton.alpha = visible ? 1 : 0
+        }
+        if animated {
+            UIView.animate(withDuration: 0.4, animations: {
+                action()
+            })
+        } else {
+            action()
+        }
+    }
+    
     @IBAction func logoutButton(_ sender: Any) {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }

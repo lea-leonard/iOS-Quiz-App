@@ -75,6 +75,10 @@ extension Quiz {
         return self.score >= 0
     }
     
+    var isSubmittedPendingScore: Bool {
+        return self.isSubmitted == true && self.isScored == false
+    }
+    
     func calculateScore() throws -> Float {
         guard self.isCorrected else {
             throw GeneralError.error("Cannot calculate score if quiz is not corrected")

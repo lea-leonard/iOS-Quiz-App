@@ -98,14 +98,14 @@ class CoreDataHelper: RemoteAPI {
     func getNewQuizzesForAllTechnologies(user: User, numberOfMultipleChoiceQustions: Int, numberOfShortAnswerQuestions: Int, passingScore: Float, timeToComplete: Int, success: ([Quiz]) -> Void, failure: (Error) -> Void) {
         var quizzes = [Quiz]()
         
-        var userAvailableAndCurrentQuizzes = (user.quizzes?.array as? [Quiz])?
-            .filter({$0.isAvailable || $0.isCurrent}) ?? []
+        var userAvailableCurrentAndPendingQuizzes = (user.quizzes?.array as? [Quiz])?
+            .filter({$0.isAvailable || $0.isCurrent || $0.isSubmittedPendingScore}) ?? []
         
-        let expiredQuizzes = userAvailableAndCurrentQuizzes.filter({$0.isExpired})
+        let expiredQuizzes = userAvailableCurrentAndPendingQuizzes.filter({$0.isExpired})
         
         for quiz in expiredQuizzes {
             do {
-                userAvailableAndCurrentQuizzes = userAvailableAndCurrentQuizzes.filter({$0 != quiz})
+                userAvailableCurrentAndPendingQuizzes = userAvailableCurrentAndPendingQuizzes.filter({$0 != quiz})
                 try self.deleteQuizSync(quiz: quiz, completion: {})
             } catch {
                 return failure(error)
@@ -115,7 +115,7 @@ class CoreDataHelper: RemoteAPI {
         self.getAllTechnologies(success: { technologies in
             do {
                 for technology in technologies {
-                    let userAvailableAndCurrentQuizzesForTechnology = userAvailableAndCurrentQuizzes
+                    let userAvailableAndCurrentQuizzesForTechnology = userAvailableCurrentAndPendingQuizzes
                         .filter({$0.technology?.name == technology.name})
                     
                     guard userAvailableAndCurrentQuizzesForTechnology.count == 0 else { continue }

@@ -28,6 +28,14 @@ class MainDashboardViewController: BaseViewController {
     @IBOutlet weak var leaderboardButton: UIButton!
     @IBOutlet weak var forumButton: UIButton!
     
+    @IBOutlet weak var rankLabel: UILabel!
+    
+    @IBOutlet weak var bottomButtonsDistanceFromBottomConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var premiumViewCenterConstraint: NSLayoutConstraint!
+    
+    
+    
     weak var userDashboardViewController: UserDashboardViewController!
     
     var remoteAPI: RemoteAPI!
@@ -47,6 +55,12 @@ class MainDashboardViewController: BaseViewController {
         
         self.petalsGIF.alpha = 0
         self.shibaGIF.alpha = 0
+        
+        self.rankLabel.center.x -= 200
+        self.lblPremMember.center.x += 300
+        self.imgStarPremium.center.x += 300
+        self.premiumViewCenterConstraint.constant += 500
+        self.bottomButtonsDistanceFromBottomConstraint.constant -= 300
         
         switchPremium.isOn = false
         premiumView.isHidden = false
@@ -82,18 +96,34 @@ class MainDashboardViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         
+        self.premiumViewCenterConstraint.constant = 0
+        self.bottomButtonsDistanceFromBottomConstraint.constant = 27
+        
         UIView.animate(withDuration: 1.2, delay: 0.1, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [], animations: {
             self.sakuraTree.center.x = 297
             self.welcomeLabel.center.x = 86
             self.usernameLabel.center.x = 86
+            
+            self.rankLabel.center.x = 119.5
+            self.lblPremMember.center.x = 294.5
+            self.imgStarPremium.center.x = 166
+            
+            print(self.rankLabel.center.x)
+            print(self.lblPremMember.center.x)
+            print(self.imgStarPremium.center.x)
+
+            self.view.layoutIfNeeded()
         }, completion: nil)
         
         UIView.animate(withDuration: 1, delay: 0.9, options: [], animations: {
             self.petalsGIF.alpha = 1
+            
+     
         }, completion: nil)
         
         UIView.animate(withDuration: 1, delay: 1.2, options: [], animations: {
             self.shibaGIF.alpha = 1
+            
         }, completion: nil)
 
     }

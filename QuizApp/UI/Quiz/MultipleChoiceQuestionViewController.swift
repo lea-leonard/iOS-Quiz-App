@@ -79,8 +79,15 @@ class MultipleChoiceQuestionViewController: QuizQuestionViewController, Multiple
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var rows = self.question.choiceOptions!.count
-        if self.quiz.score >= 0 && self.question.userChoice < 0 {
-           rows += 1
+        switch self.mode {
+        case .user:
+            if self.quiz.isScored && self.question.userChoice < 0 {
+                rows += 1
+            }
+        case .admin:
+            if self.quiz.isSubmitted && self.question.userChoice < 0 {
+                rows += 1
+            }
         }
         return rows
     }
@@ -114,6 +121,7 @@ class MultipleChoiceQuestionViewController: QuizQuestionViewController, Multiple
             let cell = UITableViewCell()
             cell.textLabel?.text = "No response given"
             cell.textLabel?.textColor = #colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)
+            cell.selectionStyle = .none
             return cell
         }
     }

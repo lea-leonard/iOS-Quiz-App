@@ -127,6 +127,9 @@ class UserDashboardViewController: AdminDashboardChildViewController, UITableVie
             cell.technologyLabel.text = quiz.technology?.name ?? "?"
             cell.levelLabel.text = QuizLevel(rawValue: Int(quiz.level))?.description ?? "?"
             cell.scoreLabel.text = quiz.score >= 0 ? "Score: \(NumberFormatter.percentage.string(from: quiz.score) ?? "?")" : "Score pending"
+            cell.passFailLabel.text = quiz.isScored ? (quiz.passed! ? "Pass" : "Fail") : ""
+            cell.passFailLabel.textColor = quiz.isScored ? (quiz.passed! ? .systemGreen : .systemRed) : .clear
+            
             var backgroundColor = UIColor.white
             if quiz.score < 0 && self.mode == .admin {
                 backgroundColor = #colorLiteral(red: 0.9021843013, green: 1, blue: 0.8784323226, alpha: 1)

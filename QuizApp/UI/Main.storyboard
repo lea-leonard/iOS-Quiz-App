@@ -646,6 +646,17 @@
                                     <action selector="tappedPlusButton:" destination="e3K-j9-Ep1" eventType="touchUpInside" id="1dB-pg-9md"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PYC-dN-tZi">
+                                <rect key="frame" x="18" y="41" width="20" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="arrow.backward.square.fill" catalog="system">
+                                    <color key="titleColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedBackButton:" destination="e3K-j9-Ep1" eventType="touchUpInside" id="eCo-UD-fwf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vgy-ax-C8Y"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -674,6 +685,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="PYC-dN-tZi" id="eHG-P8-AUc"/>
                         <outlet property="ellipsisImageButton" destination="7SG-9S-oNP" id="0VP-Tf-rEj"/>
                         <outlet property="label1" destination="LdB-hJ-l1X" id="4xQ-rg-lmW"/>
                         <outlet property="label2" destination="Cj5-t4-yVh" id="HGG-SX-LIp"/>
@@ -1090,6 +1102,7 @@
         <image name="ShibaSignUp.gif" width="320" height="300"/>
         <image name="ShibaTestMenu.gif" width="320" height="300"/>
         <image name="ShibaTestMenu2.gif" width="320" height="300"/>
+        <image name="arrow.backward.square.fill" catalog="system" width="128" height="114"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>

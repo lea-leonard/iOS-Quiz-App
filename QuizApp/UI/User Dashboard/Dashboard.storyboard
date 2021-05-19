@@ -193,6 +193,14 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rank: 1" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpN-wK-SXq">
+                                <rect key="frame" x="37" y="182" width="165" height="43"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="31"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="b3u-FN-Ki5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -214,12 +222,15 @@
                     <tabBarItem key="tabBarItem" title="Item" id="7Ag-Wc-V9F"/>
                     <connections>
                         <outlet property="backButton" destination="elv-sG-Cd1" id="Awg-YA-gtS"/>
+                        <outlet property="bottomButtonsDistanceFromBottomConstraint" destination="JVA-Nz-yUw" id="K4c-Tw-ZYO"/>
                         <outlet property="forumButton" destination="Ytl-pA-o74" id="OYf-Si-r3C"/>
                         <outlet property="imgStarPremium" destination="8YA-34-cWk" id="tEU-vQ-7qz"/>
                         <outlet property="lblPremMember" destination="FcD-l0-kau" id="xfP-73-Jyt"/>
                         <outlet property="leaderboardButton" destination="t51-Uf-46n" id="l7W-XJ-Zqd"/>
                         <outlet property="petalsGIF" destination="K54-GF-Ofx" id="4cB-NV-YDD"/>
                         <outlet property="premiumView" destination="ltu-ca-a0U" id="cJd-km-Dfi"/>
+                        <outlet property="premiumViewCenterConstraint" destination="VkC-5Q-m6M" id="bKL-aR-w2T"/>
+                        <outlet property="rankLabel" destination="wpN-wK-SXq" id="JND-nD-FGp"/>
                         <outlet property="sakuraTree" destination="1rp-Gc-zdu" id="gRV-hQ-Cgk"/>
                         <outlet property="shibaGIF" destination="ObD-Nk-yAv" id="vQD-77-ZIK"/>
                         <outlet property="switchPremium" destination="rrS-zO-cBO" id="tDY-V0-KnI"/>
@@ -398,31 +409,42 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="DpY-pv-6HV">
-                                                    <rect key="frame" x="95" y="13.5" width="291" height="61.5"/>
+                                                    <rect key="frame" x="95" y="13.5" width="283" height="61.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Technology" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ata-NO-Emb">
-                                                            <rect key="frame" x="0.0" y="0.0" width="291" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="283" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2B5-uZ-Thk">
-                                                            <rect key="frame" x="0.0" y="20.5" width="291" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="20.5" width="283" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5L2-91-6V4">
-                                                            <rect key="frame" x="0.0" y="41" width="291" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" systemColor="secondaryLabelColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="ADC-PH-JAR">
+                                                            <rect key="frame" x="0.0" y="41" width="283" height="20.5"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5L2-91-6V4">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="44.5" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pass/Fail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4t-uS-d6E" userLabel="Pass/Fail">
+                                                                    <rect key="frame" x="213" y="0.0" width="70" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="DpY-pv-6HV" secondAttribute="trailing" constant="12" id="5j8-Jt-h1N"/>
+                                                <constraint firstAttribute="trailing" secondItem="DpY-pv-6HV" secondAttribute="trailing" constant="20" symbolic="YES" id="5j8-Jt-h1N"/>
                                                 <constraint firstItem="DpY-pv-6HV" firstAttribute="centerY" secondItem="VxF-Gc-AUe" secondAttribute="centerY" id="6Qg-Gn-6y8"/>
                                                 <constraint firstItem="VxF-Gc-AUe" firstAttribute="leading" secondItem="jbP-5a-L2H" secondAttribute="leading" constant="12" id="AhR-vC-q4H"/>
                                                 <constraint firstItem="DpY-pv-6HV" firstAttribute="leading" secondItem="VxF-Gc-AUe" secondAttribute="trailing" constant="23" id="CqB-1Z-06q"/>
@@ -432,6 +454,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="levelLabel" destination="2B5-uZ-Thk" id="eau-Ye-pmi"/>
+                                            <outlet property="passFailLabel" destination="f4t-uS-d6E" id="NbF-8i-WAb"/>
                                             <outlet property="scoreLabel" destination="5L2-91-6V4" id="XiA-HR-qzd"/>
                                             <outlet property="technologyImageView" destination="VxF-Gc-AUe" id="i4q-Ng-2UR"/>
                                             <outlet property="technologyLabel" destination="ata-NO-Emb" id="Rce-Du-MZL"/>

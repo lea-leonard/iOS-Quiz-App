@@ -14,9 +14,9 @@ extension User {
               quizzes.count > 0 else {
             return .one
         }
-        let quizzesForTechnology = quizzes.filter({$0.technology?.name == technologyName})
-        guard quizzesForTechnology.count > 0 else { return .one }
-        let maxQuiz = quizzesForTechnology.max(by: {$0.level < $1.level}) ?? quizzesForTechnology[0]
+        let passedQuizzesForTechnology = quizzes.filter({$0.technology?.name == technologyName && $0.passed == true})
+        guard passedQuizzesForTechnology.count > 0 else { return .one }
+        let maxQuiz = passedQuizzesForTechnology.max(by: {$0.level < $1.level}) ?? passedQuizzesForTechnology[0]
         let previousLevelInt = Int(maxQuiz.level)
         let maxLevelInt = QuizLevel.maxLevel.rawValue
         let returnLevelInt = maxLevelInt > previousLevelInt ? previousLevelInt + 1 : maxLevelInt
