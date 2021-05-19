@@ -798,7 +798,6 @@ class CoreDataHelper: RemoteAPI {
                 })
             }
             
-      
             
         } catch {
             

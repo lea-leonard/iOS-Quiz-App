@@ -11,7 +11,7 @@ class ForgotViewController: BaseViewController {
 
     
     @IBOutlet weak var shibaGIF: UIImageView!
-    @IBOutlet weak var usernameText: InputValidationTextField!
+    @IBOutlet weak var usernameText: InputValidationPasswordTextField!
     @IBOutlet weak var newPasswordText: InputValidationTextField!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var contactusButton: UIButton!
@@ -30,6 +30,11 @@ class ForgotViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.newPasswordText.setRightButton(image: .questionMark)
+        self.newPasswordText.addRightButtonAction { [weak self] in
+            self?.presentBasicAlert(message: InputValidator.Password.requirementsMessage)
+        }
         
         backButton.layer.backgroundColor = UIColor.white.cgColor
         shibaGIF.loadGif(name: "ShibaForgot")
@@ -56,19 +61,44 @@ class ForgotViewController: BaseViewController {
     }
     
     func changePassword() {
-            guard let password = newPasswordText.textNoEmptyString else {
-                fatalError("no password available in text field")
-            }
-            
-            
+        guard let password = newPasswordText.textNoEmptyString else {
+            return self.presentBasicAlert(message: "Password cannot be blank.")
+        }
+        
+        guard InputValidator.Password.validate(password) else {
+            return self.presentBasicAlert(message: InputValidator.Password.requirementsMessage)
+        }
+        
+        
         self.remoteAPI.changePassword(username: self.usernameText.text!, password: password) { changed in
+            if changed {
                 self.presentBasicAlert(message: "Password successfully changed.", onDismiss: {
                     KeychainHelper().deleteLoginCredentials()
                     self.presentingViewController?.dismiss(animated: true, completion: nil)
                 })
-            } failure: { error in
-                //MARK: TODO: error
+            } else {
+                presentBasicAlert(message: "User not recognized")
             }
+        } failure: { error in
+            //MARK: TODO: error
         }
+    }
+    
+    @IBAction func passwordTextChanged(_ sender: InputValidationTextField) {
+        guard let password = self.newPasswordText.textNoEmptyString else {
+            self.newPasswordText.setStatus(.neutral)
+            return
+        }
+        
+        guard InputValidator.Password.validate(password) else {
+            self.newPasswordText.setStatus(.invalid)
+            return
+        }
+        
+        self.newPasswordText.setStatus(.valid)
+
+    }
+    
+    
     
 }
