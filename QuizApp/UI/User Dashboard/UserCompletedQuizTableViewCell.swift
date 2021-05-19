@@ -15,4 +15,5 @@ class UserCompletedQuizTableViewCell: UITableViewCell {
     @IBOutlet weak var scoreLabel: UILabel!
     
     @IBOutlet weak var passFailLabel: UILabel!
+
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UserDashboardViewController: AdminDashboardChildViewController, UITableViewDelegate, UITableViewDataSource {
+class UserDashboardViewController: AdminDashboardChildViewController, UITableViewDelegate, UITableViewDataSource, CurrentQuizTableViewCellTimeExpiredDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -60,6 +60,7 @@ class UserDashboardViewController: AdminDashboardChildViewController, UITableVie
         self.refreshData()
     }
     
+    
     func refreshData() {
         self.remoteAPI.getAllTechnologies(success: { technologies in
             self.technologies = technologies
@@ -76,6 +77,7 @@ class UserDashboardViewController: AdminDashboardChildViewController, UITableVie
             print(error.localizedDescription)
         })
     }
+    
 
     // MARK: UITableView
     
@@ -116,7 +118,9 @@ class UserDashboardViewController: AdminDashboardChildViewController, UITableVie
             cell.technologyImageView.image = quiz.technology?.image
             cell.technologyLabel.text = quiz.technology?.name ?? "?"
             cell.levelLabel.text = QuizLevel(rawValue: Int(quiz.level))?.description ?? "?"
-            cell.timeRemainingLabel.text = "Time remaining: " + TimeIntervalFormatter.string(from: quiz.timeLeftToComplete ?? 0)
+            cell.stopTimeRemainingDisplayLink()
+            cell.startScoreLabelDisplayLink(quiz: quiz)
+            cell.delegate = self
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "UserCompletedQuizTableViewCell") as? UserCompletedQuizTableViewCell else {
@@ -127,6 +131,7 @@ class UserDashboardViewController: AdminDashboardChildViewController, UITableVie
             cell.technologyLabel.text = quiz.technology?.name ?? "?"
             cell.levelLabel.text = QuizLevel(rawValue: Int(quiz.level))?.description ?? "?"
             cell.scoreLabel.text = quiz.score >= 0 ? "Score: \(NumberFormatter.percentage.string(from: quiz.score) ?? "?")" : "Score pending"
+            
             cell.passFailLabel.text = quiz.isScored ? (quiz.passed! ? "Pass" : "Fail") : ""
             cell.passFailLabel.textColor = quiz.isScored ? (quiz.passed! ? .systemGreen : .systemRed) : .clear
             
@@ -180,4 +185,22 @@ class UserDashboardViewController: AdminDashboardChildViewController, UITableVie
             headerView.textLabel?.textColor = .white
         }
     }
+    
+    
+    //MARK: CurrentQuizTableViewCellTimeExpiredDelegate
+    
+    func timeExpired(quiz: Quiz) {
+        self.tableView.beginUpdates()
+        let indexPath = IndexPath(row: self.currentQuizzes.firstIndex(of: quiz)!, section: 0)
+        self.user.removeFromQuizzes(quiz)
+        self.tableView.deleteRows(at: [indexPath], with: .right)
+        self.tableView.endUpdates()
+        
+        self.remoteAPI.deleteQuiz(quiz: quiz, success: {
+            
+        }, failure: { error in
+            
+        })
+    }
+    
 }

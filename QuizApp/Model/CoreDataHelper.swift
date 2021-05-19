@@ -66,10 +66,19 @@ class CoreDataHelper: RemoteAPI {
         }
     }
     
-    private func deleteQuizSync(quiz: Quiz, completion: () -> Void) throws {
+    func deleteQuiz(quiz: Quiz, success: () -> Void, failure: (Error) -> Void) {
+        do {
+            self.viewContext.delete(quiz)
+            try self.viewContext.save()
+            success()
+        } catch {
+            failure(error)
+        }
+    }
+    
+    private func deleteQuizSync(quiz: Quiz) throws {
         self.viewContext.delete(quiz)
         try self.viewContext.save()
-        completion()
     }
     
     func getNewQuizSync(user: User, technology: Technology, level: QuizLevel, numberOfMultipleChoiceQuestions: Int, numberOfShortAnswerQuestions: Int, passingScore: Float, timeToComplete: Int) throws -> Quiz {
@@ -106,7 +115,7 @@ class CoreDataHelper: RemoteAPI {
         for quiz in expiredQuizzes {
             do {
                 userAvailableCurrentAndPendingQuizzes = userAvailableCurrentAndPendingQuizzes.filter({$0 != quiz})
-                try self.deleteQuizSync(quiz: quiz, completion: {})
+                try self.deleteQuizSync(quiz: quiz)
             } catch {
                 return failure(error)
             }

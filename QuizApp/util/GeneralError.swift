@@ -1,5 +1,5 @@
 //
-//  BasicError.swift
+//  GeneralError.swift
 //  QuizApp
 //
 //  Created by Robert Olieman on 5/18/21.
