@@ -15,6 +15,7 @@ class ForgotViewController: BaseViewController {
     @IBOutlet weak var newPasswordText: InputValidationTextField!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var contactusButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
     
     let remoteAPI: RemoteAPI
     
@@ -30,6 +31,7 @@ class ForgotViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        backButton.layer.backgroundColor = UIColor.white.cgColor
         shibaGIF.loadGif(name: "ShibaForgot")
         
         submitButton.layer.borderColor = UIColor.black.cgColor
@@ -47,6 +49,10 @@ class ForgotViewController: BaseViewController {
         vc.modalPresentationStyle = .fullScreen
         vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true, completion: nil)
+    }
+    
+    @IBAction func backButton(_ sender: Any) {
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     func changePassword() {
