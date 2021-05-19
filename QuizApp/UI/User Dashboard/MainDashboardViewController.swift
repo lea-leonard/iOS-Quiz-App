@@ -24,7 +24,10 @@ class MainDashboardViewController: BaseViewController {
     @IBOutlet weak var premiumView: UIView!
     @IBOutlet weak var imgStarPremium: UIImageView!
     @IBOutlet weak var lblPremMember: UILabel!
-        
+    
+    @IBOutlet weak var leaderboardButton: UIButton!
+    @IBOutlet weak var forumButton: UIButton!
+    
     weak var userDashboardViewController: UserDashboardViewController!
     
     var remoteAPI: RemoteAPI!
@@ -72,6 +75,9 @@ class MainDashboardViewController: BaseViewController {
         // show/hide premium section
         isPremium = user.isPremiumMember
         showPremiumBox()
+        
+        self.leaderboardButton.makeBasicButton()
+        self.forumButton.makeBasicButton()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -106,6 +112,21 @@ class MainDashboardViewController: BaseViewController {
         vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true, completion: nil)
     }
+    
+    @IBAction func tappedLeaderboardButton(_ sender: UIButton) {
+        guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "LeaderboardViewController") as? LeaderboardViewController else {
+            fatalError("Unable to instantiate LeaderboardViewController")
+        }
+        viewController.setup(remoteAPI: self.remoteAPI)
+        viewController.modalPresentationStyle = .fullScreen
+        viewController.modalTransitionStyle = .crossDissolve
+        self.present(viewController, animated: true)
+    }
+    
+    @IBAction func tappedForumButton(_ sender: UIButton) {
+        
+    }
+    
        
     func showPremiumBox (){
         //TEST: override isPremium value

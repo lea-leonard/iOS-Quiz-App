@@ -61,7 +61,7 @@ class AlertViewController: BaseViewController {
     }
 
     func addAction(title: String, handler: @escaping () -> Void) {
-        let button = UIButton.alertButton(title: title)
+        let button = UIButton.basicButton(title: title)
         button.setTitle(title, for: .normal)
         self.actions += [(button, handler)]
         button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)

@@ -915,6 +915,139 @@
             </objects>
             <point key="canvasLocation" x="-1567" y="1222"/>
         </scene>
+        <!--Leaderboard View Controller-->
+        <scene sceneID="kZP-cL-oin">
+            <objects>
+                <viewController storyboardIdentifier="LeaderboardViewController" id="q1U-v7-eQy" customClass="LeaderboardViewController" customModule="QuizApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6wR-vG-aZp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Love Kiss" translatesAutoresizingMaskIntoConstraints="NO" id="ppY-JJ-32X">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Xhi-WA-vyZ">
+                                <rect key="frame" x="0.0" y="80" width="414" height="816"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LeaderboardUserCell" rowHeight="80" id="Gsu-uK-fM7" customClass="LeaderboardUserCell" customModule="QuizApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="80"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gsu-uK-fM7" id="FAJ-hV-V4o">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="36f-uJ-ET6">
+                                                    <rect key="frame" x="5" y="0.5" width="78" height="78"/>
+                                                    <color key="tintColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="36f-uJ-ET6" secondAttribute="height" multiplier="1:1" id="flZ-Pb-iOg"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2b-uv-XiA">
+                                                    <rect key="frame" x="92" y="16" width="101.5" height="47"/>
+                                                    <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="26"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100.00%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHc-iX-Fhc">
+                                                    <rect key="frame" x="296" y="24.5" width="102.5" height="30.5"/>
+                                                    <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="28"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oFN-hA-uxP">
+                                                    <rect key="frame" x="34.5" y="20" width="19.5" height="40"/>
+                                                    <fontDescription key="fontDescription" name="MarkerFelt-Wide" family="Marker Felt" pointSize="30"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="36f-uJ-ET6" firstAttribute="centerX" secondItem="oFN-hA-uxP" secondAttribute="centerX" id="3LI-QS-QNa"/>
+                                                <constraint firstItem="36f-uJ-ET6" firstAttribute="width" secondItem="oFN-hA-uxP" secondAttribute="width" multiplier="4" id="4jj-Z3-2wm"/>
+                                                <constraint firstAttribute="bottom" secondItem="s2b-uv-XiA" secondAttribute="bottom" constant="17" id="9ur-fz-LQT"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SHc-iX-Fhc" secondAttribute="trailing" constant="10" id="Cfi-TY-b1T"/>
+                                                <constraint firstItem="oFN-hA-uxP" firstAttribute="centerX" secondItem="FAJ-hV-V4o" secondAttribute="leading" constant="44" id="MAp-8N-7lo"/>
+                                                <constraint firstItem="SHc-iX-Fhc" firstAttribute="leading" secondItem="FAJ-hV-V4o" secondAttribute="trailing" constant="-118" id="YHN-oX-bBn"/>
+                                                <constraint firstItem="oFN-hA-uxP" firstAttribute="top" secondItem="FAJ-hV-V4o" secondAttribute="top" constant="20" id="cgF-zY-tZf"/>
+                                                <constraint firstItem="SHc-iX-Fhc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="s2b-uv-XiA" secondAttribute="trailing" constant="20" id="jQ5-li-Aa4"/>
+                                                <constraint firstItem="s2b-uv-XiA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="oFN-hA-uxP" secondAttribute="trailing" constant="11" id="kpe-jQ-InQ"/>
+                                                <constraint firstItem="s2b-uv-XiA" firstAttribute="top" secondItem="FAJ-hV-V4o" secondAttribute="top" constant="16" id="kyV-Dl-qis"/>
+                                                <constraint firstAttribute="bottom" secondItem="oFN-hA-uxP" secondAttribute="bottom" constant="20" id="lhc-4K-hXs"/>
+                                                <constraint firstItem="36f-uJ-ET6" firstAttribute="centerY" secondItem="oFN-hA-uxP" secondAttribute="centerY" id="mwn-Us-w6T"/>
+                                                <constraint firstItem="SHc-iX-Fhc" firstAttribute="centerY" secondItem="s2b-uv-XiA" secondAttribute="centerY" id="yHe-BS-jLF"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstItem="s2b-uv-XiA" firstAttribute="leading" secondItem="Gsu-uK-fM7" secondAttribute="leading" priority="999" constant="92" id="9xe-Sd-7g9"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="rankLabel" destination="oFN-hA-uxP" id="9ex-iA-wa3"/>
+                                            <outlet property="rankLabelToLeadingConstraint" destination="MAp-8N-7lo" id="nhr-Bc-cCT"/>
+                                            <outlet property="scoreLabel" destination="SHc-iX-Fhc" id="rsp-9o-uvt"/>
+                                            <outlet property="starImageView" destination="36f-uJ-ET6" id="TGK-2X-GJM"/>
+                                            <outlet property="usernameLabel" destination="s2b-uv-XiA" id="i1j-IM-VMf"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="20j-ZA-hsb" userLabel="Top Bar View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leaderboard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Fp-a7-9ie">
+                                        <rect key="frame" x="146" y="46" width="122" height="27"/>
+                                        <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2D-GO-eGO">
+                                        <rect key="frame" x="14" y="46.5" width="42" height="30"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Close">
+                                            <color key="titleColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tappedCloseButton:" destination="q1U-v7-eQy" eventType="touchUpInside" id="kNF-Ja-1AE"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="8Fp-a7-9ie" firstAttribute="centerX" secondItem="20j-ZA-hsb" secondAttribute="centerX" id="4jX-Tu-0lV"/>
+                                    <constraint firstAttribute="leading" secondItem="h2D-GO-eGO" secondAttribute="leading" constant="-14" id="Kap-oD-D31"/>
+                                    <constraint firstAttribute="height" constant="80" id="Kgn-EJ-xDZ"/>
+                                    <constraint firstItem="h2D-GO-eGO" firstAttribute="firstBaseline" secondItem="8Fp-a7-9ie" secondAttribute="firstBaseline" id="LPm-HQ-Xv1"/>
+                                    <constraint firstAttribute="bottom" secondItem="8Fp-a7-9ie" secondAttribute="bottom" constant="7" id="rHc-IB-voe"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="hnR-gf-tji"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Xhi-WA-vyZ" firstAttribute="top" secondItem="20j-ZA-hsb" secondAttribute="bottom" id="6yp-1A-5cL"/>
+                            <constraint firstAttribute="trailing" secondItem="ppY-JJ-32X" secondAttribute="trailing" id="7c8-BB-SNP"/>
+                            <constraint firstItem="Xhi-WA-vyZ" firstAttribute="leading" secondItem="6wR-vG-aZp" secondAttribute="leading" id="7ob-rd-RbL"/>
+                            <constraint firstAttribute="trailing" secondItem="20j-ZA-hsb" secondAttribute="trailing" id="9MS-Cm-WgO"/>
+                            <constraint firstAttribute="top" secondItem="20j-ZA-hsb" secondAttribute="top" id="BiJ-VG-znV"/>
+                            <constraint firstItem="ppY-JJ-32X" firstAttribute="top" secondItem="6wR-vG-aZp" secondAttribute="top" id="JIa-hr-xbr"/>
+                            <constraint firstAttribute="trailing" secondItem="Xhi-WA-vyZ" secondAttribute="trailing" id="PhG-Ij-Zz0"/>
+                            <constraint firstItem="ppY-JJ-32X" firstAttribute="leading" secondItem="6wR-vG-aZp" secondAttribute="leading" id="SIW-Bt-Aa2"/>
+                            <constraint firstAttribute="bottom" secondItem="ppY-JJ-32X" secondAttribute="bottom" id="avo-NV-oOR"/>
+                            <constraint firstItem="Xhi-WA-vyZ" firstAttribute="bottom" secondItem="6wR-vG-aZp" secondAttribute="bottom" id="kxf-ua-yNN"/>
+                            <constraint firstItem="20j-ZA-hsb" firstAttribute="leading" secondItem="6wR-vG-aZp" secondAttribute="leading" id="uOF-Qn-bQN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="closeButton" destination="h2D-GO-eGO" id="EUa-Lj-28z"/>
+                        <outlet property="tableView" destination="Xhi-WA-vyZ" id="LIj-PU-2Tb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z2N-fH-oSL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-420.28985507246381" y="1074.1071428571429"/>
+        </scene>
         <!--Admin User Quiz List View Controller-->
         <scene sceneID="GQv-cH-yNd">
             <objects>
@@ -959,6 +1092,7 @@
         <image name="ShibaTestMenu2.gif" width="320" height="300"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

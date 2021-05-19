@@ -88,8 +88,10 @@
 		52D90B9F2649D33000F952D0 /* QuizLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D90B9E2649D33000F952D0 /* QuizLevel.swift */; };
 		52F0E35A264EA35100B63997 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F0E358264EA35100B63997 /* AlertViewController.swift */; };
 		52F0E35B264EA35100B63997 /* AlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52F0E359264EA35100B63997 /* AlertViewController.xib */; };
-		52F0E35D264EAE8700B63997 /* AlertButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F0E35C264EAE8700B63997 /* AlertButton.swift */; };
+		52F0E35D264EAE8700B63997 /* BasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F0E35C264EAE8700B63997 /* BasicButton.swift */; };
 		52F79A7C2654624F007DD984 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52F79A7B2654624F007DD984 /* Main.storyboard */; };
+		52F79A8A2654AD96007DD984 /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F79A892654AD96007DD984 /* LeaderboardViewController.swift */; };
+		52F79A8C2654B3E7007DD984 /* LeaderboardUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F79A8B2654B3E7007DD984 /* LeaderboardUserCell.swift */; };
 		8390C376777B2BC18A120639 /* Pods_QuizApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EABED88BE79A7BCA13BBF94 /* Pods_QuizApp.framework */; };
 		B7313C01264CF4C300C90C63 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B7313C00264CF4C300C90C63 /* Icon.png */; };
 		B7313C03264CF59100C90C63 /* ShibaLogin.gif in Resources */ = {isa = PBXBuildFile; fileRef = B7313C02264CF59100C90C63 /* ShibaLogin.gif */; };
@@ -198,8 +200,10 @@
 		52D90B9E2649D33000F952D0 /* QuizLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizLevel.swift; sourceTree = "<group>"; };
 		52F0E358264EA35100B63997 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		52F0E359264EA35100B63997 /* AlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertViewController.xib; sourceTree = "<group>"; };
-		52F0E35C264EAE8700B63997 /* AlertButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertButton.swift; sourceTree = "<group>"; };
+		52F0E35C264EAE8700B63997 /* BasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicButton.swift; sourceTree = "<group>"; };
 		52F79A7B2654624F007DD984 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		52F79A892654AD96007DD984 /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
+		52F79A8B2654B3E7007DD984 /* LeaderboardUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardUserCell.swift; sourceTree = "<group>"; };
 		9EABED88BE79A7BCA13BBF94 /* Pods_QuizApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QuizApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0DD3544B68EC447FBFB5EA /* Pods-QuizApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QuizApp.release.xcconfig"; path = "Target Support Files/Pods-QuizApp/Pods-QuizApp.release.xcconfig"; sourceTree = "<group>"; };
 		B7313C00264CF4C300C90C63 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -427,11 +431,12 @@
 				5246053D26533AD000C19B49 /* CorrectIncorrectCheckboxView.swift */,
 				52F0E358264EA35100B63997 /* AlertViewController.swift */,
 				52F0E359264EA35100B63997 /* AlertViewController.xib */,
-				52F0E35C264EAE8700B63997 /* AlertButton.swift */,
+				52F0E35C264EAE8700B63997 /* BasicButton.swift */,
 				B7F94C2B264B8ECA00E87C82 /* Login */,
 				522F5E42264C32F200E9C3DE /* Quiz */,
 				529A7E84264C7607006A56FA /* User Dashboard */,
 				522E8EF0264F5F0100F166DB /* Admin */,
+				52F79A882654AD7B007DD984 /* Leaderboard */,
 				52D90B2A26498DFA00F952D0 /* AppDelegate.swift */,
 				52F79A7B2654624F007DD984 /* Main.storyboard */,
 				52D90B3826498DFD00F952D0 /* LaunchScreen.storyboard */,
@@ -440,6 +445,15 @@
 				520088D5265167BF004A15D1 /* BaseTableViewCell.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		52F79A882654AD7B007DD984 /* Leaderboard */ = {
+			isa = PBXGroup;
+			children = (
+				52F79A892654AD96007DD984 /* LeaderboardViewController.swift */,
+				52F79A8B2654B3E7007DD984 /* LeaderboardUserCell.swift */,
+			);
+			path = Leaderboard;
 			sourceTree = "<group>";
 		};
 		B6582830EF8256CD3FF71EC7 /* Frameworks */ = {
@@ -663,7 +677,7 @@
 				5246052A2652D83400C19B49 /* AdminQuestionButtonsCell.swift in Sources */,
 				524605282652D83400C19B49 /* AdminQuestionSelectAttributesCell.swift in Sources */,
 				526B2410264D8CC200E1904C /* UserAvailableQuizTableViewCell.swift in Sources */,
-				52F0E35D264EAE8700B63997 /* AlertButton.swift in Sources */,
+				52F0E35D264EAE8700B63997 /* BasicButton.swift in Sources */,
 				52D90B9F2649D33000F952D0 /* QuizLevel.swift in Sources */,
 				526B2411264D8CC200E1904C /* UserCompletedQuizTableViewCell.swift in Sources */,
 				529F0657264CA761006984BB /* MultipleChoiceQuestionExtensions.swift in Sources */,
@@ -683,6 +697,7 @@
 				522F5E4E264C3A7700E9C3DE /* CheckboxView.swift in Sources */,
 				524605332652D83400C19B49 /* AdminMultipleChoiceQuestionViewController.swift in Sources */,
 				529D2D9C26543CF6007C7690 /* NumberFormatterExtensions.swift in Sources */,
+				52F79A8A2654AD96007DD984 /* LeaderboardViewController.swift in Sources */,
 				529D2D8D265413B3007C7690 /* ShortAnswerQuestion+CoreDataClass.swift in Sources */,
 				52F0E35A264EA35100B63997 /* AlertViewController.swift in Sources */,
 				52D90B2B26498DFA00F952D0 /* AppDelegate.swift in Sources */,
@@ -695,6 +710,7 @@
 				524605382652FF7F00C19B49 /* AdminUserListViewController.swift in Sources */,
 				529F0653264CA71F006984BB /* QuizQuestionOrQuestionForm.swift in Sources */,
 				527E90322649D9C500FB7E71 /* KeychainHelper.swift in Sources */,
+				52F79A8C2654B3E7007DD984 /* LeaderboardUserCell.swift in Sources */,
 				52C3860F264DC37700FEC438 /* InputValidator.swift in Sources */,
 				529D2D92265413B3007C7690 /* Quiz+CoreDataProperties.swift in Sources */,
 				522E8F02264F5F0100F166DB /* AdminQuestionListViewController.swift in Sources */,

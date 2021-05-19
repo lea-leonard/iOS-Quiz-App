@@ -34,4 +34,15 @@ extension User {
         
         return String(name.split(separator: " ")[0])
     }
+
+    var averageScore: Float? {
+        guard let quizzes = self.quizzes?.array as? [Quiz] else {
+            return nil
+        }
+        let scoredQuizzes = quizzes.filter({ $0.isScored })
+        guard scoredQuizzes.count > 0 else { return nil }
+        return scoredQuizzes.reduce(Float(0)) { result, quiz in
+            result + quiz.score
+        }/Float(scoredQuizzes.count)
+    }
 }

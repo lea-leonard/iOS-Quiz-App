@@ -43,24 +43,7 @@ extension Quiz {
         return !shortAnswerQuestionsArray.contains(where: { $0.isCorrected == false })
     }
     
-    func calculateScore() throws -> Float {
-        guard self.isCorrected else {
-            throw GeneralError.error("Cannot calculate score if quiz is not corrected")
-        }
-        let multipleChoiceQuestionsArray = self.multipleChoiceQuestions?.array as? [MultipleChoiceQuestion] ?? []
-        
-        let shortAnswerQuestionsArray = self.shortAnswerQuestions?.array as? [ShortAnswerQuestion] ?? []
-        
-        let numberOfQuestions = multipleChoiceQuestionsArray.count + shortAnswerQuestionsArray.count
-        
-        guard numberOfQuestions > 0 else {
-            throw GeneralError.error("Cannot calculate score for quiz with no questions")
-        }
-        
-        let numberOfCorrectQuestions: Int = multipleChoiceQuestionsArray.filter({$0.isCorrect}).count + shortAnswerQuestionsArray.filter({$0.isCorrect}).count
-        
-        return Float(numberOfCorrectQuestions)/Float(numberOfQuestions)
-    }
+    
     
     var passed: Bool? {
         guard self.score != -1, self.passingScore != -1 else {
@@ -87,4 +70,28 @@ extension Quiz {
         guard let deadline = deadline else { return false }
         return Date() > deadline
     }
+    
+    var isScored: Bool {
+        return self.score >= 0
+    }
+    
+    func calculateScore() throws -> Float {
+        guard self.isCorrected else {
+            throw GeneralError.error("Cannot calculate score if quiz is not corrected")
+        }
+        let multipleChoiceQuestionsArray = self.multipleChoiceQuestions?.array as? [MultipleChoiceQuestion] ?? []
+        
+        let shortAnswerQuestionsArray = self.shortAnswerQuestions?.array as? [ShortAnswerQuestion] ?? []
+        
+        let numberOfQuestions = multipleChoiceQuestionsArray.count + shortAnswerQuestionsArray.count
+        
+        guard numberOfQuestions > 0 else {
+            throw GeneralError.error("Cannot calculate score for quiz with no questions")
+        }
+        
+        let numberOfCorrectQuestions: Int = multipleChoiceQuestionsArray.filter({$0.isCorrect}).count + shortAnswerQuestionsArray.filter({$0.isCorrect}).count
+        
+        return Float(numberOfCorrectQuestions)/Float(numberOfQuestions)
+    }
+    
 }
