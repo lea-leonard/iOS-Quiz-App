@@ -94,7 +94,21 @@ class MainDashboardViewController: BaseViewController {
         self.forumButton.makeBasicButton()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.remoteAPI.getUserRank(user: self.user, success: { rank in
+            if let rank = rank {
+                self.rankLabel.text = "Rank: \(rank)"
+            } else {
+                self.rankLabel.isHidden = true
+            }
+        }, failure: {error in
+            print(error.localizedDescription)
+        })
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         self.premiumViewCenterConstraint.constant = 0
         self.bottomButtonsDistanceFromBottomConstraint.constant = 27

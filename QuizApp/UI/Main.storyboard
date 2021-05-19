@@ -301,10 +301,17 @@
                                     <action selector="tappedSaveAndExitButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0Bj-GW-pxy"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Remaining" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1dT-WL-COS">
+                                <rect key="frame" x="132" y="728" width="150.5" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="JfR-4R-G2W" firstAttribute="top" secondItem="1dT-WL-COS" secondAttribute="bottom" id="2pC-8x-bq6"/>
                             <constraint firstItem="GlR-H3-QdJ" firstAttribute="leading" secondItem="Kn7-9f-JYU" secondAttribute="trailing" constant="10" id="4cV-Mn-r0S"/>
                             <constraint firstItem="ci7-xJ-bI4" firstAttribute="top" secondItem="gxA-WJ-2nE" secondAttribute="bottom" constant="-29" id="4nf-Tc-627"/>
                             <constraint firstItem="pWr-Jo-tHc" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="6PV-h8-1lI"/>
@@ -320,6 +327,7 @@
                             <constraint firstItem="o1B-OM-KxK" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.54" id="XV4-ai-JT8"/>
                             <constraint firstItem="JfR-4R-G2W" firstAttribute="top" secondItem="qP0-Zb-M91" secondAttribute="bottom" constant="27" id="acS-uM-X6v"/>
                             <constraint firstItem="jc7-6A-aEe" firstAttribute="centerY" secondItem="GlR-H3-QdJ" secondAttribute="centerY" id="dHE-RU-idL"/>
+                            <constraint firstItem="1dT-WL-COS" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="eRT-7B-ZCz"/>
                             <constraint firstItem="Kn7-9f-JYU" firstAttribute="centerY" secondItem="GlR-H3-QdJ" secondAttribute="centerY" id="idi-yP-BOF"/>
                             <constraint firstItem="zdw-Hu-6pD" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="lMR-yP-Ld9"/>
                             <constraint firstItem="hFK-7M-49k" firstAttribute="top" secondItem="zdw-Hu-6pD" secondAttribute="bottom" constant="12" id="sdj-sR-Gmg"/>
@@ -339,6 +347,7 @@
                         <outlet property="submitButton" destination="hFK-7M-49k" id="ACx-NU-Gf6"/>
                         <outlet property="technologyImageView" destination="pWr-Jo-tHc" id="o8m-gT-0eV"/>
                         <outlet property="technologyLabel" destination="Kn7-9f-JYU" id="mJE-wx-9Gw"/>
+                        <outlet property="timeRemainingLabel" destination="1dT-WL-COS" id="Htm-zV-zoU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

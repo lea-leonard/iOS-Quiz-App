@@ -297,6 +297,35 @@ class CoreDataHelper: RemoteAPI {
         }
     }
     
+    private func getAllUsersSync() throws -> [User] {
+        let request: NSFetchRequest<User> = User.fetchRequest()
+        do {
+            let users = try self.viewContext.fetch(request)
+            return users
+        } catch {
+            throw error
+        }
+    }
+    
+    func getUserRank(user: User, success: (Int?) -> Void, failure: (Error) -> Void) {
+        do {
+            if user.averageScore == nil {
+                return success(nil)
+            }
+            let users = try self.getAllUsersSync()
+            let scoreUsers = users.filter({$0.averageScore != nil})
+            let sortedScoreUsers = scoreUsers.sorted { user1, user2 in
+                user1.averageScore! > user2.averageScore!
+            }
+            guard let index = sortedScoreUsers.firstIndex(of: user) else {
+                return success(nil)
+            }
+            success(index + 1)
+        } catch {
+            failure(error)
+        }
+    }
+    
     func getTechnology(name: String, success: (Technology?) -> Void, failure: (Error) -> Void) {
         let request: NSFetchRequest<Technology> = Technology.fetchRequest()
         request.predicate = NSPredicate(format: "name == %@", name)

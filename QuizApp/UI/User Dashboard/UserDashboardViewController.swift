@@ -57,22 +57,24 @@ class UserDashboardViewController: AdminDashboardChildViewController, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.refreshData()
+        self.refreshData(reloadData: true)
     }
     
     
-    func refreshData() {
+    func refreshData(completion: (() -> Void)? = nil, reloadData: Bool) {
         self.remoteAPI.getAllTechnologies(success: { technologies in
             self.technologies = technologies
-            self.addAvailableQuizzesIfNecessary()
+            self.addAvailableQuizzesIfNecessary(reloadData: reloadData)
         }, failure: { error in
             
         })
     }
     
-    func addAvailableQuizzesIfNecessary() {
+    func addAvailableQuizzesIfNecessary(reloadData: Bool) {
         self.remoteAPI.getNewQuizzesForAllTechnologies(user: user, numberOfMultipleChoiceQustions: 3, numberOfShortAnswerQuestions: 3, passingScore: Quiz.defaultPassingScore, timeToComplete: Quiz.defaultTimeToComplete, success: { quiz in
-            self.tableView.reloadData()
+            if reloadData {
+                self.tableView.reloadData()
+            }
         }, failure: { error in
             print(error.localizedDescription)
         })
@@ -190,11 +192,18 @@ class UserDashboardViewController: AdminDashboardChildViewController, UITableVie
     //MARK: CurrentQuizTableViewCellTimeExpiredDelegate
     
     func timeExpired(quiz: Quiz) {
+        let previousNumberOfAvailableQuizzes = self.availableQuizzes.count
         self.tableView.beginUpdates()
         let indexPath = IndexPath(row: self.currentQuizzes.firstIndex(of: quiz)!, section: 0)
         self.user.removeFromQuizzes(quiz)
+        self.refreshData(reloadData: false)
+        let newNumberOfAvailableQuizzes = self.availableQuizzes.count
+        if newNumberOfAvailableQuizzes > previousNumberOfAvailableQuizzes {
+            self.tableView.insertRows(at: [IndexPath(row: self.availableQuizzes.count - 1, section: 2)], with: .left)
+        }
         self.tableView.deleteRows(at: [indexPath], with: .right)
         self.tableView.endUpdates()
+        
         
         self.remoteAPI.deleteQuiz(quiz: quiz, success: {
             

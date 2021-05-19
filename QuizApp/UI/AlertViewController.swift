@@ -50,7 +50,7 @@ class AlertViewController: BaseViewController {
         }
         
         if self.message == nil {
-            self.titleLabel.removeFromSuperview()
+            self.messageLabel.removeFromSuperview()
         }
         
         for action in self.actions {

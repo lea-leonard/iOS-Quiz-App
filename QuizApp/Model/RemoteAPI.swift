@@ -17,6 +17,7 @@ protocol RemoteAPI {
 
     func getNewQuizzesForAllTechnologies(user: User, numberOfMultipleChoiceQustions: Int, numberOfShortAnswerQuestions: Int, passingScore: Float, timeToComplete: Int, success: ([Quiz]) -> Void, failure: (Error) -> Void)
     
+    
     func postNewUser(username: String, password: String?, fullName: String?, success: (User) -> Void, failure: (Error) -> Void)
     
     func patchUser(user: User, newUsername: String?, newPassword: String?, newIsPremiumMember: Bool?, success: () -> Void, failure: (Error) -> Void)
@@ -30,6 +31,8 @@ protocol RemoteAPI {
     func getUser(username: String, success: (User?) -> Void, failure: (Error) -> Void)
     
     func getAllUsers(success: ([User]) -> Void, failure: (Error) -> Void)
+    
+    func getUserRank(user: User, success: (Int?) -> Void, failure: (Error) -> Void)
     
     func getTechnology(name: String, success: (Technology?) -> Void, failure: (Error) -> Void)
     

@@ -12,7 +12,7 @@ class TimeIntervalFormatter {
         let timeInterval = Int(timeInterval)
             let seconds = timeInterval % 60
             let minutes = (timeInterval / 60) % 60
-            let hours = (timeInterval / 3600)
-            return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+            //let hours = (timeInterval / 3600)
+            return String(format: "%02d:%02d", minutes, seconds)
     }
 }
