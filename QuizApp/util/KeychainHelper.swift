@@ -9,7 +9,7 @@ import Foundation
 import KeychainAccess
 
 class KeychainHelper {
-    private(set) var service = "QuizApp"
+    private(set) var service = "rolieman.QuizApp"
     
     struct Key {
         static let password = "password"
