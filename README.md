@@ -32,3 +32,8 @@ Other: To use other ways to clone repository; On this repository main branch the
 ## Usage
 This project is only used for building functionality to it to make it better. All files currently used are available in the repository download.
 
+## Contributors
+* <a href="https://github.com/jiminy-kirket"> jiminy-kirket</a>
+* <a href="https://github.com/ILoveHoneyBun">ILoveHoneyBun</a>
+* myself 
+
