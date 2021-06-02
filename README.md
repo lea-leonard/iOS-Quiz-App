@@ -1,6 +1,5 @@
 # iOS-Quiz-App
 ## Project Description
-<img src="https://github.com/lea-leonard/iOS-Quiz-App/blob/master/launchSrceen.png" height="250px" align="right" alt=""></a>
 Test me - is a quiz application where user can check his/her performance on different technologies like Java, iOS , Swift, Android etc to know improvement area. 
 
 ## Technologies Used
